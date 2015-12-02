@@ -1,7 +1,7 @@
 console.log("Starting the system...");
 
 
-var RaspiCam = require("raspicam");
+var RaspiCam = require("../lib/raspicam");
 var camera = new RaspiCam({
 	mode: "photo",
 	output: "./images/image_%06d.jpg", // image_000001.jpg, image_000002.jpg,...
@@ -35,6 +35,20 @@ camera.on("start", function( err, timestamp ){
 
 camera.on("read", function( err, timestamp, filename ){
 	console.log("Image captured with filename: " + filename);
+
+
+
+
+fs.readFile("/image_origial", function(err, original_data){
+    var base64Image = new Buffer(original_data, 'binary').toString('base64');
+	socket.emit('newImage', base64Image, function(data){
+		console.log("EMIT CB", data);
+	});
+});
+
+
+
+
 });
 
 camera.on("exit", function( timestamp ){
@@ -44,3 +58,4 @@ camera.on("exit", function( timestamp ){
 camera.on("stop", function( err, timestamp ){
 	console.log("Shooting child process has been stopped at " + timestamp);
 });
+
