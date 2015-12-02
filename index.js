@@ -35,6 +35,11 @@ camera.on("start", function( err, timestamp ){
 });
 
 camera.on("read", function( err, timestamp, filename ){
+    if (filename.search("~") != -1) {
+        return;
+    }
+    
+    
 	console.log("Image captured with filename: " + filename);
 	
     fs.readFile("/images/" + filename, function(err, original_data){
