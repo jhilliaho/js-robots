@@ -1,5 +1,6 @@
 console.log("Starting the system...");
 
+var fs = require("fs");
 
 var RaspiCam = require("raspicam");
 var camera = new RaspiCam({
