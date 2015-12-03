@@ -11,6 +11,6 @@ board.on("ready", function() {
 	setInterval(function(){
 		pir.read(function(error, value) {
 		console.log(error, value);
-	})}, 200);
+	})}, 1000);
 
 });
