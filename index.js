@@ -65,7 +65,7 @@ var led = new five.Led({
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
-			led.off();			
+			led.stop().off();			
 		    if (filename.search("~") != -1) {
 		        return;
 		    }
@@ -84,12 +84,12 @@ var led = new five.Led({
 
 		camera.on("exit", function( timestamp ){
 			console.log("Shooting child process has exited");
-			led.off();			
+			led.stop().off();			
 		});
 
 		camera.on("stop", function( err, timestamp ){
 			console.log("Shooting child process has been stopped at " + timestamp);
-			led.off();
+			led.stop().off();			
 		});
 	});
 });
