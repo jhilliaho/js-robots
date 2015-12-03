@@ -14,8 +14,20 @@ board.on("ready", function() {
 	  console.log(state);
 	});
 
-	pir.read(function(error, value) {
-		console.log(error, value);
+	pir.high(function(value) {
+		console.log("1", value);
 	});
+
+	pir.data(function(value) {
+		console.log("2", value);
+	});
+
+	pir.read(function(value) {
+		console.log("3", value);
+	});
+
+	pir.on("high", function(e){
+		console.log("4", e);
+	})
 
 });
