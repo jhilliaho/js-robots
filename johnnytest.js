@@ -10,7 +10,7 @@ board.on("ready", function() {
 		mode: 0
 	});
 
-	console.log(JSON.stringify(pir, null, 4));
+	console.log(pir);
 
 	pir.query(function(state) {
 	  console.log(state);
