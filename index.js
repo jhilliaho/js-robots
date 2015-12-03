@@ -27,8 +27,9 @@ board.on("ready", function() {
 
 // Options object with pin property
 var led = new five.Led({
-  pin: "GPIO26"
+  pin: "GPIO19"
 });
+led.brightness(80);
 
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
