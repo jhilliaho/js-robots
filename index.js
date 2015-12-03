@@ -27,7 +27,7 @@ board.on("ready", function() {
 
 // Options object with pin property
 var led = new five.Led({
-  pin: 37
+  pin: "GPIO26"
 });
 
 led.blink();
