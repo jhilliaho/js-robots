@@ -33,7 +33,7 @@ var led = new five.Led({
 var led2 = new five.Led({
   pin: "GPIO12"
 });
-led.pulse(1000);
+led.pulse(200);
 led2.pulse(2000);
 
 /*
