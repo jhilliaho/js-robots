@@ -17,7 +17,6 @@ var camera = new RaspiCam({
 // WebSocket library
 var io = require('socket.io-client');
 
-
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
@@ -25,6 +24,13 @@ var board = new five.Board({
 });
 
 board.on("ready", function() {
+
+// Options object with pin property
+var led = new five.Led({
+  pin: 37
+});
+
+led.blink();
 
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
