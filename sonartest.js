@@ -5,10 +5,19 @@ var board = new five.Board({
 });
 
 board.on("ready", function() {
-  var virtual = new five.Board.Virtual(
-    new five.Expander("PCA9685")
-  );
-  
-  var led = new five.Led({ pin: 0, board: virtual });
-  led.pulse(1000);
+  var proximity = new five.Proximity({
+    controller: "HCSR04",
+    pin: "GPIO4"
+  });
+
+  proximity.on("data", function() {
+    console.log("Proximity: ");
+    console.log("  cm  : ", this.cm);
+    console.log("  in  : ", this.in);
+    console.log("-----------------");
+  });
+
+  proximity.on("change", function() {
+    console.log("The obstruction has moved.");
+  });
 });
