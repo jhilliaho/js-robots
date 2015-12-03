@@ -33,8 +33,9 @@ var led = new five.Led({
 var led2 = new five.Led({
   pin: "GPIO12"
 });
-led.pulse(200);
+led.pulse(1000);
 led2.pulse(2000);
+
 /*
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
