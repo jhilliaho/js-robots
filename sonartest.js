@@ -5,19 +5,8 @@ var board = new five.Board({
 });
 
 board.on("ready", function() {
-  var proximity = new five.Proximity({
-    controller: "HCSR04",
-    pin: "GPIO4"
-  });
-
-  proximity.on("data", function() {
-    console.log("Proximity: ");
-    console.log("  cm  : ", this.cm);
-    console.log("  in  : ", this.in);
-    console.log("-----------------");
-  });
-
-  proximity.on("change", function() {
-    console.log("The obstruction has moved.");
-  });
+    var ping = new five.Ping("GPIO4");
+    ping.on("change", function( err, value ) {
+        console.log('Distance: ' + this.cm + ' cm');
+    });
 });
