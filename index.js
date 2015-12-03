@@ -26,17 +26,14 @@ var board = new five.Board({
 board.on("ready", function() {
 
 // Options object with pin property
-var led = new five.Led({
+var pwm1 = new five.Led({
   pin: "GPIO19"
 });
 
-var led2 = new five.Led({
+var pwm2 = new five.Led({
   pin: "GPIO12"
 });
-led.pulse(200);
-led2.pulse(2000);
 
-/*
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
 
@@ -99,6 +96,6 @@ led2.pulse(2000);
 			led.stop().off();			
 		});
 	});
-*/
+
 });
 
