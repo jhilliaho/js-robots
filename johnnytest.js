@@ -5,7 +5,10 @@ var board = new five.Board({
 });
 
 board.on("ready", function() {
-	var pir = new five.Pin("P1-13");
+	var pir = new five.Pin({
+		pin: "P1-13",
+		mode: 0
+	});
 
 	pir.query(function(state) {
 	  console.log(state);
