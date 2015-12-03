@@ -8,7 +8,7 @@ board.on("ready", function() {
 	var pir = new five.Pin("P1-13");
 	
 
-	setInterval(	pin.read(function(error, value) {
+	setInterval(	pir.read(function(error, value) {
 	  console.log(value);
 	}), 200);
 
