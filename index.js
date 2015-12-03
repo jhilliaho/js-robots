@@ -29,7 +29,6 @@ board.on("ready", function() {
 var led = new five.Led({
   pin: "GPIO19"
 });
-led.brightness(80);
 
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
@@ -56,7 +55,7 @@ led.brightness(80);
 
 		pir.on("low", function(e){
 			console.log("low", e);
-			led.off();
+			led.brightness(80);
 
 		});
 
