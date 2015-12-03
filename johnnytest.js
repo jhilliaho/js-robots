@@ -12,22 +12,13 @@ board.on("ready", function() {
 
 	console.log(pir);
 
-	pir.query(function(state) {
-	  console.log(state);
-	});
-
-	pir.high(function(value) {
-		console.log("1", value);
-	});
-
-
-
-	pir.read(function(value) {
-		console.log("3", value);
-	});
 
 	pir.on("high", function(e){
-		console.log("4", e);
+		console.log("high", e);
+	})
+
+	pir.on("low", function(e){
+		console.log("low", e);
 	})
 
 });
