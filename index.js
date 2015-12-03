@@ -60,7 +60,7 @@ var led = new five.Led({
 		});
 
 		camera.on("start", function( err, timestamp ){
-			led.blink(100);
+			led.pulse(500);
 			console.log("Shooting started at " + timestamp);
 		});
 
