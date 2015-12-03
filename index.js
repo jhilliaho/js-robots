@@ -30,8 +30,6 @@ var led = new five.Led({
   pin: "GPIO26"
 });
 
-led.blink();
-
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
 
@@ -57,13 +55,17 @@ led.blink();
 
 		pir.on("low", function(e){
 			console.log("low", e);
+			led.off();
+
 		});
 
 		camera.on("start", function( err, timestamp ){
+			led.blink();
 			console.log("Shooting started at " + timestamp);
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
+			led.off();			
 		    if (filename.search("~") != -1) {
 		        return;
 		    }
@@ -82,10 +84,12 @@ led.blink();
 
 		camera.on("exit", function( timestamp ){
 			console.log("Shooting child process has exited");
+			led.off();			
 		});
 
 		camera.on("stop", function( err, timestamp ){
 			console.log("Shooting child process has been stopped at " + timestamp);
+			led.off();
 		});
 	});
 });
