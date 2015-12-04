@@ -67,12 +67,12 @@ board.on("ready", function() {
 		});
 
 		camera.on("start", function( err, timestamp ){
-			lcd.clear().cursor(0,0).print("TAKING PICTURE.");
+			lcd.clear().cursor(0,0).print("TAKING PIC.");
 			console.log("Shooting started at " + timestamp);
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
-			lcd.clear().cursor(0,0).print("TAKING PICTURE..");
+			lcd.clear().cursor(0,0).print("TAKING PIC..");
 		    if (filename.search("~") != -1) {
 		        return;
 		    }
@@ -80,10 +80,11 @@ board.on("ready", function() {
 			console.log("Image captured with filename: " + filename);
 			
 		    fs.readFile("./images/" + filename, function(err, original_data){
+				lcd.clear().cursor(0,0).print("TAKING PIC...");
 		        console.log("read file", err);
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
 		    	socket.emit('newImage', base64Image, function(data){
-					lcd.clear().cursor(0,0).print("TAKING PICTURE...");
+					lcd.clear().cursor(0,0).print("IMAGE SENT");
 		    		console.log("EMIT CB", data);
 		    	});
 		    });
