@@ -14,7 +14,7 @@ board.on("ready", function() {
 		cols: 16
 	});
 
-	lcd.noAutoscroll().print("SORRY GUYS, IT WAS MY FAULT");
+	lcd.noAutoscroll().print("SORRY GUYS, IT WAS MY FAULT THAT YOU LOST YOUR GAME");
 	lcd.noAutoscroll().print("YEAH");
 	lcd.noBlink();
 });
