@@ -11,6 +11,7 @@ board.on("ready", function() {
 		address: 0x27
 	});
 
+	lcd.cursor(0,0).print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
 	lcd.cursor(0,0).print("Hello World!")
 
 	// Function to print something on the lcd
