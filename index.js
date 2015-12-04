@@ -55,10 +55,17 @@ board.on("ready", function() {
 			mode: 0
 		});
 
+		var shootlock = false;
+
 		pir.on("high", function(e){
 			console.log("high", e);
-			lcd.clear().cursor(0,0).print("TAKING PIC.");				
-			camera.start();
+			lcd.clear().cursor(0,0).print("TAKING PIC.");
+			if (!shootlock) {
+				shootlock = true;		
+				camera.start();
+			} else {
+				console.log("Shootlock!");
+			}
 		});
 
 		pir.on("low", function(e){
@@ -99,7 +106,8 @@ board.on("ready", function() {
 
 		camera.on("exit", function( timestamp ){
 			setTimeout(function(){
-				lcd.clear();				
+				lcd.clear();
+				shootlock = false;		
 			}, 800);
 			console.log("Shooting child process has exited");
 		});
@@ -107,6 +115,7 @@ board.on("ready", function() {
 		camera.on("stop", function( err, timestamp ){
 			setTimeout(function(){
 				lcd.clear();				
+				shootlock = false;		
 			}, 800);
 			console.log("Shooting child process has been stopped at " + timestamp);
 		});
