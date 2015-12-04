@@ -12,10 +12,5 @@ board.on("ready", function() {
 	});
 
 	lcd.cursor(0,0).print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-	lcd.cursor(0,0).print("Hello World!")
-
-	// Function to print something on the lcd
-	function printToLcd(row, text) {
-		lcd.cursor(row, 0).print(text);
-	}
+	lcd.cursor(1,0).print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
 });
