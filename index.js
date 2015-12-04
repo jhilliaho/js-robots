@@ -57,7 +57,7 @@ board.on("ready", function() {
 
 		pir.on("high", function(e){
 			console.log("high", e);
-			lcd.clear().cursor(0,0).print("TAKING PIC.");
+			lcd.clear().cursor(0,0).print("TAKING PIC.");				
 			camera.start();
 		});
 
@@ -67,12 +67,19 @@ board.on("ready", function() {
 		});
 
 		camera.on("start", function( err, timestamp ){
-			lcd.clear().cursor(0,0).print("TAKING PIC..");
+			
+			setTimeout(function(){
+				lcd.clear().cursor(0,0).print("TAKING PIC..");				
+			}, 300);
+
 			console.log("Shooting started at " + timestamp);
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
-			lcd.clear().cursor(0,0).print("TAKING PIC...");
+			setTimeout(function(){
+				lcd.clear().cursor(0,0).print("TAKING PIC...");				
+			}, 600);
+
 		    if (filename.search("~") != -1) {
 		        return;
 		    }
@@ -83,21 +90,22 @@ board.on("ready", function() {
 				lcd.clear().cursor(0,0).print("TAKING PIC....");
 		        console.log("read file", err);
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
-		    	socket.emit('newImage', base64Image, function(data){
-					lcd.clear().cursor(0,0).print("IMAGE SENT");
-		    		console.log("EMIT CB", data);
-		    	});
+		    	socket.emit('newImage', base64Image);
 		    });
 
 		});
 
 		camera.on("exit", function( timestamp ){
-			lcd.clear();
+			setTimeout(function(){
+				lcd.clear();			
+			}, 1000);
 			console.log("Shooting child process has exited");
 		});
 
 		camera.on("stop", function( err, timestamp ){
-			lcd.clear();
+			setTimeout(function(){
+				lcd.clear();			
+			}, 1000);
 			console.log("Shooting child process has been stopped at " + timestamp);
 		});
 	});
