@@ -34,6 +34,8 @@ board.on("ready", function() {
 		cols: 16
 	});
 
+	lcd.off();
+
 	lcd.clear().cursor(0, 0).print("BOARD READY");
 
 	// SOCKET.IO
