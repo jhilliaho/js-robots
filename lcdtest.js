@@ -14,7 +14,6 @@ board.on("ready", function() {
 		cols: 16
 	});
 
-	lcd.noBlink().autoscroll().print("HELLO").print(" WORLD!").print(" NICE TO MEET YOU AGAIN.");
-	lcd.noBlink().noAutoscroll().print("SORRY GUYS, IT WAS MY FAULT");
+	lcd.noAutoscroll().print("SORRY GUYS, IT WAS MY FAULT");
 	lcd.noBlink();
 });
