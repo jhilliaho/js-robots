@@ -12,6 +12,6 @@ board.on("ready", function() {
 		address: 0x27
 	});
 
-	lcd.autoscroll().print("Bloop").print("Bleep").print("Bloop").print("Bleep").print("Bloop").print("Bleep").print("Bloop").print("Bleep").print("Bloop").print("Bleep").print("Bloop").print("Bleep").print("Bloop").print("Bleep").print("Bloop").print("Bleep");
+	lcd.noBlink().autoscroll().print(" WORLD").print("HELLO ");
 
 });
