@@ -11,6 +11,6 @@ board.on("ready", function() {
 		address: 0x27
 	});
 
-	lcd.cursor(0,0).print("Hello World");
+	lcd.cursor(0,0).print("HELLO WORLD!");
 	lcd.cursor(1,0).print("QRSTUVWXYZÅÖÄ");
 });
