@@ -77,15 +77,13 @@ board.on("ready", function() {
 			
 			setTimeout(function(){
 				lcd.clear().cursor(0,0).print("TAKING PIC..");				
-			}, 200);
+			}, 500);
 
 			console.log("Shooting started at " + timestamp);
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
-			setTimeout(function(){
-				lcd.clear().cursor(0,0).print("TAKING PIC...");				
-			}, 400);
+			lcd.clear().cursor(0,0).print("TAKING PIC...");				
 
 		    if (filename.search("~") != -1) {
 		        return;
@@ -95,8 +93,8 @@ board.on("ready", function() {
 			
 		    fs.readFile("./images/" + filename, function(err, original_data){
 				setTimeout(function(){
-					lcd.clear().cursor(0,0).print("TAKING PIC...");				
-				}, 600);
+					lcd.clear().cursor(0,0).print("TAKING PIC....");				
+				}, 400);
 		        console.log("read file", err);
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
 		    	socket.emit('newImage', base64Image);
