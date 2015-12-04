@@ -12,6 +12,6 @@ board.on("ready", function() {
 		address: 0x27
 	});
 
-	lcd.noBlink().autoscroll().print("WORLD ").print(" HELLO");
+	lcd.noBlink().autoscroll().print("HELLO").print(" WORLD!").print(" NICE TO MEET YOU AGAIN.");
 	lcd.noBlink();
 });
