@@ -25,30 +25,43 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
-// Options object with pin property
-var pwm1 = new five.Led({
-  pin: "GPIO19"
-});
+	// Set LCD screen
+	var lcd = new five.LCD({
+		controller: "PCF8574AT",
+		address: 0x27,
+		rows: 2,
+		cols: 16
+	});
 
-var pwm2 = new five.Led({
-  pin: "GPIO12"
-});
+	lcd.clear().cursor(0,0).print("CONNECTING...");
+
+
+	// Options object with pin property
+	var pwm1 = new five.Led({
+	  pin: "GPIO19"
+	});
+
+	var pwm2 = new five.Led({
+	  pin: "GPIO12"
+	});
 
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
 
 	socket.on("disconnect", function(){
 	    console.log("disconnected");
+		lcd.clear().cursor(0,0).print("DISCONNECTED");
 	});
 
 	socket.on('connect', function() {
+		lcd.clear().cursor(0,0).print("CONNECTED");
 	    console.log('Connected!');
 	    socket.emit('camConnected');
 
-	
+
 		// PIN OPERATIONS
 		var pir = new five.Pin({
-			pin: "P1-13",
+			pin: "GPIO4",
 			mode: 0
 		});
 
@@ -64,11 +77,13 @@ var pwm2 = new five.Led({
 		});
 
 		camera.on("start", function( err, timestamp ){
+			lcd.clear().cursor(0,0).print("TAKING PICTURE.");
 			led.pulse(500);
 			console.log("Shooting started at " + timestamp);
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
+			lcd.clear().cursor(0,0).print("TAKING PICTURE..");
 			led.stop().off();			
 		    if (filename.search("~") != -1) {
 		        return;
@@ -80,6 +95,7 @@ var pwm2 = new five.Led({
 		        console.log("read file", err);
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
 		    	socket.emit('newImage', base64Image, function(data){
+					lcd.clear().cursor(0,0).print("TAKING PICTURE...");
 		    		console.log("EMIT CB", data);
 		    	});
 		    });
