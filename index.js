@@ -49,7 +49,6 @@ board.on("ready", function() {
 	    console.log('Connected!');
 	    socket.emit('camConnected');
 
-
 		// PIN OPERATIONS
 		var pir = new five.Pin({
 			pin: "GPIO4",
@@ -58,6 +57,7 @@ board.on("ready", function() {
 
 		pir.on("high", function(e){
 			console.log("high", e);
+			lcd.clear().cursor(0,0).print("TAKING PIC.");
 			camera.start();
 		});
 
@@ -67,12 +67,12 @@ board.on("ready", function() {
 		});
 
 		camera.on("start", function( err, timestamp ){
-			lcd.clear().cursor(0,0).print("TAKING PIC.");
+			lcd.clear().cursor(0,0).print("TAKING PIC..");
 			console.log("Shooting started at " + timestamp);
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
-			lcd.clear().cursor(0,0).print("TAKING PIC..");
+			lcd.clear().cursor(0,0).print("TAKING PIC...");
 		    if (filename.search("~") != -1) {
 		        return;
 		    }
@@ -80,7 +80,7 @@ board.on("ready", function() {
 			console.log("Image captured with filename: " + filename);
 			
 		    fs.readFile("./images/" + filename, function(err, original_data){
-				lcd.clear().cursor(0,0).print("TAKING PIC...");
+				lcd.clear().cursor(0,0).print("TAKING PIC....");
 		        console.log("read file", err);
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
 		    	socket.emit('newImage', base64Image, function(data){
@@ -92,10 +92,12 @@ board.on("ready", function() {
 		});
 
 		camera.on("exit", function( timestamp ){
+			lcd.clear();
 			console.log("Shooting child process has exited");
 		});
 
 		camera.on("stop", function( err, timestamp ){
+			lcd.clear();
 			console.log("Shooting child process has been stopped at " + timestamp);
 		});
 	});
