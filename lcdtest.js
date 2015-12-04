@@ -13,6 +13,6 @@ board.on("ready", function() {
 	});
 
 	lcd.noBlink().autoscroll().print("HELLO").print(" WORLD!").print(" NICE TO MEET YOU AGAIN.");
-	lcd.noBlink().noAutoscroll().print("SORRY");
+	lcd.noBlink().noAutoscroll().print("SORRY GUYS, IT WAS MY FAULT");
 	lcd.noBlink();
 });
