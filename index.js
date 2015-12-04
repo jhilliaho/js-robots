@@ -59,8 +59,8 @@ board.on("ready", function() {
 
 		pir.on("high", function(e){
 			console.log("high", e);
-			lcd.clear().cursor(0,0).print("TAKING PIC.");
 			if (!shootlock) {
+				lcd.clear().cursor(0,0).print("TAKING PIC.");
 				shootlock = true;		
 				camera.start();
 			} else {
