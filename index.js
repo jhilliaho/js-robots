@@ -36,16 +36,6 @@ board.on("ready", function() {
 
 	lcd.clear().cursor(0, 0).print("BOARD READY");
 
-
-	// Options object with pin property
-	var pwm1 = new five.Led({
-	  pin: "GPIO19"
-	});
-
-	var pwm2 = new five.Led({
-	  pin: "GPIO12"
-	});
-
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
 
@@ -73,19 +63,16 @@ board.on("ready", function() {
 
 		pir.on("low", function(e){
 			console.log("low", e);
-			led.stop().off();			
 
 		});
 
 		camera.on("start", function( err, timestamp ){
 			lcd.clear().cursor(0,0).print("TAKING PICTURE.");
-			led.pulse(500);
 			console.log("Shooting started at " + timestamp);
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
 			lcd.clear().cursor(0,0).print("TAKING PICTURE..");
-			led.stop().off();			
 		    if (filename.search("~") != -1) {
 		        return;
 		    }
@@ -105,12 +92,10 @@ board.on("ready", function() {
 
 		camera.on("exit", function( timestamp ){
 			console.log("Shooting child process has exited");
-			led.stop().off();			
 		});
 
 		camera.on("stop", function( err, timestamp ){
 			console.log("Shooting child process has been stopped at " + timestamp);
-			led.stop().off();			
 		});
 	});
 
