@@ -25,6 +25,7 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
+	console.log("Board ready");
 	// Set LCD screen
 	var lcd = new five.LCD({
 		controller: "PCF8574AT",
@@ -33,7 +34,8 @@ board.on("ready", function() {
 		cols: 16
 	});
 
-	lcd.clear().cursor(0,0).print("CONNECTING...");
+	lcd.clear();
+	lcd.cursor(0, 0).print("Bleep");
 
 
 	// Options object with pin property
