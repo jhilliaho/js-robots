@@ -77,7 +77,7 @@ board.on("ready", function() {
 			
 			setTimeout(function(){
 				lcd.clear().cursor(0,0).print("TAKING PIC..");				
-			}, 700);
+			}, 1000);
 
 			console.log("Shooting started at " + timestamp);
 		});
@@ -94,7 +94,7 @@ board.on("ready", function() {
 			
 		    fs.readFile("./images/" + filename, function(err, original_data){
 				setTimeout(function(){
-					lcd.clear().cursor(0,0).print("TAKING PIC..");				
+					lcd.clear().cursor(0,0).print("TAKING PIC....");				
 				}, 300);
 				console.log("read file", err);
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
