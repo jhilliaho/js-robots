@@ -34,7 +34,7 @@ board.on("ready", function() {
 		cols: 16
 	});
 
-	lcd.clear().lcd.cursor(0, 0).print("BOARD READY");
+	lcd.clear().cursor(0, 0).print("BOARD READY");
 
 
 	// Options object with pin property
