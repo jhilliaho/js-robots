@@ -15,5 +15,6 @@ board.on("ready", function() {
 	});
 
 	lcd.noAutoscroll().print("SORRY GUYS, IT WAS MY FAULT");
+	lcd.noAutoscroll().print("YEAH");
 	lcd.noBlink();
 });
