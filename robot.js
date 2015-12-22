@@ -18,21 +18,21 @@ board.on("ready", function() {
 	var rightMotor = new five.Motor({
 		pins: {
 			pwm: "GPIO19",
-			dir: "GPIO23",
-			cdir: "GPIO18"  
+			dir: "GPIO18",
+			cdir: "GPIO23"  
 		}
 	});
 
 	var leftMotor = new five.Motor({
 		pins: {
 			pwm: "GPIO12",
-			dir: "GPIO25",
-			cdir: "GPIO24"  
+			dir: "GPIO24",
+			cdir: "GPIO25"  
 		}
 	});
 
-	leftMotor.start(120);
-	rightMotor.start(120);
+	leftMotor.fwd(120);
+	rightMotor.fwd(120);
 
 	///////////////////////
 	///		ENCODERS	///
@@ -57,7 +57,7 @@ board.on("ready", function() {
 
 	function rightTick(val) {
 		++rightTicks;
-		if (rightTicks > 8) {
+		if (rightTicks > 25) {
 			rightMotor.stop();
 		}
 		console.log(leftTicks, " : ", rightTicks);
@@ -65,7 +65,7 @@ board.on("ready", function() {
 
 	function leftTick(val) {
 		++leftTicks;
-		if (leftTicks > 8) {
+		if (leftTicks > 25) {
 			leftMotor.stop();
 		}
 		console.log(leftTicks, " : ", rightTicks);
