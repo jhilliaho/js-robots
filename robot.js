@@ -57,7 +57,7 @@ board.on("ready", function() {
 
 	function rightTick(val) {
 		++rightTicks;
-		if (rightTicks > 3) {
+		if (rightTicks > 30) {
 			rightMotor.stop();
 			console.log("right stop");
 		}
@@ -66,7 +66,7 @@ board.on("ready", function() {
 
 	function leftTick(val) {
 		++leftTicks;
-		if (leftTicks > 3) {
+		if (leftTicks > 30) {
 			leftMotor.stop();
 			console.log("left stop");
 		}
