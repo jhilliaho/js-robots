@@ -31,8 +31,8 @@ board.on("ready", function() {
 		}
 	});
 
-	leftMotor.start(120);
-	rightMotor.start(120);
+	leftMotor.start(60);
+	rightMotor.start(60);
 
 	///////////////////////
 	///		ENCODERS	///
@@ -59,6 +59,7 @@ board.on("ready", function() {
 		++rightTicks;
 		if (rightTicks > 25) {
 			rightMotor.stop();
+			console.log("right stop");
 		}
 		console.log(leftTicks, " : ", rightTicks);
 	};
@@ -67,6 +68,7 @@ board.on("ready", function() {
 		++leftTicks;
 		if (leftTicks > 25) {
 			leftMotor.stop();
+			console.log("left stop");
 		}
 		console.log(leftTicks, " : ", rightTicks);
 	};
