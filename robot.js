@@ -43,7 +43,7 @@ board.on("ready", function() {
 
 	// PIN OPERATIONS
 	var rightGearTick = new five.Pin({
-		pin: "GPI17",
+		pin: "GPIO17",
 		type: "digital",
 		mode: 0
 	});
