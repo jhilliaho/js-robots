@@ -6,73 +6,97 @@ var io = require('socket.io-client');
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
-  io: new Raspi()
+	io: new Raspi()
 });
 
 board.on("ready", function() {
 
-		var rightTicks = 0;
-		var leftTicks = 0;
+	///////////////////////
+	///	  MOTOR SPEED	///
+	///////////////////////
 
-		// PIN OPERATIONS
-		var rightGearTick = new five.Pin({
-			pin: "GPIO4",
-			type: "digital",
-			mode: 0
-		});
-
-		// PIN OPERATIONS
-		var leftGearTick = new five.Pin({
-			pin: "GPIO17",
-			type: "digital",
-			mode: 0
-		});
-
-		rightGearTick.on("high", function(e){
-			++rightTicks;
-			console.log("right high", rightTicks);
-		});
-
-		rightGearTick.on("low", function(e){
-			++rightTicks;
-			console.log("right low", rightTicks);
-		});
-
-		leftGearTick.on("high", function(e){
-			++leftTicks;
-			console.log("left high", leftTicks);
-		});
-
-		leftGearTick.on("low", function(e){
-			++leftTicks;
-			console.log("left low", leftTicks);
-		});
-
-	console.log("Board ready");
-	// Set LCD screen
-	var lcd = new five.LCD({
-		controller: "PCF8574AT",
-		address: 0x27,
-		rows: 2,
-		cols: 16
+	var rightMotor = new five.Motor({
+		pins: {
+			pwm: 19,
+			dir: 18,
+			cdir: 23  
+		}
 	});
 
-	lcd.clear().cursor(0, 0).print("BOARD READY");
+	var leftMotor = new var leftMotor = five.Motor({
+		pins: {
+			pwm: 12,
+			dir: 24,
+			cdir: 25  
+		}
+	});
+
+	leftMotor.start(120);
+	rightMotor.start(120);
+
+	///////////////////////
+	///		ENCODERS	///
+	///////////////////////
+
+	var rightTicks = 0;
+	var leftTicks = 0;
+
+	// PIN OPERATIONS
+	var rightGearTick = new five.Pin({
+		pin: "GPI17",
+		type: "digital",
+		mode: 0
+	});
+
+	// PIN OPERATIONS
+	var leftGearTick = new five.Pin({
+		pin: "GPIO4",
+		type: "digital",
+		mode: 0
+	});
+
+	function rightTick() {
+		++rightTicks;
+		if (rightTicks > 50) {
+			rightMotor.stop();
+		}
+	};
+
+	function leftTick() {
+		++leftTicks;
+		if (leftTicks > 50) {
+			leftMotor.stop();
+		}
+	};
+
+	rightGearTick.on("high", function(e){
+		rightTick(1);
+	});
+
+	rightGearTick.on("low", function(e){
+		rightTick(0);
+	});
+
+	leftGearTick.on("high", function(e){
+		leftTick(1);
+	});
+
+	leftGearTick.on("low", function(e){
+		leftTick(0);
+	});
+
+	console.log("Board ready");
 
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
 
 	socket.on("disconnect", function(){
-	    console.log("DISCONNECTED");
-		lcd.clear().cursor(0,0).print("DISCONNECTED");
+		console.log("DISCONNECTED");
 	});
 
 	socket.on('connect', function() {
-		lcd.clear().cursor(0,0).print("CONNECTED");
-	    console.log('Connected!');
-	    socket.emit('camConnected');
-
-
+		console.log('Connected!');
+		socket.emit('camConnected');
 	});
 
 });
