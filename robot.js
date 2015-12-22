@@ -28,23 +28,15 @@ board.on("ready", function() {
 		});
 
 		rightGearTick.on("low", function(e){
-			console.log("right high");
+			console.log("right low");
 		});
 
 		leftGearTick.on("high", function(e){
-			console.log("right high");
+			console.log("left high");
 		});
 
 		leftGearTick.on("low", function(e){
-			console.log("right high");
-		});
-
-		leftGearTick.read(function(error, value) {
-		  console.log(value);
-		});
-
-		rightGearTick.read(function(error, value) {
-		  console.log(value);
+			console.log("left low");
 		});
 
 	console.log("Board ready");
