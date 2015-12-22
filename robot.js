@@ -31,8 +31,8 @@ board.on("ready", function() {
 		}
 	});
 
-	leftMotor.forward(120);
-	rightMotor.forward(120);
+	leftMotor.reverse(120);
+	rightMotor.reverse(120);
 
 	///////////////////////
 	///		ENCODERS	///
@@ -57,7 +57,7 @@ board.on("ready", function() {
 
 	function rightTick(val) {
 		++rightTicks;
-		if (rightTicks > 15) {
+		if (rightTicks > 3) {
 			rightMotor.stop();
 			console.log("right stop");
 		}
@@ -66,7 +66,7 @@ board.on("ready", function() {
 
 	function leftTick(val) {
 		++leftTicks;
-		if (leftTicks > 15) {
+		if (leftTicks > 3) {
 			leftMotor.stop();
 			console.log("left stop");
 		}
