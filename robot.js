@@ -17,17 +17,17 @@ board.on("ready", function() {
 
 	var rightMotor = new five.Motor({
 		pins: {
-			pwm: 19,
-			dir: 18,
-			cdir: 23  
+			pwm: "GPIO19",
+			dir: "GPIO18",
+			cdir: "GPIO23"  
 		}
 	});
 
 	var leftMotor = new five.Motor({
 		pins: {
-			pwm: 12,
-			dir: 24,
-			cdir: 25  
+			pwm: "GPIO12",
+			dir: "GPIO24",
+			cdir: "GPIO25"  
 		}
 	});
 
