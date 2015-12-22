@@ -14,11 +14,13 @@ board.on("ready", function() {
 		// PIN OPERATIONS
 		var rightGearTick = new five.Pin({
 			pin: "GPIO4",
+			type: "digital"
 		});
 
 		// PIN OPERATIONS
 		var leftGearTick = new five.Pin({
 			pin: "GPIO17",
+			type: "digital"
 		});
 
 		rightGearTick.on("high", function(e){
@@ -36,6 +38,9 @@ board.on("ready", function() {
 		leftGearTick.on("low", function(e){
 			console.log("right high");
 		});
+
+		console.log(leftGearTick.read());
+		console.log(rightGearTick.read());
 
 	console.log("Board ready");
 	// Set LCD screen
