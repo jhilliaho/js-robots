@@ -39,6 +39,8 @@ board.on("ready", function() {
 			console.log("right high");
 		});
 
+		console.log(leftGearTick);
+		console.log(rightGearTick);
 
 	console.log("Board ready");
 	// Set LCD screen
