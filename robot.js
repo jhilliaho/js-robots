@@ -21,7 +21,7 @@ board.on("ready", function() {
 		// PIN OPERATIONS
 		var leftGearTick = new five.Pin({
 			pin: "GPIO17",
-			type: "digital"
+			type: "digital",
 			mode: 0
 		});
 
