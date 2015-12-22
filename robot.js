@@ -31,8 +31,8 @@ board.on("ready", function() {
 		}
 	});
 
-	leftMotor.forward(80);
-	rightMotor.reverse(80);
+	leftMotor.forward(120);
+	rightMotor.reverse(120);
 
 	///////////////////////
 	///		ENCODERS	///
