@@ -39,12 +39,12 @@ board.on("ready", function() {
 			console.log("right high");
 		});
 
-		leftGearTick.read(callback(error, value){
-			console.log("left", error, value);
+		leftGearTick.read(function(error, value) {
+		  console.log(value);
 		});
 
-		rightGearTick.read(callback(error, value){
-			console.log("right", error, value);
+		rightGearTick.read(function(error, value) {
+		  console.log(value);
 		});
 
 	console.log("Board ready");
