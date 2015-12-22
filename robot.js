@@ -38,13 +38,11 @@ board.on("ready", function() {
 		// PIN OPERATIONS
 		var rightGearTick = new five.Pin({
 			pin: "GPIO4",
-			mode: 0
 		});
 
 		// PIN OPERATIONS
 		var leftGearTick = new five.Pin({
 			pin: "GPIO17",
-			mode: 0
 		});
 
 		rightGearTick.on("high", function(e){
