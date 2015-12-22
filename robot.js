@@ -23,7 +23,7 @@ board.on("ready", function() {
 		}
 	});
 
-	var leftMotor = new var leftMotor = five.Motor({
+	var leftMotor = new leftMotor = five.Motor({
 		pins: {
 			pwm: 12,
 			dir: 24,
@@ -55,18 +55,22 @@ board.on("ready", function() {
 		mode: 0
 	});
 
-	function rightTick() {
+	function rightTick(val) {
 		++rightTicks;
 		if (rightTicks > 50) {
 			rightMotor.stop();
+			console.log("right stop");
 		}
+		console.log("right", val, " : ", rightTicks);
 	};
 
-	function leftTick() {
+	function leftTick(val) {
 		++leftTicks;
 		if (leftTicks > 50) {
 			leftMotor.stop();
+			console.log("left stop");
 		}
+		console.log("left", val, " : ", leftTicks);
 	};
 
 	rightGearTick.on("high", function(e){
