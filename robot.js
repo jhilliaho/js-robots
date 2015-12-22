@@ -31,7 +31,7 @@ board.on("ready", function() {
 		}
 	});
 
-	leftMotor.reverse(80);
+	leftMotor.forward(80);
 	rightMotor.reverse(80);
 
 	///////////////////////
