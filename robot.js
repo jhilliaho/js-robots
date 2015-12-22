@@ -14,7 +14,8 @@ board.on("ready", function() {
 	///////////////////////
 	///	  MOTOR SPEED	///
 	///////////////////////
-
+	// http://www.geeetech.com/wiki/index.php/L298N_Motor_Driver_Board
+	
 	var rightMotor = new five.Motor({
 		pins: {
 			pwm: "GPIO19",
