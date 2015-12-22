@@ -31,8 +31,8 @@ board.on("ready", function() {
 		}
 	});
 
-	leftMotor.start(120);
-	rightMotor.start(120);
+	leftMotor.start(60);
+	rightMotor.start(60);
 
 	///////////////////////
 	///		ENCODERS	///
@@ -57,20 +57,20 @@ board.on("ready", function() {
 
 	function rightTick(val) {
 		++rightTicks;
-		if (rightTicks > 50) {
+		if (rightTicks > 25) {
 			rightMotor.stop();
 			console.log("right stop");
 		}
-		console.log("right", val, " : ", rightTicks);
+		console.log(leftTicks, " : ", rightTicks);
 	};
 
 	function leftTick(val) {
 		++leftTicks;
-		if (leftTicks > 50) {
+		if (leftTicks > 25) {
 			leftMotor.stop();
 			console.log("left stop");
 		}
-		console.log("left", val, " : ", leftTicks);
+		console.log(leftTicks, " : ", rightTicks);
 	};
 
 	rightGearTick.on("high", function(e){
