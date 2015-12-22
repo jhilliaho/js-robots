@@ -31,8 +31,8 @@ board.on("ready", function() {
 		}
 	});
 
-	leftMotor.fwd(120);
-	rightMotor.fwd(120);
+	leftMotor.start(120);
+	rightMotor.start(120);
 
 	///////////////////////
 	///		ENCODERS	///
