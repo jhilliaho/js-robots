@@ -23,7 +23,7 @@ board.on("ready", function() {
 		}
 	});
 
-	var leftMotor = new leftMotor = five.Motor({
+	var leftMotor = new = five.Motor({
 		pins: {
 			pwm: 12,
 			dir: 24,
