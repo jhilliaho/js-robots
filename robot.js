@@ -31,7 +31,7 @@ board.on("ready", function() {
 		}
 	});
 
-	//leftMotor.start(60);
+	leftMotor.start(60);
 	rightMotor.start(60);
 
 	///////////////////////
