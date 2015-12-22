@@ -11,6 +11,9 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
+		var rightTicks = 0;
+		var leftTicks = 0;
+
 		// PIN OPERATIONS
 		var rightGearTick = new five.Pin({
 			pin: "GPIO4",
@@ -26,19 +29,23 @@ board.on("ready", function() {
 		});
 
 		rightGearTick.on("high", function(e){
-			console.log("right high");
+			++rightTicks;
+			console.log("right high", rightTicks);
 		});
 
 		rightGearTick.on("low", function(e){
-			console.log("right low");
+			++rightTicks;
+			console.log("right low", rightTicks);
 		});
 
 		leftGearTick.on("high", function(e){
-			console.log("left high");
+			++leftTicks;
+			console.log("left high", leftTicks);
 		});
 
 		leftGearTick.on("low", function(e){
-			console.log("left low");
+			++leftTicks;
+			console.log("left low", leftTicks);
 		});
 
 	console.log("Board ready");
