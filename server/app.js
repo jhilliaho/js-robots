@@ -1,3 +1,7 @@
+
+var http = require('http');
+var server = http.createServer(app);
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -113,3 +117,4 @@ io.on('connection', function (socket) {
 
 
 module.exports = app;
+server.listen(3000);
