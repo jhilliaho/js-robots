@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
 io.on('connection', function (socket) {
 	console.log("connection");
   socket.on('newImage', function (data) {
-    console.log("newImage", data);
+    console.log("newImage");
   });
 
   socket.on('camConnected', function () {
