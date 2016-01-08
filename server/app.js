@@ -117,4 +117,3 @@ io.on('connection', function (socket) {
 
 
 module.exports = app;
-server.listen(3000);
