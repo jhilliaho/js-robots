@@ -27,7 +27,7 @@ board.on("ready", function() {
 
 	// PIN OPERATIONS
 	var pir = new five.Pin({
-		pin: "GPIO4",
+		pin: "GPIO5",
 		mode: 0
 	});
 
