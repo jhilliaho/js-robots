@@ -14,6 +14,11 @@ io.on('connection', function (socket) {
   socket.on('newImage', function (data) {
     console.log("newImage", data);
   });
+
+  socket.on('imageComing', function (data) {
+    console.log("imageComing", data);
+  });
+
 });
 
 console.log("Started");
