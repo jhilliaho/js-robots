@@ -10,13 +10,17 @@ app.get('/', function (req, res) {
 
 io.on('connection', function (socket) {
 	console.log("connection");
-  socket.emit('news', { hello: 'world' });
   socket.on('newImage', function (data) {
     console.log("newImage", data);
   });
 
-  socket.on('imageComing', function (data) {
-    console.log("imageComing", data);
+  socket.on('camConnected', function () {
+    console.log("camConnected");
+  });
+
+
+  socket.on('imageComing', function () {
+    console.log("imageComing");
   });
 
 });
