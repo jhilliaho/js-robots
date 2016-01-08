@@ -25,6 +25,12 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
+	// PIN OPERATIONS
+	var pir = new five.Pin({
+		pin: "GPIO4",
+		mode: 0
+	});
+
 	console.log("Board ready");
 
 	// SOCKET.IO
@@ -37,12 +43,6 @@ board.on("ready", function() {
 	socket.on('connect', function() {
 	    console.log('Connected!');
 	    socket.emit('camConnected');
-
-		// PIN OPERATIONS
-		var pir = new five.Pin({
-			pin: "GPIO4",
-			mode: 0
-		});
 
 		var shootlock = false;
 
