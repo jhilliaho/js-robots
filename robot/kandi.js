@@ -28,7 +28,7 @@ board.on("ready", function() {
 	console.log("Board ready");
 
 	// SOCKET.IO
-	var socket = io.connect('http://46.101.48.115', {reconnect: true});
+	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
 
 	socket.on("disconnect", function(){
 	    console.log("disconnected");
