@@ -75,7 +75,7 @@ board.on("ready", function() {
 		    fs.readFile("./images/" + filename, function(err, original_data){
 				console.log("read file", err);
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
-		        console.log("Emiting new image", base64Image);
+		        console.log("Emiting new image");
 		        socket.emit("imageComing");
 		    	socket.emit('newImage', base64Image);
 		    });
