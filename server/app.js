@@ -12,6 +12,12 @@ io.on('connection', function (socket) {
 	console.log("connection");
   socket.on('newImage', function (data) {
     console.log("newImage");
+
+	require("fs").writeFile("out.png", data, 'base64', function(err) {
+	  console.log("File written", err);
+	});
+
+
   });
 
   socket.on('camConnected', function () {
