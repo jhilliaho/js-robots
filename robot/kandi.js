@@ -5,15 +5,7 @@ var fs = require("fs");
 
 // Raspicam module
 var RaspiCam = require("raspicam");
-
-// Initialize camera with Raspicam
-var camera = new RaspiCam({
-	mode: "photo",
-	output: "./images/image_%06d.jpg", // image_000001.jpg, image_000002.jpg,...
-	encoding: "png",
-	rotation: 180
-});
-
+var camera = null;
 // WebSocket library
 var io = require('socket.io-client');
 
@@ -31,6 +23,20 @@ board.on("ready", function() {
 		mode: 0
 	});
 
+	pir.on("high", function(e){
+		console.log("high", e);
+		if (!shootlock) {
+			shootlock = true;		
+			camera.start();
+		} else {
+			console.log("Shootlock!");
+		}
+	});
+
+	pir.on("low", function(e){
+		console.log("low", e);
+	});
+
 	console.log("Board ready");
 
 	// SOCKET.IO
@@ -46,18 +52,12 @@ board.on("ready", function() {
 
 		var shootlock = false;
 
-		pir.on("high", function(e){
-			console.log("high", e);
-			if (!shootlock) {
-				shootlock = true;		
-				camera.start();
-			} else {
-				console.log("Shootlock!");
-			}
-		});
-
-		pir.on("low", function(e){
-			console.log("low", e);
+		// Initialize camera with Raspicam
+		camera = new RaspiCam({
+			mode: "photo",
+			output: "./images/image_%06d.jpg", // image_000001.jpg, image_000002.jpg,...
+			encoding: "png",
+			rotation: 180
 		});
 
 		camera.on("start", function( err, timestamp ){
