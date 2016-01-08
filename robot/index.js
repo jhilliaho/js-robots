@@ -26,28 +26,15 @@ var board = new five.Board({
 board.on("ready", function() {
 
 	console.log("Board ready");
-	// Set LCD screen
-	var lcd = new five.LCD({
-		controller: "PCF8574AT",
-		address: 0x27,
-		rows: 2,
-		cols: 16
-	});
-
-	lcd.off();
-
-	lcd.clear().cursor(0, 0).print("BOARD READY");
 
 	// SOCKET.IO
 	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
 
 	socket.on("disconnect", function(){
 	    console.log("disconnected");
-		lcd.clear().cursor(0,0).print("DISCONNECTED");
 	});
 
 	socket.on('connect', function() {
-		lcd.clear().cursor(0,0).print("CONNECTED");
 	    console.log('Connected!');
 	    socket.emit('camConnected');
 
@@ -62,7 +49,6 @@ board.on("ready", function() {
 		pir.on("high", function(e){
 			console.log("high", e);
 			if (!shootlock) {
-				lcd.clear().cursor(0,0).print("TAKING PIC.");
 				shootlock = true;		
 				camera.start();
 			} else {
@@ -76,11 +62,6 @@ board.on("ready", function() {
 		});
 
 		camera.on("start", function( err, timestamp ){
-			
-			setTimeout(function(){
-				lcd.clear().cursor(0,0).print("TAKING PIC..");				
-			}, 1000);
-
 			console.log("Shooting started at " + timestamp);
 		});
 
@@ -89,15 +70,10 @@ board.on("ready", function() {
 		    if (filename.search("~") != -1) {
 		        return;
 		    }
-
-			lcd.clear().cursor(0,0).print("TAKING PIC...");				
 		    
 			console.log("Image captured with filename: " + filename);
 			
 		    fs.readFile("./images/" + filename, function(err, original_data){
-				setTimeout(function(){
-					lcd.clear().cursor(0,0).print("TAKING PIC....");				
-				}, 300);
 				console.log("read file", err);
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
 		    	socket.emit('newImage', base64Image);
@@ -107,7 +83,6 @@ board.on("ready", function() {
 
 		camera.on("exit", function( timestamp ){
 			setTimeout(function(){
-				lcd.clear();
 				shootlock = false;		
 			}, 800);
 			console.log("Shooting child process has exited");
@@ -115,7 +90,6 @@ board.on("ready", function() {
 
 		camera.on("stop", function( err, timestamp ){
 			setTimeout(function(){
-				lcd.clear();				
 				shootlock = false;		
 			}, 800);
 			console.log("Shooting child process has been stopped at " + timestamp);
