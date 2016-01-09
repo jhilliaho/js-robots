@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 server.listen(3000);
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/out.png');
+  res.sendfile(__dirname + './images/out.png');
 });
 
 io.on('connection', function (socket) {
