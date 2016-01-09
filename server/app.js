@@ -13,10 +13,11 @@ io.on('connection', function (socket) {
   socket.on('newImage', function (data) {
     console.log("newImage");
 
-	require("fs").writeFile("out.png", data, 'base64', function(err) {
-	  console.log("File written", err);
+	require("fs").rename("out.png", (Date.now + '.png'), function(){
+		require("fs").writeFile("out.png", data, 'base64', function(err) {
+		  console.log("File written", err);
+		});
 	});
-
 
   });
 
