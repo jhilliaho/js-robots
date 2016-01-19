@@ -38,7 +38,7 @@ io.on('connection', function (socket) {
   		return;
   	}
 
-    var timeString = data.shootingStarted + '\t' + data.imageCaptured + '\t' + data.imageSent + '\n';
+    var timeString = data.imageCaptured + '\t' + data.imageSent + '\n';
 	require("fs").appendFile('imageStats.txt', timeString, function (err) {
 		console.log("data", data, "written in file");
 	});
