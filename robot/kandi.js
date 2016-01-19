@@ -55,6 +55,8 @@ board.on("ready", function() {
 				imgCount++;
 				console.time("PictureTiming");		
 				console.timeEnd("PictureTiming");		
+				console.timeEnd("PictureTiming");		
+				console.timeEnd("PictureTiming");		
 				camera.start();
 			} else {
 				console.log("Shootlock!");
