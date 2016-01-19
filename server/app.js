@@ -33,7 +33,7 @@ io.on('connection', function (socket) {
 
   socket.on('imageStats', function (data) {
 
-    var timeString = "RIVI" + JSON.stringify(data);
+    var timeString = JSON.stringify(data) + '\n';
 	require("fs").appendFile('imageStats.txt', timeString, function (err) {
 		console.log("data", data, "written in file");
 	});
