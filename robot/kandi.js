@@ -94,7 +94,7 @@ board.on("ready", function() {
 		});
 
 		socket.on("imageReceived", function(){
-		    console.log("imageReceived");
+		    console.log("IMAGE RECEIVED, REMOVE SHOOTLOCK");
 			console.timeEnd("PictureTiming");		
 			shootlock = false;
 		});
