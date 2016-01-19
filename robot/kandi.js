@@ -61,7 +61,7 @@ board.on("ready", function() {
 				console.log("Shootlock!");
 			}
 
-		}, 20000);
+		}, 1000);
 
 		//});
 
@@ -96,7 +96,7 @@ board.on("ready", function() {
 		socket.on("imageReceived", function(){
 		    console.log("imageReceived");
 			console.timeEnd("PictureTiming");		
-
+			shootlock = false;
 		});
 
 		camera.on("exit", function( timestamp ){
