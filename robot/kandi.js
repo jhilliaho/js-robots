@@ -25,6 +25,9 @@ var board = new five.Board({
 
 var imgCount = 0;
 
+var pictureTimes = [];
+var singleTiming = {};
+
 board.on("ready", function() {
 
 	// PIN OPERATIONS
@@ -71,7 +74,7 @@ board.on("ready", function() {
 
 		camera.on("start", function( err, timestamp ){
 			console.log("Shooting started");
-			console.timeEnd("PictureTiming");		
+			singleTiming.shootingStarted = console.timeEnd("PictureTiming");		
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
@@ -81,12 +84,10 @@ board.on("ready", function() {
 		    }
 		    
 			console.log("Image captured with filename: " + filename);
-			console.timeEnd("PictureTiming");		
+			singleTiming.imageCaptured = console.timeEnd("PictureTiming");		
 			
 		    fs.readFile("./images/" + filename, function(err, original_data){
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
-				console.log("File read");
-				console.timeEnd("PictureTiming");		
 		        socket.emit("imageComing");
 		    	socket.emit('newImage', base64Image);
 		    });
@@ -95,7 +96,8 @@ board.on("ready", function() {
 
 		socket.on("imageReceived", function(){
 		    console.log("IMAGE RECEIVED, REMOVE SHOOTLOCK");
-			console.timeEnd("PictureTiming");		
+			singleTiming.imageSent = console.timeEnd("PictureTiming");
+			pictureTimes.add(singleTiming);	
 			shootlock = false;
 		});
 
