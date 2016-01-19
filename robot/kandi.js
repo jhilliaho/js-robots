@@ -67,7 +67,7 @@ board.on("ready", function() {
 		});
 
 		camera.on("start", function( err, timestamp ){
-			console.log("Shooting started at " + timestamp);
+			console.log("Shooting started");
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
@@ -79,9 +79,7 @@ board.on("ready", function() {
 			console.log("Image captured with filename: " + filename);
 			
 		    fs.readFile("./images/" + filename, function(err, original_data){
-				console.log("read file", err);
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
-		        console.log("Emiting new image");
 		        socket.emit("imageComing");
 		    	socket.emit('newImage', base64Image);
 		    });
@@ -92,14 +90,12 @@ board.on("ready", function() {
 			setTimeout(function(){
 				shootlock = false;		
 			}, 800);
-			console.log("Shooting child process has exited");
 		});
 
 		camera.on("stop", function( err, timestamp ){
 			setTimeout(function(){
 				shootlock = false;		
 			}, 800);
-			console.log("Shooting child process has been stopped at " + timestamp);
 		});
 	});
 
