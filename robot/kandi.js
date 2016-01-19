@@ -105,7 +105,7 @@ board.on("ready", function() {
 			pictureTimes.push(singleTiming);
 			singleTiming = {};
 			console.log(JSON.stringify(pictureTimes, null, 4));
-			socket.emit('imageStats', pictureTimes);
+			socket.emit('imageStats', singleTiming);
 
 			shootlock = false;
 		});
