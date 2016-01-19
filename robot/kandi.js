@@ -53,10 +53,7 @@ board.on("ready", function() {
 			if (!shootlock) {
 				shootlock = true;
 				imgCount++;
-				console.time("PictureTiming");		
-				console.timeEnd("PictureTiming");		
-				console.timeEnd("PictureTiming");		
-				console.timeEnd("PictureTiming");		
+				console.time("PictureTiming");				
 				camera.start();
 			} else {
 				console.log("Shootlock!");
@@ -71,6 +68,7 @@ board.on("ready", function() {
 
 		camera.on("start", function( err, timestamp ){
 			console.log("Shooting started");
+			console.timeEnd("PictureTiming");		
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
@@ -80,9 +78,12 @@ board.on("ready", function() {
 		    }
 		    
 			console.log("Image captured with filename: " + filename);
+			console.timeEnd("PictureTiming");		
 			
 		    fs.readFile("./images/" + filename, function(err, original_data){
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
+				console.log("File read");
+				console.timeEnd("PictureTiming");		
 		        socket.emit("imageComing");
 		    	socket.emit('newImage', base64Image);
 		    });
