@@ -12,7 +12,7 @@ var camera = new RaspiCam({
 	output: "./images/image_%06d.jpg", // image_000001.jpg, image_000002.jpg,...
 	encoding: "png",
 	rotation: 180,
-	t: 1,
+	t: 300,
 	n: true,
 	awb: false,
 	ev: 2,
@@ -108,7 +108,6 @@ board.on("ready", function() {
 			pictureTimes.push(singleTiming);
 			socket.emit('imageStats', singleTiming);
 			singleTiming = {};
-			console.log(JSON.stringify(pictureTimes, null, 4));
 
 			shootlock = false;
 		});
