@@ -33,6 +33,11 @@ io.on('connection', function (socket) {
 
   socket.on('imageStats', function (data) {
 
+  	if (data.shootingStarted == undefined || data.imageCaptured == undefined || data.sendingImage == undefined || data.imageSent == undefined || ) {
+  		console.log("ERROR IN IMAGE TIMING DATA");
+  		return;
+  	}
+
     var timeString = JSON.stringify(data) + '\n';
 	require("fs").appendFile('imageStats.txt', timeString, function (err) {
 		console.log("data", data, "written in file");
