@@ -65,7 +65,6 @@ board.on("ready", function() {
 			//console.log("high");
 			if (!shootlock) {
 				shootlock = true;
-				imgCount++;
 				singleTiming.startTime = Date.now();		
 				camera.start();
 				console.log("Start Camera!");
