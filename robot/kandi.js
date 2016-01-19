@@ -57,7 +57,7 @@ board.on("ready", function() {
 				console.log("Shootlock!");
 			}
 
-		}, 1000);
+		}, 5000);
 
 
 		//});
