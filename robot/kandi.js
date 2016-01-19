@@ -49,6 +49,8 @@ board.on("ready", function() {
 		var shootlock = false;
 
 		//pir.on("high", function(e){
+		setInterval(function(){
+
 			console.log("high");
 			if (!shootlock) {
 				shootlock = true;
@@ -59,6 +61,7 @@ board.on("ready", function() {
 				console.log("Shootlock!");
 			}
 
+		}, 20000);
 
 		//});
 
