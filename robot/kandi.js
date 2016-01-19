@@ -12,8 +12,11 @@ var camera = new RaspiCam({
 	output: "./images/image_%06d.jpg", // image_000001.jpg, image_000002.jpg,...
 	encoding: "png",
 	rotation: 180,
-	t: 300,
-	n: true
+	t: 1,
+	n: true,
+	awb: false,
+	ev: 2,
+	ex: "night"
 });
 
 // WebSocket library
