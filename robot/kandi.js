@@ -16,7 +16,7 @@ var camera = new RaspiCam({
 	n: true,
 	awb: false,
 	shutter: 50000,
-	iso: 400
+	ISO: 400
 
 
 });
