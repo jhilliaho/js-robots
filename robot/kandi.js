@@ -49,14 +49,14 @@ board.on("ready", function() {
 		//pir.on("high", function(e){
 		setInterval(function(){
 
-			console.log("high", e);
+			console.log("high");
 			if (!shootlock) {
 				shootlock = true;		
 				camera.start();
 			} else {
 				console.log("Shootlock!");
 			}
-			
+
 		}, 10000);
 
 
