@@ -103,7 +103,7 @@ board.on("ready", function() {
 			singleTiming.imageSent = Date.now() - singleTiming.startTime;
 			delete singleTiming.startTime;
 			pictureTimes.push(singleTiming);
-			socket.emit('imageStats', JSON.stringify(singleTiming));
+			socket.emit('imageStats', singleTiming);
 			singleTiming = {};
 			console.log(JSON.stringify(pictureTimes, null, 4));
 
