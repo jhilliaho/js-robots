@@ -23,6 +23,8 @@ var board = new five.Board({
   io: new Raspi()
 });
 
+var imgCount = 0;
+
 board.on("ready", function() {
 
 	// PIN OPERATIONS
@@ -47,17 +49,16 @@ board.on("ready", function() {
 		var shootlock = false;
 
 		//pir.on("high", function(e){
-		setInterval(function(){
-
 			console.log("high");
 			if (!shootlock) {
-				shootlock = true;		
+				shootlock = true;
+				imgCount++;
+				console.time("PictureTiming");		
+				console.timeEnd("PictureTiming");		
 				camera.start();
 			} else {
 				console.log("Shootlock!");
 			}
-
-		}, 5000);
 
 
 		//});
@@ -87,15 +88,11 @@ board.on("ready", function() {
 		});
 
 		camera.on("exit", function( timestamp ){
-			setTimeout(function(){
-				shootlock = false;		
-			}, 800);
+
 		});
 
 		camera.on("stop", function( err, timestamp ){
-			setTimeout(function(){
-				shootlock = false;		
-			}, 800);
+
 		});
 	});
 
