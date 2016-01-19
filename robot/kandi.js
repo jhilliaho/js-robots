@@ -99,7 +99,7 @@ board.on("ready", function() {
 		socket.on("imageReceived", function(){
 		    console.log("IMAGE RECEIVED, REMOVE SHOOTLOCK");
 			singleTiming.imageSent = Date.now() - singleTiming.startTime;
-
+			delete singleTiming.startTime;
 			pictureTimes.push(singleTiming);
 			singleTiming = {};
 			console.log(JSON.stringify(pictureTimes, null, 4));
