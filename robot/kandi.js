@@ -66,11 +66,13 @@ board.on("ready", function() {
 				imgCount++;
 				singleTiming.startTime = Date.now();		
 				camera.start();
+				console.log("Start Camera!");
+
 			} else {
-				//console.log("Shootlock!");
+				console.log("Shootlock!");
 			}
 
-		}, 1000);
+		}, 3000);
 
 		//});
 
@@ -102,14 +104,16 @@ board.on("ready", function() {
 		});
 
 		socket.on("imageReceived", function(){
-		    console.log("IMAGE RECEIVED, REMOVE SHOOTLOCK");
+		    console.log("IMAGE RECEIVED");
 			singleTiming.imageSent = Date.now() - singleTiming.startTime;
 			delete singleTiming.startTime;
 			pictureTimes.push(singleTiming);
+			console.log("Emit stats");
 			socket.emit('imageStats', singleTiming);
 			singleTiming = {};
 
 			shootlock = false;
+			console.log("Shootlock removed");
 		});
 
 		camera.on("exit", function( timestamp ){
