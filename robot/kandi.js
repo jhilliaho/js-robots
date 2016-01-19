@@ -13,7 +13,7 @@ var camera = new RaspiCam({
 	encoding: "png",
 	rotation: 180,
 	timeout: 100,
-	n: true
+	n: null
 });
 
 // WebSocket library
