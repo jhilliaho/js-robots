@@ -90,6 +90,7 @@ board.on("ready", function() {
 		    fs.readFile("./images/" + filename, function(err, original_data){
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
 		        socket.emit("imageComing");
+				singleTiming.sendingImage = Date.now() - singleTiming.startTime;	
 		    	socket.emit('newImage', base64Image);
 		    });
 
