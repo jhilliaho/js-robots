@@ -33,7 +33,7 @@ io.on('connection', function (socket) {
 
   socket.on('imageStats', function (data) {
 
-  	if (data.shootingStarted == undefined || data.imageCaptured == undefined || data.sendingImage == undefined || data.imageSent == undefined || ) {
+  	if (data.shootingStarted == undefined || data.imageCaptured == undefined || data.sendingImage == undefined || data.imageSent == undefined) {
   		console.log("ERROR IN IMAGE TIMING DATA");
   		return;
   	}
