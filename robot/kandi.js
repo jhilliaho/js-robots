@@ -75,7 +75,7 @@ board.on("ready", function() {
 
 		camera.on("start", function( err, timestamp ){
 			console.log("Shooting started");
-			singleTiming.shootingStarted = Date.now();		
+			singleTiming.shootingStarted = Date.now() - singleTiming.startTime;	
 		});
 
 		camera.on("read", function( err, timestamp, filename ){
@@ -85,7 +85,7 @@ board.on("ready", function() {
 		    }
 		    
 			console.log("Image captured with filename: " + filename);
-			singleTiming.imageCaptured = Date.now();		
+			singleTiming.imageCaptured = Date.now() - singleTiming.startTime;	
 			
 		    fs.readFile("./images/" + filename, function(err, original_data){
 		        var base64Image = new Buffer(original_data, 'binary').toString('base64');
@@ -97,7 +97,8 @@ board.on("ready", function() {
 
 		socket.on("imageReceived", function(){
 		    console.log("IMAGE RECEIVED, REMOVE SHOOTLOCK");
-			singleTiming.imageSent = Date.now();		
+			singleTiming.imageSent = Date.now() - singleTiming.startTime;
+
 			pictureTimes.push(singleTiming);
 			console.log(JSON.stringify(pictureTimes, null, 4));
 			shootlock = false;
