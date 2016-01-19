@@ -93,6 +93,12 @@ board.on("ready", function() {
 
 		});
 
+		socket.on("imageReceived", function(){
+		    console.log("imageReceived");
+			console.timeEnd("PictureTiming");		
+
+		});
+
 		camera.on("exit", function( timestamp ){
 
 		});
