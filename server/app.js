@@ -16,6 +16,7 @@ io.on('connection', function (socket) {
 	require("fs").rename("images/out.png", ('images/' + Date.now() + '.png'), function(){
 		require("fs").writeFile("images/out.png", data, 'base64', function(err) {
 		  console.log("File written", err);
+		  socket.emit("imageReceived");
 		});
 	});
 
