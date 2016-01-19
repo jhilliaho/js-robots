@@ -100,6 +100,7 @@ board.on("ready", function() {
 			singleTiming.imageSent = Date.now() - singleTiming.startTime;
 
 			pictureTimes.push(singleTiming);
+			singleTiming = {};
 			console.log(JSON.stringify(pictureTimes, null, 4));
 			shootlock = false;
 		});
