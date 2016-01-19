@@ -33,7 +33,7 @@ io.on('connection', function (socket) {
 
   socket.on('imageStats', function (data) {
 
-	fs.appendFile('imageStats.txt', data, function (err) {
+	require("fs").appendFile('imageStats.txt', data, function (err) {
 		console.log("data", data, "written in file");
 	});
 
