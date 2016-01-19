@@ -106,7 +106,7 @@ board.on("ready", function() {
 		});
 
 		socket.on("imageReceived", function(){
-		    console.log("IMAGE RECEIVED");
+		    console.log("IMAGE RECEIVED, COUNT", imgCount++);
 			singleTiming.imageSent = Date.now() - singleTiming.startTime;
 			delete singleTiming.startTime;
 			pictureTimes.push(singleTiming);
