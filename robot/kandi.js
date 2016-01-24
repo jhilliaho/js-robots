@@ -25,8 +25,8 @@ var camera = new RaspiCam({
 	awb: false,								// No automatic white balance
 	shutter: 100000,						// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
-	w: 640,									// Image width
-	h: 480									// Image height
+	w: 320,									// Image width
+	h: 240									// Image height
 
 });
 
