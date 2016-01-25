@@ -19,13 +19,13 @@ var camera = new RaspiCam({
 	mode: "photo",							// Single photo
 	output: "./images/image_%06d.jpg", 		// File name
 	rotation: 180,							// Image was upside down, rotate it
-	t: 1,									// Timeout 1ms, 0 makes a stream of pictures
+	t: 10,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
 	shutter: 200000,						// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
-	w: 640,									// Image width
-	h: 480									// Image height
+	w: 2592,									// Image width
+	h: 1944									// Image height
 
 });
 
