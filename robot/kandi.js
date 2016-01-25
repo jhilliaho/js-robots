@@ -18,7 +18,6 @@ var RaspiCam = require("raspicam");
 var camera = new RaspiCam({
 	mode: "photo",							// Single photo
 	output: "./images/image_%06d.jpg", 		// File name
-	encoding: "png",						// File type
 	rotation: 180,							// Image was upside down, rotate it
 	t: 10,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
