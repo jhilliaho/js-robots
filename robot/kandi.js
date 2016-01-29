@@ -85,11 +85,7 @@ board.on("ready", function() {
 	    // "mutex" to prevent taking new pictures before previous one has been sent
 		var shootlock = false;
 
-		var i = 0;
-		setInterval(function(){console.log(++i);}, 100)
-
 		setInterval(function(){
-			i = 0;
 			if (!shootlock) {
 				singleTiming.startTime = Date.now();
 				console.log("SET IR HIGH");					
