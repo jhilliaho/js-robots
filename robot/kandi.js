@@ -93,7 +93,7 @@ board.on("ready", function() {
 				console.log("SET IR HIGH");					
 				irled.toggle();
 			}
-		}, 500);
+		}, 2000);
 
 		pir.on("low", function(e){
 			pirVal = 0;
