@@ -89,13 +89,13 @@ board.on("ready", function() {
 			if (!shootlock) {
 				singleTiming.startTime = Date.now();
 				console.log("SET IR HIGH");					
-				irled.toggle();
+				irled.on();
 			}
-		}, 3000);
+		}, 10000);
 
 		// Try to take a new picture when there is motion
 		pir.on("high", function(e){
-
+			irled.off();
 			console.log("PIRHIGH");
 			// Take a picture if the shootlock is negative
 			if (!shootlock) {
