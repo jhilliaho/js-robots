@@ -14,8 +14,7 @@ var fs = require("fs");
 // Raspicam module
 var RaspiCam = require("raspicam");
 
-// Initialize camera with Raspicam
-var camera = new RaspiCam({
+var cameraOptions = {
 	mode: "photo",							// Single photo
 	output: "./images/image_%06d.jpg", 		// File name
 	rotation: 180,							// Image was upside down, rotate it
@@ -24,10 +23,14 @@ var camera = new RaspiCam({
 	awb: false,								// No automatic white balance
 	shutter: 100000,						// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
-	w: 640,									// Image width
-	h: 480									// Image height
+	w: 320,									// Image width
+	h: 240									// Image height
 
-});
+	// Image Resolutions: 320x240, 640x480, 1280x960, 1920x1080, 2592x1944 
+}
+
+// Initialize camera with Raspicam
+var camera = new RaspiCam(cameraOptions);
 
 // WebSocket library
 var io = require('socket.io-client');
@@ -47,7 +50,6 @@ var board = new five.Board({
 var imgCount = 0;
 
 // Image timing data array
-var pictureTimes = [];
 var time = null;
 
 // Timing of single picture
@@ -159,8 +161,8 @@ board.on("ready", function() {
 		    // Save timing data
 			singleTiming.imageSent = Date.now() - singleTiming.startTime;
 			delete singleTiming.startTime;
-			pictureTimes.push(singleTiming);
-			
+			singleTiming.width = cameraOptions.w;
+			singleTiming.height = cameraOptions.h;
 			// Send timing data to the server
 			socket.emit('imageStats', singleTiming);
 			console.log(singleTiming);
