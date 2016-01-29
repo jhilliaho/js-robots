@@ -58,8 +58,14 @@ board.on("ready", function() {
 
 	// Initialize pin for PIR-sensor
 	var pir = new five.Pin({
-		pin: "GPIO5",
-		mode: 0
+		pin: "GPIO18",
+		mode: 0 			// INPUT = 0, OUTPUT = 1
+	});
+
+	// Initialize pin for IR-led
+	var irled = new five.Pin({
+		pin: "GPIO23",
+		mode: 0 			// INPUT = 0, OUTPUT = 1
 	});
 
 	console.log("Board ready");
@@ -81,12 +87,17 @@ board.on("ready", function() {
 	    // "mutex" to prevent taking new pictures before previous one has been sent
 		var shootlock = false;
 
-		// Try to take a new picture when there is motion
-		//pir.on("high", function(e){
-
-		// Try to take a new picture after every two seconds
 		setInterval(function(){
+			irled.digitalWrite(1);
+			console.log("SET IR HIGH");
+		}, 5000);
 
+
+
+
+		// Try to take a new picture when there is motion
+		pir.on("high", function(e){
+			console.log("PIRHIGH");
 			// Take a picture if the shootlock is negative
 			if (!shootlock) {
 				// Set the shootlock
@@ -101,9 +112,7 @@ board.on("ready", function() {
 			} else {
 				console.log("Not taking a picture because of shootlock");
 			}
-		}, 2000);
-
-		//});
+		});
 
 		// Runs when the camera starts to take a picture
 		camera.on("start", function( err, timestamp ){
