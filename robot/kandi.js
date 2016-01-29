@@ -17,14 +17,13 @@ var RaspiCam = require("raspicam");
 var cameraOptions = {
 	mode: "photo",							// Single photo
 	output: "./images/image_%06d.jpg", 		// File name
-	rotation: 180,							// Image was upside down, rotate it
-	t: 10,									// Timeout 1ms, 0 makes a stream of pictures
+	t: 1,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
 	shutter: 100000,						// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
-	w: 320,									// Image width
-	h: 240									// Image height
+	w: 640,									// Image width
+	h: 480									// Image height
 
 	// Image Resolutions: 320x240, 640x480, 1280x960, 1920x1080, 2592x1944 
 }
