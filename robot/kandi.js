@@ -174,8 +174,13 @@ board.on("ready", function() {
 			singleTiming = {};
 
 			// Remove shootlock
-			shootlock = false;
-			console.log("Shootlock removed");
+			
+			if (imgCount < 3) {
+				shootlock = false;
+				console.log("Shootlock removed");
+			} else {
+				process.exit()
+			}
 		});
 
 		//listen for the "stop" event triggered when the stop method was called
