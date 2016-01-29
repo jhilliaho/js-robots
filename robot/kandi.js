@@ -87,11 +87,15 @@ board.on("ready", function() {
 
 		setInterval(function(){
 			if (!shootlock) {
+				pir.read(function(error, value) {
+				  console.log("PIR VALUE: ", value);
+				});
+
 				singleTiming.startTime = Date.now();
 				console.log("SET IR HIGH");					
 				irled.toggle();
 			}
-		}, 500);
+		}, 3000);
 
 		// Try to take a new picture when there is motion
 		pir.on("high", function(e){
