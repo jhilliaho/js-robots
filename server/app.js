@@ -32,15 +32,6 @@ io.on('connection', function (socket) {
   });
 
 
-{ startCamera: 302,
-  shootingStarted: 318,
-  imageCaptured: 975,
-  sendingImage: 979,
-  imageSent: 1097,
-  width: 320,
-  height: 240 }
-
-
   socket.on('imageStats', function (data) {
 
   	if (data.shootingStarted == undefined || data.imageCaptured == undefined || data.sendingImage == undefined || data.imageSent == undefined) {
