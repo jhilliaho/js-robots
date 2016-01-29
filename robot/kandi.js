@@ -95,7 +95,7 @@ board.on("ready", function() {
 				console.log("SET IR HIGH");					
 				irled.toggle();
 			}
-		}, 10000);
+		}, 5000);
 
 		// Try to take a new picture when there is motion
 		pir.on("high", function(e){
