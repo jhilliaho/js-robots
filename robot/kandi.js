@@ -22,7 +22,7 @@ var camera = new RaspiCam({
 	t: 10,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
-	shutter: 200000,						// Shutter time in microseconds
+	shutter: 100000,						// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
 	w: 640,									// Image width
 	h: 480									// Image height
@@ -88,15 +88,10 @@ board.on("ready", function() {
 		var shootlock = false;
 
 		setInterval(function(){
-			
-			pir.read(function(error, value) {
-			  	if (value == 1) {
-					irled.write(1);
-					singleTiming.startTime = Date.now();
-					console.log("SET IR HIGH");			  	
-				}
-			});
-		}, 1000);
+			irled.write(1);
+			singleTiming.startTime = Date.now();
+			console.log("SET IR HIGH");			  	
+		}, 5000);
 
 		// Try to take a new picture when there is motion
 		pir.on("high", function(e){
