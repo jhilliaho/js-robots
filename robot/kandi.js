@@ -95,7 +95,6 @@ board.on("ready", function() {
 
 		// Try to take a new picture when there is motion
 		pir.on("high", function(e){
-			singleTiming.pirSignal = Date.now() - singleTiming.startTime;	
 			
 			console.log("PIRHIGH");
 			irled.write(0);
@@ -119,7 +118,7 @@ board.on("ready", function() {
 		camera.on("start", function( err, timestamp ){
 			console.log("Shooting started");
 
-			// Save timing data
+			// Save timing original_data
 			singleTiming.shootingStarted = Date.now() - singleTiming.startTime;	
 		});
 
