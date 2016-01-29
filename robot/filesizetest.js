@@ -6,7 +6,7 @@ Copyright:
 Jani Hilliaho 2016
  */
 
-console.log("Starting the system...");
+console.log("Starting the filesizetest...");
 
 // File system module
 var fs = require("fs");
@@ -16,7 +16,7 @@ var RaspiCam = require("raspicam");
 
 // Initialize camera with Raspicam
 var camera = new RaspiCam({
-	mode: "timelapse",						// Multiple pictures
+	mode: "photo",							// Single picture 
 	output: "./images/image_%06d.jpg", 		// File name
 	rotation: 180,							// Image was upside down, rotate it
 	t: 10,									// Timeout 1ms, 0 makes a stream of pictures
@@ -34,7 +34,6 @@ camera.start();
 // Runs when the camera starts to take a picture
 camera.on("start", function( err, timestamp ){
 	console.log("Shooting started");
-
 });
 
 // Runs when the camera has saved the picture
