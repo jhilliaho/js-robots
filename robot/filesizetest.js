@@ -19,8 +19,8 @@ var camera = new RaspiCam({
 	mode: "photo",							// Single picture 
 	output: "./images/image_%06d.jpg", 		// File name
 	rotation: 180,							// Image was upside down, rotate it
-	tl: 10,
-	t: 1000,									// Timeout 1ms, 0 makes a stream of pictures
+	tl: 500,
+	t: 5000,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
 	shutter: 100000,						// Shutter time in microseconds
