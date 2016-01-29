@@ -88,7 +88,7 @@ board.on("ready", function() {
 		var shootlock = false;
 
 		setInterval(function(){
-			irled.digitalWrite(1);
+			irled.write(1);
 			console.log("SET IR HIGH");
 		}, 5000);
 
