@@ -24,8 +24,8 @@ var camera = new RaspiCam({
 	awb: false,								// No automatic white balance
 	shutter: 2000,						// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
-	w: 320,									// Image width
-	h: 240									// Image height
+	w: 640,									// Image width
+	h: 480									// Image height
 
 });
 
@@ -89,11 +89,9 @@ board.on("ready", function() {
 
 		setInterval(function(){
 			irled.write(1);
+			singleTiming.setIrHigh = Date.now();
 			console.log("SET IR HIGH");
 		}, 5000);
-
-
-
 
 		// Try to take a new picture when there is motion
 		pir.on("high", function(e){
@@ -105,7 +103,7 @@ board.on("ready", function() {
 				shootlock = true;
 
 				// Start timing
-				singleTiming.startTime = Date.now();
+				singleTiming.startCamera = Date.now() - singleTiming.startTime;	
 
 				// Start the camera
 				camera.start();
@@ -159,11 +157,12 @@ board.on("ready", function() {
 
 		    // Save timing data
 			singleTiming.imageSent = Date.now() - singleTiming.startTime;
-			delete singleTiming.startTime;
+			delete singleTiming.setIrHigh;
 			pictureTimes.push(singleTiming);
 			
 			// Send timing data to the server
 			socket.emit('imageStats', singleTiming);
+			console.log(singleTiming);
 			singleTiming = {};
 
 			// Remove shootlock
