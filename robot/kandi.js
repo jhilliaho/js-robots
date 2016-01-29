@@ -90,6 +90,7 @@ board.on("ready", function() {
 				singleTiming.startTime = Date.now();
 				console.log("SET IR HIGH");					
 				irled.on();
+				setTimeout(function(){irled.off()}, 50);
 			}
 		}, 10000);
 
