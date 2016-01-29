@@ -88,9 +88,6 @@ board.on("ready", function() {
 
 		setInterval(function(){
 			if (!shootlock && !pirVal) {
-				pir.read(function(error, value) {
-				  console.log("PIR VALUE: ", value);
-				});
 
 				singleTiming.startTime = Date.now();
 				console.log("SET IR HIGH");					
