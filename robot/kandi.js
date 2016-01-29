@@ -86,7 +86,7 @@ board.on("ready", function() {
 		var shootlock = false;
 
 		var i = 0;
-		setInterval(function(){console.log(++i);}, 1000)
+		setInterval(function(){console.log(++i);}, 100)
 
 		setInterval(function(){
 			i = 0;
