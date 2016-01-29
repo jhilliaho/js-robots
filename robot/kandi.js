@@ -89,7 +89,7 @@ board.on("ready", function() {
 
 		setInterval(function(){
 			irled.write(1);
-			singleTiming.setIrHigh = Date.now();
+			singleTiming.startTime = Date.now();
 			console.log("SET IR HIGH");
 		}, 5000);
 
@@ -157,7 +157,7 @@ board.on("ready", function() {
 
 		    // Save timing data
 			singleTiming.imageSent = Date.now() - singleTiming.startTime;
-			delete singleTiming.setIrHigh;
+			delete singleTiming.startTime;
 			pictureTimes.push(singleTiming);
 			
 			// Send timing data to the server
