@@ -49,11 +49,11 @@ camera.on("read", function( err, timestamp, filename ){
 
 //listen for the "stop" event triggered when the stop method was called
 camera.on("exit", function( timestamp ){
-
+	console.log("Camera exit");
 });
 
 //listen for the process to exit when the timeout has been reached
 camera.on("stop", function( err, timestamp ){
-
+	console.log("Camera stop");
 });
 
