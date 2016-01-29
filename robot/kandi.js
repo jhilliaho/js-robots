@@ -95,6 +95,8 @@ board.on("ready", function() {
 
 		// Try to take a new picture when there is motion
 		pir.on("high", function(e){
+			singleTiming.pirSignal = Date.now() - singleTiming.startTime;	
+			
 			console.log("PIRHIGH");
 			irled.write(0);
 			// Take a picture if the shootlock is negative
