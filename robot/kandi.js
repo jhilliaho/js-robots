@@ -177,7 +177,7 @@ board.on("ready", function() {
 			
 			if (imgCount < 100) {
 				shootlock = false;
-				console.log("Shootlock removed");
+				console.log("Shootlock removed\n\n\n\n\n\n\n\n\n");
 			} else {
 				process.exit()
 			}
