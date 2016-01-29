@@ -63,11 +63,8 @@ board.on("ready", function() {
 		mode: 0 			// INPUT = 0, OUTPUT = 1
 	});
 
-	// Initialize pin for IR-led
-	var irled = new five.Pin({
-		pin: "GPIO23",
-		mode: 0 			// INPUT = 0, OUTPUT = 1
-	});
+	var irled = new five.Led("GPIO23");
+
 
 	console.log("Board ready");
 
@@ -89,7 +86,7 @@ board.on("ready", function() {
 		var shootlock = false;
 
 		setInterval(function(){
-			irled.write(1);
+			irled.toggle();
 			singleTiming.startTime = Date.now();
 			console.log("SET IR HIGH");			  	
 		}, 5000);
