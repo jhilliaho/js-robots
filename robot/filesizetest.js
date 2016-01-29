@@ -29,8 +29,7 @@ var camera = new RaspiCam({
 	q: 100 									// JPG quality 100
 });
 
-camera.start();
-
+setInterval(camera.start(), 1000);
 // Runs when the camera starts to take a picture
 camera.on("start", function( err, timestamp ){
 	console.log("Shooting started");
@@ -50,7 +49,6 @@ camera.on("read", function( err, timestamp, filename ){
 //listen for the "stop" event triggered when the stop method was called
 camera.on("exit", function( timestamp ){
 	console.log("Camera exit");
-	camera.start();
 });
 
 //listen for the process to exit when the timeout has been reached
