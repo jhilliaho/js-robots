@@ -31,6 +31,16 @@ io.on('connection', function (socket) {
     console.log("imageComing");
   });
 
+
+{ startCamera: 302,
+  shootingStarted: 318,
+  imageCaptured: 975,
+  sendingImage: 979,
+  imageSent: 1097,
+  width: 320,
+  height: 240 }
+
+
   socket.on('imageStats', function (data) {
 
   	if (data.shootingStarted == undefined || data.imageCaptured == undefined || data.sendingImage == undefined || data.imageSent == undefined) {
@@ -38,8 +48,8 @@ io.on('connection', function (socket) {
   		return;
   	}
 
-    var timeString = data.imageCaptured + '\t' + data.imageSent + '\n';
-	require("fs").appendFile('imageStats.txt', timeString, function (err) {
+    var timeString = data.startCamera + '\t' + data.imageCaptured + '\t' + data.imageSent + '\t' + data.width + 'x' + data.height + '\n';
+	require("fs").appendFile('stats.txt', timeString, function (err) {
 		console.log("data", data, "written in file");
 	});
 
