@@ -29,7 +29,7 @@ var camera = new RaspiCam({
 	q: 100 									// JPG quality 100
 });
 
-setInterval(camera.start(), 1000);
+setInterval(camera.start, 1000);
 // Runs when the camera starts to take a picture
 camera.on("start", function( err, timestamp ){
 	console.log("Shooting started");
