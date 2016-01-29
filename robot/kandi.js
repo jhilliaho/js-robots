@@ -65,6 +65,7 @@ board.on("ready", function() {
 
 	var irled = new five.Led("GPIO23");
 
+	var pirVal = 0;
 
 	console.log("Board ready");
 
@@ -86,7 +87,7 @@ board.on("ready", function() {
 		var shootlock = false;
 
 		setInterval(function(){
-			if (!shootlock) {
+			if (!shootlock && !pirVal) {
 				pir.read(function(error, value) {
 				  console.log("PIR VALUE: ", value);
 				});
@@ -95,10 +96,16 @@ board.on("ready", function() {
 				console.log("SET IR HIGH");					
 				irled.toggle();
 			}
-		}, 3000);
+		}, 500);
+
+		pir.on("low", function(e){
+			pirVal = 0;
+			console.log("PIRLOW");
+		});
 
 		// Try to take a new picture when there is motion
 		pir.on("high", function(e){
+			pirVal = 1;
 			irled.off();
 			console.log("PIRHIGH");
 			// Take a picture if the shootlock is negative
