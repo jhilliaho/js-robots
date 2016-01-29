@@ -97,7 +97,6 @@ board.on("ready", function() {
 		pir.on("high", function(e){
 
 			console.log("PIRHIGH");
-			irled.write(0);
 			// Take a picture if the shootlock is negative
 			if (!shootlock) {
 				// Set the shootlock
