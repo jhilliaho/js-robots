@@ -89,8 +89,7 @@ board.on("ready", function() {
 			if (!shootlock) {
 				singleTiming.startTime = Date.now();
 				console.log("SET IR HIGH");					
-				irled.on();
-				setTimeout(function(){irled.off()}, 50);
+				irled.toggle();
 			}
 		}, 10000);
 
