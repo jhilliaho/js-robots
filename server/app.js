@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
-app.get('/image/:date', function (req, res) {
+app.get('/image', function (req, res) {
   res.sendfile(__dirname + '/images/out.jpg');
 });
 
