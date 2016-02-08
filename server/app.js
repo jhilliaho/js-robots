@@ -3,10 +3,12 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 app.set('view engine', 'ejs');
 
+var imageDate = 0;
+
 server.listen(3000);
 
 app.get('/', function (req, res) {
-  res.render('index');
+  res.render('index', {imageDate: imageDate});
 });
 
 app.get('/image', function (req, res) {
@@ -22,6 +24,7 @@ io.on('connection', function (socket) {
 		require("fs").writeFile("images/out.jpg", data, 'base64', function(err) {
 		  console.log("File written", err);
 		  socket.emit("imageReceived");
+		  imageDate = new Date();
 		});
 	});
 
