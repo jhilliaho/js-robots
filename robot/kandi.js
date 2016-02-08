@@ -20,9 +20,9 @@ var cameraOptions = {
 	t: 1,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
-	shutter: 30000,						// Shutter time in microseconds
+	shutter: 30000,							// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
-	w: 640,								// Image width
+	w: 640,									// Image width
 	h: 480									// Image height
 
 	// Image Resolutions: 640x480, 1280x960, 2592x1944 
@@ -87,31 +87,13 @@ board.on("ready", function() {
 		var shootlock = false;
 
 		setInterval(function(){
-			if (!shootlock && !pirVal) {
 
-				singleTiming.startTime = Date.now();
-				console.log("SET IR HIGH");					
-				irled.toggle();
-			}
-		}, 2000);
-
-		pir.on("low", function(e){
-			pirVal = 0;
-			console.log("PIRLOW");
-		});
-
-		// Try to take a new picture when there is motion
-		pir.on("high", function(e){
-			pirVal = 1;
-			irled.off();
-			console.log("PIRHIGH");
-			// Take a picture if the shootlock is negative
 			if (!shootlock) {
 				// Set the shootlock
 				shootlock = true;
 
 				// Start timing
-				singleTiming.startCamera = Date.now() - singleTiming.startTime;	
+				singleTiming.startTime= Date.now();	
 
 				// Start the camera
 				camera.start();
@@ -119,7 +101,12 @@ board.on("ready", function() {
 			} else {
 				console.log("Not taking a picture because of shootlock");
 			}
-		});
+
+		}, 1000);
+
+
+
+
 
 		// Runs when the camera starts to take a picture
 		camera.on("start", function( err, timestamp ){
@@ -179,7 +166,7 @@ board.on("ready", function() {
 				setTimeout(function(){
 					shootlock = false;
 				}, 1000);
-				console.log("Shootlock removed\n\n\n\n\n\n\n\n\n");
+				console.log("Shootlock removed\n\n\n\n\n");
 			} else {
 				process.exit()
 			}
