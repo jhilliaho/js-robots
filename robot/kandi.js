@@ -25,7 +25,7 @@ var cameraOptions = {
 	w: 640,								// Image width
 	h: 480									// Image height
 
-	// Image Resolutions: 320x240, 640x480, 1280x960, 1920x1080, 2592x1944 
+	// Image Resolutions: 640x480, 1280x960, 2592x1944 
 }
 
 // Initialize camera with Raspicam
