@@ -20,8 +20,8 @@ var cameraOptions = {
 	t: 1,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
-	shutter: 30000,							// Shutter time in microseconds
-	ISO: 800,								// ISO sensitivity
+	shutter: 1000000,							// Shutter time in microseconds
+	ISO: 100,								// ISO sensitivity
 	w: 320,								// Image width
 	h: 240,									// Image height
 	q: 20
