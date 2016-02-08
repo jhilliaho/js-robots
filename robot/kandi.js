@@ -22,8 +22,8 @@ var cameraOptions = {
 	awb: false,								// No automatic white balance
 	shutter: 30000,						// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
-	w: 320,								// Image width
-	h: 240									// Image height
+	w: 640,								// Image width
+	h: 480									// Image height
 
 	// Image Resolutions: 320x240, 640x480, 1280x960, 1920x1080, 2592x1944 
 }
