@@ -175,8 +175,10 @@ board.on("ready", function() {
 
 			// Remove shootlock
 			
-			if (imgCount < 50) {
-				shootlock = false;
+			if (imgCount < 250) {
+				setTimeout(function(){
+					shootlock = false;
+				}, 1000);
 				console.log("Shootlock removed\n\n\n\n\n\n\n\n\n");
 			} else {
 				process.exit()
