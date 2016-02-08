@@ -20,7 +20,7 @@ var cameraOptions = {
 	t: 1,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
-	shutter: 30000,							// Shutter time in microseconds
+	shutter: 15000,							// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
 	w: 640,									// Image width
 	h: 480									// Image height
@@ -102,7 +102,7 @@ board.on("ready", function() {
 				console.log("Not taking a picture because of shootlock");
 			}
 
-		}, 1000);
+		}, 400);
 
 
 
