@@ -9,6 +9,10 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
+app.get('/image', function (req, res) {
+  res.sendfile(__dirname + '/images/out.jpg');
+});
+
 io.on('connection', function (socket) {
 	console.log("connection");
   socket.on('newImage', function (data) {
