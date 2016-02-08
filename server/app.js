@@ -47,7 +47,7 @@ io.on('connection', function (socket) {
   		return;
   	}
 
-    var timeString = data.startCamera + '\t' + data.imageCaptured + '\t' + data.imageSent + '\t' + data.width + 'x' + data.height + '\n';
+    var timeString = data.imageCaptured + '\t' + data.imageSent + '\t' + data.width + 'x' + data.height + '\n';
 	require("fs").appendFile('stats.txt', timeString, function (err) {
 		console.log("data", data, "written in file");
 	});
