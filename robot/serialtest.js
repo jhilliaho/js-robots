@@ -10,6 +10,14 @@ board.on("ready", function() {
 	console.log("Board ready");
 
 	var sp = require("serialport")
+
+	sp.list(function (err, ports) {
+	  ports.forEach(function(port) {
+	    console.log(port.comName);
+	  });
+	});
+
+
 	var SerialPort = sp.SerialPort
 	var serialPort = new SerialPort("/dev/ttyAMA0", {
 	  baudrate: 9600
