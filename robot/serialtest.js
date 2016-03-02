@@ -13,4 +13,3 @@ serialPort.on('data', function(data) {
   console.log(data);
 });
 
-while(1) {}
