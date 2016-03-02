@@ -12,7 +12,7 @@ board.on("ready", function() {
 	var SerialPort = require("serialport").SerialPort
 	var serialPort = new SerialPort("/dev/ttyAMA0", {
 	  baudrate: 115200,
-	  parser: serialport.parsers.readline("\n")
+	  parser: Serialport.parsers.readline("\n")
 	}); 
 
 
