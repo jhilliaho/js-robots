@@ -13,3 +13,4 @@ serialPort.on('data', function(data) {
   console.log(data);
 });
 
+setInterval(function(){console.log("still working");});
