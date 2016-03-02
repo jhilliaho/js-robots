@@ -1,7 +1,8 @@
 var com = require("serialport");
 
 var serialPort = new com.SerialPort("/dev/ttyAMA0", {
-9600  });
+    baudrate: 9600
+  });
 
 serialPort.on('open',function() {
   console.log('Port open');
