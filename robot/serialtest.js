@@ -20,12 +20,7 @@ board.on("ready", function() {
 	serialPort.on("open", function () {
 	  console.log('serial open');
 	  serialPort.on('data', function(data) {
-		sys.puts("here: "+data);
 	    console.log('data received: ' + data);
-	  });
-	  serialPort.write("ls\n", function(err, results) {
-	    console.log('err ' + err);
-	    console.log('results ' + results);
 	  });
 	});
 
