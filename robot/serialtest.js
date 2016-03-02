@@ -7,8 +7,8 @@ var serialPort = new com.SerialPort("/dev/ttyAMA0", {
 
 serialPort.on('open',function() {
   console.log('Port open');
+	serialPort.on('data', function(data) {
+	  console.log(data);
+	});
 });
 
-serialPort.on('data', function(data) {
-  console.log(data);
-});
