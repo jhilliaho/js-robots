@@ -5,10 +5,8 @@ var board = new five.Board({
 });
 
 board.on("ready", function() {
-  var virtual = new five.Board.Virtual(
-    new five.Expander("PCA9685")
-  );
-  
-  var led = new five.Led({ pin: 0, board: virtual });
-  led.pulse(1000);
+
+	i2cWrite(8, 0x12, 0x04, 0x99, 0xF2);
+
+
 });
