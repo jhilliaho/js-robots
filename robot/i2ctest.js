@@ -11,9 +11,9 @@ board.on("ready", function() {
 	};
 	board.io.i2cConfig(options);
 
-	board.io.i2cWrite(0x8, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18);	
+	board.io.i2cWrite(0x8, 0x66);
 
-	i2cRead(address, numberOfBytesToRead, function(data){
+	board.io.i2cRead(0x8, 2, function(data){
 		console.log("got ", data);
 	})
 
