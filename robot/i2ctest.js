@@ -18,11 +18,11 @@ board.on("ready", function() {
 	};
 	board.io.i2cConfig(options);
 
-	var arr = toArr("Moi, miten menee? Älä kysele!");
+	var arr = toArr("Moi, miten menee?");
 
 	board.io.i2cWrite(8, arr);
 
-	board.io.i2cReadOnce(0x8, 25, function(data){
+	board.io.i2cReadOnce(0x8, 16, function(data){
 		var string = new Buffer(data).toString('ascii');
 
 		console.log("got ", string);
