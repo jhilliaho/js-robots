@@ -13,7 +13,7 @@ board.on("ready", function() {
 
 	board.io.i2cWrite(0x8, 0x66);
 
-	board.io.i2cRead(0x8, 8, function(data){
+	board.io.i2cReadOnce(0x8, 16, function(data){
 		console.log("got ", data);
 	})
 
