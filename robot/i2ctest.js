@@ -22,7 +22,7 @@ board.on("ready", function() {
 
 	board.io.i2cWrite(8, arr);
 
-	board.io.i2cReadOnce(0x8, 5, function(data){
+	board.io.i2cReadOnce(0x8, 25, function(data){
 		var string = new Buffer(data).toString('ascii');
 
 		console.log("got ", string);
