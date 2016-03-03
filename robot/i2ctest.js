@@ -6,10 +6,16 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
-const buf = new Buffer('hello world', 'ascii');
+	var options = {
+		address = 1;
+	};
+	board.io.i2cConfig(options);
 
+	board.io.i2cWrite(0x8, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18);	
 
-  board.io.i2cWrite(0x8, buf);	
+	i2cRead(address, numberOfBytesToRead, function(data){
+		console.log("got ", data);
+	})
 
 
 
