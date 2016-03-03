@@ -6,7 +6,7 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
-for (int i = 0; i < 256; ++i) {
+for (var i = 0; i < 256; ++i) {
   board.io.i2cWrite(0x8, i);	
 }
 
