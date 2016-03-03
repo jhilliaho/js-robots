@@ -18,7 +18,7 @@ board.on("ready", function() {
 	};
 	board.io.i2cConfig(options);
 
-	var arr = toArr("Moi, miten menee?");
+	var arr = toArr("Moi, miten menee? Älä kysele!");
 
 	board.io.i2cWrite(8, arr);
 
