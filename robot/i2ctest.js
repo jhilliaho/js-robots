@@ -6,12 +6,10 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
-  board.io.i2cWrite(0x8, 'h');	
+const buf = new Buffer('hello world', 'ascii');
 
 
-for (var i = 0; i < 256; ++i) {
-  board.io.i2cWrite(0x8, i);	
-}
+  board.io.i2cWrite(0x8, buf);	
 
 
 
