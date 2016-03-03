@@ -7,7 +7,7 @@ var board = new five.Board({
 board.on("ready", function() {
 
 	var options = {
-		address = 1;
+		address = 1
 	};
 	board.io.i2cConfig(options);
 
