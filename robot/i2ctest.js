@@ -6,7 +6,7 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
-	i2cWrite(8, 0x12, 0x04, 0x99, 0xF2);
+  board.io.i2cWrite(0x08, 0x5, 0x12, 0xF1, 0x1F);
 
 
 });
