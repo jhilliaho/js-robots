@@ -10,7 +10,7 @@ board.on("ready", function() {
 	};
 	board.io.i2cConfig(options);
 
-	board.io.i2cWrite(8, 0, [1,2,3,4,5]);
+	board.io.i2cWrite(8, [61,62,63,64,65,66]);
 
 	board.io.i2cRead(0x8, 6, function(data){
 		var string = new Buffer(data).toString('ascii');
