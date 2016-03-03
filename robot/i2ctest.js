@@ -14,7 +14,7 @@ board.on("ready", function() {
 	board.io.i2cWrite(0x8, 0x41);
 
 	board.io.i2cRead(0x8, 6, function(data){
-		console.log("got ", new Buffer(data).toString('ascii');
+		console.log("got ", new Buffer(data).toString('ascii'));
 );
 	})
 
