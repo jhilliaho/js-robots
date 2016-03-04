@@ -24,7 +24,7 @@ board.on("ready", function() {
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 4, function(data){
 			var arr = data;
-			console.log("got ", arr);
+			console.log("got ", arr, arr.length);
 		})	
 	}
 
