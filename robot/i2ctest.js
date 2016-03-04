@@ -11,7 +11,7 @@ function toArr(string) {
 	}
 	return bytes;
 }
-
+	
 board.on("ready", function() {
 	var options = {
 		address: 2
@@ -23,13 +23,12 @@ board.on("ready", function() {
 	board.io.i2cWrite(8, arr);
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 4, function(data){
-			var string = new Buffer(data).toString('ascii');
-
-			console.log("got ", data);
+			var arr = data;
+			console.log("got ", arr);
 		})	
 	}
 
-	setInterval(readNano, 5000);	
+	setInterval(readNano, 1000	);	
 
 });
 
