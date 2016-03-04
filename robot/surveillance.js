@@ -16,7 +16,6 @@ board.on("ready", function() {
 
 	socket.on('connect', function() {
 	    console.log('Connected to server');
-		socket.compress(false).emit('surveillance', { some: 'data' });
 		var options = {
 			address: 2
 		};
@@ -27,12 +26,12 @@ board.on("ready", function() {
 
 		var sendState = function sendState(data){
 			console.log("Sending data: ", data);
-			socket.emit("newData", {data});
+			socket.emit("newData", {data: data});
 		}
 
 		var sendPullUp = function sendPullUp(count) {
 			console.log("Sending pull-up!", count);
-			socket.emit("newPullUp", {count});
+			socket.emit("newPullUp", {data: count});
 		}
 
 		var dataCounter = 0;
