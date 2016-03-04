@@ -14,17 +14,15 @@ var MongoClient = require('mongodb').MongoClient
 var url = 'mongodb://localhost:27018/surveillance';
 // Use connect method to connect to the Server 
 MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
   console.log("Connected correctly to server");
 
   var collection = db.collection('surveillanceData');
   // Insert some documents 
-  collection.insertMany([
-    {a : 1}, {a : 2}, {a : 3}
-  ], function(err, result) {
-  	collection.find({}, function(err, result){
-  		console.log(result);
-  	})
+  collection.insertMany([{a : 1}, {a : 2}, {a : 3}], function(err, result) {
+	  collection.find({}).toArray(function(err, docs) {
+	    console.log("Found the following records");
+	    console.dir(docs);
+	  });
   });
 
 
