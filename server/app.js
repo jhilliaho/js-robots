@@ -19,10 +19,7 @@ MongoClient.connect(url, function(err, db) {
   var collection = db.collection('surveillanceData');
   // Insert some documents 
   collection.insertMany([{a : 1}, {a : 2}, {a : 3}], function(err, result) {
-	  collection.find({}).toArray(function(err, docs) {
-	    console.log("Found the following records");
-	    console.dir(docs);
-	  });
+  	console.log("Inserted");
   });
 
 
