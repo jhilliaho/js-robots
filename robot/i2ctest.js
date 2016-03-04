@@ -29,7 +29,7 @@ board.on("ready", function() {
 		})	
 	}
 
-	setInterval(readNano, 1000);	
+	setInterval(readNano, 5000);	
 
 });
 
