@@ -14,7 +14,7 @@ function toArr(string) {
 
 board.on("ready", function() {
 	var options = {
-		address: 1
+		address: 2
 	};
 	board.io.i2cConfig(options);
 
