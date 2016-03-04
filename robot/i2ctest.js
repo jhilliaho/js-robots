@@ -23,11 +23,10 @@ board.on("ready", function() {
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 3, function(data){
 			console.log(data, typeof data);
+
 			var difference = false;
 			for (var i = 0; i < data.length; ++i) {
-				if (lastData[i] != data[i]) {
-					difference = true;
-				}
+				console.log(data[i]);
 			}
 			console.log("Difference");
 			difference = false;
