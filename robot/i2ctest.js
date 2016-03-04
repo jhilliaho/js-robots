@@ -25,7 +25,7 @@ board.on("ready", function() {
 	board.io.i2cRead(0x8, 16, function(data){
 		var string = new Buffer(data).toString('ascii');
 
-		console.log("got ", string);
+		console.log("got ", data);
 	})
 });
 
