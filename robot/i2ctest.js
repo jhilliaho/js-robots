@@ -16,15 +16,15 @@ board.on("ready", function() {
 		console.log("Sending data: ", data);
 	}
 
-	var sendPullUp = function sendPullUp() {
-		console.log("Sending pull-up!");
+	var sendPullUp = function sendPullUp(count) {
+		console.log("Sending pull-up!", count);
 	}
 
 	var dataCounter = 0;
 
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 3, function(data){
-
+			console.log(data);
 			var pullUps = data[data.size-1];
 			if (pullUps) {
 				sendPullUp(pullUps);
