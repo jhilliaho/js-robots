@@ -35,7 +35,6 @@ board.on("ready", function() {
 				dataCounter = 0;
 				sendState(data);
 			}
-			dataCou
 		})	
 	}
 
