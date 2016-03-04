@@ -26,12 +26,12 @@ board.on("ready", function() {
 
 		var sendState = function sendState(data){
 			console.log("Sending data: ", data);
-			socket.emit("newData", {data: data});
+			socket.emit("newData", data);
 		}
 
 		var sendPullUp = function sendPullUp(count) {
 			console.log("Sending pull-up!", count);
-			socket.emit("newPullUp", {data: count});
+			socket.emit("newPullUp", count);
 		}
 
 		var dataCounter = 0;
