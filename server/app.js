@@ -16,11 +16,19 @@ var url = 'mongodb://localhost:27018/surveillance';
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server");
-  db.dataTable.insert({test: "Toimiiko tää?"}, function(){
-  	db.dataTable.find({}, function(err, rows){
-  		console.log(rows);
+
+  var collection = db.collection('surveillanceData');
+  // Insert some documents 
+  collection.insertMany([
+    {a : 1}, {a : 2}, {a : 3}
+  ], function(err, result) {
+  	collection.find({}, function(err, result){
+  		console.log(result);
   	})
   });
+
+
+
   db.close();
 });
 
