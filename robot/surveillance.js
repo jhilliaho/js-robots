@@ -4,11 +4,11 @@ var board = new five.Board({
   io: new Raspi()
 });
 
-var io = require('socket.io-client');
 
 board.on("ready", function() {
 	console.log("connecting");
-	var socket = io.connect('http://46.101.79.118:3000', {reconnect: true});
+	
+	var socket = require('socket.io-client')('http://46.101.79.118:3000');
 
 	socket.on("disconnect", function(){
 	    console.log("Disconnected from server");
