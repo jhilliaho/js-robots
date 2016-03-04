@@ -12,7 +12,7 @@ board.on("ready", function() {
 
 	var lastData = [0,0,0]
 
-	var sendData = function sendState(data){
+	var sendState = function sendState(data){
 		console.log("Sending data: ", data);
 	}
 
