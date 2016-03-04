@@ -8,7 +8,7 @@ var io = require('socket.io-client');
 
 board.on("ready", function() {
 
-	var socket = io.connect('http://46.101.79.118:3000', {reconnect: true});
+	var socket = io.connect('46.101.79.118:3000', {reconnect: true});
 
 	socket.on("disconnect", function(){
 	    console.log("Disconnected from server");
