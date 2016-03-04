@@ -16,7 +16,11 @@ var url = 'mongodb://localhost:27018/surveillance';
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server");
- 
+  db.dataTable.insert({test: "Toimiiko tää?"}, function(){
+  	db.dataTable.find({}, function(err, rows){
+  		console.log(rows);
+  	})
+  });
   db.close();
 });
 
