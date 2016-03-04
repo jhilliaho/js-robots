@@ -26,7 +26,7 @@ MongoClient.connect(url, function(err, db) {
     console.dir(docs);
   });
 
-  db.close();
+  //db.close();
 });
 
 io.on('connection', function (socket) {
