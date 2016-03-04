@@ -12,8 +12,12 @@ board.on("ready", function() {
 
 	var lastData = [0,0,0]
 
-	var sendData = function senData(data){
+	var sendData = function sendState(data){
 		console.log("Sending data: ", data);
+	}
+
+	var sendPullUp = function sendPullUp() {
+		console.log("Sending pull-up!");
 	}
 
 	var dataCounter = 0;
@@ -22,18 +26,16 @@ board.on("ready", function() {
 		board.io.i2cReadOnce(0x8, 3, function(data){
 			console.log(data, typeof data);
 
-			var difference = false;
-			for (var i = 0; i < data.length; ++i) {
-				if (lastData[i] != data[i]) {
-					difference = true;
-				}
-				lastData[i] = data[i];
+			var pullUps = data[data.size-1];
+			if (pullUps) {
+				sendPullUp(pullUps);
 			}
-			if (difference || dataCounter >= 60) {
+
+			if (dataCounter >= 60) {
 				dataCounter = 0;
 				difference = false;
 				console.log("Difference");
-				sendData(data);
+				sendState(data);
 			}
 
 		})	
