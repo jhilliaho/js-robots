@@ -24,17 +24,14 @@ board.on("ready", function() {
 
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 3, function(data){
-			console.log(data, typeof data);
 
 			var pullUps = data[data.size-1];
 			if (pullUps) {
 				sendPullUp(pullUps);
 			}
 
-			if (dataCounter >= 60) {
+			if (dataCounter >= 10) {
 				dataCounter = 0;
-				difference = false;
-				console.log("Difference");
 				sendState(data);
 			}
 
