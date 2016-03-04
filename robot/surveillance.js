@@ -14,6 +14,8 @@ board.on("ready", function() {
 	    console.log("Disconnected from server");
 	});
 
+	socket.on("yes", function(){console.log("YES");});
+
 	socket.on('connect', function() {
 	    console.log('Connected to server');
 		socket.compress(false).emit('surveillance', { some: 'data' });
