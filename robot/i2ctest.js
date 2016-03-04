@@ -3,14 +3,6 @@ var Raspi = require("raspi-io");
 var board = new five.Board({
   io: new Raspi()
 });
-
-function toArr(string) {
-	var bytes = [];
-	for (var i = 0; i < string.length; ++i) {
-	    bytes.push(string.charCodeAt(i));
-	}
-	return bytes;
-}
 	
 board.on("ready", function() {
 	var options = {
@@ -19,6 +11,12 @@ board.on("ready", function() {
 	board.io.i2cConfig(options);
 
 	var lastData = [0,0,0]
+
+	var sendData = function senData(data){
+		console.log("Sending data: ", data);
+	}
+
+	var dataCounter = 0;
 
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 3, function(data){
@@ -31,10 +29,12 @@ board.on("ready", function() {
 				}
 				lastData[i] = data[i];
 			}
-			if (difference) {
+			if (difference || dataCounter >= 60) {
+				dataCounter = 0;
+				difference = false;
 				console.log("Difference");
+				sendData(data);
 			}
-			difference = false;
 
 		})	
 	}
