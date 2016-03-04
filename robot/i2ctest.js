@@ -21,12 +21,16 @@ board.on("ready", function() {
 	var arr = toArr("Moi, miten menee?");
 
 	board.io.i2cWrite(8, arr);
+	var readNano = function readNano() {
+		board.io.i2cReadOnce(0x8, 4, function(data){
+			var string = new Buffer(data).toString('ascii');
 
-	board.io.i2cRead(0x8, 4, function(data){
-		var string = new Buffer(data).toString('ascii');
+			console.log("got ", data);
+		})	
+	}
 
-		console.log("got ", data);
-	})
+	setInterval(readNano, 1000);	
+
 });
 
 
