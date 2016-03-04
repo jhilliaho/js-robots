@@ -21,11 +21,11 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('newPullUp', function (data) {
-		console.log("newPullUp");
+		console.log("newPullUp ", data);
 	});
 
 	socket.on('newData', function (data) {
-		console.log("newData");
+		console.log("newData ", data);
 	});
 });
 
