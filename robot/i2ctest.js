@@ -21,7 +21,7 @@ board.on("ready", function() {
 	var lastDataString = "";
 
 	var readNano = function readNano() {
-		board.io.i2cReadOnce(0x8, 4, function(data){
+		board.io.i2cReadOnce(0x8, 3, function(data){
 			var string = new Buffer(data).toString('ascii');
 			var arr = data;
 			console.log("got ", data);
