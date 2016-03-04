@@ -25,16 +25,17 @@ board.on("ready", function() {
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 3, function(data){
 			console.log(data);
+			dataCounter++;
+
 			var pullUps = data[data.length-1];
 			if (pullUps) {
 				sendPullUp(pullUps);
 			}
 
-			if (dataCounter >= 10) {
+			if (dataCounter > 8) {
 				dataCounter = 0;
 				sendState(data);
 			}
-			dataCounter++;
 		})	
 	}
 
