@@ -18,13 +18,17 @@ board.on("ready", function() {
 	};
 	board.io.i2cConfig(options);
 
-	var arr = toArr("Moi, miten menee?");
+	var lastDataString = "";
 
-	board.io.i2cWrite(8, arr);
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 4, function(data){
+			var string = new Buffer(data).toString('ascii');
 			var arr = data;
-			console.log("got ", arr, arr.length);
+			console.log("got ", data);
+
+			if (lastDataString != string) {
+				console.log("difference!");
+			}
 		})	
 	}
 
