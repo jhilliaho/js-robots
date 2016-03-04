@@ -18,7 +18,7 @@ board.on("ready", function() {
 	};
 	board.io.i2cConfig(options);
 
-	var lastDataString = "";
+	var lastData = {0,0,0};
 
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 3, function(data){
