@@ -26,6 +26,7 @@ board.on("ready", function() {
 
 			var difference = false;
 			for (var i = 0; i < data.length; ++i) {
+				console.log(lastData[i], data[i]);
 				if (lastData[i] != data[i]) {
 					difference = true;
 				}
