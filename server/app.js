@@ -9,7 +9,6 @@ server.listen(3000);
 
 io.on('connection', function (socket) {
 	console.log("connection");
-	socket.emit("yes");
 	socket.on('newImage', function (data) {
 		console.log("newImage");
 		require("fs").rename("images/out.jpg", ('images/' + Date.now() + '.jpg'), function(){
@@ -19,10 +18,6 @@ io.on('connection', function (socket) {
 			  imageDate = new Date();
 			});
 		});
-	});
-
-	socket.on('surveillance', function (data) {
-		console.log("surveillance");
 	});
 
 	socket.on('newPullUp', function (data) {
