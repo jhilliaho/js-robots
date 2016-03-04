@@ -16,7 +16,7 @@ board.on("ready", function() {
 
 	socket.on('connect', function() {
 	    console.log('Connected to server');
-
+	    socket.emit("surveillance");
 		var options = {
 			address: 2
 		};

@@ -21,6 +21,10 @@ io.on('connection', function (socket) {
 		});
 	});
 
+	socket.on('surveillance', function (data) {
+		console.log("surveillance");
+	});
+
 	socket.on('newPullUp', function (data) {
 		console.log("newPullUp");
 	});
