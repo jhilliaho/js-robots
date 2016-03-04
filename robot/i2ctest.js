@@ -29,6 +29,7 @@ board.on("ready", function() {
 			if (lastDataString != string) {
 				console.log("difference!");
 			}
+			lastDataString = string;
 		})	
 	}
 
