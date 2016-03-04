@@ -22,6 +22,10 @@ MongoClient.connect(url, function(err, db) {
   	console.log("Inserted");
   });
 
+  collection.find({}).toArray(function(err, docs) {
+    console.log("Found the following records");
+    console.dir(docs);
+  });
 
 
   db.close();
