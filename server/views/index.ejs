@@ -4,6 +4,6 @@
   </head>
   <body>
   	<img src="image">
-  	<p><%= JSON.stringify(data) %></p>
+  	<% for (var i = 0; i < data.length; ++i) { %><%= data[i]} %>
   </body>
 </html>
