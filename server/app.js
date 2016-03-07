@@ -54,7 +54,7 @@ MongoClient.connect(url, function(err, db) {
 				console.log("Inserted", err, result);
 			});
 
-			socket.emit("newData", {temperature: temperature, humidity: humidity, date: date});
+			socket.broadcast.emit("newData", {temperature: temperature, humidity: humidity, date: date});
 	  	});
 
 		socket.on('getData', function () {
