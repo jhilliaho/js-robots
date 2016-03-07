@@ -25,8 +25,14 @@ board.on("ready", function() {
 		var lastData = [0,0,0]
 
 		var sendState = function sendState(data){
-			console.log("Sending data: ", data);
-			socket.emit("newData", data);
+
+			var temperature = (data[0] + (data[1] << 8)) / 10;
+			var humidity = (data[2] + (data[3] << 8)) / 10;
+
+			var newData = [temperature, humidity];
+
+			console.log("Sending data: ", newData);
+			socket.emit("newData", newData);
 		}
 
 		var sendPullUp = function sendPullUp(count) {
@@ -37,7 +43,7 @@ board.on("ready", function() {
 		var dataCounter = 1000;
 
 		var readNano = function readNano() {
-			board.io.i2cReadOnce(0x8, 3, function(data){
+			board.io.i2cReadOnce(0x8, 5, function(data){
 				console.log(dataCounter++);
 
 				var pullUps = data[data.length-1];

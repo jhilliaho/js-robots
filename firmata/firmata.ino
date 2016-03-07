@@ -12,8 +12,8 @@ DHT dht(DHTPIN, DHTTYPE);
 const int pingPin = 7;
 const int leukaDistance = 50;
 int distance = 0;
-int temperature = 0;
-int humidity = 0;
+float temperature = 0;
+float humidity = 0;
 
 void setup() {
   dht.begin();
@@ -94,12 +94,21 @@ long microsecondsToCentimeters(long microseconds) {
 }
 
 void requestEvent() {
+
+int tempten = (int) (temperature*10);
+byte temp1 = (byte) tempten;
+byte temp2 = (byte) tempten >> 8;
+
+int humten = (int) (humidity*10);
+byte hum1 = (byte) humten;
+byte hum2 = (byte) humten >> 8;
+
   byte temp = (byte) temperature;
   byte hum = (byte) humidity;
   byte leuat = (byte) leukaCounter;
   
-  byte arr[3] = {temp, hum, leuat};
-  Wire.write(arr, 3);
+  byte arr[5] = {temp1, temp2, hum1, hum2, leuat};
+  Wire.write(arr, 5);
   leukaCounter = 0;
 }
 
