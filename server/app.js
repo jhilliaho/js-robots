@@ -54,7 +54,7 @@ MongoClient.connect(url, function(err, db) {
 	});
 
 	app.get('/', function(req, res, next) {
-		db.collection('surveillanceData').find({}, function(err, result) {
+		db.collection('surveillanceData').find({}).toArray(function(err, result) {
 			console.log("GET", result);
 			res.render('index', { data: result });
 		});
