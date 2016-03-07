@@ -53,6 +53,8 @@ MongoClient.connect(url, function(err, db) {
 			db.collection('surveillanceData').insert({temperature: temperature, humidity: humidity, date: date}, function(err, result) {
 				console.log("Inserted", err, result);
 			});
+
+			socket.emit("newData", {temperature: temperature, humidity: humidity, date: date});
 	  	});
 
 		socket.on('getData', function () {
@@ -63,8 +65,6 @@ MongoClient.connect(url, function(err, db) {
 				socket.emit("allData", result);
 			});
 	  	});
-
-
 
 	});
 
