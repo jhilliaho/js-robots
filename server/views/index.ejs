@@ -48,7 +48,8 @@ $('#container').highcharts({
 
 });
 
-var timeZoneOffset = new Date().getTimeZoneOffset()*60000;
+var now = new Date();
+var timeZoneOffset = now.getTimeZoneOffset()*60000;
 
 var socket = io('http://46.101.79.118:3000');
 socket.emit('getData');
