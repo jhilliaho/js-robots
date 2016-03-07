@@ -56,7 +56,7 @@ $('#container').highcharts().showLoading("Wait a second");
 socket.on('allData', function (data) {
 
 	for (var i = 0; i < data.length; ++i) {
-		var date = new Date(data[i].date).getTime() + Date.getTimeZoneOffset()*60000;
+		var date = new Date(data[i].date).getTime() - (new Date().getTimeZoneOffset()*60000);
 		var humidity = data[i].humidity;
 		var temperature = data[i].temperature;
 		console.log(date, humidity, temperature);
@@ -69,7 +69,7 @@ socket.on('allData', function (data) {
 });
 
 socket.on('newData', function (data) {
-	var date = new Date(data.date).getTime() + Date.getTimeZoneOffset()*60000;
+	var date = new Date(data.date).getTime() - (new Date().getTimeZoneOffset()*60000);
 	var humidity = data.humidity;
 	var temperature = data.temperature;
 	console.log(date, humidity, temperature);
