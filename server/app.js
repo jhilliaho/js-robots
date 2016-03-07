@@ -60,7 +60,7 @@ MongoClient.connect(url, function(err, db) {
 
 			db.collection('surveillanceData').find({}).toArray(function(err, result) {
 				console.log("GET", result);
-				socket.emit(allData, result);
+				socket.emit("allData", result);
 			});
 	  	});
 
