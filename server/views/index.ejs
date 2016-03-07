@@ -65,8 +65,8 @@ socket.on('allData', function (data) {
 socket.on('newData', function (data) {
 	console.log("GOT DATA:", data);
 
-	$('#container').highcharts().xAxis[0].series[0].addPoint([data.date, data.temperature], false, true);
-	$('#container').highcharts().xAxis[0].series[1].addPoint([data.date, data.humidity], false, true);
+	$('#container').highcharts().xAxis[0].series[0].addPoint([data.date, data.temperature], false);
+	$('#container').highcharts().xAxis[0].series[1].addPoint([data.date, data.humidity], false);
 	$('#container').highcharts().redraw();
 	dataCount++;
 });
