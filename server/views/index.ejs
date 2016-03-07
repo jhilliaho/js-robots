@@ -74,7 +74,6 @@ socket.on('newData', function (data) {
 	$('#container').highcharts().xAxis[0].series[0].addPoint([date, temperature], false);
 	$('#container').highcharts().xAxis[0].series[1].addPoint([date, humidity], false);
 	$('#container').highcharts().redraw();
-	dataCount++;
 });
 </script>
 
