@@ -4,58 +4,60 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
   </head>
   <body>
-
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 <script>
-$(function () {
-    $('#container').highcharts({
-        title: {
-            text: 'Monthly Average Temperature',
-            x: -20 //center
-        },
-        subtitle: {
-            text: 'Source: WorldClimate.com',
-            x: -20
-        },
-        xAxis: {
+$('#container').highcharts({
+    title: {
+        text: 'Monthly Average Temperature',
+        x: -20 //center
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com',
+        x: -20
+    },
+    xAxis: {
 
+    },
+    yAxis: {
+        title: {
+            text: 'Temperature (°C)'
         },
-        yAxis: {
-            title: {
-                text: 'Temperature (°C)'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: '°C'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        },
-        series: [{
-            name: 'Temperature',
-            data: [1,2,3]
-        }, {
-            name: 'Humidity',
-            data: [4,3,2]
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
         }]
-    });
+    },
+    tooltip: {
+        valueSuffix: '°C'
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+    },
+    series: [{
+        name: 'Temperature',
+        data: [1,2,3]
+    }, {
+        name: 'Humidity',
+        data: [4,3,2]
+    }]
+});
+
+var socket = io('http://localhost:3000');
+socket.emit('getData');
+
+socket.on('allData', function (data) {
+	console.log("GOT DATA:", data);
 });
 </script>
-
-
-
   	<% for (var i = 0; i < data.length; ++i) { %>
 
   	<p><%= i %>:  

@@ -51,13 +51,22 @@ MongoClient.connect(url, function(err, db) {
 				console.log("Inserted", err, result);
 			});
 	  	});
+
+		socket.on('getData', function () {
+			console.log("getData ");
+
+			db.collection('surveillanceData').find({}).toArray(function(err, result) {
+				console.log("GET", result);
+				socket.emit(allData, result);
+			});
+	  	});
+
+
+
 	});
 
 	app.get('/', function(req, res, next) {
-		db.collection('surveillanceData').find({}).toArray(function(err, result) {
-			console.log("GET", result);
-			res.render('index', { data: result });
-		});
+		res.render('index', { data: result });
 	});
 
 	console.log("Started");
