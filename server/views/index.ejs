@@ -28,7 +28,10 @@ $('#container').highcharts({
 
     },
     chart: {
-	},
+  		zoomType: 'x',
+        panning: true,
+        panKey: 'shift'
+   	},
     legend: {
         layout: 'vertical',
         align: 'right',
