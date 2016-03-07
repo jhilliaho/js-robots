@@ -51,6 +51,6 @@ board.on("ready", function() {
 				}
 			})	
 		}
-		setInterval(readNano, 100);	
+		setInterval(readNano, 500);	
 	});
 });
