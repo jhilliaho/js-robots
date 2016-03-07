@@ -56,8 +56,9 @@ socket.on('allData', function (data) {
 socket.on('newData', function (data) {
 	console.log("GOT DATA:", data);
 
-	$('#container').highcharts().xAxis[0].series[0].addPoint([data.temperature]);
-	$('#container').highcharts().xAxis[0].series[1].addPoint([data.humidity]);
+	$('#container').highcharts().xAxis[0].series[0].addPoint([data.temperature], false, true);
+	$('#container').highcharts().xAxis[0].series[1].addPoint([data.humidity], false, true);
+	$('#container').highcharts().redraw();
 });
 </script>
 
