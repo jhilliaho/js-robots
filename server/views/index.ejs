@@ -24,19 +24,6 @@ $('#container').highcharts({
     xAxis: {
 
     },
-    yAxis: {
-        title: {
-            text: 'Temperature (°C)'
-        },
-        plotLines: [{
-            value: 0,
-            width: 1,
-            color: '#808080'
-        }]
-    },
-    tooltip: {
-        valueSuffix: '°C'
-    },
     legend: {
         layout: 'vertical',
         align: 'right',
@@ -44,10 +31,11 @@ $('#container').highcharts({
         borderWidth: 0
     },
     series: [{
-        name: 'Temperature',
+        plotLines: [{
+        name: 'Temperature (°C)',
         data: []
     }, {
-        name: 'Humidity',
+        name: 'Humidity (%)',
         data: []
     }]
 });
