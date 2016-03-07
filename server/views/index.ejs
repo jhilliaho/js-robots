@@ -58,8 +58,8 @@ socket.on('allData', function (data) {
 	console.log("GOT DATA:", data);
 
 	for (var i = 0; i < data.length; ++i) {
-		$('#container').highcharts().xAxis[0].series[0].addPoint([data[i].date, data[i].temperature], false);
-		$('#container').highcharts().xAxis[0].series[1].addPoint([data[i].date, data[i].humidity], false);
+		$('#container').highcharts().xAxis[0].series[0].addPoint([Date(data[i].date), data[i].temperature], false);
+		$('#container').highcharts().xAxis[0].series[1].addPoint([Date(data[i].date), data[i].humidity], false);
 		dataCount++;
 	}
 
@@ -69,8 +69,8 @@ socket.on('allData', function (data) {
 socket.on('newData', function (data) {
 	console.log("GOT DATA:", data);
 
-	$('#container').highcharts().xAxis[0].series[0].addPoint([data.date, data.temperature], false);
-	$('#container').highcharts().xAxis[0].series[1].addPoint([data.date, data.humidity], false);
+	$('#container').highcharts().xAxis[0].series[0].addPoint([Date(data.date), data.temperature], false);
+	$('#container').highcharts().xAxis[0].series[1].addPoint([Date(data.date), data.humidity], false);
 	$('#container').highcharts().redraw();
 	dataCount++;
 });
