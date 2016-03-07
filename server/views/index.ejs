@@ -18,12 +18,8 @@
 <script>
 $('#container').highcharts({
     title: {
-        text: 'Monthly Average Temperature',
+        text: 'Huoneen lämpötila ja ilmankosteus',
         x: -20 //center
-    },
-    subtitle: {
-        text: 'Source: WorldClimate.com',
-        x: -20
     },
     xAxis: {
 
@@ -64,6 +60,7 @@ socket.on('allData', function (data) {
 
 	for (var i = 0; i < data.length; ++i) {
 		$('#container').highcharts().xAxis[0].series[0].addPoint([i,data[i].temperature])
+		$('#container').highcharts().xAxis[0].series[1].addPoint([i,data[i].humidity])
 	}
 
 
