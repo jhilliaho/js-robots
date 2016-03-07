@@ -17,11 +17,12 @@
 
 <script>
 
+var dataCount = 0;
 
 $('#container').highcharts({
     title: {
-        text: 'Room temperature & humidity',
-        x: -20
+        text: 'Huoneen lämpötila ja ilmankosteus',
+        x: -20 //center
     },
     xAxis: {
         type: 'datetime'
@@ -53,20 +54,15 @@ socket.emit('getData');
 
 $('#container').highcharts().showLoading("Wait a second");
 
-console.log("Chart ready");
-
 socket.on('allData', function (data) {
-console.log("allData", JSON.stringify(data, false, 4));
 
 	for (var i = 0; i < data.length; ++i) {
 		var date = new Date(data[i].date).getTime();
 		var humidity = data[i].humidity;
 		var temperature = data[i].temperature;
-
-		console.log("Add date: ", date, ", humidity: ", humidity, " temperature: ", temperature);
-
 		$('#container').highcharts().xAxis[0].series[0].addPoint([date,temperature], false);
 		$('#container').highcharts().xAxis[0].series[1].addPoint([date,humidity], false);
+		dataCount++;
 	}
 
 	$('#container').highcharts().redraw();
@@ -74,14 +70,13 @@ console.log("allData", JSON.stringify(data, false, 4));
 });
 
 socket.on('newData', function (data) {
-	console.log("newData");
 	var date = new Date(data.date).getTime();
 	var humidity = data.humidity;
 	var temperature = data.temperature;
-	console.log("Add date: ", date, ", humidity: ", humidity, " temperature: ", temperature);
 	$('#container').highcharts().xAxis[0].series[0].addPoint([date, temperature], false);
 	$('#container').highcharts().xAxis[0].series[1].addPoint([date, humidity], false);
 	$('#container').highcharts().redraw();
+	dataCount++;
 });
 </script>
 
