@@ -55,5 +55,8 @@ MongoClient.connect(url, function(err, db) {
 	});
 
 	console.log("Started");
+});
 
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
 });
