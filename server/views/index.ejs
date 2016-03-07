@@ -5,7 +5,15 @@
   <body>
   	<% for (var i = 0; i < data.length; ++i) { %>
 
-  	<p><%= i %>:  <%= data[i] %></p>
+  	<p><%= i %>:  
+  		T: <%= data[i].temperature %>
+  		H: <%= data[i].humidity %>
+  		Date: <%= data[i].date %>
+
+
+
+
+  	</p>
   	<% } %>
   </body>
 </html>
