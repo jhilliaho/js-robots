@@ -39,7 +39,6 @@ MongoClient.connect(url, function(err, db) {
 					console.log("Inserted", err, result);
 				});				
 			}
-
 		});
 
 		socket.on('newData', function (data) {
@@ -58,5 +57,36 @@ MongoClient.connect(url, function(err, db) {
 });
 
 app.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+			db.collection('surveillanceData').find({}, function(err, result) {
+				console.log("GET", result);
+				res.render('index', { data: result });
+			});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
