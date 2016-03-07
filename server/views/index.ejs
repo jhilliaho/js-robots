@@ -55,9 +55,10 @@ $('#container').highcharts({
 var socket = io('http://46.101.79.118:3000');
 socket.emit('getData');
 
+$('#container').highcharts().showLoading("Wait a second");
+
 socket.on('allData', function (data) {
 	console.log("GOT DATA:", data);
-	$('#container').highcharts().showLoading("Wait a second");
 
 	for (var i = 0; i < data.length; ++i) {
 		$('#container').highcharts().xAxis[0].series[0].addPoint([data[i].date, data[i].temperature], false);
@@ -72,8 +73,8 @@ socket.on('allData', function (data) {
 socket.on('newData', function (data) {
 	console.log("GOT DATA:", data);
 
-	$('#container').highcharts().xAxis[0].series[0].addPoint([data.date, data.temperature], false, true);
-	$('#container').highcharts().xAxis[0].series[1].addPoint([data.date, data.humidity], false, true);
+	$('#container').highcharts().xAxis[0].series[0].addPoint([data.date, data.temperature], false);
+	$('#container').highcharts().xAxis[0].series[1].addPoint([data.date, data.humidity], false);
 	$('#container').highcharts().redraw();
 	dataCount++;
 });
