@@ -8,7 +8,7 @@ var imageDate = 0;
 
 server.listen(3000);
 
-app.use(express.static('public'));
+app.use('/public', express.static(__dirname + '/public'));
 
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
