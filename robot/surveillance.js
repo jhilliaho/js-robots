@@ -34,7 +34,7 @@ board.on("ready", function() {
 			socket.emit("newPullUp", count);
 		}
 
-		var dataCounter = 0;
+		var dataCounter = 1000;
 
 		var readNano = function readNano() {
 			board.io.i2cReadOnce(0x8, 3, function(data){
@@ -51,7 +51,6 @@ board.on("ready", function() {
 				}
 			})	
 		}
-		readNano();
 		setInterval(readNano, 1000	);	
 	});
 });
