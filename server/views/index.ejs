@@ -46,9 +46,11 @@ socket.on('allData', function (data) {
 	console.log("GOT DATA:", data);
 
 	for (var i = 0; i < data.length; ++i) {
-		$('#container').highcharts().xAxis[0].series[0].addPoint([i,data[i].temperature]);
-		$('#container').highcharts().xAxis[0].series[1].addPoint([i,data[i].humidity]);
+		$('#container').highcharts().xAxis[0].series[0].addPoint([i,data[i].temperature], false);
+		$('#container').highcharts().xAxis[0].series[1].addPoint([i,data[i].humidity], false);
 	}
+
+	$('#container').highcharts().redraw();
 
 
 
