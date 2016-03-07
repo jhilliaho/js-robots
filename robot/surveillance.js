@@ -45,7 +45,7 @@ board.on("ready", function() {
 					sendPullUp(pullUps);
 				}
 
-				if (dataCounter >= 600) {
+				if (dataCounter >= 6) {
 					dataCounter = 0;
 					sendState(data);
 				}
