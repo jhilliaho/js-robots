@@ -31,6 +31,10 @@ board.on("ready", function() {
 
 			var newData = [temperature, humidity];
 
+			if (temperature == 0 && humidity == 0) {
+				return;
+			}
+
 			console.log("Sending data: ", newData, ",   first data: ", data);
 			socket.emit("newData", newData);
 		}
