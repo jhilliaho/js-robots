@@ -16,6 +16,9 @@
 </html>
 
 <script>
+
+var dataCount = 0;
+
 $('#container').highcharts({
     title: {
         text: 'Huoneen lämpötila ja ilmankosteus',
@@ -46,8 +49,9 @@ socket.on('allData', function (data) {
 	console.log("GOT DATA:", data);
 
 	for (var i = 0; i < data.length; ++i) {
-		$('#container').highcharts().xAxis[0].series[0].addPoint([i,data[i].temperature], false);
-		$('#container').highcharts().xAxis[0].series[1].addPoint([i,data[i].humidity], false);
+		$('#container').highcharts().xAxis[0].series[0].addPoint([dataCount,data[i].temperature], false);
+		$('#container').highcharts().xAxis[0].series[1].addPoint([dataCount,data[i].humidity], false);
+		dataCount++;
 	}
 
 	$('#container').highcharts().redraw();
@@ -56,9 +60,10 @@ socket.on('allData', function (data) {
 socket.on('newData', function (data) {
 	console.log("GOT DATA:", data);
 
-	$('#container').highcharts().xAxis[0].series[0].addPoint([data.temperature], false, true);
-	$('#container').highcharts().xAxis[0].series[1].addPoint([data.humidity], false, true);
+	$('#container').highcharts().xAxis[0].series[0].addPoint([dataCount, data.temperature], false, true);
+	$('#container').highcharts().xAxis[0].series[1].addPoint([dataCount, data.humidity], false, true);
 	$('#container').highcharts().redraw();
+	dataCount++;
 });
 </script>
 
