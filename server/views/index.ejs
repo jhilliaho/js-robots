@@ -51,7 +51,7 @@ $('#container').highcharts({
     }]
 });
 
-var socket = io('localhost');
+var socket = io('http://46.101.79.118');
 socket.emit('getData');
 
 socket.on('allData', function (data) {
