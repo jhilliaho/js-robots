@@ -38,7 +38,7 @@ board.on("ready", function() {
 
 		var readNano = function readNano() {
 			board.io.i2cReadOnce(0x8, 3, function(data){
-				dataCounter++;
+				console.log(dataCounter++);
 
 				var pullUps = data[data.length-1];
 				if (pullUps) {
@@ -51,7 +51,7 @@ board.on("ready", function() {
 				}
 			})	
 		}
-
+		readNano();
 		setInterval(readNano, 1000	);	
 	});
 });
