@@ -58,13 +58,8 @@ socket.on('allData', function (data) {
 	console.log("GOT DATA:", data);
 });
 </script>
-  	<% for (var i = 0; i < data.length; ++i) { %>
 
-  	<p><%= i %>:  
-  		T: <%= data[i].temperature %>
-  		H: <%= data[i].humidity %>
-  		Date: <%= data[i].date %>
-  	</p>
-  	<% } %>
+... 
+
   </body>
 </html>
