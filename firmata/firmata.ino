@@ -71,20 +71,7 @@ void loop() {
     leukaHelpCounter = 0;
     leukaCounter++;
   }
-
-  Serial.print(cm);
-  Serial.print("cm, ");
-  Serial.print(temperature);
-  Serial.print(" C, ");
-  Serial.print(humidity);
-  Serial.print("% ");
-  Serial.print("Phase: ");
-  Serial.print(leukaPhase);
-  Serial.print(", counter: ");
-  Serial.print(leukaHelpCounter);
-  Serial.print(", leuat: ");
-  Serial.print(leukaCounter);
-  Serial.println();   
+ 
 
   delay(50);
 }
@@ -95,16 +82,19 @@ long microsecondsToCentimeters(long microseconds) {
 
 void requestEvent() {
 
-int tempten = (int) (temperature*10);
-byte temp1 = (byte) tempten;
-byte temp2 = (byte) tempten >> 8;
+unsigned int tempten = (int) (temperature*10);
+byte temp1 = tempten;
+byte temp2 = tempten >> 8;
 
-int humten = (int) (humidity*10);
-byte hum1 = (byte) humten;
-byte hum2 = (byte) humten >> 8;
+unsigned int humten = (int) (humidity*10);
+byte hum1 = humten;
+byte hum2 = humten >> 8;
 
-  byte temp = (byte) temperature;
-  byte hum = (byte) humidity;
+ Serial.print("TEMP:");
+ Serial.print(tempten);
+ Serial.print(", HUM");
+ Serial.println(humten);
+
   byte leuat = (byte) leukaCounter;
   
   byte arr[5] = {temp1, temp2, hum1, hum2, leuat};
