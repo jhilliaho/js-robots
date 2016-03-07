@@ -40,7 +40,7 @@ MongoClient.connect(url, function(err, db) {
 			console.log("newData ", data);
 			var date = new Date();
 			var count = data;
-			for (var i = 0; i < count, ++i) {
+			for (var i = 0; i < count; ++i) {
 				db.collection('pullUpData').insert({date: date}, function(err, result) {
 					console.log("Inserted", err, result);
 				});				
