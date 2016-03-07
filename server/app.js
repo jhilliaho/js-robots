@@ -1,3 +1,6 @@
+console.log("It's now ", new Date());
+
+
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -15,11 +18,6 @@ var url = 'mongodb://localhost:27018/data';
 // Use connect method to connect to the Server 
 MongoClient.connect(url, function(err, db) {
   console.log("Connected correctly to server");
-
-  // Insert some documents 
-  db.collection('surveillanceData').insertMany([{a : 1}, {a : 2}, {a : 3}], function(err, result) {
-  	console.log("Inserted", err, result);
-  });
 
   db.collection('surveillanceData').find({}).toArray(function(err, docs) {
     console.log("Found the following records");
@@ -44,6 +42,7 @@ io.on('connection', function (socket) {
 
 	socket.on('newPullUp', function (data) {
 		console.log("newPullUp ", data);
+
 	});
 
 	socket.on('newData', function (data) {
