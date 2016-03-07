@@ -53,7 +53,10 @@ socket.emit('getData');
 
 $('#container').highcharts().showLoading("Wait a second");
 
+console.log("Chart ready");
+
 socket.on('allData', function (data) {
+console.log("allData");
 
 	for (var i = 0; i < data.length; ++i) {
 		var date = new Date(data[i].date).getTime();
@@ -68,6 +71,7 @@ socket.on('allData', function (data) {
 });
 
 socket.on('newData', function (data) {
+	console.log("newData");
 	var date = new Date(data.date).getTime();
 	var humidity = data.humidity;
 	var temperature = data.temperature;
