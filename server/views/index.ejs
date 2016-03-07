@@ -24,7 +24,9 @@ $('#container').highcharts({
         text: 'Huoneen lämpötila ja ilmankosteus',
         x: -20 //center
     },
-
+    xAxis: {
+        type: 'datetime'
+    },
     chart: {
         type: 'spline',
   		zoomType: 'x',
