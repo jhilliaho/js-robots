@@ -66,7 +66,7 @@ MongoClient.connect(url, function(err, db) {
 	});
 
 	app.get('/', function(req, res, next) {
-		res.render('index', { data: result });
+		res.render('index');
 	});
 
 	console.log("Started");
