@@ -14,7 +14,7 @@ board.on("ready", function() {
 	    console.log("Disconnected from server");
 	});
 
-	socket.on('connect', function() {
+	socket.once('connect', function() {
 	    console.log('Connected to server');
 		var options = {
 			address: 2
