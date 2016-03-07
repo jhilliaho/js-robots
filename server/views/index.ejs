@@ -17,7 +17,6 @@
 
 <script>
 
-var dataCount = 0;
 
 $('#container').highcharts({
     title: {
@@ -57,12 +56,11 @@ $('#container').highcharts().showLoading("Wait a second");
 socket.on('allData', function (data) {
 
 	for (var i = 0; i < data.length; ++i) {
-		var date = new Date(data[i].date).getTime();
+		var date = new data[i].date;
 		var humidity = data[i].humidity;
 		var temperature = data[i].temperature;
 		$('#container').highcharts().xAxis[0].series[0].addPoint([date,temperature], false);
 		$('#container').highcharts().xAxis[0].series[1].addPoint([date,humidity], false);
-		dataCount++;
 	}
 
 	$('#container').highcharts().redraw();
@@ -76,7 +74,6 @@ socket.on('newData', function (data) {
 	$('#container').highcharts().xAxis[0].series[0].addPoint([date, temperature], false);
 	$('#container').highcharts().xAxis[0].series[1].addPoint([date, humidity], false);
 	$('#container').highcharts().redraw();
-	dataCount++;
 });
 </script>
 
