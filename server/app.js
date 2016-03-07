@@ -7,6 +7,8 @@ var imageDate = 0;
 
 server.listen(3000);
 
+app.use(express.static('public'));
+
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
  
