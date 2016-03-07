@@ -16,7 +16,6 @@ var url = 'mongodb://localhost:27018/data';
 // Use connect method to connect to the Server 
 MongoClient.connect(url, function(err, db) {
   console.log("Connected correctly to server");
-  db = database;
   // Insert some documents 
   db.collection('surveillanceData').find({}).toArray(function(err, docs) {
     console.log("Found the following records");
