@@ -28,14 +28,15 @@ board.on("ready", function() {
 
 			var temperature = (data[0] + (data[1] << 8)) / 10;
 			var humidity = (data[2] + (data[3] << 8)) / 10;
+			var pir = data[5];
 
-			var newData = [temperature, humidity];
+			var newData = [temperature, humidity, pir];
 
 			if (temperature == 0 && humidity == 0) {
 				return;
 			}
 
-			console.log("Sending data: ", newData, ",   first data: ", data);
+			console.log("Sending data: ", newData);
 			socket.emit("newData", newData);
 		}
 
@@ -46,8 +47,8 @@ board.on("ready", function() {
 
 		var dataCounter = 1000;
 
-		var readNano = function readNano() {
-			board.io.i2cReadOnce(0x8, 5, function(data){
+		var readNano = function readNao() {
+			board.io.i2cReadOnce(0x8, 6, function(data){
 				console.log(dataCounter++);
 
 				var pullUps = data[data.length-1];

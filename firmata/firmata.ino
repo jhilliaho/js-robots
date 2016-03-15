@@ -14,9 +14,11 @@ const int leukaDistance = 50;
 int distance = 0;
 float temperature = 0;
 float humidity = 0;
+int pir = 0;
 
 void setup() {
   pinMode(4, OUTPUT);
+  pinMode(6, INPUT);
   digitalWrite(4, HIGH);
   dht.begin();
   Wire.begin(8);                // join i2c bus with address #8
@@ -30,6 +32,8 @@ int leukaCounter = 0;
 int leukaVarmuusraja = 5;
 int leukaPhase = 0;
 void loop() {
+
+  pir = digitalRead(6);
 
   long duration, cm;
 
@@ -77,7 +81,9 @@ void loop() {
   Serial.println(humidity);
   Serial.println(" : ");
   Serial.println(temperature);
-
+  Serial.println(" : ");
+  Serial.println(pir);
+  
   delay(50);
 }
 
@@ -95,6 +101,8 @@ unsigned int humten = (int) (humidity*10);
 byte hum1 = humten;
 byte hum2 = humten >> 8;
 
+byte pirData = (byte) pir;
+
  Serial.print("TEMP:");
  Serial.print(tempten);
  Serial.print(", HUM");
@@ -102,8 +110,8 @@ byte hum2 = humten >> 8;
 
   byte leuat = (byte) leukaCounter;
   
-  byte arr[5] = {temp1, temp2, hum1, hum2, leuat};
-  Wire.write(arr, 5);
+  byte arr[6] = {temp1, temp2, hum1, hum2, pirData, leuat};
+  Wire.write(arr, 6);
   leukaCounter = 0;
 }
 
