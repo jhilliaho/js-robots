@@ -5,7 +5,7 @@
 
 #include <Wire.h>
 
-#define DHTPIN 2     // what digital pin we're connected to
+#define DHTPIN 3     // what digital pin we're connected to
 #define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -16,6 +16,8 @@ float temperature = 0;
 float humidity = 0;
 
 void setup() {
+  pinMode(4, OUTPUT);
+  digitalWrite(4, HIGH);
   dht.begin();
   Wire.begin(8);                // join i2c bus with address #8
   Wire.onRequest(requestEvent); // register event
@@ -72,6 +74,9 @@ void loop() {
     leukaCounter++;
   }
  
+  Serial.println(humidity);
+  Serial.println(" : ");
+  Serial.println(temperature);
 
   delay(50);
 }
