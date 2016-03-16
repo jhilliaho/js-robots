@@ -30,7 +30,7 @@ board.on("ready", function() {
 			var humidity = (data[2] + (data[3] << 8)) / 10;
 			var pir = data[5];
 
-			var newData = [temperature, humidity, pir];
+			var newData = {temperature: temperature, humidity: humidity, pir: pir};
 
 			if (temperature == 0 && humidity == 0) {
 				return;

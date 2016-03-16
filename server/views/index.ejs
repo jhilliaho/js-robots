@@ -7,20 +7,21 @@
 	<script src="http://46.101.79.118:3000/static/javascripts/socket.io-1.4.5.js"></script>
   </head>
   <body>
-
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-... 
-
+  	<p>Temperature:</p>
+	<div class="graph" id="temperatureGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  	<p>Humidity:</p>
+	<div class="graph" id="humidityGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  	<p>Pir:</p>
+	<div class="graph" id="pirGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
   </body>
 </html>
 
+
 <script>
 
-
-$('#container').highcharts({
+$('.graph').highcharts({
     title: {
-        text: 'Room temperature and humidity',
+        text: '',
         x: -20 //center
     },
     xAxis: {
@@ -39,10 +40,7 @@ $('#container').highcharts({
         borderWidth: 0
     },
     series: [{
-        name: 'Temperature (C)',
-        data: []
-    }, {
-        name: 'Humidity (%)',
+        name: 'data',
         data: []
     }],
 
@@ -54,7 +52,7 @@ timeZoneOffset *= 60000;
 var socket = io('http://46.101.79.118:3000');
 socket.emit('getData');
 
-$('#container').highcharts().showLoading("Wait a second");
+$('.graph').highcharts().showLoading("Wait a second");
 
 socket.on('allData', function (data) {
 
@@ -62,23 +60,28 @@ socket.on('allData', function (data) {
 		var date = new Date(data[i].date).getTime() - timeZoneOffset;
 		var humidity = data[i].humidity;
 		var temperature = data[i].temperature;
-		console.log(date, humidity, temperature);
-		$('#container').highcharts().xAxis[0].series[0].addPoint([date,temperature], false);
-		$('#container').highcharts().xAxis[0].series[1].addPoint([date,humidity], false);
+		var pir = data[i].pir;
+		console.log(date, humidity, temperature, pir);
+
+		$('#temperatureGraph').highcharts().xAxis[0].series[0].addPoint([date,temperature], false);
+		$('#humidityGraph').highcharts().xAxis[0].series[0].addPoint([date,humidity], false);
+		$('#pirGraph').highcharts().xAxis[0].series[0].addPoint([date,pir], false);
 	}
 
-	$('#container').highcharts().redraw();
-	$('#container').highcharts().hideLoading();
+	$('.graph').highcharts().redraw();
+	$('.graph').highcharts().hideLoading();
 });
 
 socket.on('newData', function (data) {
 	var date = new Date(data.date).getTime() - timeZoneOffset;
 	var humidity = data.humidity;
 	var temperature = data.temperature;
-	console.log(date, humidity, temperature);
-	$('#container').highcharts().xAxis[0].series[0].addPoint([date, temperature], false);
-	$('#container').highcharts().xAxis[0].series[1].addPoint([date, humidity], false);
-	$('#container').highcharts().redraw();
+	var pir = data[i].pir;
+	console.log(date, humidity, temperature, pir);
+	$('#temperatureGraph').highcharts().xAxis[0].series[0].addPoint([date,temperature], true);
+	$('#humidityGraph').highcharts().xAxis[0].series[0].addPoint([date,humidity], true);
+	$('#pirGraph').highcharts().xAxis[0].series[0].addPoint([date,pir], true);
+
 });
 </script>
 

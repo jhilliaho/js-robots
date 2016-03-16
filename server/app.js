@@ -46,11 +46,12 @@ MongoClient.connect(url, function(err, db) {
 
 		socket.on('newData', function (data) {
 			console.log("newData ", data);
-			var temperature = data[0];
-			var humidity = data[1];
+			var temperature = data.temperature;
+			var humidity = data.humidity;
+			var pir = data.pir;
 			var date = new Date();
 
-			db.collection('surveillanceData').insert({temperature: temperature, humidity: humidity, date: date}, function(err, result) {
+			db.collection('surveillanceData').insert({temperature: temperature, humidity: humidity, pir: pir, date: date}, function(err, result) {
 				console.log("Inserted", err, result);
 			});
 
