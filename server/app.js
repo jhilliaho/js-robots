@@ -63,13 +63,13 @@ MongoClient.connect(url, function(err, db) {
 
 			db.collection('surveillanceData').count(function(err, dataCountInDb){
 
-				var getDataTimes = Math.ceil(dataCountInDb / 1000);
+				var getDataTimes = Math.ceil(dataCountInDb / 50);
 
 				console.log("GETTING DATA: ", dataCountInDb, getDataTimes);
 
 
 				for (var i = 0; i < getDataTimes; ++i) {
-					db.collection('surveillanceData').find({}).sort( { date: -1 } ).skip(1000*i).toArray(function(err, result) {
+					db.collection('surveillanceData').find({}).sort( { date: -1 } ).limit(50).skip(50*i).toArray(function(err, result) {
 						console.log("GET", result);
 						socket.emit("allData", result);
 					});				
