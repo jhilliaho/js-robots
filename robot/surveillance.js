@@ -20,30 +20,15 @@ board.on("ready", function() {
 			address: 2
 		};
 
+		var temperature = 0;
+		var humidity = 0;
+		var pir = 0;
+
 		board.io.i2cConfig(options);
 
-		var lastData = [0,0,0]
+		var motionDetected = false;
 
-		var sendState = function sendState(data){
 
-			var temperature = (data[0] + (data[1] << 8)) / 10;
-			var humidity = (data[2] + (data[3] << 8)) / 10;
-			var pir = data[4];
-
-			var newData = {temperature: temperature, humidity: humidity, pir: pir};
-
-			if (temperature == 0 && humidity == 0) {
-				return;
-			}
-
-			console.log("Sending data: ", newData);
-			socket.emit("newData", newData);
-		}
-
-		var sendPullUp = function sendPullUp(count) {
-			console.log("Sending pull-up!", count);
-			socket.emit("newPullUp", count);
-		}
 
 		var dataCounter = 1000;
 
@@ -51,17 +36,30 @@ board.on("ready", function() {
 			board.io.i2cReadOnce(0x8, 6, function(data){
 				console.log(dataCounter++);
 
-				var pullUps = data[data.length-1];
-				if (pullUps) {
-					sendPullUp(pullUps);
+				temperature = (data[0] + (data[1] << 8)) / 10;
+				humidity = (data[2] + (data[3] << 8)) / 10;
+				pir = data[4];
+
+				if (pir) {
+					motionDetected = true;
 				}
 
 				if (dataCounter >= 6) {
 					dataCounter = 0;
-					sendState(data);
+					var newData = {temperature: temperature, humidity: humidity, pir: motionDetected};
+					motionDetected = false;
+					console.log("Sending data: ", newData);
+					socket.emit("newData", newData);
 				}
 			})	
 		}
 		setInterval(readNano, 500);	
 	});
 });
+
+
+
+
+
+
+
