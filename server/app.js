@@ -62,7 +62,7 @@ MongoClient.connect(url, function(err, db) {
 			console.log("getData ");
 
 			var dataCountInDb = db.collection('surveillanceData').count();
-			var getDataTimes = ceil(dataCountInDb / 1000);
+			var getDataTimes = Math.ceil(dataCountInDb / 1000);
 
 			console.log("GETTING DATA: ", dataCountInDb, getDataTimes);
 
