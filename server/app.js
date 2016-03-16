@@ -58,18 +58,20 @@ MongoClient.connect(url, function(err, db) {
 			socket.broadcast.emit("newData", {temperature: temperature, humidity: humidity, pir: pir, date: date});
 	  	});
 
+		var dataCountPerTime = 1000;
+
 		socket.on('getData', function () {
 			console.log("getData ");
 
 			db.collection('surveillanceData').count(function(err, dataCountInDb){
 
-				var getDataTimes = Math.ceil(dataCountInDb / 50);
+				var getDataTimes = Math.ceil(dataCountInDb / dataCountPerTime);
 
 				console.log("GETTING DATA: ", dataCountInDb, getDataTimes);
 
 
 				for (var i = 0; i < getDataTimes; ++i) {
-					db.collection('surveillanceData').find({}).sort( { date: -1 } ).limit(50).skip(50*i).toArray(function(err, result) {
+					db.collection('surveillanceData').find({}).sort( { date: -1 } ).limit(dataCountPerTime).skip(dataCountPerTime*i).toArray(function(err, result) {
 						console.log("GET", result);
 						socket.emit("allData", result);
 					});				
