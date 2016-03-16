@@ -102,7 +102,6 @@ socket.on('allData', function (data) {
 		var humidity = data[i].humidity;
 		var temperature = data[i].temperature;
 		var pir = data[i].pir;
-		console.log(data[i].date, humidity, temperature, pir);
 
 		$('#temperatureGraph').highcharts().xAxis[0].series[0].addPoint([date,temperature], false);
 		$('#humidityGraph').highcharts().xAxis[0].series[0].addPoint([date,humidity], false);
@@ -119,7 +118,6 @@ socket.on('newData', function (data) {
 	var humidity = data.humidity;
 	var temperature = data.temperature;
 	var pir = data.pir;
-	console.log(date, humidity, temperature, pir);
 	$('#temperatureGraph').highcharts().xAxis[0].series[0].addPoint([date,temperature], true);
 	$('#humidityGraph').highcharts().xAxis[0].series[0].addPoint([date,humidity], true);
 	$('#pirGraph').highcharts().xAxis[0].series[0].addPoint([date,pir], true);
