@@ -111,14 +111,16 @@ socket.on('allData', function (data) {
 		$('#pirGraph').highcharts().xAxis[0].series[0].addPoint([date,pir], false);
 	}
 
-	$('.graph').highcharts().redraw();
+	$('#temperatureGraph').highcharts().redraw();
+	$('#humidityGraph').highcharts().redraw();
+	$('#pirGraph').highcharts().redraw();
 });
 
 socket.on('newData', function (data) {
 	var date = new Date(data.date).getTime() - timeZoneOffset;
 	var humidity = data.humidity;
 	var temperature = data.temperature;
-	var pir = data[i].pir;
+	var pir = data.pir;
 	console.log(date, humidity, temperature, pir);
 	$('#temperatureGraph').highcharts().xAxis[0].series[0].addPoint([date,temperature], true);
 	$('#humidityGraph').highcharts().xAxis[0].series[0].addPoint([date,humidity], true);
