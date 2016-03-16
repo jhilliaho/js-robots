@@ -42,9 +42,6 @@ board.on("ready", function() {
 
 				if (pir) {
 					motionDetected = true;
-					console.log("pir true");
-				} else {
-					console.log("pir false");
 				}
 
 				if (dataCounter >= 12) {

@@ -19,10 +19,9 @@
 
 <script>
 
-$('.graph').highcharts({
+$('#temperatureGraph').highcharts({
     title: {
-        text: '',
-        x: -20 //center
+        text: 'Temperature',
     },
     xAxis: {
         type: 'datetime'
@@ -37,13 +36,59 @@ $('.graph').highcharts({
         layout: 'vertical',
         align: 'right',
         verticalAlign: 'middle',
-        borderWidth: 0
     },
     series: [{
         name: 'data',
         data: []
     }],
+});
 
+$('#humidityGraph').highcharts({
+    title: {
+        text: 'Humidity',
+    },
+    xAxis: {
+        type: 'datetime'
+    },
+    chart: {
+        type: 'spline',
+  		zoomType: 'x',
+        panning: true,
+        panKey: 'shift'
+   	},
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+    },
+    series: [{
+        name: 'data',
+        data: []
+    }],
+});
+
+$('#pirGraph').highcharts({
+    title: {
+        text: 'PIR',
+    },
+    xAxis: {
+        type: 'datetime'
+    },
+    chart: {
+        type: 'spline',
+  		zoomType: 'x',
+        panning: true,
+        panKey: 'shift'
+   	},
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+    },
+    series: [{
+        name: 'data',
+        data: []
+    }],
 });
 
 var timeZoneOffset = new Date().getTimezoneOffset();
@@ -51,8 +96,6 @@ timeZoneOffset *= 60000;
 
 var socket = io('http://46.101.79.118:3000');
 socket.emit('getData');
-
-$('.graph').highcharts().showLoading("Wait a second");
 
 socket.on('allData', function (data) {
 
@@ -69,7 +112,6 @@ socket.on('allData', function (data) {
 	}
 
 	$('.graph').highcharts().redraw();
-	$('.graph').highcharts().hideLoading();
 });
 
 socket.on('newData', function (data) {
