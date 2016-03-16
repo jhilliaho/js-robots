@@ -42,9 +42,12 @@ board.on("ready", function() {
 
 				if (pir) {
 					motionDetected = true;
+					console.log("pir true");
+				} else {
+					console.log("pir false");
 				}
 
-				if (dataCounter >= 6) {
+				if (dataCounter >= 12) {
 					dataCounter = 0;
 					var newData = {temperature: temperature, humidity: humidity, pir: motionDetected};
 					motionDetected = false;
