@@ -28,7 +28,7 @@ board.on("ready", function() {
 
 			var temperature = (data[0] + (data[1] << 8)) / 10;
 			var humidity = (data[2] + (data[3] << 8)) / 10;
-			var pir = data[5];
+			var pir = data[4];
 
 			var newData = {temperature: temperature, humidity: humidity, pir: pir};
 
