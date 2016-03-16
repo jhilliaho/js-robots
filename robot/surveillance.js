@@ -46,7 +46,13 @@ board.on("ready", function() {
 
 				if (dataCounter >= 12) {
 					dataCounter = 0;
-					var newData = {temperature: temperature, humidity: humidity, pir: motionDetected};
+					var pirVal;
+					if (motionDetected) {
+						pirVal = 1;
+					} else {
+						pirVal = 0;
+					}
+					var newData = {temperature: temperature, humidity: humidity, pir: pirVal};
 					motionDetected = false;
 					console.log("Sending data: ", newData);
 					socket.emit("newData", newData);
