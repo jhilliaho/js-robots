@@ -59,6 +59,7 @@ MongoClient.connect(url, function(err, db) {
 	  	});
 
 		var dataCountPerTime = 1000;
+		var getNthData = 100;
 
 		socket.on('getData', function () {
 			console.log("getData ");
@@ -72,7 +73,13 @@ MongoClient.connect(url, function(err, db) {
 				for (var i = 0; i < getDataTimes; ++i) {
 					db.collection('surveillanceData').find({}).sort( { date: -1 } ).limit(dataCountPerTime).skip(dataCountPerTime*i).toArray(function(err, result) {
 						console.log("GET", result);
-						socket.emit("allData", result);
+						var data = [];
+						for (var i = 0; i < result.length; ++i) {
+							if (i % getNthData == 0) {
+								data.push(result[i]);
+							}
+						}
+						socket.emit("allData", data);
 					});				
 				}
 			});
