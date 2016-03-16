@@ -74,8 +74,14 @@ MongoClient.connect(url, function(err, db) {
 					db.collection('surveillanceData').find({}).sort( { date: -1 } ).limit(dataCountPerTime).skip(dataCountPerTime*i).toArray(function(err, result) {
 						console.log("GET", result);
 						var data = [];
+						var motion = false;
 						for (var i = 0; i < result.length; ++i) {
+							if (result[i].pir == 1) {
+								motion = true;
+							}
 							if (i % getNthData == 0) {
+								result[i].pir = motion;
+								motion = false;
 								data.push(result[i]);
 							}
 						}
