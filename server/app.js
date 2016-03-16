@@ -68,8 +68,9 @@ MongoClient.connect(url, function(err, db) {
 				var getDataTimes = Math.ceil(dataCountInDb / dataCountPerTime);
 
 				for (var i = 0; i < getDataTimes; ++i) {
+					var x = i;
 					db.collection('surveillanceData').find({}).sort( { date: -1 } ).limit(dataCountPerTime).skip(dataCountPerTime*i).toArray(function(err, result) {
-						console.log("SENDING DATA:   ", i);
+						console.log("SENDING DATA:   ", x);
 						socket.emit("allData", result);
 					});				
 				}
