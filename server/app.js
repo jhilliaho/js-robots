@@ -59,7 +59,7 @@ MongoClient.connect(url, function(err, db) {
 	  	});
 
 		var dataCountPerTime = 1000;
-		var getNthData = 20;
+		var getNthData = 100;
 
 		socket.on('getData', function () {
 			console.log("getData ");
