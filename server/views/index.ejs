@@ -85,6 +85,11 @@ $('#pirGraph').highcharts({
         name: 'Motion',
         data: []
     }],
+    plotOptions: {
+        series: {
+            pointPadding: -0.3
+        }
+    },    
 });
 
 var timeZoneOffset = new Date().getTimezoneOffset();
