@@ -95,12 +95,14 @@ socket.emit('getData');
 
 socket.on('allData', function (data) {
 
+	console.log("DATA LENGTH: ", data.length, " DATA: ", data)
+
 	for (var i = 0; i < data.length; ++i) {
 		var date = new Date(data[i].date).getTime() - timeZoneOffset;
 		var humidity = data[i].humidity;
 		var temperature = data[i].temperature;
 		var pir = data[i].pir;
-		console.log(date, humidity, temperature, pir);
+		console.log(data[i].date, humidity, temperature, pir);
 
 		$('#temperatureGraph').highcharts().xAxis[0].series[0].addPoint([date,temperature], false);
 		$('#humidityGraph').highcharts().xAxis[0].series[0].addPoint([date,humidity], false);
