@@ -7,15 +7,11 @@
 	<script src="http://46.101.79.118:3000/static/javascripts/socket.io-1.4.5.js"></script>
   </head>
   <body>
-  	<p>Temperature:</p>
 	<div class="graph" id="temperatureGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-  	<p>Humidity:</p>
 	<div class="graph" id="humidityGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-  	<p>Pir:</p>
 	<div class="graph" id="pirGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
   </body>
 </html>
-
 
 <script>
 
@@ -38,7 +34,7 @@ $('#temperatureGraph').highcharts({
         verticalAlign: 'middle',
     },
     series: [{
-        name: 'data',
+        name: 'Temperature (C)',
         data: []
     }],
 });
@@ -62,14 +58,14 @@ $('#humidityGraph').highcharts({
         verticalAlign: 'middle',
     },
     series: [{
-        name: 'data',
+        name: 'Humidity (%)',
         data: []
     }],
 });
 
 $('#pirGraph').highcharts({
     title: {
-        text: 'PIR',
+        text: 'Motion',
     },
     xAxis: {
         type: 'datetime'
@@ -86,7 +82,7 @@ $('#pirGraph').highcharts({
         verticalAlign: 'middle',
     },
     series: [{
-        name: 'data',
+        name: 'Motion',
         data: []
     }],
 });
