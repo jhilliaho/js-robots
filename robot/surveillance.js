@@ -69,7 +69,7 @@ board.on("ready", function() {
 
 process.on('uncaughtException', function(err) {
     // handle the error safely
-    console.log("SOME ERROR HAPPENED", err);
+    console.log("ERROR: ", err);
 })
 
 
