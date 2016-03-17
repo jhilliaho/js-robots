@@ -48,22 +48,20 @@ board.on("ready", function() {
 					motionDetected = true;
 				}
 
-				if (dataCounter >= 12) {
-					dataCounter = 0;
-					var pirVal;
-					if (motionDetected) {
-						pirVal = 1;
-					} else {
-						pirVal = 0;
-					}
-					var newData = {temperature: temperature, humidity: humidity, pir: pirVal, volume: volume, lightness: lightness};
-					motionDetected = false;
-					console.log("Sending data: ", newData);
-					socket.emit("newData", newData);
+				dataCounter = 0;
+				var pirVal;
+				if (motionDetected) {
+					pirVal = 1;
+				} else {
+					pirVal = 0;
 				}
+				var newData = {temperature: temperature, humidity: humidity, pir: pirVal, volume: volume, lightness: lightness};
+				motionDetected = false;
+				console.log("Sending data: ", newData);
+				socket.emit("newData", newData);
 			});
 		}
-		setInterval(readNano, 500);	
+		setInterval(readNano, 2000);	
 	});
 });
 
