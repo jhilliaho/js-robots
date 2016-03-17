@@ -87,8 +87,8 @@ MongoClient.connect(url, function(err, db) {
 									motion = false;
 								}
 								result[i].temperature = temperatureSum / getNthData;
-								temperatureSum = 0;
 								data.push(result[i]);
+								temperatureSum = 0;
 							}
 						}
 						socket.emit("allData", data);
