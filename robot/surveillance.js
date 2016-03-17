@@ -35,33 +35,37 @@ board.on("ready", function() {
 		var readNano = function readNano() {
 			//  byte arr[9] = {temp1, temp2, hum1, hum2, pirData, volumeDiff1, volumeDiff2, lightness1, lightness2};
 
-			board.io.i2cReadOnce(0x8, 9, function(data){
-				console.log(dataCounter++);
+			try {
+				board.io.i2cReadOnce(0x8, 9, function(data){
+					console.log(dataCounter++);
 
-				temperature = (data[0] + (data[1] << 8)) / 10;
-				humidity = (data[2] + (data[3] << 8)) / 10;
-				pir = data[4];
-				volume = data[5] + (data[6] << 8);
-				lightness = data[7] + (data[8] << 8);
+					temperature = (data[0] + (data[1] << 8)) / 10;
+					humidity = (data[2] + (data[3] << 8)) / 10;
+					pir = data[4];
+					volume = data[5] + (data[6] << 8);
+					lightness = data[7] + (data[8] << 8);
 
-				if (pir) {
-					motionDetected = true;
-				}
-
-				if (dataCounter >= 12) {
-					dataCounter = 0;
-					var pirVal;
-					if (motionDetected) {
-						pirVal = 1;
-					} else {
-						pirVal = 0;
+					if (pir) {
+						motionDetected = true;
 					}
-					var newData = {temperature: temperature, humidity: humidity, pir: pirVal, volume: volume, lightness: lightness};
-					motionDetected = false;
-					console.log("Sending data: ", newData);
-					socket.emit("newData", newData);
-				}
-			})	
+
+					if (dataCounter >= 12) {
+						dataCounter = 0;
+						var pirVal;
+						if (motionDetected) {
+							pirVal = 1;
+						} else {
+							pirVal = 0;
+						}
+						var newData = {temperature: temperature, humidity: humidity, pir: pirVal, volume: volume, lightness: lightness};
+						motionDetected = false;
+						console.log("Sending data: ", newData);
+						socket.emit("newData", newData);
+					}
+				});
+			} catch (err) {
+				console.log("ERROR IN I2C");
+			}
 		}
 		setInterval(readNano, 500);	
 	});
