@@ -76,6 +76,9 @@ MongoClient.connect(url, function(err, db) {
 						var motion = false;
 						var temperatureSum = 0;
 						for (var i = 0; i < result.length; ++i) {
+							if (i % getNthData == 1) {
+								temperatureSum = 0;
+							}
 							temperatureSum += result[i].temperature;
 
 							if (result[i].pir == 1) {
@@ -89,7 +92,6 @@ MongoClient.connect(url, function(err, db) {
 								var newTemp = temperatureSum/getNthData;
 								result[i].temperature = newTemp;
 								data.push(result[i]);	
-								temperatureSum = 0;
 							}
 						}
 						socket.emit("allData", data);
