@@ -74,12 +74,7 @@ MongoClient.connect(url, function(err, db) {
 					db.collection('surveillanceData').find({}).sort( { date: -1 } ).limit(dataCountPerTime).skip(dataCountPerTime*i).toArray(function(err, result) {
 						var data = [];
 						var motion = false;
-						var temperatureSum = 0;
 						for (var i = 0; i < result.length; ++i) {
-							if (i % getNthData == 1) {
-								temperatureSum = 0;
-							}
-							temperatureSum += result[i].temperature;
 
 							if (result[i].pir == 1) {
 								motion = true;
@@ -89,8 +84,6 @@ MongoClient.connect(url, function(err, db) {
 									result[i].pir = 1;
 									motion = false;
 								}
-								var newTemp = temperatureSum/getNthData;
-								result[i].temperature = newTemp;
 								data.push(result[i]);	
 							}
 						}
