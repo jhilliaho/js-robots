@@ -38,7 +38,7 @@ MongoClient.connect(url, function(err, db) {
 			var temperature = data.temperature;
 			var humidity = data.humidity;
 			var pir = data.pir;
-			var lightness = data.lightness;
+			var lightness = 1023 - data.lightness;
 			var volume = data.volume;
 			var date = new Date();
 
