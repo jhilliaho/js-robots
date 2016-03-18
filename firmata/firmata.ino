@@ -15,16 +15,18 @@ float humidity = 0;
 int pir = 0;
 
 int lightness = 0;
-volatile int maxVolume = 0;
-volatile int minVolume = 0;
-volatile int volumeDiff = 0;
-volatile long int volumeSum = 0;
+int maxVolume = 0;
+int minVolume = 0;
+int volumeDiff = 0;
+long int volumeSum = 0;
 int volume = 0;
+volatile long int maxVolumeDiff = 0;
 int lightnessArray[8] = {0,0,0,0,0,0,0,0};
 int volumeArray[4] = {0,0,0,0};
 unsigned long int lightnessAverage = 0;
 
 void setup() {
+  analogReference(INTERNAL);
   pinMode(4, OUTPUT);
   pinMode(6, INPUT);
   digitalWrite(4, HIGH);
@@ -36,64 +38,51 @@ void setup() {
   Serial.println("Starting");
 }
 
-volatile int loopCounter = 0;
+int loopCounter = 0;
 
 void loop() {
 
-
   loopCounter++;
-
-  if (loopCounter > 5000) {
-    loopCounter = 0;
-    maxVolume = volume;
-    minVolume = volume;  
+  if (loopCounter > 100) {
+    loopCounter = 0;  
   }
 
-  lightness = analogRead(7);
   volume = analogRead(6);
-
-  lightnessArray[loopCounter % 8] = lightness;
-
-  int lightnessSum = 0;
-  for (int i = 0; i < 8; ++i) {
-    lightnessSum += lightnessArray[i];
-  }
-  
-  lightnessAverage = lightnessSum / 8;
 
   if (minVolume == 0 && maxVolume == 0) {minVolume = maxVolume = volume;}
 
   if (volume < minVolume) {minVolume = volume;}
   if (volume > maxVolume) {maxVolume = volume;}
-  volumeDiff = maxVolume - minVolume;
-
-  volumeArray[loopCounter % 4] = volumeDiff;
-  
-  volumeSum = 0;
-  for (int i = 0; i < 4; ++i) {
-    volumeSum += volumeArray[i];
+  volumeDiff = (maxVolume - minVolume);
+  if (volumeDiff > maxVolumeDiff) {
+    maxVolumeDiff = volumeDiff;
   }
-  
-  pir = digitalRead(6);
 
+  if (loopCounter == 0) {
 
-  humidity = dht.readHumidity();
-  // Read temperature as Celsius (the default)
-  temperature = dht.readTemperature();
+    Serial.print(" volumeDiff: ");
+    Serial.println(maxVolumeDiff);
   
+    minVolume *= 1.2;
+    maxVolume /= 1.2;
+    
+    lightness = analogRead(7);
+    lightnessArray[loopCounter % 8] = lightness;
 
-  Serial.print(" Hum:" );
-  Serial.print(humidity);
-  Serial.print(" Temp: ");
-  Serial.print(temperature);
-  Serial.print(" Pir: ");
-  Serial.print(pir);
-  Serial.print(" volumeSum: ");
-  Serial.print(volumeSum);
-  Serial.print(" Lightness: ");
-  Serial.println(lightnessAverage);
-  
-  delay(50);
+    int lightnessSum = 0;
+    for (int i = 0; i < 8; ++i) {
+      lightnessSum += lightnessArray[i];
+    }
+    
+    lightnessAverage = lightnessSum;
+      
+    pir = digitalRead(6);
+    humidity = dht.readHumidity();
+    // Read temperature as Celsius (the default)
+    temperature = dht.readTemperature();
+    
+
+  }
 }
 
 long microsecondsToCentimeters(long microseconds) {
@@ -102,8 +91,10 @@ long microsecondsToCentimeters(long microseconds) {
 
 void requestEvent() {
 
-byte volumeDiff1 = volumeSum;
-byte volumeDiff2 = volumeSum >> 8;
+int tempVolumeDiff = maxVolumeDiff;
+
+byte volumeDiff1 = tempVolumeDiff;
+byte volumeDiff2 = tempVolumeDiff >> 8;
 
 byte lightness1 = lightnessAverage;
 byte lightness2 = lightnessAverage >> 8;
@@ -125,10 +116,7 @@ byte pirData = (byte) pir;
   
   byte arr[9] = {temp1, temp2, hum1, hum2, pirData, volumeDiff1, volumeDiff2, lightness1, lightness2};
   Wire.write(arr, 9);
-  loopCounter = 0;
-  maxVolume = volume;
-  minVolume = volume;
-  
+  maxVolumeDiff = 0;
 }
 
 void receiveEvent(int howMany) {

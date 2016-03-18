@@ -10,6 +10,8 @@
 	<div class="graph" id="temperatureGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	<div class="graph" id="humidityGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	<div class="graph" id="pirGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<div class="graph" id="lightnessGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<div class="graph" id="volumeGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
   </body>
 </html>
 
@@ -88,6 +90,54 @@ $('#pirGraph').highcharts({
    
 });
 
+$('#lightnessGraph').highcharts({
+    title: {
+        text: 'Lightness',
+    },
+    xAxis: {
+        type: 'datetime'
+    },
+    chart: {
+        type: 'spline',
+  		zoomType: 'x',
+        panning: true,
+        panKey: 'shift'
+   	},
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+    },
+    series: [{
+        name: 'Lightness',
+        data: []
+    }],
+});
+
+$('#volumeGraph').highcharts({
+    title: {
+        text: 'Volume',
+    },
+    xAxis: {
+        type: 'datetime'
+    },
+    chart: {
+        type: 'spline',
+  		zoomType: 'x',
+        panning: true,
+        panKey: 'shift'
+   	},
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+    },
+    series: [{
+        name: 'Volume',
+        data: []
+    }],
+});
+
 var timeZoneOffset = new Date().getTimezoneOffset();
 timeZoneOffset *= 60000;
 
@@ -103,15 +153,21 @@ socket.on('allData', function (data) {
 		var humidity = data[i].humidity;
 		var temperature = data[i].temperature;
 		var pir = data[i].pir;
+		var lightness = data[i].lightness;
+		var volume = data[i].volume;
 
 		$('#temperatureGraph').highcharts().xAxis[0].series[0].addPoint([date,temperature], false);
 		$('#humidityGraph').highcharts().xAxis[0].series[0].addPoint([date,humidity], false);
 		$('#pirGraph').highcharts().xAxis[0].series[0].addPoint([date,pir], false);
+		$('#lightnessGraph').highcharts().xAxis[0].series[0].addPoint([date,lightness], false);
+		$('#volumeGraph').highcharts().xAxis[0].series[0].addPoint([date,volume], false);
 	}
 
 	$('#temperatureGraph').highcharts().redraw();
 	$('#humidityGraph').highcharts().redraw();
 	$('#pirGraph').highcharts().redraw();
+	$('#lightnessGraph').highcharts().redraw();
+	$('#volumeGraph').highcharts().redraw();
 });
 
 socket.on('newData', function (data) {
@@ -119,9 +175,13 @@ socket.on('newData', function (data) {
 	var humidity = data.humidity;
 	var temperature = data.temperature;
 	var pir = data.pir;
+	var lightness = data.lightness;
+	var volume = data.volume;
 	$('#temperatureGraph').highcharts().xAxis[0].series[0].addPoint([date,temperature], true);
 	$('#humidityGraph').highcharts().xAxis[0].series[0].addPoint([date,humidity], true);
 	$('#pirGraph').highcharts().xAxis[0].series[0].addPoint([date,pir], true);
+	$('#lightnessGraph').highcharts().xAxis[0].series[0].addPoint([date,lightness], true);
+	$('#volumeGraph').highcharts().xAxis[0].series[0].addPoint([date,volume], true);
 
 });
 </script>
