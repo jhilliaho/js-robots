@@ -65,8 +65,9 @@ MongoClient.connect(url, function(err, db) {
 					db.collection('surveillanceData').find({}).sort( { date: -1 } ).limit(dataCountPerTime).skip(dataCountPerTime*i).toArray(function(err, result) {
 						var data = [];
 						var motion = false;
+						var maxVolume = 0;
 						for (var i = 0; i < result.length; ++i) {
-
+							if (result[i].volume > maxVolume) {maxVolume = volume;}
 							if (result[i].pir == 1) {
 								motion = true;
 							}
@@ -75,6 +76,8 @@ MongoClient.connect(url, function(err, db) {
 									result[i].pir = 1;
 									motion = false;
 								}
+								result[i].volume = maxVolume;
+								maxVolume = 0;
 								data.push(result[i]);	
 							}
 						}
