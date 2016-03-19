@@ -67,18 +67,22 @@ MongoClient.connect(url, function(err, db) {
 						var motion = false;
 						var maxVolume = 0;
 						for (var i = 0; i < result.length; ++i) {
-							if (result[i].volume > maxVolume) {maxVolume = result[i].volume;}
+							if (result[i].volume > maxVolume) {
+								maxVolume = result[i].volume;
+							}
+							
 							if (result[i].pir == 1) {
 								motion = true;
 							}
+							
 							if (i % getNthData == 0) {
 								if (motion) {
 									result[i].pir = 1;
-									motion = false;
 								}
 								result[i].volume = maxVolume;
-								maxVolume = 0;
 								data.push(result[i]);	
+								motion = false;
+								maxVolume = 0;
 							}
 						}
 						socket.emit("allData", data);
