@@ -67,7 +67,7 @@ MongoClient.connect(url, function(err, db) {
 						var motion = false;
 						var maxVolume = 0;
 						for (var i = 0; i < result.length; ++i) {
-							if (result[i].volume > maxVolume) {maxVolume = volume;}
+							if (result[i].volume > maxVolume) {maxVolume = result[i].volume;}
 							if (result[i].pir == 1) {
 								motion = true;
 							}
