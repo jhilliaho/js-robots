@@ -40,6 +40,7 @@ MongoClient.connect(url, function(err, db) {
 			var pir = data.pir;
 			var lightness = 1023 - data.lightness;
 			var volume = data.volume;
+			var dataCounter = data.dataCounter;
 			var date = new Date();
 
 			db.collection('surveillanceData').insert({temperature: temperature, humidity: humidity, pir: pir, lightness: lightness, volume: volume, dataCounter: dataCounter, date: date}, function(err, result) {
