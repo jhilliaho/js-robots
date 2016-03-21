@@ -32,7 +32,7 @@ board.on("ready", function() {
 		var maxVolume = 0;
 
 		var sendCounter = 1;
-		var dataCounter = 0;
+		var dataCounter = sendDataInterval;
 
 		var readNano = function readNano() {
 			//  byte arr[9] = {temp1, temp2, hum1, hum2, pirData, volumeDiff1, volumeDiff2, lightness1, lightness2};
