@@ -89,13 +89,13 @@ MongoClient.connect(url, function(err, db) {
 				}
 			});
 	  	});
-
+		socket.on("input1DataFromBrowser", function(data) {
+			console.log("Sending input1DataFromBrowser", data);
+			socket.emit("input1DataFromBrowser", data);
+		})
 	});
 
-	socket.on("input1DataFromBrowser", function(data) {
-		console.log("Sending input1DataFromBrowser", data);
-		socket.emit("input1DataFromBrowser", data);
-	})
+
 
 	app.get('/', function(req, res, next) {
 		res.render('index');
