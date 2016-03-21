@@ -91,7 +91,7 @@ MongoClient.connect(url, function(err, db) {
 	  	});
 		socket.on("input1DataFromBrowser", function(data) {
 			console.log("Sending input1DataFromBrowser", data);
-			socket.emit("input1DataFromBrowser", data);
+			socket.broadcast.emit("input1DataFromBrowser", data);
 		})
 	});
 
