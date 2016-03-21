@@ -82,7 +82,7 @@ board.on("ready", function() {
 				}
 			});
 		}
-		setInterval(readNano, 1);	
+		setInterval(readNano, 100);	
 	});
 });
 
