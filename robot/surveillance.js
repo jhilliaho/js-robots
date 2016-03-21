@@ -9,7 +9,7 @@ var humidity = 0;
 var pir = 0;
 var volume = 0;
 var lightness = 0;
-var sendDataInterval = 60;
+var sendDataInterval = 600;
 var pirVal = 0;
 var maxVolume = 0;
 var sendCounter = 1;
@@ -57,7 +57,7 @@ board.on("ready", function() {
 					pirVal = 1;
 				}
 
-				if (sendCounter > 60) {
+				if (sendCounter > 60000) {
 					sendCounter = 1;
 				}
 
