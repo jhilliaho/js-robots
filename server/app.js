@@ -42,7 +42,7 @@ MongoClient.connect(url, function(err, db) {
 			var volume = data.volume;
 			var date = new Date();
 
-			db.collection('surveillanceData').insert({temperature: temperature, humidity: humidity, pir: pir, lightness: lightness, volume: volume, date: date}, function(err, result) {
+			db.collection('surveillanceData').insert({temperature: temperature, humidity: humidity, pir: pir, lightness: lightness, volume: volume, dataCounter: dataCounter, date: date}, function(err, result) {
 				console.log("Inserted", err, result);
 			});
 
@@ -58,8 +58,6 @@ MongoClient.connect(url, function(err, db) {
 			db.collection('surveillanceData').count(function(err, dataCountInDb){
 
 				var getDataTimes = Math.ceil(dataCountInDb / dataCountPerTime);
-
-
 
 				for (var i = 0; i < getDataTimes; ++i) {
 					db.collection('surveillanceData').find({}).sort( { date: -1 } ).limit(dataCountPerTime).skip(dataCountPerTime*i).toArray(function(err, result) {
