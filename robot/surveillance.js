@@ -30,13 +30,15 @@ board.on("ready", function() {
 
 
 
-		var dataCounter = 1000;
+		var dataCounter = 0;
 
 		var readNano = function readNano() {
 			//  byte arr[9] = {temp1, temp2, hum1, hum2, pirData, volumeDiff1, volumeDiff2, lightness1, lightness2};
 
 			board.io.i2cReadOnce(0x8, 9, function(data){
 				console.log(dataCounter++);
+
+				if (dataCounter > 9999) {dataCounter = 0;}
 
 				temperature = (data[0] + (data[1] << 8)) / 10;
 				humidity = (data[2] + (data[3] << 8)) / 10;
@@ -48,14 +50,13 @@ board.on("ready", function() {
 					motionDetected = true;
 				}
 
-				dataCounter = 0;
 				var pirVal;
 				if (motionDetected) {
 					pirVal = 1;
 				} else {
 					pirVal = 0;
 				}
-				var newData = {temperature: temperature, humidity: humidity, pir: pirVal, volume: volume, lightness: lightness};
+				var newData = {temperature: temperature, humidity: humidity, pir: pirVal, volume: volume, lightness: lightness, dataCounter: dataCounter};
 				motionDetected = false;
 				console.log("Sending data: ", newData);
 				socket.emit("newData", newData);
