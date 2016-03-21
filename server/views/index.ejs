@@ -7,7 +7,6 @@
 	<script src="http://46.101.79.118:3000/static/javascripts/socket.io-1.4.5.js"></script>
   </head>
   <body>
-  	<input type="number" id="input1">
 	<div class="graph" id="temperatureGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	<div class="graph" id="humidityGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	<div class="graph" id="pirGraph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -185,9 +184,7 @@ socket.on('newData', function (data) {
 	$('#volumeGraph').highcharts().xAxis[0].series[0].addPoint([date,volume], true);
 });
 
-$("#input1").change(function(){
-	console.log("Sending input1DataFromBrowser", $("#input1").val());
-	socket.emit("input1DataFromBrowser", $("#input1").val());
-});
+
+
 </script>
 
