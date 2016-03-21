@@ -56,7 +56,7 @@ board.on("ready", function() {
 				} else {
 					pirVal = 0;
 				}
-				
+
 				var newData = {temperature: temperature, humidity: humidity, pir: pirVal, volume: volume, lightness: lightness, dataCounter: dataCounter};
 				motionDetected = false;
 				console.log("Sending data: ", newData);
