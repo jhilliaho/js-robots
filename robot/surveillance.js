@@ -4,6 +4,16 @@ var board = new five.Board({
   io: new Raspi()
 });
 
+var temperature = 0;
+var humidity = 0;
+var pir = 0;
+var volume = 0;
+var lightness = 0;
+var sendDataInterval = 60;
+var pirVal = 0;
+var maxVolume = 0;
+var sendCounter = 1;
+var dataCounter = sendDataInterval;
 
 board.on("ready", function() {
 	console.log("connecting");
@@ -14,25 +24,18 @@ board.on("ready", function() {
 	    console.log("Disconnected from server");
 	});
 
+	socket.on("input1DataFromBrowser", function(data){
+		console.log("Got new interval, ", data);
+		sendDataInterval = data;
+	});
+
 	socket.once('connect', function() {
 	    console.log('Connected to server');
 		var options = {
 			address: 2
 		};
 
-		var temperature = 0;
-		var humidity = 0;
-		var pir = 0;
-		var sendDataInterval = 60;
-
 		board.io.i2cConfig(options);
-
-		var pirVal = 0;
-
-		var maxVolume = 0;
-
-		var sendCounter = 1;
-		var dataCounter = sendDataInterval;
 
 		var readNano = function readNano() {
 			//  byte arr[9] = {temp1, temp2, hum1, hum2, pirData, volumeDiff1, volumeDiff2, lightness1, lightness2};
