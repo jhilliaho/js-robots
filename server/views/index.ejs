@@ -185,7 +185,7 @@ socket.on('newData', function (data) {
 	$('#volumeGraph').highcharts().xAxis[0].series[0].addPoint([date,volume], true);
 });
 
-$("input1").change(function(){
+$("#input1").change(function(){
 	console.log("Sending ", $("#input1").val());
 	socket.emit("newInput1Data", $("#input1").val());
 });
