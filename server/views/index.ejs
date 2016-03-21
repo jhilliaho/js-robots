@@ -186,8 +186,8 @@ socket.on('newData', function (data) {
 });
 
 $("#input1").change(function(){
-	console.log("Sending ", $("#input1").val());
-	socket.emit("newInput1Data", $("#input1").val());
+	console.log("Sending input1DataFromBrowser", $("#input1").val());
+	socket.emit("input1DataFromBrowser", $("#input1").val());
 });
 </script>
 
