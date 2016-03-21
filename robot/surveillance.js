@@ -69,6 +69,8 @@ board.on("ready", function() {
 						dataCounter: sendCounter
 					};
 
+					console.log("Send data: ", newData);
+
 					socket.emit("newData", newData);
 					sendCounter++;
 					pirVal = 0;
