@@ -14,41 +14,40 @@ board.on("ready", function() {
 
 	board.io.i2cConfig(options);
 
-  var imu = new five.IMU({
-    controller: "MPU6050"
-  });
+	var ENA = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 2,
+	});
 
+	var IN1 = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 1,
+	});
 
-  imu.on("change", function() {
-/*
+	var IN2 = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 0,
+	});
 
-     console.log("temperature");
-    console.log("  celsius      : ", this.temperature.celsius);
-    console.log("  fahrenheit   : ", this.temperature.fahrenheit);
-    console.log("  kelvin       : ", this.temperature.kelvin);
-    console.log("--------------------------------------");
+	ENA.brightness(255);
+	IN1.on();
+	IN2.off();
 
-    console.log("accelerometer");
-    console.log("  x            : ", this.accelerometer.x);
-    console.log("  y            : ", this.accelerometer.y);
-    console.log("  z            : ", this.accelerometer.z);
-    console.log("  pitch        : ", this.accelerometer.pitch);
-    console.log("  roll         : ", this.accelerometer.roll);
-    console.log("  acceleration : ", this.accelerometer.acceleration);
-    console.log("  inclination  : ", this.accelerometer.inclination);
-    console.log("  orientation  : ", this.accelerometer.orientation);
-    console.log("--------------------------------------");
-*/
-    console.log("  pitch : ", Math.round(this.gyro.pitch.angle), "  roll : ", Math.round(this.gyro.roll.angle), "  yaw : ", Math.round(this.gyro.yaw.angle));
-  });
+	setTimeout(function(){
+		ENA.brightness(0);
+	}, 1000);
 
-imu.gyro.recalibrate();
 
 
 });
 
+
+
+
 process.on('uncaughtException', function(err) {
-    // handle the error safely
     console.log("ERROR: ", err);
 })
 
