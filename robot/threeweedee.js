@@ -6,9 +6,13 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
+	console.log("Ready");
+
   var compass = new five.Compass({
     controller: "HMC5883L"
   });
+
+  console.log("compass created");
 
   compass.on("change", function() {
     console.log("change");
