@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  
+<style>
+.container {
+  width: 250px;
+  margin: auto;
+}
+
+#demoCanvas {
+  border: 1px solid black;
+}
+
+</style>
+
+<script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+
+  <canvas id='demoCanvas' width='301' height='301'></canvas>
+
+</div>
+</body>
+
+<script>
+
+var stage;
+
+var returnInterval = null;
+var movementUpdateTime = Date.now();
+var xToSend = 0;
+var yToSend = 0;
+
+var socket = io();
+console.log("Trying");
+
+function sendValues(override){
+	var pos = {};
+
+  if (Date.now() - movementUpdateTime > 50 || override) {
+    movementUpdateTime = Date.now();
+    pos.x = Math.round(xToSend);
+    pos.y = Math.round(yToSend);
+    console.log("Sending values ", pos);
+
+    $("#xPos").html(pos.x);
+    $("#yPos").html(pos.y);
+
+    socket.emit('newSpeedValuesToServer', pos);
+  }
+};
+
+(function init() {
+  stage = new createjs.Stage("demoCanvas");
+  createjs.Touch.enable(stage);
+  stage.mouseMoveOutside = true; 
+  var circle = new createjs.Shape();
+  circle.graphics.beginFill("red").drawCircle(0, 0, 50);
+  
+  var label = new createjs.Text("Drag", "bold 14px Arial", "#FFFFFF");
+  label.textAlign = "center";
+  label.y = -7;
+  
+  var dragger = new createjs.Container();
+  dragger.x = dragger.y = 150;
+  dragger.addChild(circle, label);
+  stage.addChild(dragger);
+  
+  dragger.on("pressmove",function(evt) {
+    clearInterval(returnInterval);
+    // currentTarget will be the container that the event listener was added to:
+    evt.currentTarget.x = evt.stageX;
+    evt.currentTarget.y = evt.stageY;
+    // make sure to redraw the stage to show the change:
+    stage.update();
+    xToSend = evt.currentTarget.x - 150;
+    yToSend = 150 - evt.currentTarget.y;
+    sendValues(false);
+  });
+
+  dragger.on("pressup",function(evt) {
+    returnInterval = setInterval(function(){
+      evt.currentTarget.x = 0.9 * (evt.currentTarget.x-150) + 150;
+      evt.currentTarget.y = 0.9 * (evt.currentTarget.y-150) + 150;
+          
+    	xToSend = evt.currentTarget.x - 150;
+    	yToSend = 150 - evt.currentTarget.y;        
+    	
+        sendValues(false);
+
+      
+      if (evt.currentTarget.x > 149 && evt.currentTarget.x < 151 && evt.currentTarget.y > 149 && evt.currentTarget.y < 151) {
+        console.log("CENTER");
+        clearInterval(returnInterval);
+        evt.currentTarget.x = 150;
+        evt.currentTarget.y = 150;
+        
+        xToSend = 0;
+        yToSend = 0;
+
+        sendValues(true);
+      }
+      
+      stage.update();
+      
+    }, 10);
+  });
+  
+  stage.update();
+
+
+if (window.DeviceOrientationEvent) {
+	// Listen for the deviceorientation event and handle the raw data
+	window.addEventListener('deviceorientation', function(eventData) {
+	// gamma is the left-to-right tilt in degrees, where right is positive
+	tiltLR = eventData.gamma;
+
+	// beta is the front-to-back tilt in degrees, where front is positive
+	tiltFB = eventData.beta;
+
+	// alpha is the compass direction the device is facing in degrees
+	tiltDIR = eventData.alpha
+	
+	sendValues(false);
+
+	});
+}
+
+
+}());
+
+
+</script>
+
+</html>
+
