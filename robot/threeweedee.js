@@ -18,6 +18,8 @@ board.on("ready", function() {
     controller: "MPU6050"
   });
 
+  imu.recalibrate();
+
   imu.on("change", function() {
     console.log("temperature");
     console.log("  celsius      : ", this.temperature.celsius);
