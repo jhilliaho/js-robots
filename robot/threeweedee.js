@@ -47,7 +47,7 @@ board.on("ready", function() {
     console.log("  rate         : ", this.gyro.rate);
     console.log("  isCalibrated : ", this.gyro.isCalibrated);
     console.log("--------------------------------------");
-    this.recalibrate();
+    this.gyro.recalibrate();
   });
 });
 
