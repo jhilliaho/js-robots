@@ -44,6 +44,9 @@ board.on("ready", function() {
     console.log("  yaw          : ", this.gyro.yaw);
     console.log("--------------------------------------");
   });
+
+imu.gyro.recalibrate();
+
 });
 
 process.on('uncaughtException', function(err) {
