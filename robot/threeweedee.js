@@ -39,9 +39,9 @@ board.on("ready", function() {
     console.log("  orientation  : ", this.accelerometer.orientation);
     console.log("--------------------------------------");
 */
-    console.log("  pitch        : ", Math.round(this.gyro.pitch*100));
-    console.log("  roll         : ", Math.round(this.gyro.roll*100));
-    console.log("  yaw          : ", Math.round(this.gyro.yaw*100));
+    console.log("  pitch        : ", this.gyro.pitch);
+    console.log("  roll         : ", this.gyro.roll);
+    console.log("  yaw          : ", this.gyro.yaw);
     console.log("--------------------------------------");
   });
 });
