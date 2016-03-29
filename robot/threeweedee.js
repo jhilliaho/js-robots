@@ -45,9 +45,9 @@ board.on("ready", function() {
 imu.gyro.recalibrate();
 
 setInterval(function(){
-    console.log("  pitch        : ", this.gyro.pitch);
-    console.log("  roll         : ", this.gyro.roll);
-    console.log("  yaw          : ", this.gyro.yaw);
+    console.log(" pitch : ", this.gyro.pitch);
+    console.log(" roll : ", this.gyro.roll);
+    console.log(" yaw : ", this.gyro.yaw);
     console.log("--------------------------------------");
 });
 
