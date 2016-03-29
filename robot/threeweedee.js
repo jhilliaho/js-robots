@@ -47,7 +47,7 @@ board.on("ready", function() {
 	socket.on("newData", function(data){
 		console.log("Got new data, ", data);
 		var y = data.y;
-		ENA.brightness(data.y*1.5);
+		ENA.brightness(Math.abs(data.y*1.5));
 		if (data.y > 5) {
 			IN1.on();
 			IN2.off();
