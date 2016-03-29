@@ -14,6 +14,7 @@ board.on("ready", function() {
 
 	board.io.i2cConfig(options);
 
+ 
   var compass = new five.Compass({
     controller: "HMC5883L"
   });
@@ -30,6 +31,9 @@ board.on("ready", function() {
     console.log("  bearing : ", this.bearing.name);
     console.log("--------------------------------------");
   });
+
+
+ });
 
 process.on('uncaughtException', function(err) {
     // handle the error safely
