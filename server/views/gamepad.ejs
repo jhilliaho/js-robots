@@ -54,7 +54,7 @@ function sendValues(override){
     $("#xPos").html(pos.x);
     $("#yPos").html(pos.y);
 
-    socket.emit('newSpeedValuesToServer', pos);
+    socket.emit('newData', pos);
   }
 };
 
