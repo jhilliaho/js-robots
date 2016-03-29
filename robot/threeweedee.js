@@ -15,20 +15,13 @@ board.on("ready", function() {
 	board.io.i2cConfig(options);
 
  
-  var compass = new five.Compass({
-    controller: "HMC5883L"
+  var barometer = new five.Barometer({
+    controller: "BMP180"
   });
 
-  compass.on("change", function() {
-    console.log("change");
-    console.log("  heading : ", Math.floor(this.heading));
-    console.log("  bearing : ", this.bearing.name);
-    console.log("--------------------------------------");
-  });
-
-  compass.on("data", function() {
-    console.log("  heading : ", Math.floor(this.heading));
-    console.log("  bearing : ", this.bearing.name);
+  barometer.on("change", function() {
+    console.log("barometer");
+    console.log("  pressure     : ", this.pressure);
     console.log("--------------------------------------");
   });
 
