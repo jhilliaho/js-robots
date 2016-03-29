@@ -39,7 +39,7 @@ board.on("ready", function() {
     console.log("  orientation  : ", this.accelerometer.orientation);
     console.log("--------------------------------------");
 */
-    console.log("  pitch : ", this.gyro.pitch.angle, "  roll : ", this.gyro.roll.angle, "  yaw : ", this.gyro.yaw.angle);
+    console.log("  pitch : ", Math.round(this.gyro.pitch.angle), "  roll : ", this.gyro.roll.angle, "  yaw : ", this.gyro.yaw.angle);
   });
 
 imu.gyro.recalibrate();
