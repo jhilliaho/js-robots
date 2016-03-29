@@ -6,6 +6,10 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
+		ENA.brightness(0);
+		IN1.off();
+		IN2.off();
+
 
 	console.log("connecting");
 	
@@ -17,6 +21,18 @@ board.on("ready", function() {
 
 	socket.on("newData", function(data){
 		console.log("Got new data, ", data);
+		var y = data.y;
+		ENA.brightness(data.y*1.5);
+		if (data.y > 5) {
+			IN1.on();
+			IN2.off();
+		} else if (data.y < -5){
+			IN1.off();
+			IN2.on();
+		} else {
+			IN1.off();
+			IN2.off();
+		}
 	});
 
 	socket.once('connect', function() {
@@ -49,13 +65,6 @@ board.on("ready", function() {
 			pin: 0,
 		});
 
-		ENA.brightness(255);
-		IN1.on();
-		IN2.off();
-
-		setTimeout(function(){
-			ENA.brightness(0);
-		}, 100);
 	});
 
 
