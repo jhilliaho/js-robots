@@ -27,7 +27,7 @@ setInterval(function(){
     console.log("  roll         : ", imu.gyro.roll);
     console.log("  yaw          : ", imu.gyro.yaw);
     console.log("--------------------------------------");
-});
+}, 300);
 
 });
 
