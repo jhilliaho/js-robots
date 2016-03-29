@@ -14,16 +14,7 @@ board.on("ready", function() {
 
 	board.io.i2cConfig(options);
 
- 
-  var barometer = new five.Barometer({
-    controller: "BMP180"
-  });
 
-  barometer.on("change", function() {
-    console.log("barometer");
-    console.log("  pressure     : ", this.pressure);
-    console.log("--------------------------------------");
-  });
 
     var temperature = new five.Thermometer({
     controller: "BMP180",
