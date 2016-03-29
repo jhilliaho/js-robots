@@ -8,6 +8,12 @@ board.on("ready", function() {
 
 	console.log("Ready");
 
+	var options = {
+		address: 2
+	};
+
+	board.io.i2cConfig(options);
+
   var compass = new five.Compass({
     controller: "HMC5883L"
   });
