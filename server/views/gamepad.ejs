@@ -140,7 +140,7 @@ var init = function init() {
 			if (Math.abs(x1ToSend) < 1) {
 				console.log("CENTER");
 				clearInterval(returnInterval1);
-				evt.currentTarget.x = windowWidth/2;
+				evt.currentTarget.x = windowWidth/4;
 				evt.currentTarget.y = windowHeight/2;
 				x1ToSend = 0;
 				y1ToSend = 0;
@@ -161,7 +161,7 @@ var init = function init() {
 			if (Math.abs(x2ToSend) < 1) {
 				console.log("CENTER");
 				clearInterval(returnInterval2);
-				evt.currentTarget.x = windowWidth/2;
+				evt.currentTarget.x = 3*windowWidth/4;
 				evt.currentTarget.y = windowHeight/2;
 				x2ToSend = 0;
 				y2ToSend = 0;
