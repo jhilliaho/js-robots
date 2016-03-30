@@ -43,7 +43,8 @@
 <script>
 
 var stage1, stage2;
-var returnInterval = null;
+var returnInterval1 = null;
+var returnInterval2 = null;
 var movementUpdateTime = Date.now();
 
 var x1ToSend = 0;
@@ -139,7 +140,7 @@ var init = function init() {
 	});
 
 	dragger1.on("pressup",function(evt) {
-		returnInterval = setInterval(function(){
+		returnInterval1 = setInterval(function(){
 			evt.currentTarget.x = 0.9 * (evt.currentTarget.x-windowWidth/2) + windowWidth/2;
 			evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
 			x1ToSend = evt.currentTarget.x - windowWidth/2;
@@ -147,7 +148,7 @@ var init = function init() {
 			sendValues(false);
 			if (evt.currentTarget.x > windowWidth/2-1 && evt.currentTarget.x < windowWidth/2 + 1 && evt.currentTarget.y > windowHeight/2-1 && evt.currentTarget.y < windowHeight/2+1) {
 				console.log("CENTER");
-				clearInterval(returnInterval);
+				clearInterval(returnInterval1);
 				evt.currentTarget.x = windowWidth/2;
 				evt.currentTarget.y = windowHeight/2;
 				x1ToSend = 0;
@@ -159,7 +160,7 @@ var init = function init() {
 	});
 
 	dragger2.on("pressup",function(evt) {
-		returnInterval = setInterval(function(){
+		returnInterval2 = setInterval(function(){
 			evt.currentTarget.x = 0.9 * (evt.currentTarget.x-windowWidth/2) + windowWidth/2;
 			evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
 			x2ToSend = evt.currentTarget.x - windowWidth/2;
@@ -167,7 +168,7 @@ var init = function init() {
 			sendValues(false);
 			if (evt.currentTarget.x > windowWidth/2-1 && evt.currentTarget.x < windowWidth/2 + 1 && evt.currentTarget.y > windowHeight/2-1 && evt.currentTarget.y < windowHeight/2+1) {
 				console.log("CENTER");
-				clearInterval(returnInterval);
+				clearInterval(returnInterval2);
 				evt.currentTarget.x = windowWidth/2;
 				evt.currentTarget.y = windowHeight/2;
 				x2ToSend = 0;
