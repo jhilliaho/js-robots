@@ -55,6 +55,7 @@ var windowWidth, windowHeight;
 var longerDimension;
 
 var ctx, circle1, circle2, label1, label2, dragger1, dragger2, rect;
+var lineWidth;
 
 var socket = io();
 console.log("Trying");
@@ -119,22 +120,22 @@ var init = function init() {
 
 	stage.mouseMoveOutside = true; 
 
-	
+	lineWidth = Math.ceil(longerDimension/200);
 
 	rect = new createjs.Shape();
-	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (longerDimension/16), (windowHeight/2)-2, longerDimension/8, 4);
+	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (longerDimension/16), (windowHeight/2)-lineWidth, longerDimension/8, lineWidth*2);
 	stage.addChild(rect);
 
 	rect = new createjs.Shape();
-	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - (longerDimension/16), (windowHeight/2)-2, longerDimension/8, 4);
+	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - (longerDimension/16), (windowHeight/2)-lineWidth, longerDimension/8, lineWidth*2);
 	stage.addChild(rect);
 
 	rect = new createjs.Shape();
-	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - 2, (windowHeight/2)-(longerDimension/16), 4, longerDimension/8);
+	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - lineWidth, (windowHeight/2)-(longerDimension/16), lineWidth*2, longerDimension/8);
 	stage.addChild(rect);
 
 	rect = new createjs.Shape();
-	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - 2, (windowHeight/2)-(longerDimension/16), 4, longerDimension/8);
+	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - lineWidth, (windowHeight/2)-(longerDimension/16), lineWidth*2, longerDimension/8);
 	stage.addChild(rect);
 
 	circle1 = new createjs.Shape();
