@@ -53,7 +53,7 @@ var y2ToSend = 0;
 
 var windowWidth, windowHeight;
 
-var ctx, circle1, circle2, label1, label2, dragger1, dragger2;
+var ctx, circle1, circle2, label1, label2, dragger1, dragger2, line;
 
 var socket = io();
 console.log("Trying");
@@ -113,8 +113,9 @@ var init = function init() {
 
 	stage.mouseMoveOutside = true; 
 
-	var line = new createjs.Shape();
-	line.graphics.moveTo(220,60).setStrokeStyle(1).beginStroke("#00ff00").lineTo(300,60);
+	
+	line = new createjs.Shape();
+	line.graphics.moveTo(0,0).setStrokeStyle(1).beginStroke("#00ff00").lineTo(800,60);
 	stage.addChild(line);
 
 	stage.update();
