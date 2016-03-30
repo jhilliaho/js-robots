@@ -63,7 +63,7 @@ function sendValues(override){
 	}
 };
 
-(function init() {
+var init = function init() {
 	console.log("init");
 	var ctx = document.getElementById('demoCanvas').getContext('2d');
 	var windowWidth = window.innerWidth;
@@ -149,7 +149,8 @@ sendValues(false);
 }
 
 
-}());
+};
+init();
 
 
 </script>
