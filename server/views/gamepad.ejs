@@ -66,9 +66,11 @@ function sendValues(override){
 
 (function init() {
   var ctx = document.getElementById('demoCanvas').getContext('2d');
-  ctx.canvas.width  = window.innerWidth;
-  ctx.canvas.height = window.innerHeight;
+  var windowWidth = window.innerWidth;
+  var windowHeight = window.innerHeight;
 
+  ctx.canvas.width  = windowWidth;
+  ctx.canvas.height = windowHeight;
 
   stage = new createjs.Stage("demoCanvas");
   createjs.Touch.enable(stage);
@@ -81,7 +83,8 @@ function sendValues(override){
   label.y = -7;
   
   var dragger = new createjs.Container();
-  dragger.x = dragger.y = 150;
+  dragger.x = windowWidth/2
+  dragger.y = windowHeight/2;
   dragger.addChild(circle, label);
   stage.addChild(dragger);
   
@@ -92,27 +95,27 @@ function sendValues(override){
     evt.currentTarget.y = evt.stageY;
     // make sure to redraw the stage to show the change:
     stage.update();
-    xToSend = evt.currentTarget.x - 150;
-    yToSend = 150 - evt.currentTarget.y;
+    xToSend = evt.currentTarget.x - windowWidth/2;
+    yToSend = windowHeight/2 - evt.currentTarget.y;
     sendValues(false);
   });
 
   dragger.on("pressup",function(evt) {
     returnInterval = setInterval(function(){
-      evt.currentTarget.x = 0.9 * (evt.currentTarget.x-150) + 150;
-      evt.currentTarget.y = 0.9 * (evt.currentTarget.y-150) + 150;
+      evt.currentTarget.x = 0.9 * (evt.currentTarget.x-windowWidth/2) + windowWidth/2;
+      evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
           
-    	xToSend = evt.currentTarget.x - 150;
-    	yToSend = 150 - evt.currentTarget.y;        
+    	xToSend = evt.currentTarget.x - windowWidth/2;
+    	yToSend = windowHeight/2 - evt.currentTarget.y;        
     	
         sendValues(false);
 
       
-      if (evt.currentTarget.x > 149 && evt.currentTarget.x < 151 && evt.currentTarget.y > 149 && evt.currentTarget.y < 151) {
+      if (evt.currentTarget.x > windowWidth/2-1 && evt.currentTarget.x < windowWidth/2 + 1 && evt.currentTarget.y > windowHeight/2-1 && evt.currentTarget.y < windowHeight/2+1) {
         console.log("CENTER");
         clearInterval(returnInterval);
-        evt.currentTarget.x = 150;
-        evt.currentTarget.y = 150;
+        evt.currentTarget.x = windowWidth/2;
+        evt.currentTarget.y = windowHeight;
         
         xToSend = 0;
         yToSend = 0;
