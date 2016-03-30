@@ -134,7 +134,7 @@ var init = function init() {
 		returnInterval1 = setInterval(function(){
 			evt.currentTarget.x = 0.9 * (evt.currentTarget.x-windowWidth/4) + windowWidth/4;
 			evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
-			x1ToSend = evt.currentTarget.x - windowWidth/2;
+			x1ToSend = evt.currentTarget.x - windowWidth/4;
 			y1ToSend = windowHeight/2 - evt.currentTarget.y;        
 			sendValues(false);
 			if (0) {
@@ -154,7 +154,7 @@ var init = function init() {
 		returnInterval2 = setInterval(function(){
 			evt.currentTarget.x = 0.9 * (evt.currentTarget.x-3*windowWidth/4) + 3*windowWidth/4;
 			evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
-			x2ToSend = evt.currentTarget.x - windowWidth/2;
+			x2ToSend = evt.currentTarget.x - 3*windowWidth/4;
 			y2ToSend = windowHeight/2 - evt.currentTarget.y;        
 			sendValues(false);
 
