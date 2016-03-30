@@ -89,6 +89,7 @@ function sendValues(override){
 };
 
 var init = function init() {
+
 	if (dragger1 != undefined) {
 		dragger1.off();
 	}
@@ -96,7 +97,7 @@ var init = function init() {
 		dragger2.off();
 	}
 
-	console.log("init");
+	console.log("init" typeof dragger1, dragger1);
 
 	ctx = document.getElementById('canvas').getContext('2d');
 
