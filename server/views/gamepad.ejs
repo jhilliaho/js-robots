@@ -89,6 +89,9 @@ function sendValues(override){
 };
 
 var init = function init() {
+	dragger1.off();
+	dragger2.off();
+
 	console.log("init");
 
 	ctx = document.getElementById('canvas').getContext('2d');
@@ -127,7 +130,7 @@ var init = function init() {
 	dragger2.addChild(circle2, label2);
 	stage.addChild(dragger2);
 
-	dragger1.once("pressmove",function(evt) {
+	dragger1.on("pressmove",function(evt) {
 		clearInterval(returnInterval1);
 		evt.currentTarget.x = evt.stageX;
 		evt.currentTarget.y = evt.stageY;
@@ -137,7 +140,7 @@ var init = function init() {
 		sendValues(false);
 	});
 
-	dragger2.once("pressmove",function(evt) {
+	dragger2.on("pressmove",function(evt) {
 		clearInterval(returnInterval2);
 		evt.currentTarget.x = evt.stageX;
 		evt.currentTarget.y = evt.stageY;
@@ -147,7 +150,7 @@ var init = function init() {
 		sendValues(false);
 	});
 
-	dragger1.once("pressup",function(evt) {
+	dragger1.on("pressup",function(evt) {
 		returnInterval1 = setInterval(function(){
 			evt.currentTarget.x = 0.9 * (evt.currentTarget.x-windowWidth/4) + windowWidth/4;
 			evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
@@ -167,7 +170,7 @@ var init = function init() {
 		}, 10);
 	});
 
-	dragger2.once("pressup",function(evt) {
+	dragger2.on("pressup",function(evt) {
 		returnInterval2 = setInterval(function(){
 			evt.currentTarget.x = 0.9 * (evt.currentTarget.x-3*windowWidth/4) + 3*windowWidth/4;
 			evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
