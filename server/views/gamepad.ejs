@@ -68,6 +68,18 @@ function sendValues(override){
 		pos.x2 = Math.round(x2ToSend / (windowWidth/400));
 		pos.y2 = Math.round(y2ToSend / (windowHeight/200));
 
+		if (pos.x1 > 100) {pos.x1 = 100;}
+		if (pos.x1 < -100) {pos.x1 = -100;}
+
+		if (pos.x2 > 100) {pos.x2 = 100;}
+		if (pos.x2 < -100) {pos.x2 = -100;}
+
+		if (pos.y1 > 100) {pos.y1 = 100;}
+		if (pos.y1 < -100) {pos.y1 = -100;}
+
+		if (pos.y2 > 100) {pos.y2 = 100;}
+		if (pos.y2 < -100) {pos.y2 = -100;}
+
 		console.log("Sending values ", pos);
 
 		socket.emit('newData', pos);
