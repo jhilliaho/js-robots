@@ -29,8 +29,7 @@
 
 
 <body onresize="init()">
-	<canvas id='canvas1'></canvas>
-	<canvas id='canvas2'></canvas>
+	<canvas id='canvas'></canvas>
 </body>
 
 
@@ -75,27 +74,20 @@ function sendValues(override){
 var init = function init() {
 	console.log("init");
 
-	var ctx1 = document.getElementById('canvas1').getContext('2d');
-	var ctx2 = document.getElementById('canvas2').getContext('2d');
+	var ctx = document.getElementById('canvas').getContext('2d');
 
 	var windowWidth = window.innerWidth;
-	var windowHeight = window.innerHeight/2;
+	var windowHeight = window.innerHeight;
 
-	ctx1.canvas.width  = windowWidth;
-	ctx1.canvas.height = windowHeight;
+	ctx.canvas.width  = windowWidth;
+	ctx.canvas.height = windowHeight;
 
-	ctx2.canvas.width  = windowWidth;
-	ctx2.canvas.height = windowHeight;
-
-	stage1 = new createjs.Stage("canvas1");
-	stage2 = new createjs.Stage("canvas2");
+	stage = new createjs.Stage("canvas1");
 
 	createjs.Touch.enable(stage1);
-	createjs.Touch.enable(stage2);
 
 
-	stage1.mouseMoveOutside = true; 
-	stage2.mouseMoveOutside = true; 
+	stage.mouseMoveOutside = true; 
 
 	var circle1 = new createjs.Shape();
 	circle1.graphics.beginFill("red").drawCircle(0, 0, 50);
@@ -106,7 +98,7 @@ var init = function init() {
 	dragger1.x = windowWidth/2
 	dragger1.y = windowHeight/2;
 	dragger1.addChild(circle1, label1);
-	stage1.addChild(dragger1);
+	stage.addChild(dragger1);
 	
 	var circle2 = new createjs.Shape();
 	circle2.graphics.beginFill("red").drawCircle(0, 0, 50);
@@ -117,7 +109,7 @@ var init = function init() {
 	dragger2.x = windowWidth/2
 	dragger2.y = windowHeight/2;
 	dragger2.addChild(circle2, label2);
-	stage2.addChild(dragger2);
+	stage.addChild(dragger2);
 
 	dragger1.on("pressmove",function(evt) {
 		clearInterval(returnInterval1);
