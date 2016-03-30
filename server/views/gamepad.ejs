@@ -62,11 +62,11 @@ function sendValues(override){
 	if (Date.now() - movementUpdateTime > 50 || override) {
 		movementUpdateTime = Date.now();
 		
-		pos.x1 = Math.round(Math.round(x1ToSend) / (windowWidth/400));
-		pos.y1 = Math.round(Math.round(y1ToSend) / (windowHeight/200));
+		pos.x1 = x1ToSend / (windowWidth/400));
+		pos.y1 = y1ToSend / (windowHeight/200));
 		
-		pos.x2 = Math.round(Math.round(x2ToSend) / (windowWidth/400));
-		pos.y2 = Math.round(Math.round(y2ToSend) / (windowHeight/200));
+		pos.x2 = x2ToSend / (windowWidth/400));
+		pos.y2 = y2ToSend / (windowHeight/200));
 
 		console.log("Sending values ", pos);
 
