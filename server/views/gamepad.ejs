@@ -53,6 +53,8 @@ var y2ToSend = 0;
 
 var windowWidth, windowHeight;
 
+var ctx, circle1, circle2, label1, label2, dragger1, dragger2;
+
 var socket = io();
 console.log("Trying");
 
@@ -89,7 +91,7 @@ function sendValues(override){
 var init = function init() {
 	console.log("init");
 
-	var ctx = document.getElementById('canvas').getContext('2d');
+	ctx = document.getElementById('canvas').getContext('2d');
 
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
@@ -103,23 +105,23 @@ var init = function init() {
 
 	stage.mouseMoveOutside = true; 
 
-	var circle1 = new createjs.Shape();
+	circle1 = new createjs.Shape();
 	circle1.graphics.beginFill("red").drawCircle(0, 0, 50);
-	var label1 = new createjs.Text("Drag", "bold 14px Arial", "#FFFFFF");
+	label1 = new createjs.Text("Drag", "bold 14px Arial", "#FFFFFF");
 	label1.textAlign = "center";
 	label1.y = -7;
-	var dragger1 = new createjs.Container();
+	dragger1 = new createjs.Container();
 	dragger1.x = windowWidth/4
 	dragger1.y = windowHeight/2;
 	dragger1.addChild(circle1, label1);
 	stage.addChild(dragger1);
 	
-	var circle2 = new createjs.Shape();
+	circle2 = new createjs.Shape();
 	circle2.graphics.beginFill("blue").drawCircle(0, 0, 50);
-	var label2 = new createjs.Text("Drag", "bold 14px Arial", "#FFFFFF");
+	label2 = new createjs.Text("Drag", "bold 14px Arial", "#FFFFFF");
 	label2.textAlign = "center";
 	label2.y = -7;
-	var dragger2 = new createjs.Container();
+	dragger2 = new createjs.Container();
 	dragger2.x = 3*windowWidth/4
 	dragger2.y = windowHeight/2;
 	dragger2.addChild(circle2, label2);
