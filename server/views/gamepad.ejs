@@ -14,6 +14,12 @@
 	width: 100%;
 }
 
+html, body {
+  width:  100%;
+  height: 100%;
+  margin: 0px;
+}
+
 </style>
 
 <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
@@ -22,7 +28,7 @@
 
 </head>
 
-<body onresize="resize_canvas()">
+<body>
 <div class="container">
 
   <canvas id='demoCanvas'></canvas>
@@ -58,20 +64,12 @@ function sendValues(override){
   }
 };
 
-function resize_canvas(){
-    canvas = document.getElementById("demoCanvas");
-    if (canvas.width  < window.innerWidth)
-    {
-        canvas.width  = window.innerWidth;
-    }
-
-    if (canvas.height < window.innerHeight)
-    {
-        canvas.height = window.innerHeight;
-    }
-}
-
 (function init() {
+  var ctx = document.getElementById('demoCanvas').getContext('2d');
+  ctx.canvas.width  = window.innerWidth;
+  ctx.canvas.height = window.innerHeight;
+
+
   stage = new createjs.Stage("demoCanvas");
   createjs.Touch.enable(stage);
   stage.mouseMoveOutside = true; 
