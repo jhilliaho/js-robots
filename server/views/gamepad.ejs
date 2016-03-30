@@ -52,6 +52,7 @@ var x2ToSend = 0;
 var y2ToSend = 0;
 
 var windowWidth, windowHeight;
+var longerDimension;
 
 var ctx, circle1, circle2, label1, label2, dragger1, dragger2, rect;
 
@@ -103,6 +104,11 @@ var init = function init() {
 
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
+	if (windowWidth > windowHeight) {
+		longerDimension = windowWidth;
+	} else {
+		longerDimension = windowHeight
+	}
 
 	ctx.canvas.width  = windowWidth;
 	ctx.canvas.height = windowHeight;
@@ -114,20 +120,21 @@ var init = function init() {
 	stage.mouseMoveOutside = true; 
 
 	
+
 	rect = new createjs.Shape();
-	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, windowWidth/5, 4);
+	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, longerDimension/5, 4);
 	stage.addChild(rect);
 
 	rect = new createjs.Shape();
-	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, windowWidth/5, 4);
+	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, longerDimension/5, 4);
 	stage.addChild(rect);
 
 	rect = new createjs.Shape();
-	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - 2, (windowHeight/2)-(windowHeight/10), 4, windowHeight/5);
+	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - 2, (windowHeight/2)-(windowHeight/10), 4, longerDimension/5);
 	stage.addChild(rect);
 
 	rect = new createjs.Shape();
-	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - 2, (windowHeight/2)-(windowHeight/10), 4, windowHeight/5);
+	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - 2, (windowHeight/2)-(windowHeight/10), 4, longerDimension/5);
 	stage.addChild(rect);
 
 	circle1 = new createjs.Shape();
