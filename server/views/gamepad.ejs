@@ -91,10 +91,10 @@ function sendValues(override){
 var init = function init() {
 
 	if (dragger1 != undefined) {
-		dragger1.off();
+		dragger1.removeAllEventListeners();
 	}
 	if (dragger2 != undefined) {
-		dragger2.off();
+		dragger2.removeAllEventListeners();
 	}
 
 	console.log("init", typeof dragger1, dragger1);
