@@ -115,7 +115,7 @@ var init = function init() {
 		clearInterval(returnInterval1);
 		evt.currentTarget.x = evt.stageX;
 		evt.currentTarget.y = evt.stageY;
-		stage1.update();
+		stage.update();
 		x1ToSend = evt.currentTarget.x - windowWidth/2;
 		y1ToSend = windowHeight/2 - evt.currentTarget.y;
 		sendValues(false);
@@ -125,7 +125,7 @@ var init = function init() {
 		clearInterval(returnInterval2);
 		evt.currentTarget.x = evt.stageX;
 		evt.currentTarget.y = evt.stageY;
-		stage2.update();
+		stage.update();
 		x2ToSend = evt.currentTarget.x - windowWidth/2;
 		y2ToSend = windowHeight/2 - evt.currentTarget.y;
 		sendValues(false);
@@ -147,7 +147,7 @@ var init = function init() {
 				y1ToSend = 0;
 				sendValues(true);
 			}
-			stage1.update();
+			stage.update();
 		}, 10);
 	});
 
@@ -167,12 +167,11 @@ var init = function init() {
 				y2ToSend = 0;
 				sendValues(true);
 			}
-			stage2.update();
+			stage.update();
 		}, 10);
 	});
 
-	stage1.update();
-	stage2.update();
+	stage.update();
 };
 init();
 
