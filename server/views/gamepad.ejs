@@ -137,7 +137,7 @@ var init = function init() {
 			x1ToSend = evt.currentTarget.x - windowWidth/2;
 			y1ToSend = windowHeight/2 - evt.currentTarget.y;        
 			sendValues(false);
-			if (evt.currentTarget.x > windowWidth/2-1 && evt.currentTarget.x < windowWidth/2 + 1 && evt.currentTarget.y > windowHeight/2-1 && evt.currentTarget.y < windowHeight/2+1) {
+			if (0) {
 				console.log("CENTER");
 				clearInterval(returnInterval1);
 				evt.currentTarget.x = windowWidth/2;
@@ -152,12 +152,13 @@ var init = function init() {
 
 	dragger2.on("pressup",function(evt) {
 		returnInterval2 = setInterval(function(){
-			evt.currentTarget.x = 0.9 * (evt.currentTarget.x-windowWidth/2) + 3*windowWidth/4;
-			evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
+			evt.currentTarget.x = 0.9 * evt.currentTarget.x;
+			evt.currentTarget.y = 0.9 * evt.currentTarget.y
 			x2ToSend = evt.currentTarget.x - windowWidth/2;
 			y2ToSend = windowHeight/2 - evt.currentTarget.y;        
 			sendValues(false);
-			if (evt.currentTarget.x > windowWidth/2-1 && evt.currentTarget.x < windowWidth/2 + 1 && evt.currentTarget.y > windowHeight/2-1 && evt.currentTarget.y < windowHeight/2+1) {
+
+			if (0) {
 				console.log("CENTER");
 				clearInterval(returnInterval2);
 				evt.currentTarget.x = windowWidth/2;
