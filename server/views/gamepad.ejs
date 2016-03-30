@@ -113,6 +113,12 @@ var init = function init() {
 
 	stage.mouseMoveOutside = true; 
 
+	var line = new createjs.Shape();
+    line.graphics.moveTo(windowWidth/4-50,windowHeight/2).setStrokeStyle(1).beginStroke("#00ff00").lineTo(windowWidth/4+50,windowHeight/2);
+    stage.addChild(line);
+
+
+
 	circle1 = new createjs.Shape();
 	circle1.graphics.beginFill("red").drawCircle(0, 0, 50);
 	label1 = new createjs.Text("Drag", "bold 14px Arial", "#FFFFFF");
