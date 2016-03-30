@@ -126,6 +126,9 @@ var init = function init() {
 	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - 2, (windowHeight/2)-(windowHeight/10), 4, windowHeight/5);
 	stage.addChild(rect);
 
+	rect = new createjs.Shape();
+	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - 2, (windowHeight/2)-(windowHeight/10), 4, windowHeight/5);
+	stage.addChild(rect);
 
 	circle1 = new createjs.Shape();
 	circle1.graphics.beginFill("red").drawCircle(0, 0, windowWidth/20);
