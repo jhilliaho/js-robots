@@ -51,6 +51,8 @@ var y1ToSend = 0;
 var x2ToSend = 0;
 var y2ToSend = 0;
 
+var windowWidth, windowHeight;
+
 var socket = io();
 console.log("Trying");
 
@@ -77,8 +79,8 @@ var init = function init() {
 
 	var ctx = document.getElementById('canvas').getContext('2d');
 
-	var windowWidth = window.innerWidth;
-	var windowHeight = window.innerHeight;
+	windowWidth = window.innerWidth;
+	windowHeight = window.innerHeight;
 
 	ctx.canvas.width  = windowWidth;
 	ctx.canvas.height = windowHeight;
