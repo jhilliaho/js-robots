@@ -132,8 +132,8 @@ var init = function init() {
 
 	dragger1.on("pressup",function(evt) {
 		returnInterval1 = setInterval(function(){
-			evt.currentTarget.x = 0.9 * (evt.currentTarget.x-windowWidth/2) + windowWidth/4;
-			evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
+			evt.currentTarget.x = 0.9 * evt.currentTarget.x;
+			evt.currentTarget.y = 0.9 * evt.currentTarget.y
 			x1ToSend = evt.currentTarget.x - windowWidth/2;
 			y1ToSend = windowHeight/2 - evt.currentTarget.y;        
 			sendValues(false);
