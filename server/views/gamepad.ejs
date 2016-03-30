@@ -11,7 +11,7 @@
 }
 
 #demoCanvas {
-  border: 1px solid black;
+	width: 100%;
 }
 
 </style>
@@ -25,12 +25,15 @@
 <body>
 <div class="container">
 
-  <canvas id='demoCanvas' width='301' height='301'></canvas>
+  <canvas id='demoCanvas'></canvas>
 
 </div>
 </body>
 
 <script>
+
+var cw = $('#demoCanvas').width();
+$('#demoCanvas').css({'height':cw+'px'});
 
 var stage;
 

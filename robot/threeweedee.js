@@ -6,35 +6,34 @@ var board = new five.Board({
 
 board.on("ready", function() {
 
-		var options = {
-			address: 2
-		};
+	var options = {
+		address: 2
+	};
 
-		board.io.i2cConfig(options);
+	board.io.i2cConfig(options);
 
-		var ENA = new five.Led({
-			address: 0x40,
-			controller: "PCA9685",
-			pin: 2,
-		});
+	var ENA = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 2,
+	});
 
-		var IN1 = new five.Led({
-			address: 0x40,
-			controller: "PCA9685",
-			pin: 1,
-		});
+	var IN1 = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 1,
+	});
 
-		var IN2 = new five.Led({
-			address: 0x40,
-			controller: "PCA9685",
-			pin: 0,
-		});
+	var IN2 = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 0,
+	});
 
 
-		ENA.brightness(0);
-		IN1.off();
-		IN2.off();
-
+	ENA.brightness(0);
+	IN1.off();
+	IN2.off();
 
 	console.log("connecting");
 	
