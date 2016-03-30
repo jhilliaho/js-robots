@@ -120,7 +120,7 @@ var init = function init() {
 	stage2.addChild(dragger2);
 
 	dragger1.on("pressmove",function(evt) {
-		clearInterval(returnInterval);
+		clearInterval(returnInterval1);
 		evt.currentTarget.x = evt.stageX;
 		evt.currentTarget.y = evt.stageY;
 		stage1.update();
@@ -130,7 +130,7 @@ var init = function init() {
 	});
 
 	dragger2.on("pressmove",function(evt) {
-		clearInterval(returnInterval);
+		clearInterval(returnInterval2);
 		evt.currentTarget.x = evt.stageX;
 		evt.currentTarget.y = evt.stageY;
 		stage2.update();
