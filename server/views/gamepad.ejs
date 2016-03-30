@@ -114,13 +114,17 @@ var init = function init() {
 	stage.mouseMoveOutside = true; 
 
 	
-	 rect = new createjs.Shape();
-	 rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, windowWidth/5, 4);
-	 stage.addChild(rect);
+	rect = new createjs.Shape();
+	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, windowWidth/5, 4);
+	stage.addChild(rect);
 
-	 rect = new createjs.Shape();
-	 rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, windowWidth/5, 4);
-	 stage.addChild(rect);
+	rect = new createjs.Shape();
+	rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, windowWidth/5, 4);
+	stage.addChild(rect);
+
+	rect = new createjs.Shape();
+	rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - 2, (windowHeight/2)-(windowHeight/10), 4, windowHeight/5);
+	stage.addChild(rect);
 
 
 	circle1 = new createjs.Shape();
@@ -172,7 +176,7 @@ var init = function init() {
 			x1ToSend = evt.currentTarget.x - windowWidth/4;
 			y1ToSend = windowHeight/2 - evt.currentTarget.y;        
 			sendValues(false);
-			if (Math.abs(x1ToSend) < 1 && Math.abs(y2ToSend) < 1) {
+			if (Math.abs(x1ToSend) < 1 && Math.abs(y1ToSend) < 1) {
 				console.log("CENTER");
 				clearInterval(returnInterval1);
 				evt.currentTarget.x = windowWidth/4;
