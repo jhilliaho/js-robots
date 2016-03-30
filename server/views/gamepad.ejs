@@ -2,38 +2,37 @@
 
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-  
-<style>
-.container {
-  width: 100%;
-  margin: auto;
-}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 
-#demoCanvas {
-	width: 100%;
-}
+	<style>
+	.container {
+		width: 100%;
+		margin: auto;
+	}
 
-html, body {
-  width:  100%;
-  height: 100%;
-  margin: 0px;
-}
+	#demoCanvas {
+		width: 100%;
+	}
+	html, body {
+		width:  100%;
+		height: 100%;
+		margin: 0px;
+	}
 
-</style>
+	</style>
 
-<script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+	<script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
 
 </head>
 
-<body onresize="init()">
-<div class="container">
+<body onresize="">
+	<div class="container">
 
-  <canvas id='demoCanvas'></canvas>
+		<canvas id='demoCanvas'></canvas>
 
-</div>
+	</div>
 </body>
 
 <script>
@@ -51,101 +50,102 @@ console.log("Trying");
 function sendValues(override){
 	var pos = {};
 
-  if (Date.now() - movementUpdateTime > 50 || override) {
-    movementUpdateTime = Date.now();
-    pos.x = Math.round(xToSend);
-    pos.y = Math.round(yToSend);
-    console.log("Sending values ", pos);
+	if (Date.now() - movementUpdateTime > 50 || override) {
+		movementUpdateTime = Date.now();
+		pos.x = Math.round(xToSend);
+		pos.y = Math.round(yToSend);
+		console.log("Sending values ", pos);
 
-    $("#xPos").html(pos.x);
-    $("#yPos").html(pos.y);
+		$("#xPos").html(pos.x);
+		$("#yPos").html(pos.y);
 
-    socket.emit('newData', pos);
-  }
+		socket.emit('newData', pos);
+	}
 };
 
 (function init() {
-  var ctx = document.getElementById('demoCanvas').getContext('2d');
-  var windowWidth = window.innerWidth;
-  var windowHeight = window.innerHeight;
+	console.log("init");
+	var ctx = document.getElementById('demoCanvas').getContext('2d');
+	var windowWidth = window.innerWidth;
+	var windowHeight = window.innerHeight;
 
-  ctx.canvas.width  = windowWidth;
-  ctx.canvas.height = windowHeight;
+	ctx.canvas.width  = windowWidth;
+	ctx.canvas.height = windowHeight;
 
-  stage = new createjs.Stage("demoCanvas");
-  createjs.Touch.enable(stage);
-  stage.mouseMoveOutside = true; 
-  var circle = new createjs.Shape();
-  circle.graphics.beginFill("red").drawCircle(0, 0, 50);
-  
-  var label = new createjs.Text("Drag", "bold 14px Arial", "#FFFFFF");
-  label.textAlign = "center";
-  label.y = -7;
-  
-  var dragger = new createjs.Container();
-  dragger.x = windowWidth/2
-  dragger.y = windowHeight/2;
-  dragger.addChild(circle, label);
-  stage.addChild(dragger);
-  
-  dragger.on("pressmove",function(evt) {
-    clearInterval(returnInterval);
-    // currentTarget will be the container that the event listener was added to:
-    evt.currentTarget.x = evt.stageX;
-    evt.currentTarget.y = evt.stageY;
-    // make sure to redraw the stage to show the change:
-    stage.update();
-    xToSend = evt.currentTarget.x - windowWidth/2;
-    yToSend = windowHeight/2 - evt.currentTarget.y;
-    sendValues(false);
-  });
+	stage = new createjs.Stage("demoCanvas");
+	createjs.Touch.enable(stage);
+	stage.mouseMoveOutside = true; 
+	var circle = new createjs.Shape();
+	circle.graphics.beginFill("red").drawCircle(0, 0, 50);
 
-  dragger.on("pressup",function(evt) {
-    returnInterval = setInterval(function(){
-      evt.currentTarget.x = 0.9 * (evt.currentTarget.x-windowWidth/2) + windowWidth/2;
-      evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
-          
-    	xToSend = evt.currentTarget.x - windowWidth/2;
-    	yToSend = windowHeight/2 - evt.currentTarget.y;        
-    	
-        sendValues(false);
+	var label = new createjs.Text("Drag", "bold 14px Arial", "#FFFFFF");
+	label.textAlign = "center";
+	label.y = -7;
 
-      
-      if (evt.currentTarget.x > windowWidth/2-1 && evt.currentTarget.x < windowWidth/2 + 1 && evt.currentTarget.y > windowHeight/2-1 && evt.currentTarget.y < windowHeight/2+1) {
-        console.log("CENTER");
-        clearInterval(returnInterval);
-        evt.currentTarget.x = windowWidth/2;
-        evt.currentTarget.y = windowHeight/2;
-        
-        xToSend = 0;
-        yToSend = 0;
+	var dragger = new createjs.Container();
+	dragger.x = windowWidth/2
+	dragger.y = windowHeight/2;
+	dragger.addChild(circle, label);
+	stage.addChild(dragger);
 
-        sendValues(true);
-      }
-      
-      stage.update();
-      
-    }, 10);
-  });
-  
-  stage.update();
+	dragger.on("pressmove",function(evt) {
+		clearInterval(returnInterval);
+// currentTarget will be the container that the event listener was added to:
+evt.currentTarget.x = evt.stageX;
+evt.currentTarget.y = evt.stageY;
+// make sure to redraw the stage to show the change:
+stage.update();
+xToSend = evt.currentTarget.x - windowWidth/2;
+yToSend = windowHeight/2 - evt.currentTarget.y;
+sendValues(false);
+});
+
+	dragger.on("pressup",function(evt) {
+		returnInterval = setInterval(function(){
+			evt.currentTarget.x = 0.9 * (evt.currentTarget.x-windowWidth/2) + windowWidth/2;
+			evt.currentTarget.y = 0.9 * (evt.currentTarget.y-windowHeight/2) + windowHeight/2;
+
+			xToSend = evt.currentTarget.x - windowWidth/2;
+			yToSend = windowHeight/2 - evt.currentTarget.y;        
+
+			sendValues(false);
 
 
-if (window.DeviceOrientationEvent) {
-	// Listen for the deviceorientation event and handle the raw data
-	window.addEventListener('deviceorientation', function(eventData) {
-	// gamma is the left-to-right tilt in degrees, where right is positive
-	tiltLR = eventData.gamma;
+			if (evt.currentTarget.x > windowWidth/2-1 && evt.currentTarget.x < windowWidth/2 + 1 && evt.currentTarget.y > windowHeight/2-1 && evt.currentTarget.y < windowHeight/2+1) {
+				console.log("CENTER");
+				clearInterval(returnInterval);
+				evt.currentTarget.x = windowWidth/2;
+				evt.currentTarget.y = windowHeight/2;
 
-	// beta is the front-to-back tilt in degrees, where front is positive
-	tiltFB = eventData.beta;
+				xToSend = 0;
+				yToSend = 0;
 
-	// alpha is the compass direction the device is facing in degrees
-	tiltDIR = eventData.alpha
-	
-	sendValues(false);
+				sendValues(true);
+			}
 
+			stage.update();
+
+		}, 10);
 	});
+
+	stage.update();
+
+
+	if (window.DeviceOrientationEvent) {
+// Listen for the deviceorientation event and handle the raw data
+window.addEventListener('deviceorientation', function(eventData) {
+// gamma is the left-to-right tilt in degrees, where right is positive
+tiltLR = eventData.gamma;
+
+// beta is the front-to-back tilt in degrees, where front is positive
+tiltFB = eventData.beta;
+
+// alpha is the compass direction the device is facing in degrees
+tiltDIR = eventData.alpha
+
+sendValues(false);
+
+});
 }
 
 
