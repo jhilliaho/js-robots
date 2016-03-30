@@ -84,27 +84,27 @@ function sendValues(override){
     evt.currentTarget.y = evt.stageY;
     // make sure to redraw the stage to show the change:
     stage.update();
-    xToSend = evt.currentTarget.x - 150;
-    yToSend = 150 - evt.currentTarget.y;
+    xToSend = evt.currentTarget.x - cw/2;
+    yToSend = cw/2 - evt.currentTarget.y;
     sendValues(false);
   });
 
   dragger.on("pressup",function(evt) {
     returnInterval = setInterval(function(){
-      evt.currentTarget.x = 0.9 * (evt.currentTarget.x-150) + 150;
-      evt.currentTarget.y = 0.9 * (evt.currentTarget.y-150) + 150;
+      evt.currentTarget.x = 0.9 * (evt.currentTarget.x-cw/2) + cw/2;
+      evt.currentTarget.y = 0.9 * (evt.currentTarget.y-cw/2) + cw/2;
           
-    	xToSend = evt.currentTarget.x - 150;
-    	yToSend = 150 - evt.currentTarget.y;        
+    	xToSend = evt.currentTarget.x - cw/2;
+    	yToSend = cw/2 - evt.currentTarget.y;        
     	
         sendValues(false);
 
       
-      if (evt.currentTarget.x > 149 && evt.currentTarget.x < 151 && evt.currentTarget.y > 149 && evt.currentTarget.y < 151) {
+      if (evt.currentTarget.x > cw/2-1 && evt.currentTarget.x < 151 && evt.currentTarget.y > cw/2-1 && evt.currentTarget.y < cw/2+1) {
         console.log("CENTER");
         clearInterval(returnInterval);
-        evt.currentTarget.x = 150;
-        evt.currentTarget.y = 150;
+        evt.currentTarget.x = cw/2;
+        evt.currentTarget.y = cw/2;
         
         xToSend = 0;
         yToSend = 0;
