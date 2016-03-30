@@ -118,6 +118,10 @@ var init = function init() {
 	 rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, windowWidth/5, 4);
 	 stage.addChild(rect);
 
+	 rect = new createjs.Shape();
+	 rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - (windowWidth/10), (windowHeight/2)-2, windowWidth/5, 4);
+	 stage.addChild(rect);
+
 
 	circle1 = new createjs.Shape();
 	circle1.graphics.beginFill("red").drawCircle(0, 0, windowWidth/20);
