@@ -113,10 +113,11 @@ var init = function init() {
 
 	stage.mouseMoveOutside = true; 
 
-   var line = new createjs.Shape();
-   line.graphics.moveTo(220,60).setStrokeStyle(1).beginStroke("#00ff00").lineTo(300,60);
-   stage.addChild(line);
+	var line = new createjs.Shape();
+	line.graphics.moveTo(220,60).setStrokeStyle(1).beginStroke("#00ff00").lineTo(300,60);
+	stage.addChild(line);
 
+	stage.update();
 
 
 	circle1 = new createjs.Shape();
