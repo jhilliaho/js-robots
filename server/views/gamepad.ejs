@@ -41,7 +41,7 @@
 
 <script>
 
-var stage1, stage2;
+var stage;
 var returnInterval1 = null;
 var returnInterval2 = null;
 var movementUpdateTime = Date.now();
@@ -84,7 +84,7 @@ var init = function init() {
 
 	stage = new createjs.Stage("canvas");
 
-	createjs.Touch.enable(stage1);
+	createjs.Touch.enable(stage);
 
 	stage.mouseMoveOutside = true; 
 
