@@ -97,7 +97,7 @@ board.on("ready", function() {
 		IN2L.off();
 
 
-	}, 3000);
+	}, 5000);
 
 
 	console.log("connecting");
