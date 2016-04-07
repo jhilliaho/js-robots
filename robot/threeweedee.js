@@ -61,13 +61,13 @@ board.on("ready", function() {
 	var IN1L = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
-		pin: 9,
+		pin: 8,
 	});
 
 	var IN2L = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
-		pin: 8,
+		pin: 9,
 	});
 
 
