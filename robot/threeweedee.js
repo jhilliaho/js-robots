@@ -12,31 +12,100 @@ board.on("ready", function() {
 
 	board.io.i2cConfig(options);
 
-	var ENA = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 2,
-	});
-
-	var IN1 = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 1,
-	});
-
-	var IN2 = new five.Led({
+	var ENAJ = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
 		pin: 0,
 	});
 
+	var IN1J = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 1,
+	});
 
-	ENA.brightness(0);
-	IN1.off();
-	IN2.off();
+	var IN2J = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 2,
+	});
+
+
+
+	var ENAK = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 6,
+	});
+
+	var IN1K = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 4,
+	});
+
+	var IN2K = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 5,
+	});
+
+	
+
+	var ENAL = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 10,
+	});
+
+	var IN1L = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 9,
+	});
+
+	var IN2L = new five.Led({
+		address: 0x40,
+		controller: "PCA9685",
+		pin: 8,
+	});
+
+
+	ENAJ.brightness(255);
+	IN1J.on();
+	IN2J.off();
+
+	ENAK.brightness(255);
+	IN1K.on();
+	IN2K.off();
+
+	ENAL.brightness(255);
+	IN1L.on();
+	IN2L.off();
+
+
+	setTimeout(function(){
+
+		ENAJ.brightness(0);
+		IN1J.off();
+		IN2J.off();
+
+		ENAK.brightness(0);
+		IN1K.off();
+		IN2K.off();
+
+		ENAL.brightness(0);
+		IN1L.off();
+		IN2L.off();
+
+
+	}, 500);
+
 
 	console.log("connecting");
 	
+
+
 	var socket = require('socket.io-client')('http://46.101.79.118:3000');
 
 	socket.on("disconnect", function(){
@@ -45,18 +114,7 @@ board.on("ready", function() {
 
 	socket.on("newData", function(data){
 		console.log("Got new data, ", data);
-		var y = data.y;
-		ENA.brightness(Math.abs(data.y*1.5));
-		if (data.y > 5) {
-			IN1.on();
-			IN2.off();
-		} else if (data.y < -5){
-			IN1.off();
-			IN2.on();
-		} else {
-			IN1.off();
-			IN2.off();
-		}
+
 	});
 
 	socket.once('connect', function() {
