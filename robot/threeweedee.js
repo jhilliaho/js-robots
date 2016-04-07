@@ -76,10 +76,12 @@ board.on("ready", function() {
 	IN2J.off();
 
 	ENAK.brightness(255);
-	IN1K.off();
-	IN2K.on();
+	IN1K.on();
+	IN2K.off();
 
-
+	ENAL.brightness(255);
+	IN1L.on();
+	IN2L.off();
 
 
 	setTimeout(function(){
@@ -97,7 +99,7 @@ board.on("ready", function() {
 		IN2L.off();
 
 
-	}, 5000);
+	}, 3000);
 
 
 	console.log("connecting");
