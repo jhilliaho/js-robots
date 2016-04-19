@@ -50,7 +50,7 @@ for (var i = 0; i < 4; ++i) {
     IN3.low();
     IN4.high();
 
-	date = Date.now()+150;
+	date = Date.now()+30;
 	while (Date.now() < date) {} 
 
 
@@ -61,7 +61,7 @@ for (var i = 0; i < 4; ++i) {
     IN3.low();
     IN4.high();
 
-	date = Date.now()+150;
+	date = Date.now()+30;
 	while (Date.now() < date) {} 
 
 
@@ -72,7 +72,7 @@ for (var i = 0; i < 4; ++i) {
     IN4.low();
     IN3.high();
 
-	date = Date.now()+150;
+	date = Date.now()+30;
 	while (Date.now() < date) {} 
 
 
@@ -82,7 +82,7 @@ for (var i = 0; i < 4; ++i) {
     IN4.low();
     IN3.high();
 
-	date = Date.now()+150;
+	date = Date.now()+30;
 	while (Date.now() < date) {} 
 }
 
