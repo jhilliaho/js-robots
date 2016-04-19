@@ -48,6 +48,52 @@ board.on("ready", function() {
 		pin: 7,
 	});
 
+	ENA.on();
+	ENA.brightness(80);
+	ENB.on();
+	ENB.brightness(80);
+	
+	IN1.off();
+	IN2.off();
+	IN3.off();
+	IN4.off();
+
+	var date = 0;
+
+
+    IN1.off();
+    IN2.on();
+    IN3.off();
+    IN4.on();
+
+	date = Date.now()+100;
+	while (Date.now() < date) {} 
+
+    IN1.on();
+    IN2.off();
+    IN3.off();
+    IN4.on();
+	date = Date.now()+100;
+	while (Date.now() < date) {} 
+
+
+    IN1.on();
+    IN2.off();
+    IN3.on();
+    IN4.off();
+	date = Date.now()+100;
+	while (Date.now() < date) {} 
+
+
+    IN1.off();
+    IN2.on();
+    IN3.on();
+    IN4.off();
+	date = Date.now()+100;
+	while (Date.now() < date) {} 
+
+	console.log("Shut down");
+
 	ENA.off();
 	ENB.off();
 	
@@ -55,9 +101,6 @@ board.on("ready", function() {
 	IN2.off();
 	IN3.off();
 	IN4.off();
-
-
-
 
 
 
