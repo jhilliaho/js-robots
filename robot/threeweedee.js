@@ -4,7 +4,7 @@ var board = new five.Board({
   io: new Raspi()
 });
 
-board.on("ready", functihigh() {
+board.on("ready", function() {
 
 	var options = {
 		address: 2
