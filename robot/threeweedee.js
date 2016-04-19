@@ -88,7 +88,10 @@ for (var i = 0; i < 10; ++i) {
     IN3.high();
 
 	date = Date.now()+15;
-	while (Date.now() < date) {} 
+	while (Date.now() < date) {}
+
+			ENA.low();
+
 }
 
 	console.log("Shut down");
