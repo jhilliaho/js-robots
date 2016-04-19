@@ -12,11 +12,30 @@ board.on("ready", function() {
 
 	board.io.i2cConfig(options);
 
+	console.log(1);
+	var IN1 = new five.Pin({
+		pin: "GPIO1",
+		type: digital
+	});
+	console.log(1);
 
-	var IN1 = new five.Pin({pin: "GPIO1"});
-	var IN2 = new five.Pin({pin: "GPIO4"});
-	var IN3 = new five.Pin({pin: "GPIO5"});
-	var IN4 = new five.Pin({pin: "GPIO6"});
+	var IN2 = new five.Pin({
+		pin: "GPIO4",
+		type: digital
+	});
+	console.log(1);
+
+	var IN3 = new five.Pin({
+		pin: "GPIO5",
+		type: digital
+	});
+	console.log(1);
+
+	var IN4 = new five.Pin({
+		pin: "GPIO6",
+		type: digital
+	});
+
 	
 	IN1.off();
 	IN2.off();
