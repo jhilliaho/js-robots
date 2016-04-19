@@ -74,7 +74,7 @@ for (var i = 0; i < 10; ++i) {
     IN3.off();
     IN4.off();
 
-	date = Date.now()+200;
+	date = Date.now()+50;
 	while (Date.now() < date) {} 
 
 
@@ -93,7 +93,7 @@ for (var i = 0; i < 10; ++i) {
     IN3.off();
     IN4.off();
 
-	date = Date.now()+200;
+	date = Date.now()+50;
 	while (Date.now() < date) {} 
 
 
@@ -112,7 +112,7 @@ for (var i = 0; i < 10; ++i) {
     IN3.off();
     IN4.off();
 
-	date = Date.now()+200;
+	date = Date.now()+50;
 	while (Date.now() < date) {} 
 
 
@@ -131,7 +131,7 @@ for (var i = 0; i < 10; ++i) {
     IN4.off();
 
 
-	date = Date.now()+200;
+	date = Date.now()+50;
 	while (Date.now() < date) {} 
 }
 
