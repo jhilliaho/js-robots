@@ -42,7 +42,7 @@ board.on("ready", function() {
 		pin: 7,
 	});
 
-	ENX.brightness(0);
+	ENX.off();
 	
 	IN1X.off();
 	IN2X.off();
