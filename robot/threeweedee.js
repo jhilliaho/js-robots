@@ -42,7 +42,7 @@ board.on("ready", function() {
 		pin: 7,
 	});
 
-	ENX.brightness(150);
+	ENX.brightness(80);
 	
 	IN1X.off();
 	IN2X.off();
@@ -50,41 +50,41 @@ board.on("ready", function() {
 	IN4X.off();
 
 
-
-
 	setTimeout(function(){
 		IN1X.off();
 		IN2X.on();
 		IN3X.off();
 		IN4X.on();
-		i--;
-	},10);
+	},100);
 
 	setTimeout(function(){
 		IN1X.on();
 		IN2X.off();
 		IN3X.off();
 		IN4X.on();
-		i--;
-	},20);
+	},200);
 
 	setTimeout(function(){
 		IN1X.on();
 		IN2X.off();
 		IN3X.on();
 		IN4X.off();
-		i--;
-	},30);
+	},300);
 
 	setTimeout(function(){
 		IN1X.off();
 		IN2X.on();
 		IN3X.on();
 		IN4X.off();
-		i--;
-	},40);
+	},400);
 
-
+	setTimeout(function(){
+		IN1X.off();
+		IN2X.off();
+		IN3X.off();
+		IN4X.off();
+		ENX.brightness(0);
+	},400);
 
 
 
