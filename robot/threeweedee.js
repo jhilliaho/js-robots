@@ -49,9 +49,9 @@ board.on("ready", function() {
 	});
 
 	ENA.on();
-	ENA.brightness(80);
+	ENA.brightness(255);
 	ENB.on();
-	ENB.brightness(80);
+	ENB.brightness(255);
 	
 	IN1.off();
 	IN2.off();
@@ -60,42 +60,39 @@ board.on("ready", function() {
 
 	var date = 0;
 
-
+for (var i = 0; i < 10; ++i) {
     IN1.off();
-    IN2.on();
     IN3.off();
+    IN2.on();
     IN4.on();
-
-	date = Date.now()+100;
+	date = Date.now()+10;
 	while (Date.now() < date) {} 
-
-    IN1.on();
     IN2.off();
     IN3.off();
-    IN4.on();
-	date = Date.now()+100;
-	while (Date.now() < date) {} 
-
-
     IN1.on();
-    IN2.off();
-    IN3.on();
-    IN4.off();
-	date = Date.now()+100;
+    IN4.on();
+	date = Date.now()+10;
 	while (Date.now() < date) {} 
-
-
+    IN2.off();
+    IN4.off();
+    IN1.on();
+    IN3.on();
+	date = Date.now()+10;
+	while (Date.now() < date) {} 
     IN1.off();
+    IN4.off();
     IN2.on();
     IN3.on();
-    IN4.off();
-	date = Date.now()+100;
+	date = Date.now()+10;
 	while (Date.now() < date) {} 
+}
 
 	console.log("Shut down");
 
 	ENA.off();
+	ENA.brightness(0);
 	ENB.off();
+	ENB.brightness(0);
 	
 	IN1.off();
 	IN2.off();
