@@ -55,32 +55,28 @@ for (var i = 0; i < 10; ++i) {
     IN3.low();
     IN4.high();
 
-	date = Date.now()+8;
-	while (Date.now() < date) {} 
+    for (var i = 0; i < 10000; ++i) {}
 
     IN2.low();
     IN1.high();
     IN3.low();
     IN4.high();
 
-	date = Date.now()+8;
-	while (Date.now() < date) {} 
+    for (var i = 0; i < 10000; ++i) {}
 
     IN2.low();
     IN1.high();
     IN4.low();
     IN3.high();
 
-	date = Date.now()+8;
-	while (Date.now() < date) {} 
+    for (var i = 0; i < 10000; ++i) {}
 
     IN1.low();
     IN2.high();
     IN4.low();
     IN3.high();
 
-	date = Date.now()+8;
-	while (Date.now() < date) {} 
+    for (var i = 0; i < 10000; ++i) {}
 
 }
 
