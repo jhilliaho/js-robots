@@ -36,11 +36,16 @@ board.on("ready", function() {
 		type: "digital"
 	});
 
+	var ENA = new five.Pin({
+		pin: "P1-18",
+		type: "digital"
+	});
 	
 	IN1.low();
 	IN2.low();
 	IN3.low();
 	IN4.low();
+	ENA.high();
 
 	var date = 0;
 
@@ -93,6 +98,7 @@ for (var i = 0; i < 10; ++i) {
 	IN2.low();
 	IN3.low();
 	IN4.low();
+	ENA.low();
 
 
 
