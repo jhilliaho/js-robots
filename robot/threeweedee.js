@@ -21,13 +21,13 @@ board.on("ready", function() {
 	var IN1X = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
-		pin: 5,
+		pin: 4,
 	});
 
 	var IN2X = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
-		pin: 4,
+		pin: 5,
 	});
 
 	var IN3X = new five.Led({
@@ -53,30 +53,30 @@ board.on("ready", function() {
 var interval = setInterval(function(){
 	setTimeout(function(){
 		IN1X.off();
-		IN2X.on();
 		IN3X.off();
+		IN2X.on();
 		IN4X.on();
 	},0);
 
 	setTimeout(function(){
-		IN1X.on();
 		IN2X.off();
 		IN3X.off();
+		IN1X.on();
 		IN4X.on();
 	},50);
 
 	setTimeout(function(){
-		IN1X.on();
 		IN2X.off();
-		IN3X.on();
 		IN4X.off();
+		IN1X.on();
+		IN3X.on();
 	},100);
 
 	setTimeout(function(){
 		IN1X.off();
+		IN4X.off();
 		IN2X.on();
 		IN3X.on();
-		IN4X.off();
 	},150);
 
 }, 200);
