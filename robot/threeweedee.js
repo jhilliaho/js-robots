@@ -49,9 +49,9 @@ board.on("ready", function() {
 	});
 
 	ENA.on();
-	ENA.brightness(255);
+	ENA.brightness(128);
 	ENB.on();
-	ENB.brightness(255);
+	ENB.brightness(128);
 	
 	IN1.off();
 	IN2.off();
@@ -65,25 +65,25 @@ for (var i = 0; i < 10; ++i) {
     IN3.off();
     IN2.on();
     IN4.on();
-	date = Date.now()+1;
+	date = Date.now()+200;
 	while (Date.now() < date) {} 
     IN2.off();
     IN3.off();
     IN1.on();
     IN4.on();
-	date = Date.now()+1;
+	date = Date.now()+200;
 	while (Date.now() < date) {} 
     IN2.off();
     IN4.off();
     IN1.on();
     IN3.on();
-	date = Date.now()+1;
+	date = Date.now()+200;
 	while (Date.now() < date) {} 
     IN1.off();
     IN4.off();
     IN2.on();
     IN3.on();
-	date = Date.now()+1;
+	date = Date.now()+200;
 	while (Date.now() < date) {} 
 }
 
