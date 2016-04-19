@@ -62,26 +62,30 @@ board.on("ready", function() {
 
 for (var i = 0; i < 10; ++i) {
     IN1.off();
-    IN3.off();
     IN2.on();
-    IN4.on();
-	date = Date.now()+200;
-	while (Date.now() < date) {} 
-    IN2.off();
+
     IN3.off();
-    IN1.on();
     IN4.on();
 	date = Date.now()+200;
 	while (Date.now() < date) {} 
     IN2.off();
-    IN4.off();
     IN1.on();
+
+    IN3.off();
+    IN4.on();
+	date = Date.now()+200;
+	while (Date.now() < date) {} 
+    IN2.off();
+    IN1.on();
+
+    IN4.off();
     IN3.on();
 	date = Date.now()+200;
 	while (Date.now() < date) {} 
     IN1.off();
-    IN4.off();
     IN2.on();
+
+    IN4.off();
     IN3.on();
 	date = Date.now()+200;
 	while (Date.now() < date) {} 
