@@ -14,7 +14,7 @@ board.on("ready", function() {
 
 	console.log(1);
 	var IN1 = new five.Pin({
-		pin: 'GPIO18',
+		pin: 'GPIO0',
 		type: "digital"
 	});
 	console.log(1);
