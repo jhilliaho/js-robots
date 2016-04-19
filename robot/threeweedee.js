@@ -50,6 +50,7 @@ board.on("ready", function() {
 	IN4X.off();
 
 
+var interval = setInterval(function(){
 	setTimeout(function(){
 		IN1X.off();
 		IN2X.on();
@@ -78,13 +79,24 @@ board.on("ready", function() {
 		IN4X.off();
 	},150);
 
+}, 200);
+
 	setTimeout(function(){
+		clearInterval(interval);
 		IN1X.off();
 		IN2X.off();
 		IN3X.off();
 		IN4X.off();
 		ENX.brightness(0);
-	},200);
+	}, 4000);
+
+
+
+
+
+
+
+
 
 	console.log("connecting");
 	
