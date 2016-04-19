@@ -12,94 +12,41 @@ board.on("ready", function() {
 
 	board.io.i2cConfig(options);
 
-	var ENAJ = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 0,
-	});
-
-	var IN1J = new five.Led({
+	var ENX = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
 		pin: 1,
 	});
 
-	var IN2J = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 2,
-	});
-
-
-
-	var ENAK = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 6,
-	});
-
-	var IN1K = new five.Led({
+	var IN1X = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
 		pin: 4,
 	});
 
-	var IN2K = new five.Led({
+	var IN2X = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
 		pin: 5,
 	});
 
-	
-
-	var ENAL = new five.Led({
+	var IN3X = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
-		pin: 10,
+		pin: 6,
 	});
 
-	var IN1L = new five.Led({
+	var IN4X = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
-		pin: 8,
+		pin: 7,
 	});
 
-	var IN2L = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 9,
+	new five.Stepper({
+	  type: five.Stepper.TYPE.FOUR_WIRE,
+	  stepsPerRev: 200,
+	  pins: [ IN1X, IN2X, IN3X, IN4X ]
 	});
-
-
-	ENAJ.brightness(255);
-	IN1J.on();
-	IN2J.off();
-
-	ENAK.brightness(255);
-	IN1K.on();
-	IN2K.off();
-
-	ENAL.brightness(255);
-	IN1L.on();
-	IN2L.off();
-
-
-	setTimeout(function(){
-
-		ENAJ.brightness(0);
-		IN1J.off();
-		IN2J.off();
-
-		ENAK.brightness(0);
-		IN1K.off();
-		IN2K.off();
-
-		ENAL.brightness(0);
-		IN1L.off();
-		IN2L.off();
-
-
-	}, 3000);
 
 
 	console.log("connecting");
