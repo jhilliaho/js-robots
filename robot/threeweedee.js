@@ -14,25 +14,25 @@ board.on("ready", function() {
 
 	console.log(1);
 	var IN1 = new five.Pin({
-		pin: 16,
+		pin: 14,
 		type: "digital"
 	});
 	console.log(1);
 
 	var IN2 = new five.Pin({
-		pin: 18,
+		pin: 15,
 		type: "digital"
 	});
 	console.log(1);
 
 	var IN3 = new five.Pin({
-		pin: 22,
+		pin: 18,
 		type: "digital"
 	});
 	console.log(1);
 
 	var IN4 = new five.Pin({
-		pin: 29,
+		pin: 23,
 		type: "digital"
 	});
 
