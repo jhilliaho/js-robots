@@ -15,7 +15,7 @@ board.on("ready", function() {
 	var ENX = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
-		pin: 1,
+		pin: 0,
 	});
 
 	var IN1X = new five.Led({
@@ -49,7 +49,7 @@ board.on("ready", function() {
 	IN3X.off();
 	IN4X.off();
 
-var interval = setInterval(function(){
+
 	setTimeout(function(){
 		IN1X.off();
 		IN2X.on();
@@ -62,42 +62,29 @@ var interval = setInterval(function(){
 		IN2X.off();
 		IN3X.off();
 		IN4X.on();
-	},20);
+	},5);
 
 	setTimeout(function(){
 		IN1X.on();
 		IN2X.off();
 		IN3X.on();
 		IN4X.off();
-	},40);
+	},10);
 
 	setTimeout(function(){
 		IN1X.off();
 		IN2X.on();
 		IN3X.on();
 		IN4X.off();
-	},60);
-
-}, 80);
-
-
+	},15);
 
 	setTimeout(function(){
-		clearInterval(interval);
 		IN1X.off();
 		IN2X.off();
 		IN3X.off();
 		IN4X.off();
 		ENX.brightness(0);
-	}, 2000);
-
-
-
-
-
-
-
-
+	},20);
 
 	console.log("connecting");
 	
