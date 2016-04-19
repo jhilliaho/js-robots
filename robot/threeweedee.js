@@ -58,17 +58,6 @@ for (var i = 0; i < 10; ++i) {
 	date = Date.now()+8;
 	while (Date.now() < date) {} 
 
-	IN1.low();
-	IN2.low();
-	IN3.low();
-	IN4.low();
-
-	date = Date.now()+8;
-	while (Date.now() < date) {} 
-
-
-
-
     IN2.low();
     IN1.high();
     IN3.low();
@@ -77,17 +66,6 @@ for (var i = 0; i < 10; ++i) {
 	date = Date.now()+8;
 	while (Date.now() < date) {} 
 
-	IN1.low();
-	IN2.low();
-	IN3.low();
-	IN4.low();
-
-	date = Date.now()+8;
-	while (Date.now() < date) {} 
-
-
-
-
     IN2.low();
     IN1.high();
     IN4.low();
@@ -96,29 +74,10 @@ for (var i = 0; i < 10; ++i) {
 	date = Date.now()+8;
 	while (Date.now() < date) {} 
 
-	IN1.low();
-	IN2.low();
-	IN3.low();
-	IN4.low();
-
-	date = Date.now()+8;
-	while (Date.now() < date) {} 
-
-
-
-
     IN1.low();
     IN2.high();
     IN4.low();
     IN3.high();
-
-	date = Date.now()+8;
-	while (Date.now() < date) {}
-
-	IN1.low();
-	IN2.low();
-	IN3.low();
-	IN4.low();
 
 	date = Date.now()+8;
 	while (Date.now() < date) {} 
