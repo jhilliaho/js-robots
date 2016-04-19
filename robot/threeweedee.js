@@ -51,10 +51,10 @@ board.on("ready", function() {
 	ENA.off();
 	ENB.off();
 	
-	IN1X.off();
-	IN2X.off();
-	IN3X.off();
-	IN4X.off();
+	IN1.off();
+	IN2.off();
+	IN3.off();
+	IN4.off();
 
 
 
