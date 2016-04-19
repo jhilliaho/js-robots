@@ -42,7 +42,7 @@ board.on("ready", function() {
 		pin: 7,
 	});
 
-	ENX.brightness(80);
+	ENX.brightness(200);
 	
 	IN1X.off();
 	IN2X.off();
@@ -50,7 +50,6 @@ board.on("ready", function() {
 	IN4X.off();
 
 
-var interval = setInterval(function(){
 	setTimeout(function(){
 		IN1X.off();
 		IN3X.off();
@@ -79,17 +78,73 @@ var interval = setInterval(function(){
 		IN3X.on();
 	},150);
 
-}, 200);
+
 
 	setTimeout(function(){
-		clearInterval(interval);
 		IN1X.off();
+		IN3X.off();
+		IN2X.on();
+		IN4X.on();
+	},200);
+
+	setTimeout(function(){
 		IN2X.off();
 		IN3X.off();
-		IN4X.off();
-		ENX.brightness(0);
-	}, 1000);
+		IN1X.on();
+		IN4X.on();
+	},250);
 
+	setTimeout(function(){
+		IN2X.off();
+		IN4X.off();
+		IN1X.on();
+		IN3X.on();
+	},300);
+
+	setTimeout(function(){
+		IN1X.off();
+		IN4X.off();
+		IN2X.on();
+		IN3X.on();
+	},350);
+
+
+
+	setTimeout(function(){
+		IN1X.off();
+		IN3X.off();
+		IN2X.on();
+		IN4X.on();
+	},400);
+
+	setTimeout(function(){
+		IN2X.off();
+		IN3X.off();
+		IN1X.on();
+		IN4X.on();
+	},450);
+
+	setTimeout(function(){
+		IN2X.off();
+		IN4X.off();
+		IN1X.on();
+		IN3X.on();
+	},500);
+
+	setTimeout(function(){
+		IN1X.off();
+		IN4X.off();
+		IN2X.on();
+		IN3X.on();
+	},550);
+
+	setTimeout(function(){
+		IN1X.off();
+		IN4X.off();
+		IN2X.off();
+		IN3X.off();
+		ENX.brightness(0);
+	},550);
 
 
 
