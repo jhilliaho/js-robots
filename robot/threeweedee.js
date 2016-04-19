@@ -14,25 +14,25 @@ board.on("ready", function() {
 
 	console.log(1);
 	var IN1 = new five.Pin({
-		pin: "GPI12",
+		pin: "P1-11",
 		type: "digital"
 	});
 	console.log(1);
 
 	var IN2 = new five.Pin({
-		pin: "GPI13",
+		pin: "P1-13",
 		type: "digital"
 	});
 	console.log(1);
 
 	var IN3 = new five.Pin({
-		pin: "GPIO16",
+		pin: "P1-15",
 		type: "digital"
 	});
 	console.log(1);
 
 	var IN4 = new five.Pin({
-		pin: "GPIO26",
+		pin: "P1-16",
 		type: "digital"
 	});
 
