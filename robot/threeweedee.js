@@ -62,21 +62,21 @@ board.on("ready", function() {
 		IN2X.off();
 		IN3X.off();
 		IN4X.on();
-	},5);
+	},50);
 
 	setTimeout(function(){
 		IN1X.on();
 		IN2X.off();
 		IN3X.on();
 		IN4X.off();
-	},10);
+	},100);
 
 	setTimeout(function(){
 		IN1X.off();
 		IN2X.on();
 		IN3X.on();
 		IN4X.off();
-	},15);
+	},150);
 
 	setTimeout(function(){
 		IN1X.off();
@@ -84,7 +84,7 @@ board.on("ready", function() {
 		IN3X.off();
 		IN4X.off();
 		ENX.brightness(0);
-	},20);
+	},200);
 
 	console.log("connecting");
 	
