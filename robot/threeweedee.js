@@ -50,6 +50,7 @@ board.on("ready", function() {
 	IN4X.off();
 
 	for(var i = 0; i < 50; ++i) {
+		console.log(i);
 		IN1X.off();
 		IN1X.on();
 	}	
