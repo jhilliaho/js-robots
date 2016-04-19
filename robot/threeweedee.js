@@ -60,21 +60,13 @@ board.on("ready", function() {
 
 	var date = 0;
 
-for (var i = 0; i < 10; ++i) {
+for (var i = 0; i < 4; ++i) {
     IN1.off();
     IN2.on();
     IN3.off();
     IN4.on();
 
-	date = Date.now()+30;
-	while (Date.now() < date) {} 
-
-    IN1.off();
-    IN2.off();
-    IN3.off();
-    IN4.off();
-
-	date = Date.now()+300;
+	date = Date.now()+150;
 	while (Date.now() < date) {} 
 
 
@@ -85,15 +77,7 @@ for (var i = 0; i < 10; ++i) {
     IN3.off();
     IN4.on();
 
-	date = Date.now()+30;
-	while (Date.now() < date) {} 
-
-    IN1.off();
-    IN2.off();
-    IN3.off();
-    IN4.off();
-
-	date = Date.now()+300;
+	date = Date.now()+150;
 	while (Date.now() < date) {} 
 
 
@@ -104,15 +88,7 @@ for (var i = 0; i < 10; ++i) {
     IN4.off();
     IN3.on();
 
-	date = Date.now()+30;
-	while (Date.now() < date) {} 
-
-    IN1.off();
-    IN2.off();
-    IN3.off();
-    IN4.off();
-
-	date = Date.now()+300;
+	date = Date.now()+150;
 	while (Date.now() < date) {} 
 
 
@@ -122,16 +98,7 @@ for (var i = 0; i < 10; ++i) {
     IN4.off();
     IN3.on();
 
-	date = Date.now()+30;
-	while (Date.now() < date) {} 
-
-    IN1.off();
-    IN2.off();
-    IN3.off();
-    IN4.off();
-
-
-	date = Date.now()+300;
+	date = Date.now()+150;
 	while (Date.now() < date) {} 
 }
 
