@@ -88,10 +88,6 @@ for (var i = 0; i < 4; ++i) {
 
 	console.log("Shut down");
 
-	ENA.low();
-	ENA.brightness(0);
-	ENB.low();
-	ENB.brightness(0);
 	
 	IN1.low();
 	IN2.low();
