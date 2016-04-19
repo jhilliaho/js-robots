@@ -4,7 +4,7 @@ var board = new five.Board({
   io: new Raspi()
 });
 
-board.on("ready", function() {
+board.on("ready", functihigh() {
 
 	var options = {
 		address: 2
@@ -37,18 +37,18 @@ board.on("ready", function() {
 	});
 
 	
-	IN1.off();
-	IN2.off();
-	IN3.off();
-	IN4.off();
+	IN1.low();
+	IN2.low();
+	IN3.low();
+	IN4.low();
 
 	var date = 0;
 
 for (var i = 0; i < 4; ++i) {
-    IN1.off();
-    IN2.on();
-    IN3.off();
-    IN4.on();
+    IN1.low();
+    IN2.high();
+    IN3.low();
+    IN4.high();
 
 	date = Date.now()+150;
 	while (Date.now() < date) {} 
@@ -56,10 +56,10 @@ for (var i = 0; i < 4; ++i) {
 
 
 
-    IN2.off();
-    IN1.on();
-    IN3.off();
-    IN4.on();
+    IN2.low();
+    IN1.high();
+    IN3.low();
+    IN4.high();
 
 	date = Date.now()+150;
 	while (Date.now() < date) {} 
@@ -67,20 +67,20 @@ for (var i = 0; i < 4; ++i) {
 
 
 
-    IN2.off();
-    IN1.on();
-    IN4.off();
-    IN3.on();
+    IN2.low();
+    IN1.high();
+    IN4.low();
+    IN3.high();
 
 	date = Date.now()+150;
 	while (Date.now() < date) {} 
 
 
 
-    IN1.off();
-    IN2.on();
-    IN4.off();
-    IN3.on();
+    IN1.low();
+    IN2.high();
+    IN4.low();
+    IN3.high();
 
 	date = Date.now()+150;
 	while (Date.now() < date) {} 
@@ -88,15 +88,15 @@ for (var i = 0; i < 4; ++i) {
 
 	console.log("Shut down");
 
-	ENA.off();
+	ENA.low();
 	ENA.brightness(0);
-	ENB.off();
+	ENB.low();
 	ENB.brightness(0);
 	
-	IN1.off();
-	IN2.off();
-	IN3.off();
-	IN4.off();
+	IN1.low();
+	IN2.low();
+	IN3.low();
+	IN4.low();
 
 
 
