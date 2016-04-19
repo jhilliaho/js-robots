@@ -44,13 +44,13 @@ board.on("ready", function() {
 
 	var date = 0;
 
-for (var i = 0; i < 4; ++i) {
+for (var i = 0; i < 10; ++i) {
     IN1.low();
     IN2.high();
     IN3.low();
     IN4.high();
 
-	date = Date.now()+30;
+	date = Date.now()+5;
 	while (Date.now() < date) {} 
 
 
@@ -61,7 +61,7 @@ for (var i = 0; i < 4; ++i) {
     IN3.low();
     IN4.high();
 
-	date = Date.now()+30;
+	date = Date.now()+5;
 	while (Date.now() < date) {} 
 
 
@@ -72,7 +72,7 @@ for (var i = 0; i < 4; ++i) {
     IN4.low();
     IN3.high();
 
-	date = Date.now()+30;
+	date = Date.now()+5;
 	while (Date.now() < date) {} 
 
 
@@ -82,7 +82,7 @@ for (var i = 0; i < 4; ++i) {
     IN4.low();
     IN3.high();
 
-	date = Date.now()+30;
+	date = Date.now()+5;
 	while (Date.now() < date) {} 
 }
 
