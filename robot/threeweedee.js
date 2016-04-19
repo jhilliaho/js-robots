@@ -12,46 +12,11 @@ board.on("ready", function() {
 
 	board.io.i2cConfig(options);
 
-	var ENA = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 0,
-	});
 
-	var ENB = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 1,
-	});
-
-	var IN1 = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 4,
-	});
-
-	var IN2 = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 5,
-	});
-
-	var IN3 = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 6,
-	});
-
-	var IN4 = new five.Led({
-		address: 0x40,
-		controller: "PCA9685",
-		pin: 7,
-	});
-
-	ENA.on();
-	ENA.brightness(200);
-	ENB.on();
-	ENB.brightness(200);
+	var IN1 = new five.Pin("GPIO1");
+	var IN2 = new five.Pin("GPIO4");
+	var IN3 = new five.Pin("GPIO5");
+	var IN4 = new five.Pin("GPIO6");
 	
 	IN1.off();
 	IN2.off();
