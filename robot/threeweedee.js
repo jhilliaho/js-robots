@@ -21,13 +21,13 @@ board.on("ready", function() {
 	var IN1X = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
-		pin: 4,
+		pin: 5,
 	});
 
 	var IN2X = new five.Led({
 		address: 0x40,
 		controller: "PCA9685",
-		pin: 5,
+		pin: 4,
 	});
 
 	var IN3X = new five.Led({
@@ -88,7 +88,7 @@ var interval = setInterval(function(){
 		IN3X.off();
 		IN4X.off();
 		ENX.brightness(0);
-	}, 4000);
+	}, 1000);
 
 
 
