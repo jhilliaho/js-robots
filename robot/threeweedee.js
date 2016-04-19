@@ -49,75 +49,10 @@ board.on("ready", function() {
 	IN3X.off();
 	IN4X.off();
 
-
-	setTimeout(function(){
+	for(var i = 0; i < 50; ++i) {
 		IN1X.off();
-		IN3X.off();
-		IN2X.on();
-		IN4X.on();
-	},200);
-
-	setTimeout(function(){
-		IN2X.off();
-		IN3X.off();
 		IN1X.on();
-		IN4X.on();
-	},400);
-
-	setTimeout(function(){
-		IN2X.off();
-		IN4X.off();
-		IN1X.on();
-		IN3X.on();
-	},600);
-
-	setTimeout(function(){
-		IN1X.off();
-		IN4X.off();
-		IN2X.on();
-		IN3X.on();
-	},800);
-
-
-
-	setTimeout(function(){
-		IN1X.off();
-		IN3X.off();
-		IN2X.on();
-		IN4X.on();
-	},1000);
-
-	setTimeout(function(){
-		IN2X.off();
-		IN3X.off();
-		IN1X.on();
-		IN4X.on();
-	},1200);
-
-	setTimeout(function(){
-		IN2X.off();
-		IN4X.off();
-		IN1X.on();
-		IN3X.on();
-	},1400);
-
-	setTimeout(function(){
-		IN1X.off();
-		IN4X.off();
-		IN2X.on();
-		IN3X.on();
-	},1600);
-
-
-
-	setTimeout(function(){
-		IN1X.off();
-		IN4X.off();
-		IN2X.off();
-		IN3X.off();
-		ENX.brightness(0);
-	},1800);
-
+	}	
 
 
 
