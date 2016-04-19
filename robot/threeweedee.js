@@ -49,9 +49,9 @@ board.on("ready", function() {
 	});
 
 	ENA.on();
-	ENA.brightness(128);
+	ENA.brightness(50);
 	ENB.on();
-	ENB.brightness(128);
+	ENB.brightness(50);
 	
 	IN1.off();
 	IN2.off();
