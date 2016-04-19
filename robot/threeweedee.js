@@ -49,42 +49,47 @@ board.on("ready", function() {
 	IN3X.off();
 	IN4X.off();
 
-
+var interval = setInterval(function(){
 	setTimeout(function(){
 		IN1X.off();
 		IN2X.on();
 		IN3X.off();
 		IN4X.on();
-	},100);
+	},0);
 
 	setTimeout(function(){
 		IN1X.on();
 		IN2X.off();
 		IN3X.off();
 		IN4X.on();
-	},200);
+	},20);
 
 	setTimeout(function(){
 		IN1X.on();
 		IN2X.off();
 		IN3X.on();
 		IN4X.off();
-	},300);
+	},40);
 
 	setTimeout(function(){
 		IN1X.off();
 		IN2X.on();
 		IN3X.on();
 		IN4X.off();
-	},400);
+	},60);
+
+}, 80);
+
+
 
 	setTimeout(function(){
+		clearInterval(interval);
 		IN1X.off();
 		IN2X.off();
 		IN3X.off();
 		IN4X.off();
 		ENX.brightness(0);
-	},400);
+	}, 2000);
 
 
 
