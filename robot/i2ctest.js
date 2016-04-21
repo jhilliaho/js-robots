@@ -5,10 +5,7 @@ var board = new five.Board({
 });
 	
 board.on("ready", function() {
-	var options = {
-		address: 2
-	};
-	board.io.i2cConfig(options);
+	board.io.i2cConfig();
 
 	var lastData = [0,0,0]
 
@@ -27,7 +24,7 @@ board.on("ready", function() {
 
 			console.log("Got data", data);
 		})	
-		board.io.i2cWrite(0x8, [0x0,0x1,0x2,0x3]);
+		board.io.i2cWrite(0x8, 0x0, [0x0,0x1,0x2,0x3]);
 	}
 
 	setInterval(readNano, 3000	);	
