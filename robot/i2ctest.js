@@ -9,7 +9,7 @@ board.on("ready", function() {
 		address: 2
 	};
 
-	board.io.
+	board.io.i2cConfig(options);
 	var readNano = function readNano() {
 		board.io.i2cReadOnce(0x8, 3, function(data){
 
