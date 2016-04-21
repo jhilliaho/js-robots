@@ -15,7 +15,7 @@ board.on("ready", function() {
 
 			console.log("Got data", data);
 		})	
-		board.io.i2cWrite(0x8, [0x0,0x1,0x2,0x3]);
+		board.io.i2cWriteReg(0x8, 0, 0x2);
 	}
 
 	setInterval(readNano, 3000	);	
