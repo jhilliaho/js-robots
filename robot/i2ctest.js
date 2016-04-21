@@ -5,11 +5,8 @@ var board = new five.Board({
 });
 	
 board.on("ready", function() {
-	var options = {
-		address: 2
-	};
 
-	board.io.i2cConfig(options);
+	board.io.i2cConfig(100);
 	var readNano = function readNano() {
 
 		board.io.i2cWrite(0x8, [0x2]);
