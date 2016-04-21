@@ -12,6 +12,7 @@ board.on("ready", function() {
 
 	var readNano = function readNano() {
   		board.io.i2cWrite(0x8, 'hello');
+  		console.log("Wrote");
 	}
 
 	setInterval(readNano, 1000	);	
