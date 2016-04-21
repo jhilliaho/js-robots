@@ -5,30 +5,8 @@ var board = new five.Board({
 });
 	
 board.on("ready", function() {
-	board.io.i2cConfig();
-
-	var lastData = [0,0,0]
-
-	var sendState = function sendState(data){
-		console.log("Sending data: ", data);
-	}
-
-	var sendPullUp = function sendPullUp(count) {
-		console.log("Sending pull-up!", count);
-	}
-
-	var dataCounter = 0;
-
-	var readNano = function readNano() {
-		board.io.i2cReadOnce(0x8, 3, function(data){
-
-			console.log("Got data", data);
-		})	
-		board.io.i2cWrite(0x8, 0x0, [0x0,0x1,0x2,0x3]);
-	}
-
-	setInterval(readNano, 3000	);	
-
+  this.i2cConfig();
+  this.i2cWrite(0x08, [0x02, 0x03]);
 });
 
 
