@@ -47,38 +47,27 @@ board.on("ready", function() {
 	IN4.low();
 	ENA.high();
 
-	var date = 0;
 
-for (var i = 0; i < 10; ++i) {
+//1
     IN1.low();
     IN2.high();
     IN3.low();
     IN4.high();
-
-    for (var i = 0; i < 100000000; ++i) {}
-
+//2
     IN2.low();
     IN1.high();
     IN3.low();
     IN4.high();
-
-    for (var i = 0; i < 100000000; ++i) {}
-
+//3
     IN2.low();
     IN1.high();
     IN4.low();
     IN3.high();
-
-    for (var i = 0; i < 100000000; ++i) {}
-
+//4
     IN1.low();
     IN2.high();
     IN4.low();
     IN3.high();
-
-    for (var i = 0; i < 100000000; ++i) {}
-
-}
 
 	console.log("Shut down");
 
