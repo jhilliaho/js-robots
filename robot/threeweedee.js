@@ -54,7 +54,7 @@ board.on("ready", function() {
 
 	}
 	calcMotorSpeeds();
-	setInterval(calcMotorSpeeds, 5000);	
+	setInterval(calcMotorSpeeds, 500);	
 
 });
 
