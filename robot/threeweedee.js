@@ -44,7 +44,7 @@ board.on("ready", function() {
 /*
 		// Nollasuunta:
 		motor1.dir = 1;
-		motor2.dir = 0;
+		motor2.dir = 0; // Merkityksetön
 		motor3.dir = 0;
 
 		motor1.speed = 100;
@@ -52,13 +52,14 @@ board.on("ready", function() {
 		motor3.speed = 100;		
 */
 
+		// 60*
 		motor1.dir = 1;
 		motor2.dir = 0;
 		motor3.dir = 0;
 
-		motor1.speed = 0;
-		motor2.speed = 0;
-		motor3.speed = 0;	
+		motor1.speed = 100;
+		motor2.speed = 100;
+		motor3.speed = 0; // Merkityksetön
 
 /*
 		motor1.dir = random(1,1);
