@@ -12,8 +12,15 @@ board.on("ready", function() {
 	board.io.i2cConfig(options);
 	var readNano = function readNano() {
 
-		board.io.i2cWrite(0x8, ["H", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d", "!"]);
-		console.log("Tried");
+	var str = "Hello";
+	var bytes = [];
+
+	for (var i = 0; i < str.length; ++i) {
+	    bytes.push(str.charCodeAt(i));
+	}
+
+		board.io.i2cWrite(0x8, bytes);
+		console.log("Tried", bytes );
 	}
 
 	setInterval(readNano, 2000	);	
