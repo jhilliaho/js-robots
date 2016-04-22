@@ -89,9 +89,9 @@ board.on("ready", function() {
 			motor2.dir = 1;
 			motor3.dir = 0;
 
-			motor1.speed = 100;
-			motor2.speed = 200;
-			motor3.speed = 200;				
+			motor1.speed = 50;
+			motor2.speed = 100;
+			motor3.speed = 100;				
 		}
 
 
