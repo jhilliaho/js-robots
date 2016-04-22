@@ -13,18 +13,18 @@ board.on("ready", function() {
 	board.io.i2cConfig(options);
 
 	var motor1 = {
-		dir: 1,
-		speed: 100
+		dir: 0,
+		speed: 10
 	}
 
 	var motor2 = {
 		dir: 0,
-		speed: 50
+		speed: 10
 	}
 
 	var motor3 = {
 		dir: 0,
-		speed: 50
+		speed: 10
 	}
 
 	var options = {
