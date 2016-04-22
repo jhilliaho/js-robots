@@ -10,17 +10,17 @@ board.on("ready", function() {
 
 	var motor1 = {
 		dir: 0,
-		speed: 40
+		speed: 0
 	}
 
 	var motor2 = {
 		dir: 1,
-		speed: 120
+		speed: 0
 	}
 
 	var motor3 = {
 		dir: 1,
-		speed: 200
+		speed: 0
 	}
 
 	var options = {
