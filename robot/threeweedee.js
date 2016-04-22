@@ -32,12 +32,13 @@ board.on("ready", function() {
 		str += "X" + motor1.dir + motor1.speed;
 		str += "Y" + motor2.dir + motor2.speed;
 		str += "Z" + motor3.dir + motor3.speed;
-		
+
 		var bytes = [];
 		for (var i = 0; i < str.length; ++i) {
 		    bytes.push(str.charCodeAt(i));
 		}
 		board.io.i2cWrite(0x8, bytes);
+		console.log("Sent ", str);
 	}
 	setInterval(readNano, 2000	);	
 });
