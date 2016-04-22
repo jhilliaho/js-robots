@@ -6,16 +6,17 @@ var board = new five.Board({
 	
 board.on("ready", function() {
 	var options = {
-		address: 8
+		address: 2
 	};
 
-	board.io.i2cConfig(100);
+	board.io.i2cConfig(options);
 	var readNano = function readNano() {
 
 		board.io.i2cWrite(0x8, [0x2]);
+		console.log("Tried");
 	}
 
-	setInterval(readNano, 3000	);	
+	setInterval(readNano, 500	);	
 
 });
 
