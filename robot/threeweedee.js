@@ -124,15 +124,15 @@ board.on("ready", function() {
 	}, 0);
 	setTimeout(function(){
 		calcMotorSpeeds(150);
-	}, 3000);
+	}, 6000);
 	setTimeout(function(){
 		calcMotorSpeeds(270);
-	}, 6000);
+	}, 12000);
 
 
 	setTimeout(function(){
 		stopMotors();
-	}, 10000);
+	}, 18000);
 
 });
 
