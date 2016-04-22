@@ -31,6 +31,16 @@ board.on("ready", function() {
 		address: 2
 	};
 
+	var stopMotors = function stopMotors(){
+		motor1.dir = 0;
+		motor2.dir = 0;
+		motor3.dir = 0;
+		motor1.speed = 0;
+		motor2.speed = 0;
+		motor3.speed = 0;	
+		sendMotorSpeeds();		
+	}
+
 	var sendMotorSpeeds = function sendMotorSpeeds() {
 		if (motor1.speed > 255) {motor1.speed = 255;}
 		if (motor2.speed > 255) {motor2.speed = 255;}
@@ -40,41 +50,61 @@ board.on("ready", function() {
 		console.log("Sent", motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir);
 	}
 
-	var calcMotorSpeeds = function calcMotorSpeeds() {
-/*
-		// Nollasuunta:
-		motor1.dir = 1;
-		motor2.dir = 0; // Merkityksetön
-		motor3.dir = 0;
+	var calcMotorSpeeds = function calcMotorSpeeds(angle) {
 
-		motor1.speed = 100;
-		motor2.speed = 0;
-		motor3.speed = 100;		
-*/
+		if (angle == 0) {
+			motor1.dir = 1;
+			motor2.dir = 0;
+			motor3.dir = 0;
 
-		// 60*
-		motor1.dir = 1;
-		motor2.dir = 0;
-		motor3.dir = 0;
+			motor1.speed = 100;
+			motor2.speed = 0;
+			motor3.speed = 100;				
+		}
 
-		motor1.speed = 0;
-		motor2.speed = 0;
-		motor3.speed = 0; // Merkityksetön
 
-/*
-		motor1.dir = random(1,1);
-		motor2.dir = random(1,1);
-		motor3.dir = random(1,1);
+		if (angle == 120) {
 
-		motor1.speed = random(250,250);
-		motor2.speed = random(250,250);
-		motor3.speed = random(250,250);
-*/
+			motor3.dir = 1;
+			motor1.dir = 0;
+			motor2.dir = 0;
+
+			motor3.speed = 100;
+			motor1.speed = 0;
+			motor2.speed = 100;		
+		}
+
+		if (angle == 240) {
+			motor2.dir = 1;
+			motor3.dir = 0;
+			motor1.dir = 0;
+
+			motor2.speed = 100;
+			motor3.speed = 0;
+			motor1.speed = 100;		
+		}
+
+
+
+
 		sendMotorSpeeds();
 
 	}
-	calcMotorSpeeds();
-	setInterval(calcMotorSpeeds, 500);	
+
+	setTimeout(function(){
+		calcMotorSpeeds(0);
+	}, 0);
+	setTimeout(function(){
+		calcMotorSpeeds(120);
+	}, 2000);
+
+	setTimeout(function(){
+		calcMotorSpeeds(240);
+	}, 4000);
+
+	setTimeout(function(){
+		stopMotors();
+	}, 6000);
 
 });
 
