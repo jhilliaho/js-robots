@@ -49,10 +49,9 @@ board.on("ready", function() {
 		motor1.speed = random(0,250);
 		motor1.speed = random(0,250);
 		motor1.speed = random(0,250);
-
+		sendMotorSpeeds();
 	}
 
-	setInterval(sendMotorSpeeds, 300);	
 	setInterval(calcMotorSpeeds, 5000);	
 
 });
