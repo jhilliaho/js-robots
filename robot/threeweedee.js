@@ -10,17 +10,17 @@ board.on("ready", function() {
 
 	var motor1 = {
 		dir: 0,
-		speed: 0
+		speed: 100
 	}
 
 	var motor2 = {
 		dir: 1,
-		speed: 0
+		speed: 50
 	}
 
 	var motor3 = {
 		dir: 1,
-		speed: 0
+		speed: 250
 	}
 
 	var options = {
@@ -29,6 +29,10 @@ board.on("ready", function() {
 
 	var readNano = function readNano() {
 		var str = "";
+
+		if (motor1.speed > 255) {motor1.speed = 255;}
+		if (motor2.speed > 255) {motor2.speed = 255;}
+		if (motor3.speed > 255) {motor3.speed = 255;}
 
 		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
 
