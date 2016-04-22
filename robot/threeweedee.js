@@ -29,16 +29,11 @@ board.on("ready", function() {
 
 	var readNano = function readNano() {
 		var str = "";
-		str += "X" + motor1.dir + motor1.speed;
-		str += "Y" + motor2.dir + motor2.speed;
-		str += "Z" + motor3.dir + motor3.speed;
 
-		var bytes = [];
-		for (var i = 0; i < str.length; ++i) {
-		    bytes.push(str.charCodeAt(i));
-		}
+		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
+
 		board.io.i2cWrite(0x8, bytes);
-		console.log("Sent ", str);
+		console.log("Sent", str);
 	}
 	setInterval(readNano, 2000	);	
 });
