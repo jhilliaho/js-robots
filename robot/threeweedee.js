@@ -57,8 +57,8 @@ board.on("ready", function() {
 		motor2.dir = 0;
 		motor3.dir = 0;
 
-		motor1.speed = 100;
-		motor2.speed = 100;
+		motor1.speed = 0;
+		motor2.speed = 0;
 		motor3.speed = 0; // Merkityksetön
 
 /*
