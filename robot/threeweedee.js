@@ -41,7 +41,7 @@ board.on("ready", function() {
 	}
 
 	var calcMotorSpeeds = function calcMotorSpeeds() {
-
+/*
 		motor1.dir = random(1,1);
 		motor2.dir = random(1,1);
 		motor3.dir = random(1,1);
@@ -50,6 +50,7 @@ board.on("ready", function() {
 		motor2.speed = random(250,250);
 		motor3.speed = random(250,250);
 		sendMotorSpeeds();
+*/
 	}
 	calcMotorSpeeds();
 	setInterval(calcMotorSpeeds, 5000);	
