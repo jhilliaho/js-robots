@@ -47,11 +47,11 @@ board.on("ready", function() {
 		motor3.dir = random(0,1);
 
 		motor1.speed = random(0,250);
-		motor1.speed = random(0,250);
-		motor1.speed = random(0,250);
+		motor2.speed = random(0,250);
+		motor3.speed = random(0,250);
 		sendMotorSpeeds();
 	}
-
+	calcMotorSpeeds();
 	setInterval(calcMotorSpeeds, 5000);	
 
 });
