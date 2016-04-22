@@ -12,11 +12,11 @@ board.on("ready", function() {
 	board.io.i2cConfig(options);
 	var readNano = function readNano() {
 
-		board.io.i2cWrite(0x8, "Hello there!");
+		board.io.i2cWrite(0x8, 'Hello');
 		console.log("Tried");
 	}
 
-	setInterval(readNano, 500	);	
+	setInterval(readNano, 2000	);	
 
 });
 
