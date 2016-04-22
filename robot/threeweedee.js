@@ -94,6 +94,26 @@ board.on("ready", function() {
 			motor3.speed = 50;				
 		}
 
+		if (angle == 150) {
+			motor3.dir = 1;
+			motor1.dir = 0;
+			motor2.dir = 0;
+
+			motor3.speed = 100;
+			motor1.speed = 50;
+			motor2.speed = 50;				
+		}
+
+		if (angle == 270) {
+			motor2.dir = 1;
+			motor3.dir = 0;
+			motor1.dir = 0;
+
+			motor2.speed = 100;
+			motor3.speed = 50;
+			motor1.speed = 50;				
+		}
+
 
 		sendMotorSpeeds();
 
@@ -102,6 +122,12 @@ board.on("ready", function() {
 	setTimeout(function(){
 		calcMotorSpeeds(30);
 	}, 0);
+	setTimeout(function(){
+		calcMotorSpeeds(150);
+	}, 3000);
+	setTimeout(function(){
+		calcMotorSpeeds(270);
+	}, 6000);
 
 
 	setTimeout(function(){
