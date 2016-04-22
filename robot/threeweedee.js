@@ -10,6 +10,9 @@ function random (low, high) {
 
 board.on("ready", function() {
 
+	// 1 = myötäpäivään
+	// 0 = vastapäivään
+
 	board.io.i2cConfig(options);
 
 	var motor1 = {
@@ -61,8 +64,6 @@ board.on("ready", function() {
 			motor2.speed = 0;
 			motor3.speed = 100;				
 		}
-
-
 		if (angle == 120) {
 
 			motor3.dir = 1;
@@ -73,7 +74,6 @@ board.on("ready", function() {
 			motor1.speed = 0;
 			motor2.speed = 100;		
 		}
-
 		if (angle == 240) {
 			motor2.dir = 1;
 			motor3.dir = 0;
@@ -84,7 +84,15 @@ board.on("ready", function() {
 			motor1.speed = 100;		
 		}
 
+		if (angle == 30) {
+			motor1.dir = 1;
+			motor2.dir = 1;
+			motor3.dir = 0;
 
+			motor1.speed = 100;
+			motor2.speed = 200;
+			motor3.speed = 200;				
+		}
 
 
 		sendMotorSpeeds();
@@ -92,15 +100,9 @@ board.on("ready", function() {
 	}
 
 	setTimeout(function(){
-		calcMotorSpeeds(0);
+		calcMotorSpeeds(30);
 	}, 0);
-	setTimeout(function(){
-		calcMotorSpeeds(120);
-	}, 2000);
 
-	setTimeout(function(){
-		calcMotorSpeeds(240);
-	}, 4000);
 
 	setTimeout(function(){
 		stopMotors();
