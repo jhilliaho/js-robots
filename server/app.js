@@ -43,6 +43,12 @@ io.on('connection', function (socket) {
 
 	socket.on('controllerDataFromBrowser', function (data) {
 		console.log("Sending controllerDataFromBrowser as speedAndAngleFromServer", data);
+		var data = {
+			angle1: posToAngle(x,y),
+			speed1: posToSpeed(x,y),
+			angle2: posToAngle(x,y),
+			speed2: posToSpeed(x,y)
+		}
 		socket.broadcast.emit("speedAndAngleFromServer", data);
 		console.log("angle and speed", posToAngle(data.x1, data.y1), posToSpeed(data.x1, data.y1));
   	});
