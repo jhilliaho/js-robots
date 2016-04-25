@@ -59,12 +59,12 @@ board.on("ready", function() {
 
 		if (angle == 0) {
 			motor1.dir = 1;
-			motor2.dir = 1;
-			motor3.dir = 1;
+			motor2.dir = 0;
+			motor3.dir = 0;
 
-			motor1.speed = 5;
-			motor2.speed = 5;
-			motor3.speed = 5;				
+			motor1.speed = 10;
+			motor2.speed = 0;
+			motor3.speed = 10;				
 		}
 
 		if (angle == 30) {
@@ -72,9 +72,9 @@ board.on("ready", function() {
 			motor2.dir = 0;
 			motor3.dir = 0;
 
-			motor1.speed = 100;
-			motor2.speed = 50;
-			motor3.speed = 50;				
+			motor1.speed = 10;
+			motor2.speed = 5;
+			motor3.speed = 5;				
 		}
 
 		if (angle == 60) {
@@ -82,9 +82,9 @@ board.on("ready", function() {
 			motor3.dir = 1;
 			motor1.dir = 1;
 
-			motor2.speed = 100;
+			motor2.speed = 10;
 			motor3.speed = 0;
-			motor1.speed = 100;		
+			motor1.speed = 10;		
 		}
 
 		if (angle == 90) {
@@ -92,9 +92,9 @@ board.on("ready", function() {
 			motor3.dir = 1;
 			motor1.dir = 1;
 
-			motor2.speed = 100;
-			motor3.speed = 50;
-			motor1.speed = 50;				
+			motor2.speed = 10;
+			motor3.speed = 5;
+			motor1.speed = 5;				
 		}
 
 		if (angle == 120) {
@@ -103,9 +103,9 @@ board.on("ready", function() {
 			motor1.dir = 0;
 			motor2.dir = 0;
 
-			motor3.speed = 100;
+			motor3.speed = 10;
 			motor1.speed = 0;
-			motor2.speed = 100;		
+			motor2.speed = 10;		
 		}
 
 		if (angle == 150) {
@@ -113,9 +113,9 @@ board.on("ready", function() {
 			motor1.dir = 0;
 			motor2.dir = 0;
 
-			motor3.speed = 100;
-			motor1.speed = 50;
-			motor2.speed = 50;				
+			motor3.speed = 10;
+			motor1.speed = 5;
+			motor2.speed = 5;				
 		}
 
 		if (angle == 180) {
@@ -123,9 +123,9 @@ board.on("ready", function() {
 			motor2.dir = 1;
 			motor3.dir = 1;
 
-			motor1.speed = 100;
+			motor1.speed = 10;
 			motor2.speed = 0;
-			motor3.speed = 100;				
+			motor3.speed = 10;				
 		}
 
 		if (angle == 210) {
@@ -133,7 +133,7 @@ board.on("ready", function() {
 			motor2.dir = 1;
 			motor3.dir = 1;
 
-			motor1.speed = 100;
+			motor1.speed = 10;
 			motor2.speed = 50;
 			motor3.speed = 50;				
 		}
@@ -143,9 +143,9 @@ board.on("ready", function() {
 			motor3.dir = 0;
 			motor1.dir = 0;
 
-			motor2.speed = 100;
+			motor2.speed = 10;
 			motor3.speed = 0;
-			motor1.speed = 100;		
+			motor1.speed = 10;		
 		}
 
 		if (angle == 270) {
@@ -153,9 +153,9 @@ board.on("ready", function() {
 			motor3.dir = 0;
 			motor1.dir = 0;
 
-			motor2.speed = 100;
-			motor3.speed = 50;
-			motor1.speed = 50;				
+			motor2.speed = 10;
+			motor3.speed = 5;
+			motor1.speed = 5;				
 		}
 
 		if (angle == 300) {
@@ -163,9 +163,9 @@ board.on("ready", function() {
 			motor1.dir = 1;
 			motor2.dir = 1;
 
-			motor3.speed = 100;
+			motor3.speed = 10;
 			motor1.speed = 0;
-			motor2.speed = 100;		
+			motor2.speed = 10;		
 		}
 
 		if (angle == 330) {
@@ -173,32 +173,28 @@ board.on("ready", function() {
 			motor1.dir = 1;
 			motor2.dir = 1;
 
-			motor3.speed = 100;
-			motor1.speed = 50;
-			motor2.speed = 50;				
+			motor3.speed = 10;
+			motor1.speed = 5;
+			motor2.speed = 5;				
 		}
-
-
 
 		sendMotorSpeeds();
 
 	}
 
-	setTimeout(function(){
-		calcMotorSpeeds(0);
-	}, 1000);
+	// SOCKET.IO
+	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
 
+	socket.on("disconnect", function(){
+		console.log("DISCONNECTED");
+	});
 
+	socket.on('connect', function() {
+		console.log('Connected!');
+		socket.emit('RobConnected');
+	});
 
-
-
-
-
-
-
-	setTimeout(function(){
-		stopMotors();
-	}, 20000);
+	stopMotors();
 
 });
 
