@@ -196,7 +196,9 @@ board.on("ready", function() {
 
 
 
-
+	setTimeout(function(){
+		stopMotors();
+	}, 2000);
 
 });
 
