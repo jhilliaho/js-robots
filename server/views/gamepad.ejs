@@ -86,7 +86,7 @@ function sendValues(override){
 
 		console.log("Sending values ", pos);
 
-		socket.emit('newData', pos);
+		socket.emit('controllerDataFromBrowser', pos);
 	}
 };
 

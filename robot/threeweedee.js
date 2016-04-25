@@ -192,16 +192,12 @@ board.on("ready", function() {
 	    console.log("Disconnected from server");
 	});
 
-	socket.on("input1DataFromBrowser", function(data){
-		console.log("Got new interval, ", data);
-		sendDataInterval = data;
+	socket.on("speedAndAngleFromServer", function(data){
+		console.log("Got new data, ", data);
 	});
 
 	socket.once('connect', function() {
 	    console.log('Connected to server');
-		var options = {
-			address: 2
-		};
 	});
 
 	stopMotors();

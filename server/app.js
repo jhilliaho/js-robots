@@ -14,13 +14,11 @@ app.use('/static', express.static(__dirname + '/public'));
 io.on('connection', function (socket) {
 	console.log("connection");
 
-	socket.on('newData', function (data) {
-		console.log("NewData", data);
-		socket.broadcast.emit("newData", data);
+	socket.on('controllerDataFromBrowser', function (data) {
+		console.log("Sending controllerDataFromBrowser as speedAndAngleFromServer", data);
+		socket.broadcast.emit("speedAndAngleFromServer", data);
   	});
 });
-
-
 
 app.get('/', function(req, res, next) {
 	res.render('gamepad');
