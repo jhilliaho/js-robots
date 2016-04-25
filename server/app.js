@@ -21,7 +21,7 @@ io.on('connection', function (socket) {
 	socket.on('controllerDataFromBrowser', function (data) {
 		console.log("Sending controllerDataFromBrowser as speedAndAngleFromServer", data);
 		socket.broadcast.emit("speedAndAngleFromServer", data);
-		console.log("angle", posToAngle(data.x1, y1));
+		console.log("angle", posToAngle(data.x1, data.y1));
   	});
 });
 
