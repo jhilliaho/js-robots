@@ -7,7 +7,8 @@ app.set('view engine', 'ejs');
 var imageDate = 0;
 
 var posToAngle = function posToAngle(x, y) {
-	return Math.atan(y/x);
+
+	return angle = Math.atan(y/x) * 3.1415926535 * 2;
 }
 
 server.listen(3000);
