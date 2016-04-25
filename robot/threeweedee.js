@@ -74,9 +74,9 @@ board.on("ready", function() {
 		motor2.speed *= speedMultiplier;
 		motor3.speed *= speedMultiplier;
 
-		motor1.speed += (angle-180)/6;
-		motor2.speed += (angle-180)/6;
-		motor3.speed += (angle-180)/6;
+		motor1.speed += (angle-180)/2;
+		motor2.speed += (angle-180)/2;
+		motor3.speed += (angle-180)/2;
 
 		if (motor1.speed < 0) {
 			if (motor1.dir == 0) {motor1.dir = 1;}
