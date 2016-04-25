@@ -25,7 +25,7 @@ var posToAngle = function posToAngle(x, y) {
 }
 
 var posToSpeed = function posToAngle(x, y) {
-	var speed = Math.sqrt(pow(x,2) + pow(y,2));
+	var speed = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
 	return Math.round(speed);
 
 }
