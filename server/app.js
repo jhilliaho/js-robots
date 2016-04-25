@@ -6,7 +6,7 @@ app.set('view engine', 'ejs');
 
 var imageDate = 0;
 
-var posToAngle = function posToAngle(x, y) {
+var posToAngle = function posToAngle(y,x) {
 	var angle = 0;
 	var angle = Math.atan(y/x) * 57.2957795;
 
