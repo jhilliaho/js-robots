@@ -10,7 +10,7 @@ var posToAngle = function posToAngle(x, y) {
 	var angle = 0;
 	var angle = Math.atan(y/x) * 57.295;
 	if (x < 0)
-	if (x < 0 || (x < 0 && y < 0) {
+	if (x < 0 || (x < 0 && y < 0)) {
 		angle = 180 + angle;
 	}
 	else if (y < 0) {
