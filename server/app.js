@@ -8,7 +8,7 @@ var imageDate = 0;
 
 var posToAngle = function posToAngle(x, y) {
 
-	return angle = Math.atan(y/x) * 3.1415926535 * 2;
+	return angle = Math.atan(y/x) * 57.295;
 }
 
 server.listen(3000);
