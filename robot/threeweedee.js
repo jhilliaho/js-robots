@@ -59,12 +59,12 @@ board.on("ready", function() {
 
 		if (angle == 0) {
 			motor1.dir = 1;
-			motor2.dir = 1;
-			motor3.dir = 1;
+			motor2.dir = 0;
+			motor3.dir = 0;
 
-			motor1.speed = 5;
-			motor2.speed = 5;
-			motor3.speed = 5;				
+			motor1.speed = 25;
+			motor2.speed = 0;
+			motor3.speed = 20;				
 		}
 
 		if (angle == 30) {
@@ -186,7 +186,7 @@ board.on("ready", function() {
 
 	setTimeout(function(){
 		calcMotorSpeeds(0);
-	}, 50);
+	}, 1000);
 
 
 
@@ -198,7 +198,7 @@ board.on("ready", function() {
 
 	setTimeout(function(){
 		stopMotors();
-	}, 10000);
+	}, 20000);
 
 });
 
