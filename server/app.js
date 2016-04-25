@@ -8,14 +8,26 @@ var imageDate = 0;
 
 var posToAngle = function posToAngle(x, y) {
 	var angle = 0;
-	var angle = Math.atan(y/x) * 57.295;
+	var angle = Math.atan(y/x) * 57.2957795;
+
 	if (x < 0 || (x < 0 && y < 0)) {
 		angle = 180 + angle;
 	}
 	else if (y < 0) {
 		angle = 360 + angle;
 	}
+
+	if (x == 0 && y == 0) {
+		angle = 0;
+	}
+
 	return Math.round(angle);
+}
+
+var posToSpeed = function posToAngle(x, y) {
+	var speed = Math.sqrt(pow(x,2) + pow(y,2));
+	return Math.round(speed);
+
 }
 
 server.listen(3000);
@@ -29,7 +41,7 @@ io.on('connection', function (socket) {
 	socket.on('controllerDataFromBrowser', function (data) {
 		console.log("Sending controllerDataFromBrowser as speedAndAngleFromServer", data);
 		socket.broadcast.emit("speedAndAngleFromServer", data);
-		console.log("angle", posToAngle(data.x1, data.y1));
+		console.log("angle and speed", posToAngle(data.x1, data.y1), posToAngle(data.x1, data.y1));
   	});
 });
 
