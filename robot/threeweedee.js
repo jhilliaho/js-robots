@@ -3,6 +3,8 @@ var Raspi = require("raspi-io");
 var board = new five.Board({
   io: new Raspi()
 });
+
+var io = require('socket.io-client');
 	
 function random (low, high) {
     return Math.round(Math.random() * (high - low) + low);
@@ -182,6 +184,17 @@ board.on("ready", function() {
 
 	}
 
+	// SOCKET.IO
+	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
+
+	socket.on("disconnect", function(){
+		console.log("DISCONNECTED");
+	});
+
+	socket.on('connect', function() {
+		console.log('Connected!');
+		socket.emit('RobConnected');
+	});
 
 	stopMotors();
 
