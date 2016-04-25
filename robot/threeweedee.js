@@ -59,12 +59,12 @@ board.on("ready", function() {
 
 		if (angle == 0) {
 			motor1.dir = 1;
-			motor2.dir = 0;
-			motor3.dir = 0;
+			motor2.dir = 1;
+			motor3.dir = 1;
 
-			motor1.speed = 15;
-			motor2.speed = 0;
-			motor3.speed = 15;				
+			motor1.speed = 5;
+			motor2.speed = 5;
+			motor3.speed = 5;				
 		}
 
 		if (angle == 30) {
