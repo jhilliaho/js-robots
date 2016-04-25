@@ -55,9 +55,12 @@ board.on("ready", function() {
 		console.log("Sent", motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir);
 	}
 
-	var calcMotorSpeeds = function calcMotorSpeeds(angle) {
+	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle) {
 
+		angle = Math.round(rawAngle/30)*30;
 		while (angle >= 360) {angle -= 360;}
+
+		console.log("Calculating motor speed for " rawAngle, angle);
 
 		if (angle == 0) {
 			motor1.dir = 1;
@@ -193,7 +196,8 @@ board.on("ready", function() {
 	});
 
 	socket.on("speedAndAngleFromServer", function(data){
-		console.log("Got new data, ", data);
+		calcMotorSpeeds(data.angle1);
+
 	});
 
 	socket.once('connect', function() {
