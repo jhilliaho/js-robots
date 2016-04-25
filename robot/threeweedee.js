@@ -60,7 +60,7 @@ board.on("ready", function() {
 		angle = Math.round(rawAngle/30)*30;
 		while (angle >= 360) {angle -= 360;}
 
-		console.log("Calculating motor speed for " rawAngle, angle);
+		console.log("Calculating motor speed for ", rawAngle, angle);
 
 		if (angle == 0) {
 			motor1.dir = 1;
