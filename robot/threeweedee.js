@@ -37,6 +37,7 @@ board.on("ready", function() {
 	};
 
 	var stopMotors = function stopMotors(){
+		console.log("Stopping motors");
 		motor1.dir = 0;
 		motor2.dir = 0;
 		motor3.dir = 0;
