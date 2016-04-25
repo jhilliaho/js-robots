@@ -141,8 +141,8 @@ board.on("ready", function() {
 			motor3.dir = 1;
 
 			motor1.speed = 10;
-			motor2.speed = 50;
-			motor3.speed = 50;				
+			motor2.speed = 5;
+			motor3.speed = 5;				
 		}
 
 		if (angle == 240) {
