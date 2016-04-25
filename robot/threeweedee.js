@@ -188,49 +188,6 @@ board.on("ready", function() {
 		calcMotorSpeeds(0);
 	}, 1000);
 
-	setTimeout(function(){
-		calcMotorSpeeds(30);
-	}, 2000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(60);
-	}, 3000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(90);
-	}, 4000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(120);
-	}, 5000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(150);
-	}, 6000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(180);
-	}, 7000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(210);
-	}, 8000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(240);
-	}, 9000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(270);
-	}, 10000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(300);
-	}, 11000);
-
-	setTimeout(function(){
-		calcMotorSpeeds(330);
-	}, 12000);
 
 
 
@@ -241,7 +198,7 @@ board.on("ready", function() {
 
 	setTimeout(function(){
 		stopMotors();
-	}, 18000);
+	}, 20000);
 
 });
 
