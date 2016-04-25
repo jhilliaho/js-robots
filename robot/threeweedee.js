@@ -43,7 +43,8 @@ board.on("ready", function() {
 		motor1.speed = 0;
 		motor2.speed = 0;
 		motor3.speed = 0;	
-		sendMotorSpeeds();		
+		sendMotorSpeeds();
+		
 	}
 
 	var sendMotorSpeeds = function sendMotorSpeeds() {
@@ -196,7 +197,12 @@ board.on("ready", function() {
 	});
 
 	socket.on("speedAndAngleFromServer", function(data){
-		calcMotorSpeeds(data.angle1);
+		if (data.speed1 == 0) {
+			stopMotors();
+		}
+		else {
+			calcMotorSpeeds(data.angle1);
+		}
 
 	});
 
