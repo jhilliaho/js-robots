@@ -187,7 +187,7 @@ board.on("ready", function() {
 
 		motor1.speed *= speedMultiplier;
 		motor2.speed *= speedMultiplier;
-		motor3.speed *= speedMultiplier;
+		motor3.speed *= speedMultiplier * 2;
 
 		sendMotorSpeeds();
 
@@ -206,7 +206,7 @@ board.on("ready", function() {
 			stopMotors();
 		}
 		else {
-			calcMotorSpeeds(data.angle1, data.speed1/20);
+			calcMotorSpeeds(data.angle1, data.speed1/4);
 		}
 
 	});
