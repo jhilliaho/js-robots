@@ -12,6 +12,9 @@ var posToAngle = function posToAngle(x, y) {
 	if (x < 0) {
 		angle = 180 + angle;
 	}
+	if (y > 0) {
+		angle = 360 + angle;
+	}
 	return angle;
 }
 
