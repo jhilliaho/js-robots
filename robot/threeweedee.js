@@ -186,7 +186,7 @@ board.on("ready", function() {
 
 	setTimeout(function(){
 		calcMotorSpeeds(0);
-	}, 1000);
+	}, 50);
 
 
 
@@ -198,7 +198,7 @@ board.on("ready", function() {
 
 	setTimeout(function(){
 		stopMotors();
-	}, 2000);
+	}, 10000);
 
 });
 
