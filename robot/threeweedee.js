@@ -184,16 +184,24 @@ board.on("ready", function() {
 
 	}
 
-	// SOCKET.IO
-	var socket = io.connect('http://46.101.48.115:8080', {reconnect: true});
+	console.log("connecting");
+	
+	var socket = require('socket.io-client')('http://46.101.79.118:3000');
 
 	socket.on("disconnect", function(){
-		console.log("DISCONNECTED");
+	    console.log("Disconnected from server");
 	});
 
-	socket.on('connect', function() {
-		console.log('Connected!');
-		socket.emit('RobConnected');
+	socket.on("input1DataFromBrowser", function(data){
+		console.log("Got new interval, ", data);
+		sendDataInterval = data;
+	});
+
+	socket.once('connect', function() {
+	    console.log('Connected to server');
+		var options = {
+			address: 2
+		};
 	});
 
 	stopMotors();
