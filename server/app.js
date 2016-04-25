@@ -6,6 +6,10 @@ app.set('view engine', 'ejs');
 
 var imageDate = 0;
 
+var posToAngle = function posToAngle(x, y) {
+	return Math.atan(y/x);
+}
+
 server.listen(3000);
 
 app.use('/static', express.static(__dirname + '/public'));
@@ -17,6 +21,7 @@ io.on('connection', function (socket) {
 	socket.on('controllerDataFromBrowser', function (data) {
 		console.log("Sending controllerDataFromBrowser as speedAndAngleFromServer", data);
 		socket.broadcast.emit("speedAndAngleFromServer", data);
+		console.log("angle", posToAngle(data.x1, y1));
   	});
 });
 
