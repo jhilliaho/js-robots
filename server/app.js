@@ -15,7 +15,7 @@ var posToAngle = function posToAngle(x, y) {
 	else if (y < 0) {
 		angle = 360 + angle;
 	}
-	return angle;
+	return Math.round(angle);
 }
 
 server.listen(3000);
