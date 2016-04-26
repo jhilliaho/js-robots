@@ -57,43 +57,132 @@ board.on("ready", function() {
 		//console.log("Sent", motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir);
 	}
 
-	var calcMotorSpeeds = function calcMotorSpeeds(angle, speedMultiplier) {
+	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle) {
 
+		angle = Math.round(rawAngle/30)*30;
+		while (angle >= 360) {angle -= 360;}
 
-		console.log("Calculating motor speed for ", angle);
+		console.log("Calculating motor speed for ", rawAngle, angle);
 
-		motor1.dir = 0;
-		motor2.dir = 0;
-		motor3.dir = 0;
+		if (angle == 0) {
+			motor1.dir = 1;
+			motor2.dir = 0;
+			motor3.dir = 0;
 
-		motor1.speed = -10;
-		motor2.speed = 0;
-		motor3.speed = 20;				
-
-		motor1.speed *= speedMultiplier;
-		motor2.speed *= speedMultiplier;
-		motor3.speed *= speedMultiplier;
-
-		motor1.speed += (angle-180)/2;
-		motor2.speed += (angle-180)/2;
-		motor3.speed += (angle-180)/2;
-
-		if (motor1.speed < 0) {
-			if (motor1.dir == 0) {motor1.dir = 1;}
-			else {motor1.dir = 0;}
-			motor1.speed = Math.abs(motor1.speed);
+			motor1.speed = 10;
+			motor2.speed = 0;
+			motor3.speed = 10;				
 		}
 
-		if (motor2.speed < 0) {
-			if (motor2.dir == 0) {motor2.dir = 1;}
-			else {motor2.dir = 0;}
-			motor2.speed = Math.abs(motor2.speed);
+		if (angle == 30) {
+			motor1.dir = 1;
+			motor2.dir = 0;
+			motor3.dir = 0;
+
+			motor1.speed = 10;
+			motor2.speed = 5;
+			motor3.speed = 5;				
 		}
 
-		if (motor3.speed < 0) {
-			if (motor3.dir == 0) {motor3.dir = 1;}
-			else {motor3.dir = 0;}
-			motor3.speed = Math.abs(motor3.speed);
+		if (angle == 60) {
+			motor2.dir = 0;
+			motor3.dir = 1;
+			motor1.dir = 1;
+
+			motor2.speed = 10;
+			motor3.speed = 0;
+			motor1.speed = 10;		
+		}
+
+		if (angle == 90) {
+			motor2.dir = 0;
+			motor3.dir = 1;
+			motor1.dir = 1;
+
+			motor2.speed = 10;
+			motor3.speed = 5;
+			motor1.speed = 5;				
+		}
+
+		if (angle == 120) {
+
+			motor3.dir = 1;
+			motor1.dir = 0;
+			motor2.dir = 0;
+
+			motor3.speed = 10;
+			motor1.speed = 0;
+			motor2.speed = 10;		
+		}
+
+		if (angle == 150) {
+			motor3.dir = 1;
+			motor1.dir = 0;
+			motor2.dir = 0;
+
+			motor3.speed = 10;
+			motor1.speed = 5;
+			motor2.speed = 5;				
+		}
+
+		if (angle == 180) {
+			motor1.dir = 0;
+			motor2.dir = 1;
+			motor3.dir = 1;
+
+			motor1.speed = 10;
+			motor2.speed = 0;
+			motor3.speed = 10;				
+		}
+
+		if (angle == 210) {
+			motor1.dir = 0;
+			motor2.dir = 1;
+			motor3.dir = 1;
+
+			motor1.speed = 10;
+			motor2.speed = 5;
+			motor3.speed = 5;				
+		}
+
+		if (angle == 240) {
+			motor2.dir = 1;
+			motor3.dir = 0;
+			motor1.dir = 0;
+
+			motor2.speed = 10;
+			motor3.speed = 0;
+			motor1.speed = 10;		
+		}
+
+		if (angle == 270) {
+			motor2.dir = 1;
+			motor3.dir = 0;
+			motor1.dir = 0;
+
+			motor2.speed = 10;
+			motor3.speed = 5;
+			motor1.speed = 5;				
+		}
+
+		if (angle == 300) {
+			motor3.dir = 0;
+			motor1.dir = 1;
+			motor2.dir = 1;
+
+			motor3.speed = 10;
+			motor1.speed = 0;
+			motor2.speed = 10;		
+		}
+
+		if (angle == 330) {
+			motor3.dir = 0;
+			motor1.dir = 1;
+			motor2.dir = 1;
+
+			motor3.speed = 10;
+			motor1.speed = 5;
+			motor2.speed = 5;				
 		}
 
 		sendMotorSpeeds();
@@ -113,7 +202,7 @@ board.on("ready", function() {
 			stopMotors();
 		}
 		else {
-			calcMotorSpeeds(data.angle1, data.speed1/4);
+			calcMotorSpeeds(data.angle1);
 		}
 
 	});
