@@ -221,6 +221,7 @@ board.on("ready", function() {
 
 process.on('uncaughtException', function(err) {
     console.log("ERROR: ", err);
+    return true;
 })
 
 
