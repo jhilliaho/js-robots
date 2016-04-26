@@ -185,6 +185,10 @@ board.on("ready", function() {
 			motor2.speed = 5;				
 		}
 
+		motor1.speed *= 20;
+		motor2.speed *= 20;	
+		motor3.speed *= 20;
+
 		sendMotorSpeeds();
 
 	}
