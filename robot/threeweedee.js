@@ -227,7 +227,7 @@ board.on("ready", function() {
 	});
 
 	socket.on("speedAndAngleFromServer", function(data){
-		if (data.speed1 == 0) {
+		if (data.speed1 == 0 && data.x2 == 0) {
 			stopMotors();
 		}
 		else {
