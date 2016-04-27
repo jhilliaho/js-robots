@@ -53,7 +53,14 @@ board.on("ready", function() {
 		if (motor2.speed > 255) {motor2.speed = 255;}
 		if (motor3.speed > 255) {motor3.speed = 255;}
 		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
-		board.io.i2cWrite(0x8, bytes);
+
+
+		try {
+			board.io.i2cWrite(0x8, bytes);
+		} catch (ex) {
+    		console.log("ERROR IN I2C WRITING", ex);
+		}
+
 		//console.log("Sent", motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir);
 	}
 
@@ -218,6 +225,8 @@ board.on("ready", function() {
 	stopMotors();
 
 });
+
+
 
 process.on('uncaughtException', function(err) {
     console.log("ERROR: ", err);
