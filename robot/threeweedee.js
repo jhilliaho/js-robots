@@ -214,6 +214,24 @@ board.on("ready", function() {
 			motor3.speed -= xPos;			
 		}
 
+		if (motor1.speed < 0) {
+			if (motor1.dir == 0) {motor1.dir = 1;}
+			else {motor1.dir = 0;}
+			motor1.speed = Math.abs(motor1.speed);
+		}
+
+		if (motor2.speed < 0) {
+			if (motor2.dir == 0) {motor2.dir = 1;}
+			else {motor2.dir = 0;}
+			motor2.speed = Math.abs(motor2.speed);
+		}
+
+		if (motor3.speed < 0) {
+			if (motor3.dir == 0) {motor3.dir = 1;}
+			else {motor1.dir = 0;}
+			motor3.speed = Math.abs(motor3.speed);
+		}
+
 		sendMotorSpeeds();
 
 	}
