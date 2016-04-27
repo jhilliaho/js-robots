@@ -64,7 +64,7 @@ board.on("ready", function() {
 		//console.log("Sent", motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir);
 	}
 
-	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle) {
+	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle, rawSpeed, xPos) {
 
 		angle = Math.round(rawAngle/30)*30;
 		while (angle >= 360) {angle -= 360;}
@@ -192,9 +192,27 @@ board.on("ready", function() {
 			motor2.speed = 5;				
 		}
 
-		motor1.speed *= 20;
-		motor2.speed *= 20;	
-		motor3.speed *= 20;
+		motor1.speed *= (rawSpeed/10);
+		motor2.speed *= (rawSpeed/10);	
+		motor3.speed *= (rawSpeed/10);
+
+		if (motor1.dir == 0) {
+			motor1.speed += xPos;
+		} else {
+			motor1.speed -= xPos;			
+		}
+
+		if (motor2.dir == 0) {
+			motor2.speed += xPos;
+		} else {
+			motor2.speed -= xPos;			
+		}
+
+		if (motor3.dir == 0) {
+			motor3.speed += xPos;
+		} else {
+			motor3.speed -= xPos;			
+		}
 
 		sendMotorSpeeds();
 
@@ -213,7 +231,7 @@ board.on("ready", function() {
 			stopMotors();
 		}
 		else {
-			calcMotorSpeeds(data.angle1);
+			calcMotorSpeeds(data.angle1, data.speed1, data.x2);
 		}
 
 	});
