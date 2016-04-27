@@ -197,21 +197,21 @@ board.on("ready", function() {
 		motor3.speed *= (rawSpeed/10);
 
 		if (motor1.dir == 0) {
-			motor1.speed += xPos;
+			motor1.speed -= xPos;
 		} else {
-			motor1.speed -= xPos;			
+			motor1.speed += xPos;			
 		}
 
 		if (motor2.dir == 0) {
-			motor2.speed += xPos;
+			motor2.speed -= xPos;
 		} else {
-			motor2.speed -= xPos;			
+			motor2.speed += xPos;			
 		}
 
 		if (motor3.dir == 0) {
-			motor3.speed += xPos;
+			motor3.speed -= xPos;
 		} else {
-			motor3.speed -= xPos;			
+			motor3.speed += xPos;			
 		}
 
 		if (motor1.speed < 0) {
