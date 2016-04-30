@@ -15,7 +15,8 @@ board.on("ready", function() {
 	// 1 = myötäpäivään
 	// 0 = vastapäivään
 
-	board.io.i2cConfig(options);
+
+	board.io.i2cConfig();
 
 	var motor1 = {
 		dir: 0,
@@ -32,9 +33,7 @@ board.on("ready", function() {
 		speed: 10
 	}
 
-	var options = {
-		address: 2
-	};
+
 
 	var stopMotors = function stopMotors(){
 		console.log("Stopping motors");
@@ -59,6 +58,7 @@ board.on("ready", function() {
 			board.io.i2cWrite(0x8, bytes);
 		} catch (ex) {
     		console.log("ERROR IN I2C WRITING", ex);
+			board.io.i2cConfig();
 		}
 
 		//console.log("Sent", motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir);
