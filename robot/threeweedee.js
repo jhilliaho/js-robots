@@ -51,7 +51,9 @@ board.on("ready", function() {
 		if (motor2.speed > 255) {motor2.speed = 255;}
 		if (motor3.speed > 255) {motor3.speed = 255;}
 		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
-		var bytes2 = [random(0,1), random(0,1), random(0,1)];
+		
+
+		var bytes2 = [motor1.speed ? 0 : 1,  motor2.speed ? 0 : 1, motor3.speed ? 0 : 1];
 
 		try {
 			board.io.i2cWrite(0x8, bytes);
