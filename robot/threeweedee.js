@@ -12,11 +12,8 @@ function random (low, high) {
 
 board.on("ready", function() {
 
-	// 1 = myötäpäivään
-	// 0 = vastapäivään
-
-
-	board.io.i2cConfig();
+	// 1 = clockwise
+	// 0 = counterclockwise
 
 	var motor1 = {
 		dir: 0,
@@ -48,21 +45,25 @@ board.on("ready", function() {
 	}
 
 	var sendMotorSpeeds = function sendMotorSpeeds() {
+		board.io.i2cConfig();
+	
 		if (motor1.speed > 255) {motor1.speed = 255;}
 		if (motor2.speed > 255) {motor2.speed = 255;}
 		if (motor3.speed > 255) {motor3.speed = 255;}
 		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
-
+		var bytes2 = [random(0,1), random(0,1), random(0,1)];
 
 		try {
 			board.io.i2cWrite(0x8, bytes);
+			board.io.i2cWrite(0x9, bytes2);
 		} catch (ex) {
     		console.log("ERROR IN I2C WRITING", ex);
     		console.log("TRIED TO WRITE ", bytes);
 			board.io.i2cConfig();
 		}
 
-		//console.log("Sent", motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir);
+
+
 	}
 
 	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle, rawSpeed, xPos) {
