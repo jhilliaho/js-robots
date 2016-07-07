@@ -1,6 +1,8 @@
 exports.calcMovement = calcMovement;
 
-var motor1, motor2, motor3 = {};
+var motor1 = {};
+var motor2 = {};
+var motor3 = {};
 
 function calcMovement(rawAngle, rawSpeed, xPos){
 
