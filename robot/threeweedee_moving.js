@@ -58,13 +58,13 @@ function calcMovement(rawAngle, rawSpeed, xPos){
 	}
 	*/
 
-	spd1 = 5;
-	spd2 = 5;
-	spd3 = 0;
+	spd1 = 10;
+	spd2 = 10;
+	spd3 = 10;
 
 	dir1 = 1;
-	dir2 = 0;
-	dir3 = 0;
+	dir2 = 1;
+	dir3 = 1;
 
 	// Calculate final speed
 	spd1 *= (rawSpeed/10);
@@ -92,6 +92,7 @@ function calcMovement(rawAngle, rawSpeed, xPos){
 		spd3 = Math.abs(spd3);
 	}
 
+	console.log(spd1, spd2, spd3, dir1, dir2, dir3);
 	return [spd1, spd2, spd3, dir1, dir2, dir3];
 
 }
