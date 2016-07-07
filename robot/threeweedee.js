@@ -1,3 +1,4 @@
+var moving = require("./threeweedee_moving.js");
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
@@ -6,7 +7,6 @@ var board = new five.Board({
 
 var io = require('socket.io-client');
 
-var moving = require("threeweedee_moving.js");
 
 function random (low, high) {
     return Math.round(Math.random() * (high - low) + low);
