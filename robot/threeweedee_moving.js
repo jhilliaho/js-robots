@@ -2,7 +2,7 @@ exports.calcMovement = calcMovement;
 
 var motor1, motor2, motor3 = {};
 
-function calcMovement(rawAngle, rawSpeed, xPos)){
+function calcMovement(rawAngle, rawSpeed, xPos){
 
 	//angle = Math.round(rawAngle/30)*30;
 	while (angle >= 360) {angle -= 360;}
