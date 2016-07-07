@@ -8,7 +8,6 @@ function calcMovement(rawAngle, rawSpeed, xPos){
 	while (angle >= 360) {angle -= 360;}
 
 
-	var sange = angle / 
 
 
 	if (angle == 0) {
