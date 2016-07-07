@@ -4,175 +4,91 @@ var motor1 = {};
 var motor2 = {};
 var motor3 = {};
 
+var dir1, dir2, dir3, spd1, spd2, spd3;
+dir1 = dir2 = dir3 = spd1 = spd2 = spd3 = 0;
+
 function calcMovement(rawAngle, rawSpeed, xPos){
 
-	angle = Math.round(rawAngle/30)*30;
-	while (angle >= 360) {angle -= 360;}
+	angle = Math.round(rawAngle);
+	var direction = 0;
+	var mirror = false;
+	
+	while (angle >= 360) {
+		angle -= 360;
+	}
 
+	while (angle >= 120) {
+		direction++;
+		angle -= 120;
+	}
 
+	if (angle >= 60) {
+		angle -= 60;
+		mirror = true;
+	}
 
+	angle = Math.round(angle/30)*30;
 
 	if (angle == 0) {
-		motor1.dir = 1;
-		motor2.dir = 0;
-		motor3.dir = 0;
+		dir1 = 1;
+		dir2 = 0;
+		dir3 = 0;
 
-		motor1.speed = 10;
-		motor2.speed = 0;
-		motor3.speed = 10;				
+		spd1 = 10;
+		spd2 = 0;
+		spd3 = 10;				
 	}
 
 	if (angle == 30) {
-		motor1.dir = 1;
-		motor2.dir = 0;
-		motor3.dir = 0;
+		dir1 = 1;
+		dir2 = 0;
+		dir3 = 0;
 
-		motor1.speed = 10;
-		motor2.speed = 5;
-		motor3.speed = 5;				
+		spd1 = 10;
+		spd2 = 5;
+		spd3 = 5;				
 	}
 
-	if (angle == 60) {
-		motor2.dir = 0;
-		motor3.dir = 1;
-		motor1.dir = 1;
-
-		motor2.speed = 10;
-		motor3.speed = 0;
-		motor1.speed = 10;		
+	if (mirror) {
+		dir1 = dir1 === 1 ? 0 : 1;
+		dir2 = dir2 === 1 ? 0 : 1;
+		dir3 = dir3 === 1 ? 0 : 1;
 	}
 
-	if (angle == 90) {
-		motor2.dir = 0;
-		motor3.dir = 1;
-		motor1.dir = 1;
-
-		motor2.speed = 10;
-		motor3.speed = 5;
-		motor1.speed = 5;				
+	while (direction > 0) {
+		direction--;
+		var temp = dir2;
+		dir2 = dir1;
+		dir1 = dir3;
+		dir3 = temp;
 	}
 
-	if (angle == 120) {
+	// Calculate final speed
+	spd1 *= (rawSpeed/10);
+	spd2 *= (rawSpeed/10);	
+	spd3 *= (rawSpeed/10);
 
-		motor3.dir = 1;
-		motor1.dir = 0;
-		motor2.dir = 0;
+	// Calculate rotation
+	spd1 += dir1 === 0 ? -xPos : xPos;
+	spd2 += dir2 === 0 ? -xPos : xPos;
+	spd3 += dir3 === 0 ? -xPos : xPos;
 
-		motor3.speed = 10;
-		motor1.speed = 0;
-		motor2.speed = 10;		
+
+	if (spd1 < 0) {
+		dir1 = dir1 === 0 ? 1 : 0;
+		spd1 = Math.abs(spd1);
 	}
 
-	if (angle == 150) {
-		motor3.dir = 1;
-		motor1.dir = 0;
-		motor2.dir = 0;
-
-		motor3.speed = 10;
-		motor1.speed = 5;
-		motor2.speed = 5;				
+	if (spd2 < 0) {
+		dir2 = dir2 === 0 ? 1 : 0;
+		spd2 = Math.abs(spd2);
 	}
 
-	if (angle == 180) {
-		motor1.dir = 0;
-		motor2.dir = 1;
-		motor3.dir = 1;
-
-		motor1.speed = 10;
-		motor2.speed = 0;
-		motor3.speed = 10;				
+	if (spd3 < 0) {
+		dir3 = dir3 === 0 ? 1 : 0;
+		spd3 = Math.abs(spd3);
 	}
 
-	if (angle == 210) {
-		motor1.dir = 0;
-		motor2.dir = 1;
-		motor3.dir = 1;
-
-		motor1.speed = 10;
-		motor2.speed = 5;
-		motor3.speed = 5;				
-	}
-
-	if (angle == 240) {
-		motor2.dir = 1;
-		motor3.dir = 0;
-		motor1.dir = 0;
-
-		motor2.speed = 10;
-		motor3.speed = 0;
-		motor1.speed = 10;		
-	}
-
-	if (angle == 270) {
-		motor2.dir = 1;
-		motor3.dir = 0;
-		motor1.dir = 0;
-
-		motor2.speed = 10;
-		motor3.speed = 5;
-		motor1.speed = 5;				
-	}
-
-	if (angle == 300) {
-		motor3.dir = 0;
-		motor1.dir = 1;
-		motor2.dir = 1;
-
-		motor3.speed = 10;
-		motor1.speed = 0;
-		motor2.speed = 10;		
-	}
-
-	if (angle == 330) {
-		motor3.dir = 0;
-		motor1.dir = 1;
-		motor2.dir = 1;
-
-		motor3.speed = 10;
-		motor1.speed = 5;
-		motor2.speed = 5;				
-	}
-
-	motor1.speed *= (rawSpeed/10);
-	motor2.speed *= (rawSpeed/10);	
-	motor3.speed *= (rawSpeed/10);
-
-	if (motor1.dir == 0) {
-		motor1.speed -= xPos;
-	} else {
-		motor1.speed += xPos;			
-	}
-
-	if (motor2.dir == 0) {
-		motor2.speed -= xPos;
-	} else {
-		motor2.speed += xPos;			
-	}
-
-	if (motor3.dir == 0) {
-		motor3.speed -= xPos;
-	} else {
-		motor3.speed += xPos;			
-	}
-
-	if (motor1.speed < 0) {
-		if (motor1.dir == 0) {motor1.dir = 1;}
-		else {motor1.dir = 0;}
-		motor1.speed = Math.abs(motor1.speed);
-	}
-
-	if (motor2.speed < 0) {
-		if (motor2.dir == 0) {motor2.dir = 1;}
-		else {motor2.dir = 0;}
-		motor2.speed = Math.abs(motor2.speed);
-	}
-
-	if (motor3.speed < 0) {
-		if (motor3.dir == 0) {motor3.dir = 1;}
-		else {motor1.dir = 0;}
-		motor3.speed = Math.abs(motor3.speed);
-	}
-
-	return [motor1, motor2, motor3];
+	return [spd1, spd2, spd3, dir1, dir2, dir3];
 
 }

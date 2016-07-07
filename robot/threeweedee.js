@@ -74,9 +74,18 @@ board.on("ready", function() {
 
 		var motorArr = moving.calcMovement(rawAngle, rawSpeed, xPos);
 
-		motor1 = motorArr[0];
-		motor2 = motorArr[1];
-		motor3 = motorArr[2];
+		motor1 = {
+			speed: motorArr[0],
+			dir: motorArr[3]
+		};
+		motor2 = {
+			speed: motorArr[1],
+			dir: motorArr[4]
+		};
+		motor3 = {
+			speed: motorArr[2],
+			dir: motorArr[5]
+		};
 		sendMotorSpeeds();
 
 	}
