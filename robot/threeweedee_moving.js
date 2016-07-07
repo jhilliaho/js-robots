@@ -12,7 +12,7 @@ function calcMovement(rawAngle, rawSpeed, xPos){
 	angle = Math.round(rawAngle);
 	var direction = 0;
 	var mirror = false;
-	
+	/*
 	while (angle >= 360) {
 		angle -= 360;
 	}
@@ -49,12 +49,6 @@ function calcMovement(rawAngle, rawSpeed, xPos){
 		spd3 = 5;				
 	}
 
-	if (mirror) {
-		dir1 = dir1 === 1 ? 0 : 1;
-		dir2 = dir2 === 1 ? 0 : 1;
-		dir3 = dir3 === 1 ? 0 : 1;
-	}
-
 	while (direction > 0) {
 		direction--;
 		var temp = dir2;
@@ -62,6 +56,15 @@ function calcMovement(rawAngle, rawSpeed, xPos){
 		dir1 = dir3;
 		dir3 = temp;
 	}
+	*/
+
+	spd1 = 5;
+	spd2 = 5;
+	spd3 = 0;
+
+	dir1 = 1;
+	dir2 = 0;
+	dir3 = 0;
 
 	// Calculate final speed
 	spd1 *= (rawSpeed/10);
