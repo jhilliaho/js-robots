@@ -1,98 +1,87 @@
-exports.calcMovement = calcMovement;
+// Node.js Module to calculate relative motor speeds by target angle for 3WD omniwheel robot
+//
+// Jani Hilliaho 2016
 
-var motor1 = {};
-var motor2 = {};
-var motor3 = {};
+(function(){
 
-var dir1, dir2, dir3, spd1, spd2, spd3;
-dir1 = dir2 = dir3 = spd1 = spd2 = spd3 = 0;
+	"use strict"
 
-function calcMovement(rawAngle, rawSpeed, xPos){
+	exports.calculateRelativeMotorSpeeds = calcMovement;
 
-	angle = Math.round(rawAngle);
-	var direction = 0;
-	var mirror = false;
-	/*
-	while (angle >= 360) {
-		angle -= 360;
+	// Function to multiply arrays
+	function multiplyArray(arr, multiplier) {
+		var temp = [];
+		for (var i = 0; i < arr.length; ++i) {
+			temp[i] = arr[i] * multiplier;
+		}
+		return temp;
 	}
 
-	while (angle >= 120) {
-		direction++;
-		angle -= 120;
+	// Function to calculate sum of two arrays
+	function sumOfArrays(arr1, arr2) {
+		if (arr1.length !== arr2.length) {
+			console.log("Arrays have different lengths");
+			return null;
+		}
+		var arr = [];
+		for (var i = 0; i < arr1.length; ++i) {
+			arr[i] = (arr1[i] + arr2[i]);
+		}
+		return arr;
 	}
 
-	if (angle >= 60) {
-		angle -= 60;
-		mirror = true;
+	// Function to round arrays
+	function roundArray(arr, digits){
+		var temp = [];
+		var multiplier = Math.pow(10, digits);
+		for (var i = 0; i < arr.length; ++i) {
+			temp[i] = Math.round(arr[i] * multiplier) / multiplier;
+		}
+		return temp;
 	}
 
-	angle = Math.round(angle/30)*30;
+	// Function to normalize arrays
+	function normalizeArray(arr) {
+		var max = 0;
+		for (var i = 0; i < arr.length; ++i) {
+			max = Math.abs(arr[i]) > max ? Math.abs(arr[i]) : max;
+		}
 
-	if (angle == 0) {
-		dir1 = 1;
-		dir2 = 0;
-		dir3 = 0;
-
-		spd1 = 10;
-		spd2 = 0;
-		spd3 = 10;				
+		for (var i = 0; i < arr.length; ++i) {
+			arr[i] = arr[i] / max;
+		}
+		return arr;
 	}
 
-	if (angle == 30) {
-		dir1 = 1;
-		dir2 = 0;
-		dir3 = 0;
-
-		spd1 = 10;
-		spd2 = 5;
-		spd3 = 5;				
+	// Function to convert degrees to radians
+	function degreesToRadians(degrees) {
+		return degrees / (180 / Math.PI);
 	}
 
-	while (direction > 0) {
-		direction--;
-		var temp = dir2;
-		dir2 = dir1;
-		dir1 = dir3;
-		dir3 = temp;
-	}
-	*/
+	// Function to calculate relative motor speeds
+	function calcMovement(angle){
 
-	spd1 = 10;
-	spd2 = 10;
-	spd3 = 10;
+		// Base angles: 0, 90, 180, 270, 360
+		var baseMovements = [[0, -1, 1], [1, -0.5, -0.5], [0, 1, -1], [-1, 0.5, 0.5], [0, -1, 1]];
+		
+		var quarter = 0;
 
-	dir1 = 1;
-	dir2 = 1;
-	dir3 = 1;
+		while (angle >= 360) {
+			angle -= 360;
+		}
 
-	// Calculate final speed
-	spd1 *= (rawSpeed/10);
-	spd2 *= (rawSpeed/10);	
-	spd3 *= (rawSpeed/10);
+		while (angle >= 90) {
+			quarter++;
+			angle -= 90;
+		}
 
-	// Calculate rotation
-	spd1 += dir1 === 0 ? -xPos : xPos;
-	spd2 += dir2 === 0 ? -xPos : xPos;
-	spd3 += dir3 === 0 ? -xPos : xPos;
+		if (angle == 0) {
+			return baseMovements[quarter];
+		}
 
+		var yVector = multiplyArray(baseMovements[quarter], Math.cos(degreesToRadians(angle)));
+		var xVector = multiplyArray(baseMovements[quarter+1], Math.sin(degreesToRadians(angle)));
 
-	if (spd1 < 0) {
-		dir1 = dir1 === 0 ? 1 : 0;
-		spd1 = Math.abs(spd1);
-	}
-
-	if (spd2 < 0) {
-		dir2 = dir2 === 0 ? 1 : 0;
-		spd2 = Math.abs(spd2);
-	}
-
-	if (spd3 < 0) {
-		dir3 = dir3 === 0 ? 1 : 0;
-		spd3 = Math.abs(spd3);
-	}
-
-	console.log(spd1, spd2, spd3, dir1, dir2, dir3);
-	return [spd1, spd2, spd3, dir1, dir2, dir3];
-
-}
+		return roundArray(sumOfArrays(xVector, yVector),3);
+	}	
+})()
