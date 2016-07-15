@@ -7,15 +7,8 @@ var board = new five.Board({
 
 var io = require('socket.io-client');
 
-
-function random (low, high) {
-    return Math.round(Math.random() * (high - low) + low);
-}
-
 board.on("ready", function() {
-
-	// 1 = clockwise
-	// 0 = counterclockwise
+	board.io.i2cConfig();
 
 	var motor1, motor2, motor3;
 
@@ -31,20 +24,21 @@ board.on("ready", function() {
 	}
 
 	var sendMotorSpeeds = function sendMotorSpeeds() {
-		board.io.i2cConfig();
 	
 		motor1.speed = Math.round(motor1.speed);
 		motor2.speed = Math.round(motor2.speed);
 		motor3.speed = Math.round(motor3.speed);
 
-		motor1.speed = motor1.speed > 255 ? 255 : motor1.speed < 0 ? 0 : motor1.speed;
+		motor1.speed = motor1.speed > 255 ? 255 : motor1.speed
+		motor1.speed = motor1.speed < 0 ? 0 : motor1.speed
 
-		if (motor1.speed > 255) {motor1.speed = 255;}
-		if (motor2.speed > 255) {motor2.speed = 255;}
-		if (motor3.speed > 255) {motor3.speed = 255;}
+		motor2.speed = motor2.speed > 255 ? 255 : motor2.speed
+		motor2.speed = motor2.speed < 0 ? 0 : motor2.speed
+
+		motor3.speed = motor3.speed > 255 ? 255 : motor3.speed
+		motor3.speed = motor3.speed < 0 ? 0 : motor3.speed
 
 		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
-		
 
 		var bytes2 = [motor1.speed ? 0 : 1,  motor2.speed ? 0 : 1, motor3.speed ? 0 : 1];
 
@@ -53,7 +47,7 @@ board.on("ready", function() {
 			board.io.i2cWrite(0x9, bytes2);
 		} catch (ex) {
     		console.log("ERROR IN I2C WRITING", ex);
-    		console.log("TRIED TO WRITE ", bytes);
+    		console.log("TRIED TO WRITE ", bytes, bytes2);
 			board.io.i2cConfig();
 		}
 	}
@@ -64,21 +58,12 @@ board.on("ready", function() {
 		speed = parseInt(speed);
 		rotation = parseInt(rotation);
 
-		console.log("Angle: ", rawAngle);
-		console.log("Speed: ", speed);
-		console.log("Rotation: ", rotation);
-
-		// Angle as degrees, rotation as decimal -1 - 1
+		// Angle as degrees
 		var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle);
 		
-		console.log(motorArr, speed);
-
 		motorArr[0] *= speed; //3
 		motorArr[1] *= speed; //2
 		motorArr[2] *= speed; //1
-
-		console.log(motorArr, rotation);
-
 
 		if (rotation > 0) {
 			motorArr[0] += rotation/2;
@@ -107,9 +92,7 @@ board.on("ready", function() {
 		console.log("M2: ", motor2);
 		console.log("M3: ", motor3);
 
-
 		sendMotorSpeeds();
-
 	}
 
 	console.log("connecting");
@@ -127,7 +110,6 @@ board.on("ready", function() {
 		else {
 			calcMotorSpeeds(data.angle1, data.speed1, data.x2);
 		}
-
 	});
 
 	socket.once('connect', function() {
