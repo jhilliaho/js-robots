@@ -92,6 +92,8 @@
 		sum[1] += rotation;
 		sum[2] += rotation;
 
+		console.log("Return from module: ", sum);
+
 		return roundArray(sumOfArrays,3);
 	}	
 })()
