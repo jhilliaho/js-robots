@@ -82,15 +82,15 @@
 		var yVector = multiplyArray(baseMovements[quarter], Math.cos(degreesToRadians(angle)));
 		var xVector = multiplyArray(baseMovements[quarter+1], Math.sin(degreesToRadians(angle)));
 
-		var sumOfArrays = sumOfArrays(xVector, yVector);
+		var sum = sumOfArrays(xVector, yVector);
 
-		sumOfArrays[0] *= speed;
-		sumOfArrays[1] *= speed;
-		sumOfArrays[2] *= speed;
+		sum[0] *= speed;
+		sum[1] *= speed;
+		sum[2] *= speed;
 
-		sumOfArrays[0] += rotation;
-		sumOfArrays[1] += rotation;
-		sumOfArrays[2] += rotation;
+		sum[0] += rotation;
+		sum[1] += rotation;
+		sum[2] += rotation;
 
 		return roundArray(sumOfArrays,3);
 	}	
