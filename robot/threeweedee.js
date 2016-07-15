@@ -87,6 +87,11 @@ board.on("ready", function() {
 		motorArr[0] *= speed;
 		motorArr[1] *= speed;
 		motorArr[2] *= speed;
+
+		motorArr[0] = parseInt(motorArr[0]);
+		motorArr[1] = parseInt(motorArr[1]);
+		motorArr[2] = parseInt(motorArr[2]);
+
 		if (rotation > 0) {
 			motorArr[0] += rotation/2;
 			motorArr[1] += rotation/2;
