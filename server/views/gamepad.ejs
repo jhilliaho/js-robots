@@ -64,7 +64,7 @@ console.log("Trying");
 function sendValues(override){
 	var pos = {};
 
-	if (Date.now() - movementUpdateTime > 400 || override) {
+	if (Date.now() - movementUpdateTime > 500 || override) {
 		movementUpdateTime = Date.now();
 		
 		pos.x1 = Math.round(x1ToSend / (windowWidth/400));

@@ -17,22 +17,7 @@ board.on("ready", function() {
 	// 1 = clockwise
 	// 0 = counterclockwise
 
-	var motor1 = {
-		dir: 0,
-		speed: 10
-	}
-
-	var motor2 = {
-		dir: 0,
-		speed: 10
-	}
-
-	var motor3 = {
-		dir: 0,
-		speed: 10
-	}
-
-
+	var motor1, motor2, motor3;
 
 	var stopMotors = function stopMotors(){
 		console.log("Stopping motors");
@@ -43,15 +28,21 @@ board.on("ready", function() {
 		motor2.speed = 0;
 		motor3.speed = 0;	
 		sendMotorSpeeds();
-
 	}
 
 	var sendMotorSpeeds = function sendMotorSpeeds() {
 		board.io.i2cConfig();
 	
+		motor1.speed = Math.round(motor1.speed);
+		motor2.speed = Math.round(motor2.speed);
+		motor3.speed = Math.round(motor3.speed);
+
+		motor1.speed = motor1.speed > 255 ? 255 : motor1.speed < 0 ? 0 : motor1.speed;
+
 		if (motor1.speed > 255) {motor1.speed = 255;}
 		if (motor2.speed > 255) {motor2.speed = 255;}
 		if (motor3.speed > 255) {motor3.speed = 255;}
+
 		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
 		
 
