@@ -2,8 +2,6 @@
 //
 // Jani Hilliaho 2016
 
-(function(){
-
 	"use strict"
 
 	exports.calculateRelativeMotorSpeeds = calcMovement;
@@ -59,7 +57,7 @@
 	}
 
 	// Function to calculate relative motor speeds
-	function calcMovement(angle, speed, rotation){
+	function calcMovement(angle){
 
 		// Base angles: 0, 90, 180, 270, 360
 		var baseMovements = [[0, -1, 1], [1, -0.5, -0.5], [0, 1, -1], [-1, 0.5, 0.5], [0, -1, 1]];
@@ -85,15 +83,5 @@
 		var sum = sumOfArrays(xVector, yVector);
 		var rounded = roundArray(sum,3);
 
-		rounded[0] *= speed;
-		rounded[1] *= speed;
-		rounded[2] *= speed;
-
-		rounded[0] += rotation/4;
-		rounded[1] += rotation/4;
-		rounded[2] += rotation/4;
-
-
 		return rounded;
 	}	
-})()
