@@ -85,13 +85,13 @@
 		var sum = sumOfArrays(xVector, yVector);
 		var rounded = roundArray(sum,3);
 
-		rounded[0] *= speed;
-		rounded[1] *= speed;
-		rounded[2] *= speed;
+		rounded[0] *= speed / 8;
+		rounded[1] *= speed / 8;
+		rounded[2] *= speed / 8;
 
-		rounded[0] += rotation;
-		rounded[1] += rotation;
-		rounded[2] += rotation;
+		rounded[0] += rotation/8;
+		rounded[1] += rotation/8;
+		rounded[2] += rotation/8;
 
 		return rounded;
 	}	
