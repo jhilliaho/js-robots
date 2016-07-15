@@ -65,9 +65,6 @@ board.on("ready", function() {
     		console.log("TRIED TO WRITE ", bytes);
 			board.io.i2cConfig();
 		}
-
-
-
 	}
 
 	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle, speed, rotation) {
@@ -97,6 +94,8 @@ board.on("ready", function() {
 			motorArr[1] += rotation/2;
 			motorArr[2] += rotation/2;
 		}
+
+		motorArr[0] /= 2;
 
 		console.log(motorArr);
 
