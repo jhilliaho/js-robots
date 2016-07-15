@@ -59,7 +59,7 @@
 	}
 
 	// Function to calculate relative motor speeds
-	function calcMovement(angle){
+	function calcMovement(angle, speed, rotation){
 
 		// Base angles: 0, 90, 180, 270, 360
 		var baseMovements = [[0, -1, 1], [1, -0.5, -0.5], [0, 1, -1], [-1, 0.5, 0.5], [0, -1, 1]];
@@ -82,6 +82,16 @@
 		var yVector = multiplyArray(baseMovements[quarter], Math.cos(degreesToRadians(angle)));
 		var xVector = multiplyArray(baseMovements[quarter+1], Math.sin(degreesToRadians(angle)));
 
-		return roundArray(sumOfArrays(xVector, yVector),3);
+		var sumOfArrays = sumOfArrays(xVector, yVector);
+
+		sumOfArrays[0] *= speed;
+		sumOfArrays[1] *= speed;
+		sumOfArrays[2] *= speed;
+
+		sumOfArrays[0] += rotation;
+		sumOfArrays[1] += rotation;
+		sumOfArrays[2] += rotation;
+
+		return roundArray(sumOfArrays,3);
 	}	
 })()

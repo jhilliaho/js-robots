@@ -72,7 +72,9 @@ board.on("ready", function() {
 
 	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle, rawSpeed, xPos) {
 
-		var motorArr = moving.calcMovement(rawAngle, rawSpeed, xPos);
+		// Angle as degrees, rotation as decimal -1 - 1
+		var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle, rawSpeed, rotation);
+
 
 		motor1 = {
 			speed: motorArr[0],
