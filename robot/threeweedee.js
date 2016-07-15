@@ -101,7 +101,7 @@ board.on("ready", function() {
 
 		motor1 = {
 			speed: Math.round(Math.abs(motorArr[2])),
-			dir: motorArr[0] > 1 ? 1 : 0
+			dir: motorArr[2] > 1 ? 1 : 0
 		};
 		motor2 = {
 			speed: Math.round(Math.abs(motorArr[1])),
