@@ -83,17 +83,16 @@
 		var xVector = multiplyArray(baseMovements[quarter+1], Math.sin(degreesToRadians(angle)));
 
 		var sum = sumOfArrays(xVector, yVector);
+		var rounded = roundArray(sum,3);
 
-		sum[0] *= speed;
-		sum[1] *= speed;
-		sum[2] *= speed;
+		rounded[0] *= speed;
+		rounded[1] *= speed;
+		rounded[2] *= speed;
 
-		sum[0] += rotation;
-		sum[1] += rotation;
-		sum[2] += rotation;
+		rounded[0] += rotation;
+		rounded[1] += rotation;
+		rounded[2] += rotation;
 
-		console.log("Return from module: ", sum);
-
-		return roundArray(sumOfArrays,3);
+		return rounded;
 	}	
 })()
