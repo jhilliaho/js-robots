@@ -10,7 +10,7 @@ board.on("ready", function() {
   });
 
   imu.on("change", function() {
-    console.log("GYRO: Pitch, Roll, Yaw  ", this.gyro.pitch, this.gyro.roll, this.gyro.yaw);
+    console.log("GYRO: Pitch, Roll, Yaw  ", this.gyro.pitch.angle, this.gyro.roll.angle, this.gyro.yaw.angle);
 
   });
 
