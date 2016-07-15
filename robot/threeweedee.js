@@ -83,10 +83,11 @@ board.on("ready", function() {
 		motorArr[0] *= speed;
 		motorArr[1] *= speed;
 		motorArr[2] *= speed;
-
-		motorArr[0] += rotation/2;
-		motorArr[1] += rotation/2;
-		motorArr[2] += rotation/2;
+		if (rotation > 0) {
+			motorArr[0] += rotation/2;
+			motorArr[1] += rotation/2;
+			motorArr[2] += rotation/2;
+		}
 
 		motor1 = {
 			speed: Math.abs(motorArr[0]),
