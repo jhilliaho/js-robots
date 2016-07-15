@@ -89,6 +89,12 @@ board.on("ready", function() {
 			speed: Math.abs(motorArr[2]),
 			dir: motorArr[2] > 1 ? 1 : 0
 		};
+
+		console.log("M1: ", motor1);
+		console.log("M2: ", motor2);
+		console.log("M3: ", motor3);
+
+
 		sendMotorSpeeds();
 
 	}
