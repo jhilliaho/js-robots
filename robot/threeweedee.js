@@ -82,9 +82,9 @@ board.on("ready", function() {
 		
 		console.log(motorArr, speed);
 
-		motorArr[0] *= speed;
-		motorArr[1] *= speed;
-		motorArr[2] *= speed;
+		motorArr[0] *= speed; //3
+		motorArr[1] *= speed; //2
+		motorArr[2] *= speed; //1
 
 		console.log(motorArr, rotation);
 
@@ -95,12 +95,12 @@ board.on("ready", function() {
 			motorArr[2] += rotation/2;
 		}
 
-		motorArr[0] /= 2;
+		motorArr[1] /= 2;
 
 		console.log(motorArr);
 
 		motor1 = {
-			speed: Math.round(Math.abs(motorArr[0])),
+			speed: Math.round(Math.abs(motorArr[2])),
 			dir: motorArr[0] > 1 ? 1 : 0
 		};
 		motor2 = {
@@ -108,8 +108,8 @@ board.on("ready", function() {
 			dir: motorArr[1] > 1 ? 1 : 0
 		};
 		motor3 = {
-			speed: Math.round(Math.abs(motorArr[2])),
-			dir: motorArr[2] > 1 ? 1 : 0
+			speed: Math.round(Math.abs(motorArr[0])),
+			dir: motorArr[0] > 1 ? 1 : 0
 		};
 
 		console.log("M1: ", motor1);
