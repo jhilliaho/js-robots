@@ -67,11 +67,9 @@ board.on("ready", function() {
 		motorArr[1] *= speed; //2
 		motorArr[2] *= speed; //1
 
-		if (rotation > 0) {
-			motorArr[0] += rotation/2;
-			motorArr[1] += rotation/2;
-			motorArr[2] += rotation/2;
-		}
+		motorArr[0] += rotation/2;
+		motorArr[1] += rotation/2;
+		motorArr[2] += rotation/2;
 
 		motorArr[1] /= 2;
 
