@@ -10,7 +10,9 @@ var io = require('socket.io-client');
 board.on("ready", function() {
 	board.io.i2cConfig();
 
-	var motor1, motor2, motor3;
+	var motor1 = {};
+	var motor2 = {};
+	var motor3 = {};
 
 	var stopMotors = function stopMotors(){
 		console.log("Stopping motors");
