@@ -89,7 +89,9 @@
 		rounded[1] *= speed;
 		rounded[2] *= speed;
 
-
+		rounded[0] += rotation/32;
+		rounded[1] += rotation/32;
+		rounded[2] += rotation/32;
 
 
 		return rounded;
