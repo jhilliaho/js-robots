@@ -52,7 +52,6 @@ board.on("ready", function() {
 
 		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
 
-		console.log("Sending ", bytes);
 
 		try {
 			board.io.i2cWrite(0x8, bytes);
@@ -64,11 +63,14 @@ board.on("ready", function() {
 
 	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle, speed, rotation) {
 
-		rotation -= (rollAngle / 10);
 
 		rawAngle = parseInt(rawAngle);
 		speed = parseInt(speed)*4;
 		rotation = parseInt(rotation);
+
+		rotation -= (rollAngle);
+
+		console.log(rollAngle, " - > ", rotation);
 
 		// Angle as degrees
 		var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle);
@@ -83,7 +85,6 @@ board.on("ready", function() {
 
 		motorArr[1] /= 2;
 
-		console.log(motorArr);
 
 		motor1 = {
 			speed: Math.round(Math.abs(motorArr[0])),
@@ -97,10 +98,6 @@ board.on("ready", function() {
 			speed: Math.round(Math.abs(motorArr[2])),
 			dir: motorArr[2] > 1 ? 1 : 0
 		};
-
-		console.log("M1: ", motor1);
-		console.log("M2: ", motor2);
-		console.log("M3: ", motor3);
 
 		sendMotorSpeeds();
 	}
