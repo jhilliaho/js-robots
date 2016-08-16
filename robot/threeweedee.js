@@ -46,7 +46,6 @@ board.on("ready", function() {
 
 		try {
 			board.io.i2cWrite(0x8, bytes);
-			board.io.i2cWrite(0x9, bytes2);
 		} catch (ex) {
     		console.log("ERROR IN I2C WRITING", ex);
     		console.log("TRIED TO WRITE ", bytes, bytes2);
