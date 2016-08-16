@@ -52,11 +52,12 @@ io.on('connection', function (socket) {
 		socket.broadcast.emit("speedAndAngleFromServer", dataToRobot);
 		console.log("angle and speed", posToAngle(data.x1, data.y1), posToSpeed(data.x1, data.y1));
   	});
-});
-
   socket.on('disconnect', function () {
     console.log("Disconnect");
   });
+});
+
+
 
 app.get('/', function(req, res, next) {
 	res.render('gamepad');
