@@ -15,9 +15,7 @@ board.on("ready", function() {
 	});
 
 	imu.on("change", function() {
-	    console.log("  pitch        : ", this.gyro.pitch);
 	    console.log("  roll         : ", this.gyro.roll);
-	    console.log("  yaw          : ", this.gyro.yaw);
    	});
 
 
