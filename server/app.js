@@ -54,6 +54,10 @@ io.on('connection', function (socket) {
   	});
 });
 
+  socket.on('disconnect', function () {
+    console.log("Disconnect");
+  });
+
 app.get('/', function(req, res, next) {
 	res.render('gamepad');
 });

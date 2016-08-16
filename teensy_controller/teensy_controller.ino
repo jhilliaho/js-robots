@@ -119,6 +119,8 @@ void receiveEvent(int howMany) {
         digitalWriteFast(15, LOW);
         digitalWriteFast(23, LOW);
     }
+    Serial.println("Got data");
+
 }
 
 
