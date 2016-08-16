@@ -42,7 +42,7 @@ board.on("ready", function() {
 
 		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
 
-		var bytes2 = [motor1.speed ? 0 : 1,  motor2.speed ? 0 : 1, motor3.speed ? 0 : 1];
+		console.log("Sending ", bytes);
 
 		try {
 			board.io.i2cWrite(0x8, bytes);
