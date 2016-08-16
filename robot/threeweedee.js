@@ -10,6 +10,17 @@ var io = require('socket.io-client');
 board.on("ready", function() {
 	board.io.i2cConfig();
 
+	var imu = new five.IMU({
+		controller: "MPU6050"
+	});
+
+	imu.on("change", function() {
+	    console.log("  pitch        : ", this.gyro.pitch);
+	    console.log("  roll         : ", this.gyro.roll);
+	    console.log("  yaw          : ", this.gyro.yaw);
+   	});
+
+
 	var motor1 = {};
 	var motor2 = {};
 	var motor3 = {};
