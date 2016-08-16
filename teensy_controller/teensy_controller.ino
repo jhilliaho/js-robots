@@ -5,7 +5,7 @@ AccelStepper stepper1(1,1,0);
 AccelStepper stepper2(1,9,8);
 AccelStepper stepper3(1,17,16);
 
-int counter = 0;
+int motorMaxSpeed = 4000;
 
 int motor1TargetSpeed = 0;
 int motor2TargetSpeed = 0;
@@ -14,16 +14,12 @@ int motor3TargetSpeed = 0;
 void setup() {
   Wire.begin(8);                // join i2c bus with address #8
   Wire.onReceive(receiveEvent); // register event
-  Serial.begin(9600);           // start serial for output
-  Serial.println("Starting");
 
   for (int i = 0; i < 24; ++i) {
     if (i != 19 && i != 18) {
       pinMode(i, OUTPUT);
     }  
   }
-
-  // RESET ja SLEEP ylös, ENABLE alas
 
   // MOTOR 1 //
   
@@ -40,8 +36,7 @@ void setup() {
   digitalWriteFast(4, HIGH);
   digitalWriteFast(5, HIGH);
   digitalWriteFast(6, HIGH);
-  stepper1.setMaxSpeed(1000);
-
+  stepper1.setMaxSpeed(motorMaxSpeed);
 
 
   // MOTOR 2 //
@@ -59,7 +54,7 @@ void setup() {
   digitalWriteFast(12, HIGH);
   digitalWriteFast(13, HIGH);
   digitalWriteFast(14, HIGH);
-  stepper2.setMaxSpeed(1000);
+  stepper2.setMaxSpeed(motorMaxSpeed);
 
 
   // MOTOR 3 //
@@ -71,7 +66,7 @@ void setup() {
   digitalWriteFast(20, HIGH);
   digitalWriteFast(21, LOW);
   digitalWriteFast(22, LOW);
-  stepper3.setMaxSpeed(1000);
+  stepper3.setMaxSpeed(motorMaxSpeed);
 
   delay(1000);
   digitalWriteFast(7, HIGH);
@@ -93,11 +88,11 @@ void loop() {
 
 
 void receiveEvent(int howMany) {
-    motor1TargetSpeed = 8 * Wire.read();
+    motor1TargetSpeed = 32 * Wire.read();
     int motor1TargetDir = Wire.read();    
-    motor2TargetSpeed = 8 * Wire.read();
+    motor2TargetSpeed = 32 * Wire.read();
     int motor2TargetDir = Wire.read();
-    motor3TargetSpeed = 8 * Wire.read();
+    motor3TargetSpeed = 32 * Wire.read();
     int motor3TargetDir = Wire.read();
 
     if (motor1TargetDir == 0) {
@@ -119,8 +114,6 @@ void receiveEvent(int howMany) {
         digitalWriteFast(15, LOW);
         digitalWriteFast(23, LOW);
     }
-    Serial.println("Got data");
-
 }
 
 
