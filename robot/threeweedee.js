@@ -14,10 +14,11 @@ board.on("ready", function() {
 		controller: "MPU6050"
 	});
 
-	imu.on("change", function() {
-	    console.log("  roll         : ", this.gyro.roll.angle);
-   	});
+	int rollAngle = 0;
 
+	imu.on("change", function() {
+		rollAngle = this.gyro.roll.angle;
+   	});
 
 	var motor1 = {};
 	var motor2 = {};
@@ -62,6 +63,8 @@ board.on("ready", function() {
 	}
 
 	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle, speed, rotation) {
+
+		rotation -= (rollAngle / 10);
 
 		rawAngle = parseInt(rawAngle);
 		speed = parseInt(speed)*4;
