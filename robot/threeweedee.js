@@ -55,7 +55,7 @@ board.on("ready", function() {
 	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle, speed, rotation) {
 
 		rawAngle = parseInt(rawAngle);
-		speed = parseInt(speed);
+		speed = parseInt(speed)*4;
 		rotation = parseInt(rotation);
 
 		// Angle as degrees
