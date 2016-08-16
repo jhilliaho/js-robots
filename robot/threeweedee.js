@@ -14,7 +14,7 @@ board.on("ready", function() {
 		controller: "MPU6050"
 	});
 
-	int rollAngle = 0;
+	var rollAngle = 0;
 
 	imu.on("change", function() {
 		rollAngle = this.gyro.roll.angle;
