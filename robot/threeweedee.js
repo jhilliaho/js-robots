@@ -115,7 +115,7 @@ board.on("ready", function() {
 
 	socket.on("speedAndAngleFromServer", function(data){
 		if (data.speed1 == 0 && data.x2 == 0) {
-			stopMotors();
+			//stopMotors();
 		}
 		else {
 			calcMotorSpeeds(data.angle1, data.speed1, data.x2);
