@@ -10,6 +10,8 @@ var io = require('socket.io-client');
 board.on("ready", function() {
 	board.io.i2cConfig();
 
+	var data = {};
+
 	var imu = new five.IMU({
 		controller: "MPU6050"
 	});
@@ -110,14 +112,13 @@ board.on("ready", function() {
 	    console.log("Disconnected from server");
 	});
 
-	socket.on("speedAndAngleFromServer", function(data){
-		if (data.speed1 == 0 && data.x2 == 0) {
-			//stopMotors();
-		}
-		else {
-			calcMotorSpeeds(data.angle1, data.speed1, data.x2);
-		}
+	socket.on("speedAndAngleFromServer", function(dat){
+		data = dat;
 	});
+
+	var calcInterval = setInterval(function(){
+		calcMotorSpeeds(data.angle1, data.speed1, data.x2);
+	}, 100);
 
 	socket.once('connect', function() {
 	    console.log('Connected to server');
