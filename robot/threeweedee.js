@@ -70,7 +70,9 @@ board.on("ready", function() {
 		speed = parseInt(speed)*4;
 		rotation = parseInt(rotation);
 
-		rotation -= (rollAngle);
+		if (Math.abs(rollAngle) > 2) {
+			rotation -= (2 * rollAngle);
+		}
 
 		console.log(rollAngle, " - > ", rotation);
 
