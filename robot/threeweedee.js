@@ -19,7 +19,7 @@ board.on("ready", function() {
 	var rollAngle = 0;
 
 	imu.on("change", function() {
-		rollAngle = this.gyro.roll.angle / 2;
+		rollAngle = this.gyro.roll.angle / 1.65;
 		console.log(rollAngle);
    	});
 
