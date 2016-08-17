@@ -5,6 +5,8 @@ var board = new five.Board({
   io: new Raspi()
 });
 
+var SerialPort = require("serialport");
+
 var io = require('socket.io-client');
 
 board.on("ready", function() {
