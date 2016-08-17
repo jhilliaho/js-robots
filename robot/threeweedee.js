@@ -20,6 +20,7 @@ board.on("ready", function() {
 
 	imu.on("change", function() {
 		rollAngle = this.gyro.roll.angle;
+		console.log(rollAngle);
    	});
 
 	var motor1 = {};
@@ -67,14 +68,9 @@ board.on("ready", function() {
 
 
 		rawAngle = parseInt(rawAngle);
+		rawAngle -= rollAngle;
 		speed = parseInt(speed)*4;
 		rotation = parseInt(rotation);
-
-		if (Math.abs(rollAngle) > 2) {
-			rotation -= (2 * rollAngle);
-		}
-
-		console.log(rollAngle, " - > ", rotation);
 
 		// Angle as degrees
 		var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle);
