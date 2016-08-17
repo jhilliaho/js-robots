@@ -10,6 +10,18 @@ var io = require('socket.io-client');
 board.on("ready", function() {
 	board.io.i2cConfig();
 
+	var lidar = new SerialPort("/dev/ttyUSB0", {
+	  baudRate: 115200
+	});
+
+	lidar.on('open', function() {
+		console.log("Port open");
+	});
+
+	lidar.on('data', function (data) {
+	  console.log('Lidar: ' + data);
+	});
+
 	var data = {};
 
 	var imu = new five.IMU({
