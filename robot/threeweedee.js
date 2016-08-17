@@ -73,7 +73,7 @@ board.on("ready", function() {
 		rotation = parseInt(rotation);
 
 		if (Math.abs(rollAngle) > 2) {
-			rotation -= rollAngle;
+			rotation -= 4 * rollAngle;
 		}
 
 		// Angle as degrees
