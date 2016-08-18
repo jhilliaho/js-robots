@@ -83,7 +83,7 @@ board.on("ready", function() {
 
 	imu.on("change", function() {
 		rollAngle = this.gyro.roll.angle;
-		console.log(rollAngle);
+		//console.log(rollAngle);
    	});
 
 	// Motor functions
