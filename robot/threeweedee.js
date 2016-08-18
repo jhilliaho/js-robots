@@ -163,7 +163,7 @@ board.on("ready", function() {
 
 	function pointAngle(angle) {
 		console.log("Execute radar");
-		if (rollAngle - angle <= 180) {
+		if (rollAngle - angle >= 180) {
 
 			var interval = setInterval(function(){
 				console.log(rollAngle);
