@@ -12,23 +12,68 @@ var io = require('socket.io-client');
 board.on("ready", function() {
 	board.io.i2cConfig();
 
+	// Laser distance meter
+	var range = 0;
 	var lidar = new SerialPort("/dev/ttyUSB0", {
 	  baudRate: 115200
 	});
 
 	lidar.on('open', function() {
-		console.log("Port open");
-	});
+		lidar.on('data', function (num) {
+			range = num;
+		});
+	});	
 
-	lidar.on('data', function (data) {
-	  console.log('Lidar: ' + data);
-	});
-
+	// Gyroscopes
 	var data = {};
 
+	/*
+	//Bypass Mode
+	Wire.beginTransmission(0x68);
+	Wire.write(0x37);
+	Wire.write(0x02);
+	Wire.endTransmission();
+
+	Wire.beginTransmission(0x68);
+	Wire.write(0x6A);
+	Wire.write(0x00);
+	Wire.endTransmission();
+
+	//Disable Sleep Mode
+	Wire.beginTransmission(0x68);
+	Wire.write(0x6B);
+	Wire.write(0x00);
+	Wire.endTransmission();
+	*/
+	
 	var imu = new five.IMU({
 		controller: "MPU6050"
 	});
+
+	board.io.i2cWrite(0x68, 0x37);
+	board.io.i2cWrite(0x68, 0x02);
+	board.io.i2cWrite(0x68, 0x6A);
+	board.io.i2cWrite(0x68, 0x00);
+	board.io.i2cWrite(0x68, 0x6B);
+	board.io.i2cWrite(0x68, 0x00);
+
+	var compass = new five.Compass({
+		controller: "HMC5883L"
+	});
+
+	compass.on("change", function() {
+		console.log("change");
+		console.log("  heading : ", Math.floor(this.heading));
+		console.log("  bearing : ", this.bearing.name);
+		console.log("--------------------------------------");
+	});
+
+	compass.on("data", function() {
+		console.log("  heading : ", Math.floor(this.heading));
+		console.log("  bearing : ", this.bearing.name);
+		console.log("--------------------------------------");
+	});
+
 
 	var rollAngle = 0;
 
@@ -37,6 +82,7 @@ board.on("ready", function() {
 		console.log(rollAngle);
    	});
 
+	// Motor functions
 	var motor1 = {};
 	var motor2 = {};
 	var motor3 = {};
