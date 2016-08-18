@@ -64,7 +64,8 @@ board.on("ready", function() {
 		});		
 
 		compass.on("change", function() {
-			console.log("  DATA: : ", this.bearing.low, this.bearing.mid, this.bearing.high, this.bearing.heading);
+			console.log("  DATA: : ", this.bearing.heading);
+			rollAngle = this.bearing.heading;
 		});
 	},200);
 
@@ -73,7 +74,7 @@ board.on("ready", function() {
 	var rollAngle = 0;
 
 	imu.on("change", function() {
-		rollAngle = this.gyro.roll.angle;
+		//rollAngle = this.gyro.roll.angle;
 		//console.log(rollAngle);
    	});
 
