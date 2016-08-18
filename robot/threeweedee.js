@@ -26,7 +26,6 @@ board.on("ready", function() {
 
 	lidar.on('open', function() {
 		lidar.on('data', function (num) {
-			range = num;
 			console.log("RANGE", num);
 			if (radaring) {
 				distances[rollAngle] = num;
