@@ -168,7 +168,7 @@ board.on("ready", function() {
 			var interval = setInterval(function(){
 				console.log(rollAngle);
 				calcMotorSpeeds(0,0,-50);
-				if (rollAngle < angle + 4 || rollAngle > angle-4) {
+				if (rollAngle < (angle + 4) && rollAngle > (angle - 4)) {
 					clearInterval(interval);
 					calcMotorSpeeds(0,0,0);
 					console.log("ENd", rollAngle);
@@ -180,7 +180,7 @@ board.on("ready", function() {
 				console.log(rollAngle);
 				calcMotorSpeeds(0,0,50);
 
-				if (rollAngle < angle + 4 || rollAngle > angle-4) {
+				if (rollAngle < (angle + 4) && rollAngle > (angle - 4)) {
 					clearInterval(interval);
 					calcMotorSpeeds(0,0,0);
 					console.log("ENd", rollAngle);
