@@ -64,7 +64,7 @@ board.on("ready", function() {
 		});		
 
 		compass.on("change", function() {
-			console.log(this);
+			console.log("  heading : ", this.bearing);
 		});
 	},200);
 
