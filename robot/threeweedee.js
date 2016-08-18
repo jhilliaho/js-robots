@@ -176,7 +176,6 @@ board.on("ready", function() {
 			calcMotorSpeeds(0,0,50 * direction);
 			if (rollAngle < (angle + 4) && rollAngle > (angle - 4)) {
 				clearInterval(interval);
-				calcMotorSpeeds(0,0,0);
 				console.log("ENd", rollAngle);
 				callback();
 			}
@@ -191,6 +190,7 @@ board.on("ready", function() {
 		pointAngle(0, function(){
 			radaring = false;
 			console.log(distances);
+			calcMotorSpeeds(0,0,0);
 		});
 		});
 		});
