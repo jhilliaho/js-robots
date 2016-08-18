@@ -53,6 +53,7 @@ board.on("ready", function() {
 
 	compass.on("change", function() {
 		rollAngle = this.bearing.heading;
+		console.log(rollAngle);
 	});
 
 
@@ -213,13 +214,6 @@ board.on("ready", function() {
 		});
 	}
 
-	setTimeout(function(){
-		radar(function(){
-			pointAngle(findLongestDirection(), function(){
-				calcMotorSpeeds(0,100,0);
-			});
-		})
-	}, 200);
 
 	function runProgram() {
 
