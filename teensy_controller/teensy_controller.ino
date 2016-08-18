@@ -88,14 +88,19 @@ void loop() {
   counter++;
 
   if (counter > 100000){
+    
     digitalWrite(13, LOW);
-    delay(500);
+    delay(20);
       digitalWrite(13, HIGH);
-    delay(500);
+    delay(20);
       digitalWrite(13, LOW);
-    delay(500);
+    delay(20);
       digitalWrite(13, HIGH);
-    delay(500);
+    delay(20);
+    
+    motor1TargetSpeed = 0;
+    motor2TargetSpeed = 0;
+    motor3TargetSpeed = 0;
     counter = 0;
   }
 
