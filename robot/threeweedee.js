@@ -130,6 +130,8 @@ board.on("ready", function() {
 			speed: Math.round(Math.abs(motorArr[2])),
 			dir: motorArr[2] > 1 ? 1 : 0
 		};
+
+		sendMotorSpeeds();
 	}
 
 	console.log("connecting");
@@ -163,23 +165,25 @@ board.on("ready", function() {
 	function radar() {
 		console.log("Execute radar");
 		if (rollAngle < 180) {
-			while(rollAngle > 5 && rollAngle < 355) {
-				console.log(rollAngle);
-				
-				setTimeout(function(){
-					calcMotorSpeeds(0,0,rollAngle);
-					sendMotorSpeeds();
-				},0);
 
-			}
-		} else if (rollAngle >= 180) {
-			while(rollAngle > 5 && rollAngle < 355) {
+			var interval = setInterval({
 				console.log(rollAngle);
-				setTimeout(function(){
-					calcMotorSpeeds(0,0, -(360-rollAngle));
-					sendMotorSpeeds();
-				},0);
-			}
+				calcMotorSpeeds(0,0,rollAngle);
+				if (rollAngle < 5 || rollAngle > 355) {
+					clearInterval(interval);
+				}
+			},50);
+
+
+
+		} else if (rollAngle >= 180) {
+			var interval = setInterval({
+				console.log(rollAngle);
+				calcMotorSpeeds(0,0,rollAngle);
+				if (rollAngle < 5 || rollAngle > 355) {
+					clearInterval(interval);
+				}
+			},50);
 		}
 
 	}
