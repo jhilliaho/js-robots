@@ -157,7 +157,6 @@ board.on("ready", function() {
 			dir: motorArr[2] > 1 ? 1 : 0
 		};
 
-		motor1.speed = motor2.speed = motor3.speed = 10;
 
 		sendMotorSpeeds();
 	}
