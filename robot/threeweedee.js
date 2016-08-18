@@ -163,14 +163,22 @@ board.on("ready", function() {
 	function radar() {
 		console.log("Execute radar");
 		if (rollAngle < 180) {
-			while(rollAngle != 0) {
-				calcMotorSpeeds(0,0,rollAngle);
-				sendMotorSpeeds();
+			while(rollAngle > 5 && rollAngle < 355) {
+				console.log(rollAngle);
+				
+				setTimeout(function(){
+					calcMotorSpeeds(0,0,rollAngle);
+					sendMotorSpeeds();
+				},0);
+
 			}
 		} else if (rollAngle >= 180) {
-			while(rollAngle != 0) {
-				calcMotorSpeeds(0,0, -(360-rollAngle));
-				sendMotorSpeeds();
+			while(rollAngle > 5 && rollAngle < 355) {
+				console.log(rollAngle);
+				setTimeout(function(){
+					calcMotorSpeeds(0,0, -(360-rollAngle));
+					sendMotorSpeeds();
+				},0);
 			}
 		}
 
