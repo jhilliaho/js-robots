@@ -161,7 +161,7 @@ board.on("ready", function() {
 	var distances = {};
 
 	function radar() {
-
+		console.log("Execute radar");
 		if (rollAngle < 180) {
 			while(rollAngle != 0) {
 				calcMotorSpeeds(0,0,rollAngle);
@@ -176,7 +176,7 @@ board.on("ready", function() {
 
 	}
 
-	radar();
+	setTimeout(radar, 200);
 
 	function runProgram() {
 
