@@ -187,14 +187,16 @@ board.on("ready", function() {
 
 	function findLongestDirection() {
 		var max = 0;
+		var maxAngle = 0;
 		console.log("Distances length:", distances.length);
 		for (var i = 0; i < distances.length; ++i) {
 			if (distances[i] > max) {
 				max = distances[i];
+				maxAngle = i;
 			}
 		}
 		console.log("Widest angle: ", max);
-		return max;
+		return maxAngle;
 	}
 
 	function radar(callback){
