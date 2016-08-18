@@ -12,6 +12,10 @@ var io = require('socket.io-client');
 board.on("ready", function() {
 	board.io.i2cConfig();
 
+	var distances = {};
+	var radaring = false;
+	var rollAngle = 0;
+
 	var startTime = Date.now();
 
 	// Laser distance meter
@@ -23,6 +27,9 @@ board.on("ready", function() {
 	lidar.on('open', function() {
 		lidar.on('data', function (num) {
 			range = num;
+			if (radaring) {
+				distances[rollAngle] = num;
+			}
 		});
 	});	
 
@@ -48,7 +55,6 @@ board.on("ready", function() {
 
 
 
-	var rollAngle = 0;
 
 	// imu.on("change", function() {
 		//rollAngle = this.gyro.roll.angle;
@@ -159,9 +165,8 @@ board.on("ready", function() {
 
 	runProgram();
 
-	var distances = {};
 
-	function pointAngle(angle) {
+	function pointAngle(angle, callback) {
 		console.log("Execute radar");
 
 		var interval = setInterval(function(){
@@ -174,24 +179,27 @@ board.on("ready", function() {
 				clearInterval(interval);
 				calcMotorSpeeds(0,0,0);
 				console.log("ENd", rollAngle);
+				callback();
 			}
 		},50);
 	}
 
-	function radar(){
-		setTimeout(function(){
-			pointAngle(60);
-		},4000);
-			setTimeout(function(){
-			pointAngle(120);
-		},8000);
 
-		setTimeout(function(){
-			pointAngle(180);
-		},12000);
-			setTimeout(function(){
-			pointAngle(240);
-		},16000);
+	function radar(){
+		pointAngle(0, function(){
+			radaring = true;
+		pointAngle(90, function(){
+		pointAngle(180, function(){
+		pointAngle(270, function(){
+		pointAngle(0, function(){
+			radaring = false;
+			console.log(distances);
+		});
+		});
+		});
+		});
+		});
+
 	}
 
 	setTimeout(radar, 200);
