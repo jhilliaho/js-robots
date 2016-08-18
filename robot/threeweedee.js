@@ -162,7 +162,21 @@ board.on("ready", function() {
 
 	function radar() {
 
+		if (rollAngle < 180) {
+			while(rollAngle != 0) {
+				calcMotorSpeeds(0,0,rollAngle);
+				sendMotorSpeeds();
+			}
+		} else if (rollAngle >= 180) {
+			while(rollAngle != 0) {
+				calcMotorSpeeds(0,0, -(360-rollAngle);
+				sendMotorSpeeds();
+			}
+		}
+
 	}
+
+	radar();
 
 	function runProgram() {
 
