@@ -168,22 +168,26 @@ board.on("ready", function() {
 
 			var interval = setInterval(function(){
 				console.log(rollAngle);
-				calcMotorSpeeds(0,0,rollAngle);
+				calcMotorSpeeds(0,0,30);
+
 				if (rollAngle < 5 || rollAngle > 355) {
 					clearInterval(interval);
 				}
-			},50);
+				
+			},10);
 
 
 
 		} else if (rollAngle >= 180) {
 			var interval = setInterval(function(){
 				console.log(rollAngle);
-				calcMotorSpeeds(0,0,(360-rollAngle));
+				calcMotorSpeeds(0,0,30);
+
 				if (rollAngle < 5 || rollAngle > 355) {
 					clearInterval(interval);
 				}
-			},50);
+
+			},10);
 		}
 
 	}
