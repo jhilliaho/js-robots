@@ -9,7 +9,7 @@ var SerialPort = require("serialport");
 
 var io = require('socket.io-client');
 
-var distances = {};
+var distances = [];
 var radaring = false;
 var rollAngle = 0;
 
