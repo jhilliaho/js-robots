@@ -185,9 +185,9 @@ board.on("ready", function() {
 
 	function findLongestDirection() {
 		var max = 0;
-		for (var i = 0; i < directions.length; ++i) {
-			if (directions[i] > max) {
-				max = directions[i];
+		for (var i = 0; i < distances.length; ++i) {
+			if (distances[i] > max) {
+				max = distances[i];
 			}
 		}
 		console.log("Widest angle: ", max);
