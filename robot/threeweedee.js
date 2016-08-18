@@ -197,7 +197,7 @@ board.on("ready", function() {
 			}
 		}
 		console.log("Widest angle: ", max, " at ", maxAngle);
-		maxAngle -= 300;
+		maxAngle -= 120;
 		maxAngle = maxAngle < 0 ? maxAngle+360 : maxAngle;
 		return maxAngle;
 	}
