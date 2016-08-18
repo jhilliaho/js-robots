@@ -192,15 +192,18 @@ board.on("ready", function() {
 
 	function radar(){
 		setTimeout(function(){
-			pointAngle(0);
-		},0);
-			setTimeout(function(){
 			pointAngle(60);
-		},2000);
+		},6000);
 			setTimeout(function(){
 			pointAngle(120);
-		},4000);
+		},12000);
 
+		setTimeout(function(){
+			pointAngle(180);
+		},18000);
+			setTimeout(function(){
+			pointAngle(240);
+		},24000);
 	}
 
 	setTimeout(radar, 200);
