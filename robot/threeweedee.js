@@ -52,7 +52,6 @@ board.on("ready", function() {
 
 	var compass = null;
 
-
 	setTimeout(function(){
 		board.io.i2cWrite(0x68, [0x37, 0x02, 0x6A, 0x00, 0x6B, 0x00]);
 	},50);
@@ -173,6 +172,8 @@ board.on("ready", function() {
 	socket.on("speedAndAngleFromServer", function(dat){
 		data = dat;
 	});
+
+	data.angle1 = data.speed1 = data.x2 = 0;
 
 	var calcInterval = setInterval(function(){
 		calcMotorSpeeds(data.angle1, data.speed1, data.x2);
