@@ -133,8 +133,6 @@ board.on("ready", function() {
 			rotation += 1 * (360-rollAngle);			
 		}
 
-		rotation = 3;
-
 		// Angle as degrees
 		var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle);
 		
@@ -145,9 +143,6 @@ board.on("ready", function() {
 		motorArr[0] += rotation/2;
 		motorArr[1] += rotation/2;
 		motorArr[2] += rotation/2;
-
-		motorArr[1] /= 2;
-
 
 		motor1 = {
 			speed: Math.round(Math.abs(motorArr[0])),
@@ -161,6 +156,8 @@ board.on("ready", function() {
 			speed: Math.round(Math.abs(motorArr[2])),
 			dir: motorArr[2] > 1 ? 1 : 0
 		};
+
+		motor1.speed = motor2.speed = motor3.speed = 10;
 
 		sendMotorSpeeds();
 	}
