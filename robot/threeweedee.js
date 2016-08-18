@@ -9,17 +9,19 @@ var SerialPort = require("serialport");
 
 var io = require('socket.io-client');
 
+var distances = {};
+var radaring = false;
+var rollAngle = 0;
+
+var startTime = Date.now();
+
+// Laser distance meter
+var range = 0;
+
 board.on("ready", function() {
 	board.io.i2cConfig();
 
-	var distances = {};
-	var radaring = false;
-	var rollAngle = 0;
 
-	var startTime = Date.now();
-
-	// Laser distance meter
-	var range = 0;
 	var lidar = new SerialPort("/dev/ttyUSB0", {
 	  baudRate: 115200
 	});
