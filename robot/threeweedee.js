@@ -185,6 +185,7 @@ board.on("ready", function() {
 
 	function findLongestDirection() {
 		var max = 0;
+		console.log("Distances length:", distances.length);
 		for (var i = 0; i < distances.length; ++i) {
 			if (distances[i] > max) {
 				max = distances[i];
