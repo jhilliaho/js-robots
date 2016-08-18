@@ -130,7 +130,7 @@ board.on("ready", function() {
 		if (rollAngle > 5 && rollAngle < 180) {
 			rotation -= 1 * rollAngle;
 		} else if (rollAngle < 355 && rollAngle >= 180) {
-			rotation += 1 * rollAngle;			
+			rotation += 1 * (360-rollAngle);			
 		}
 
 		// Angle as degrees
