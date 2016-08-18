@@ -127,7 +127,7 @@ board.on("ready", function() {
 		speed = parseInt(speed)*4;
 		rotation = parseInt(rotation);
 
-		if (rollAngle > 5 && < 180) {
+		if (rollAngle > 5 rollAngle && < 180) {
 			rotation -= 4 * rollAngle;
 		} else if (rollAngle < 355 && rollAngle >= 180) {
 			rotation += 4 * rollAngle;			
