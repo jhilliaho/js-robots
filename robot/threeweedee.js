@@ -169,7 +169,7 @@ board.on("ready", function() {
 			}
 		} else if (rollAngle >= 180) {
 			while(rollAngle != 0) {
-				calcMotorSpeeds(0,0, -(360-rollAngle);
+				calcMotorSpeeds(0,0, -(360-rollAngle));
 				sendMotorSpeeds();
 			}
 		}
