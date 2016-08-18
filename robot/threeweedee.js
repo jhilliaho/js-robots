@@ -43,7 +43,6 @@ board.on("ready", function() {
 	});		
 
 	compass.on("change", function() {
-		console.log("  COMPASS: : ", this.bearing.heading);
 		rollAngle = this.bearing.heading;
 	});
 
