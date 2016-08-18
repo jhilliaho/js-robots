@@ -202,6 +202,7 @@ board.on("ready", function() {
 					radaring = false;
 					console.log(distances);
 					calcMotorSpeeds(0,0,0);
+					callback();
 				});
 			});
 		});
