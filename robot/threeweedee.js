@@ -26,7 +26,8 @@ board.on("ready", function() {
 
 	lidar.on('open', function() {
 		lidar.on('data', function (num) {
-			if (radaring) {
+			var val = parseInt(num.toString());
+			if (radaring && !isNaN(val) && val >= 20) {
 				distances[rollAngle] = parseInt(num.toString());
 			}
 		});
