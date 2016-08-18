@@ -16,7 +16,7 @@ board.on("ready", function() {
 
 	lidar.on('open', function() {
 		console.log("Open");
-		lidar.on('change', function (num) {
+		lidar.on('data', function (num) {
 			console.log("RANGE", num);
 		});
 	});	
