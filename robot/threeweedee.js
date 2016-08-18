@@ -21,30 +21,13 @@ board.on("ready", function() {
 	lidar.on('open', function() {
 		lidar.on('data', function (num) {
 			range = num;
+			console.log("RANGE: ", num);
 		});
 	});	
 
 	// Gyroscopes
 	var data = {};
 
-	/*
-	//Bypass Mode
-	Wire.beginTransmission(0x68);
-	Wire.write(0x37);
-	Wire.write(0x02);
-	Wire.endTransmission();
-
-	Wire.beginTransmission(0x68);
-	Wire.write(0x6A);
-	Wire.write(0x00);
-	Wire.endTransmission();
-
-	//Disable Sleep Mode
-	Wire.beginTransmission(0x68);
-	Wire.write(0x6B);
-	Wire.write(0x00);
-	Wire.endTransmission();
-	*/
 	
 	var imu = new five.IMU({
 		controller: "MPU6050"
@@ -52,30 +35,25 @@ board.on("ready", function() {
 
 	var compass = null;
 
-	setTimeout(function(){
-		board.io.i2cWrite(0x68, [0x37, 0x02, 0x6A, 0x00, 0x6B, 0x00]);
-	},50);
+	board.io.i2cWrite(0x68, [0x37, 0x02, 0x6A, 0x00, 0x6B, 0x00]);
 
+	compass = new five.Compass({
+		controller: "HMC5883L"
+	});		
 
-	setTimeout(function(){
-		compass = new five.Compass({
-			controller: "HMC5883L"
-		});		
-
-		compass.on("change", function() {
-			console.log("  DATA: : ", this.bearing.heading);
-			rollAngle = this.bearing.heading;
-		});
-	},200);
+	compass.on("change", function() {
+		console.log("  COMPASS: : ", this.bearing.heading);
+		rollAngle = this.bearing.heading;
+	});
 
 
 
 	var rollAngle = 0;
 
-	imu.on("change", function() {
+	// imu.on("change", function() {
 		//rollAngle = this.gyro.roll.angle;
 		//console.log(rollAngle);
-   	});
+   	// });
 
 	// Motor functions
 	var motor1 = {};
