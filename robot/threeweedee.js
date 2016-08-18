@@ -12,6 +12,8 @@ var io = require('socket.io-client');
 board.on("ready", function() {
 	board.io.i2cConfig();
 
+	var startTime = Date.now();
+
 	// Laser distance meter
 	var range = 0;
 	var lidar = new SerialPort("/dev/ttyUSB0", {
@@ -21,7 +23,8 @@ board.on("ready", function() {
 	lidar.on('open', function() {
 		lidar.on('data', function (num) {
 			range = num;
-			console.log("RANGE: ", num);
+			console.log("New range at", Date.now() - startTime);
+			startTime = Date.now();
 		});
 	});	
 
