@@ -170,6 +170,7 @@ board.on("ready", function() {
 				calcMotorSpeeds(0,0,-rollAngle);
 				if (rollAngle < 10 || rollAngle > 350) {
 					clearInterval(interval);
+					calcMotorSpeeds(0,0,0);
 					console.log("ENd", rollAngle);
 				}
 			},50);
@@ -181,6 +182,7 @@ board.on("ready", function() {
 
 				if (rollAngle < 10 || rollAngle > 350) {
 					clearInterval(interval);
+					calcMotorSpeeds(0,0,0);
 					console.log("ENd", rollAngle);
 				}
 
