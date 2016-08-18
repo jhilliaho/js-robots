@@ -221,7 +221,7 @@ board.on("ready", function() {
 	setTimeout(function(){
 		radar(function(){
 			pointAngle(findLongestDirection(), function(){
-				calcMotorSpeeds(0,100,0);
+				calcMotorSpeeds(0,10,0);
 			});
 		})
 	}, 200);
