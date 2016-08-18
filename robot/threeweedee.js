@@ -190,6 +190,7 @@ board.on("ready", function() {
 				max = directions[i];
 			}
 		}
+		console.log("Widest angle: ", max;
 		return max;
 	}
 
@@ -208,7 +209,9 @@ board.on("ready", function() {
 
 	setTimeout(function(){
 		radar(function(){
-			pointAngle(findeLongestDirection());
+			pointAngle(findLongestDirection(), function(){
+				calcMotorSpeeds(0,100,0);
+			});
 		})
 	}, 200);
 
