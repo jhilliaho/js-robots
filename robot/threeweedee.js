@@ -166,7 +166,7 @@ board.on("ready", function() {
 		console.log("Execute radar");
 		if (rollAngle < 180) {
 
-			var interval = setInterval({
+			var interval = setInterval(function(){
 				console.log(rollAngle);
 				calcMotorSpeeds(0,0,rollAngle);
 				if (rollAngle < 5 || rollAngle > 355) {
@@ -177,7 +177,7 @@ board.on("ready", function() {
 
 
 		} else if (rollAngle >= 180) {
-			var interval = setInterval({
+			var interval = setInterval(function(){
 				console.log(rollAngle);
 				calcMotorSpeeds(0,0,rollAngle);
 				if (rollAngle < 5 || rollAngle > 355) {
