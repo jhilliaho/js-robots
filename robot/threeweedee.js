@@ -27,7 +27,7 @@ board.on("ready", function() {
 	lidar.on('open', function() {
 		lidar.on('data', function (num) {
 			if (radaring) {
-				distances[rollAngle] = num.toString();
+				distances[rollAngle] = parseInt(num.toString());
 			}
 		});
 	});	
