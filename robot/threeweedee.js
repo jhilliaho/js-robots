@@ -190,7 +190,7 @@ board.on("ready", function() {
 				max = directions[i];
 			}
 		}
-		console.log("Widest angle: ", max;
+		console.log("Widest angle: ", max);
 		return max;
 	}
 
