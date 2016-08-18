@@ -6,6 +6,7 @@ AccelStepper stepper2(1,9,8);
 AccelStepper stepper3(1,17,16);
 
 int motorMaxSpeed = 4000;
+volatile long int counter = 0;
 
 int motor1TargetSpeed = 0;
 int motor2TargetSpeed = 0;
@@ -84,6 +85,20 @@ void loop() {
   stepper2.runSpeed();
   stepper3.runSpeed();
 
+  counter++;
+
+  if (counter > 100000){
+    digitalWrite(13, LOW);
+    delay(500);
+      digitalWrite(13, HIGH);
+    delay(500);
+      digitalWrite(13, LOW);
+    delay(500);
+      digitalWrite(13, HIGH);
+    delay(500);
+    counter = 0;
+  }
+
 }
 
 
@@ -114,6 +129,7 @@ void receiveEvent(int howMany) {
         digitalWriteFast(15, LOW);
         digitalWriteFast(23, LOW);
     }
+    counter = 0;
 }
 
 
