@@ -174,7 +174,7 @@ board.on("ready", function() {
 
 			var direction = 1;
 
-			calcMotorSpeeds(0,0,50 * direction);
+			calcMotorSpeeds(0,0,100 * direction);
 			if (rollAngle < (angle + 4) && rollAngle > (angle - 4)) {
 				clearInterval(interval);
 				console.log("ENd", rollAngle);
