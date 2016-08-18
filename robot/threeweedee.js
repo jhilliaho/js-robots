@@ -23,8 +23,6 @@ board.on("ready", function() {
 	lidar.on('open', function() {
 		lidar.on('data', function (num) {
 			range = num;
-			console.log("New range at", Date.now() - startTime);
-			startTime = Date.now();
 		});
 	});	
 
@@ -108,11 +106,6 @@ board.on("ready", function() {
 		speed = parseInt(speed)*4;
 		rotation = parseInt(rotation);
 
-		if (rollAngle > 5 && rollAngle < 180) {
-			rotation -= 1 * rollAngle;
-		} else if (rollAngle < 355 && rollAngle >= 180) {
-			rotation += 1 * (360-rollAngle);			
-		}
 
 		// Angle as degrees
 		var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle);
@@ -137,9 +130,6 @@ board.on("ready", function() {
 			speed: Math.round(Math.abs(motorArr[2])),
 			dir: motorArr[2] > 1 ? 1 : 0
 		};
-
-
-		sendMotorSpeeds();
 	}
 
 	console.log("connecting");
@@ -156,15 +146,27 @@ board.on("ready", function() {
 
 	data.angle1 = data.speed1 = data.x2 = 0;
 
-	var calcInterval = setInterval(function(){
-		calcMotorSpeeds(data.angle1, data.speed1, data.x2);
-	}, 100);
+	//var calcInterval = setInterval(function(){
+	//	calcMotorSpeeds(data.angle1, data.speed1, data.x2);
+	//}, 100);
 
 	socket.once('connect', function() {
 	    console.log('Connected to server');
 	});
 
 	stopMotors();
+
+	runProgram();
+
+	var distances = {};
+
+	function radar() {
+
+	}
+
+	function runProgram() {
+
+	}
 
 });
 
