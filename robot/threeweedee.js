@@ -183,22 +183,34 @@ board.on("ready", function() {
 		},50);
 	}
 
-
-	function radar(){
-		pointAngle(0, function(){
-			radaring = true;
-		pointAngle(180, function(){
-		pointAngle(0, function(){
-			radaring = false;
-			console.log(distances);
-			calcMotorSpeeds(0,0,0);
-		});
-		});
-		});
-
+	function findLongestDirection() {
+		var max = 0;
+		for (var i = 0; i < directions.length; ++i) {
+			if (directions[i] > max) {
+				max = directions[i];
+			}
+		}
+		return max;
 	}
 
-	setTimeout(radar, 200);
+	function radar(callback){
+		pointAngle(0, function(){
+			radaring = true;
+			pointAngle(180, function(){
+				pointAngle(0, function(){
+					radaring = false;
+					console.log(distances);
+					calcMotorSpeeds(0,0,0);
+				});
+			});
+		});
+	}
+
+	setTimeout(function(){
+		radar(function(){
+			pointAngle(findeLongestDirection());
+		})
+	}, 200);
 
 	function runProgram() {
 
