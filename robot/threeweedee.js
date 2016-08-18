@@ -161,26 +161,26 @@ board.on("ready", function() {
 
 	var distances = {};
 
-	function radar() {
+	function pointAngle(angle) {
 		console.log("Execute radar");
-		if (rollAngle < 180) {
+		if (rollAngle < angle/2) {
 
 			var interval = setInterval(function(){
 				console.log(rollAngle);
 				calcMotorSpeeds(0,0,-50);
-				if (rollAngle < 5 || rollAngle > 355) {
+				if (rollAngle < angle + 4 || rollAngle > angle-4) {
 					clearInterval(interval);
 					calcMotorSpeeds(0,0,0);
 					console.log("ENd", rollAngle);
 				}
 			},50);
 
-		} else if (rollAngle >= 180) {
+		} else if (rollAngle >= angle/2) {
 			var interval = setInterval(function(){
 				console.log(rollAngle);
 				calcMotorSpeeds(0,0,50);
 
-				if (rollAngle < 5 || rollAngle > 355) {
+				if (rollAngle < angle + 4 || rollAngle > angle-4) {
 					clearInterval(interval);
 					calcMotorSpeeds(0,0,0);
 					console.log("ENd", rollAngle);
@@ -188,6 +188,19 @@ board.on("ready", function() {
 
 			},50);
 		}
+	}
+
+	function radar(){
+		setTimeout(function(){
+			pointAngle(0);
+		},0);
+			setTimeout(function(){
+			pointAngle(60);
+		},2000);
+			setTimeout(function(){
+			pointAngle(120);
+		},4000);
+
 	}
 
 	setTimeout(radar, 200);
