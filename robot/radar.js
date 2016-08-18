@@ -13,8 +13,12 @@ board.on("ready", function() {
 	  baudRate: 115200
 	});
 
-	lidar.on("data", function(data){
-		console.log(data);
-	});
+
+	lidar.on('open', function() {
+		console.log("Open");
+		lidar.on('change', function (num) {
+			console.log("RANGE", num);
+		});
+	});	
 
 });
