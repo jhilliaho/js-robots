@@ -195,7 +195,7 @@ board.on("ready", function() {
 				maxAngle = i;
 			}
 		}
-		console.log("Widest angle: ", max);
+		console.log("Widest angle: ", max, " at ", maxAngle);
 		return maxAngle;
 	}
 
