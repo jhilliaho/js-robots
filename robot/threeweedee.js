@@ -163,31 +163,19 @@ board.on("ready", function() {
 
 	function pointAngle(angle) {
 		console.log("Execute radar");
-		if (Math.abs(angle - rollAngle) > 180) {
 
-			var interval = setInterval(function(){
-				console.log(rollAngle);
-				calcMotorSpeeds(0,0,50);
-				if (rollAngle < (angle + 4) && rollAngle > (angle - 4)) {
-					clearInterval(interval);
-					calcMotorSpeeds(0,0,0);
-					console.log("ENd", rollAngle);
-				}
-			},50);
+		var interval = setInterval(function(){
+			console.log(rollAngle);
 
-		} else {
-			var interval = setInterval(function(){
-				console.log(rollAngle);
-				calcMotorSpeeds(0,0,-50);
+			var direction = 1;
 
-				if (rollAngle < (angle + 4) && rollAngle > (angle - 4)) {
-					clearInterval(interval);
-					calcMotorSpeeds(0,0,0);
-					console.log("ENd", rollAngle);
-				}
-
-			},50);
-		}
+			calcMotorSpeeds(0,0,50 * direction);
+			if (rollAngle < (angle + 4) && rollAngle > (angle - 4)) {
+				clearInterval(interval);
+				calcMotorSpeeds(0,0,0);
+				console.log("ENd", rollAngle);
+			}
+		},50);
 	}
 
 	function radar(){
