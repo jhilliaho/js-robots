@@ -26,7 +26,6 @@ board.on("ready", function() {
 
 	lidar.on('open', function() {
 		lidar.on('data', function (num) {
-			console.log("RANGE", num);
 			if (radaring) {
 				distances[rollAngle] = num.toString();
 			}
@@ -188,14 +187,10 @@ board.on("ready", function() {
 	function radar(){
 		pointAngle(0, function(){
 			radaring = true;
-		pointAngle(90, function(){
 		pointAngle(180, function(){
-		pointAngle(270, function(){
 		pointAngle(0, function(){
 			radaring = false;
 			console.log(distances);
-		});
-		});
 		});
 		});
 		});
