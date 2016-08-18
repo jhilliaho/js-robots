@@ -216,7 +216,7 @@ board.on("ready", function() {
 		});
 	}
 
-	pointAngle(0);
+	calcMotorSpeeds(0,100,0);
 
 	function runProgram() {
 
