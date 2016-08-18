@@ -133,6 +133,8 @@ board.on("ready", function() {
 			rotation += 1 * (360-rollAngle);			
 		}
 
+		rotation = 3;
+
 		// Angle as degrees
 		var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle);
 		
