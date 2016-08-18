@@ -54,23 +54,9 @@ board.on("ready", function() {
 
 
 	setTimeout(function(){
-		board.io.i2cWrite(0x68, 0x37);
+		board.io.i2cWrite(0x68, [0x37, 0x02, 0x6A 0x00 0x6B 0x00);
 	},50);
-	setTimeout(function(){
-		board.io.i2cWrite(0x68, 0x02);
-	},100);
-	setTimeout(function(){
-		board.io.i2cWrite(0x68, 0x6A);
-	},150);
-	setTimeout(function(){
-		board.io.i2cWrite(0x68, 0x00);
-	},200);
-	setTimeout(function(){
-		board.io.i2cWrite(0x68, 0x6B);
-	},250);
-	setTimeout(function(){
-		board.io.i2cWrite(0x68, 0x00);
-	},300);
+
 
 	setTimeout(function(){
 		compass = new five.Compass({
@@ -89,7 +75,7 @@ board.on("ready", function() {
 			console.log("  bearing : ", this.bearing.name);
 			console.log("--------------------------------------");
 		});
-	},350);
+	},200);
 
 
 
