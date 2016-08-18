@@ -50,29 +50,47 @@ board.on("ready", function() {
 		controller: "MPU6050"
 	});
 
-	board.io.i2cWrite(0x68, 0x37);
-	board.io.i2cWrite(0x68, 0x02);
-	board.io.i2cWrite(0x68, 0x6A);
-	board.io.i2cWrite(0x68, 0x00);
-	board.io.i2cWrite(0x68, 0x6B);
-	board.io.i2cWrite(0x68, 0x00);
+	var compass = null;
 
-	var compass = new five.Compass({
-		controller: "HMC5883L"
-	});
 
-	compass.on("change", function() {
-		console.log("change");
-		console.log("  heading : ", Math.floor(this.heading));
-		console.log("  bearing : ", this.bearing.name);
-		console.log("--------------------------------------");
-	});
+	setTimeout(function(){
+		board.io.i2cWrite(0x68, 0x37);
+	},50);
+	setTimeout(function(){
+		board.io.i2cWrite(0x68, 0x02);
+	},100);
+	setTimeout(function(){
+		board.io.i2cWrite(0x68, 0x6A);
+	},150);
+	setTimeout(function(){
+		board.io.i2cWrite(0x68, 0x00);
+	},200);
+	setTimeout(function(){
+		board.io.i2cWrite(0x68, 0x6B);
+	},250);
+	setTimeout(function(){
+		board.io.i2cWrite(0x68, 0x00);
+	},300);
 
-	compass.on("data", function() {
-		console.log("  heading : ", Math.floor(this.heading));
-		console.log("  bearing : ", this.bearing.name);
-		console.log("--------------------------------------");
-	});
+	setTimeout(function(){
+		compass = new five.Compass({
+			controller: "HMC5883L"
+		});		
+
+		compass.on("change", function() {
+			console.log("change");
+			console.log("  heading : ", Math.floor(this.heading));
+			console.log("  bearing : ", this.bearing.name);
+			console.log("--------------------------------------");
+		});
+
+		compass.on("data", function() {
+			console.log("  heading : ", Math.floor(this.heading));
+			console.log("  bearing : ", this.bearing.name);
+			console.log("--------------------------------------");
+		});
+	},350);
+
 
 
 	var rollAngle = 0;
