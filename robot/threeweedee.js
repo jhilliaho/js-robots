@@ -214,6 +214,7 @@ board.on("ready", function() {
 		});
 	}
 
+	pointAngle(290);
 
 	function runProgram() {
 
