@@ -101,6 +101,9 @@ void loop() {
     motor1TargetSpeed = 0;
     motor2TargetSpeed = 0;
     motor3TargetSpeed = 0;
+    digitalWriteFast(7, HIGH);
+    digitalWriteFast(15, HIGH);
+    digitalWriteFast(23, HIGH);
     counter = 0;
   }
 

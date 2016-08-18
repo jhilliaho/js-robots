@@ -169,27 +169,22 @@ board.on("ready", function() {
 			var interval = setInterval(function(){
 				console.log(rollAngle);
 				calcMotorSpeeds(0,0,30);
-
-				if (rollAngle < 5 || rollAngle > 355) {
+				if (rollAngle < 10 || rollAngle > 350) {
 					clearInterval(interval);
 				}
-				
 			},10);
-
-
 
 		} else if (rollAngle >= 180) {
 			var interval = setInterval(function(){
 				console.log(rollAngle);
 				calcMotorSpeeds(0,0,30);
 
-				if (rollAngle < 5 || rollAngle > 355) {
+				if (rollAngle < 10 || rollAngle > 350) {
 					clearInterval(interval);
 				}
 
 			},10);
 		}
-
 	}
 
 	setTimeout(radar, 200);
