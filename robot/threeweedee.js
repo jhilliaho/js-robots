@@ -128,9 +128,9 @@ board.on("ready", function() {
 		rotation = parseInt(rotation);
 
 		if (rollAngle > 5 && rollAngle < 180) {
-			rotation -= 4 * rollAngle;
+			rotation -= 1 * rollAngle;
 		} else if (rollAngle < 355 && rollAngle >= 180) {
-			rotation += 4 * rollAngle;			
+			rotation += 1 * rollAngle;			
 		}
 
 		// Angle as degrees
