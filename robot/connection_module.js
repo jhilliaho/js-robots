@@ -4,7 +4,7 @@
 
 "use strict"
 
-exports.data = {
+exports.moduleState = {
 	connected: true,
 	lastDataPacket: {}
 };
@@ -23,5 +23,5 @@ socket.on("disconnect", function(){
 
 socket.on("speedAndAngleFromServer", function(data){
 	console.log("Data from server", data);
-	exports.connectionData.lastDataPacket = data;
+	exports.moduleState.lastDataPacket = data;
 });
