@@ -42,7 +42,7 @@
 		rotation = parseInt(rotation);
 
 		// Angle as degrees
-		var motorArr = calculateRelativeMotorSpeeds(angle);
+		var motorArr = calcMovement(angle);
 		
 		motorArr[0] *= speed; //3
 		motorArr[1] *= speed; //2
