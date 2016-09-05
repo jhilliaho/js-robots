@@ -35,10 +35,9 @@
 		}
 	}
 
-	function calcMotorSpeeds(rawAngle, speed, rotation) {
+	function calcMotorSpeeds(angle, speed, rotation) {
 
-		rawAngle = parseInt(rawAngle);
-		rawAngle -= rollAngle;
+		angle = parseInt(rawAngle);
 		speed = parseInt(speed)*4;
 		rotation = parseInt(rotation);
 

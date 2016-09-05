@@ -13,6 +13,8 @@ var sensors = require("./sensor_module.js");
 board.on("ready", function() {
 	board.io.i2cConfig();
 	sensors.activateModule(five, board);
+	moving.calcMotorSpeeds(1,2,3);
+	moving.sendMotorSpeeds();
 });
 
 process.on('uncaughtException', function(err) {
@@ -23,5 +25,3 @@ process.on('uncaughtException', function(err) {
 setInterval(function(){
 	console.log(connection.moduleState, sensors.moduleState)
 },200);
-
-
