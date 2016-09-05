@@ -2,7 +2,6 @@
 //
 // Jani Hilliaho 2016
 
-
 var cv = require('opencv');
 
 try {

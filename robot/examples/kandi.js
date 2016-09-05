@@ -2,7 +2,6 @@
 This Node.js program uses johnny-five, raspicam and socket.io libraries to take a picture
 and to send it to the remote server when the PIR-sensor has noticed motion.
 
-Copyright:
 Jani Hilliaho 2016
 */
 
