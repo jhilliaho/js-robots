@@ -1,222 +1,80 @@
-var moving = require("./threeweedee_moving.js");
+// Node.js modules
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
   io: new Raspi()
 });
-
 var SerialPort = require("serialport");
 
 var io = require('socket.io-client');
 
+// Own modules
+var moving = require("./moving_module.js");
+
+// Global variables
 var distances = [];
 var radaring = false;
 var rollAngle = 0;
-
 var startTime = Date.now();
-
-// Laser distance meter
 var range = 0;
+var data = {};
+data.angle1 = data.speed1 = data.x2 = 0;
+
+// Motor functions
+var motor1 = {};
+var motor2 = {};
+var motor3 = {};
+
+// Global objects
+var lidar = new SerialPort("/dev/ttyUSB0", {baudRate: 115200});
+var imu = new five.IMU({controller: "MPU6050"});
+var compass = new five.Compass({controller: "HMC5883L"});		
+var socket = require('socket.io-client')('http://46.101.79.118:3000');
+
+// Event handlers
+lidar.on('data', function (num) {
+	var val = parseInt(num.toString());
+	if (radaring && !isNaN(val) && val >= 20) {
+		distances[rollAngle] = parseInt(num.toString());
+	}
+});
+
+compass.on("change", function() {
+	rollAngle = this.bearing.heading;
+	console.log(rollAngle);
+});
 
 board.on("ready", function() {
+	onBoardReady();
+});
+
+imu.on("change", function() {
+	var temp = this.gyro.roll.angle;
+});
+
+socket.once('connect', function() {
+    console.log('Connected to server');
+});
+
+socket.on("disconnect", function(){
+    console.log("Disconnected from server");
+});
+
+socket.on("speedAndAngleFromServer", function(dat){
+	data = dat;
+});
+
+process.on('uncaughtException', function(err) {
+    console.log("ERROR: ", err);
+    return true;
+})
+
+function onBoardReady() {
 	board.io.i2cConfig();
-
-
-	var lidar = new SerialPort("/dev/ttyUSB0", {
-	  baudRate: 115200
-	});
-
-	lidar.on('open', function() {
-		lidar.on('data', function (num) {
-			var val = parseInt(num.toString());
-			if (radaring && !isNaN(val) && val >= 20) {
-				distances[rollAngle] = parseInt(num.toString());
-			}
-		});
-	});	
-
-	// Gyroscopes
-	var data = {};
-
-	
-	var imu = new five.IMU({
-		controller: "MPU6050"
-	});
-
-	var compass = null;
 
 	board.io.i2cWrite(0x68, [0x37, 0x02, 0x6A, 0x00, 0x6B, 0x00]);
 
-	compass = new five.Compass({
-		controller: "HMC5883L"
-	});		
-
-	compass.on("change", function() {
-		rollAngle = this.bearing.heading;
-		console.log(rollAngle);
-	});
-
-
-
-
-	// imu.on("change", function() {
-		//rollAngle = this.gyro.roll.angle;
-		//console.log(rollAngle);
-   	// });
-
-	// Motor functions
-	var motor1 = {};
-	var motor2 = {};
-	var motor3 = {};
-
-	var stopMotors = function stopMotors(){
-		console.log("Stopping motors");
-		motor1.dir = 0;
-		motor2.dir = 0;
-		motor3.dir = 0;
-		motor1.speed = 0;
-		motor2.speed = 0;
-		motor3.speed = 0;	
-		sendMotorSpeeds();
-	}
-
-	var sendMotorSpeeds = function sendMotorSpeeds() {
-	
-		motor1.speed = Math.round(motor1.speed);
-		motor2.speed = Math.round(motor2.speed);
-		motor3.speed = Math.round(motor3.speed);
-
-		motor1.speed = motor1.speed > 255 ? 255 : motor1.speed
-		motor1.speed = motor1.speed < 0 ? 0 : motor1.speed
-
-		motor2.speed = motor2.speed > 255 ? 255 : motor2.speed
-		motor2.speed = motor2.speed < 0 ? 0 : motor2.speed
-
-		motor3.speed = motor3.speed > 255 ? 255 : motor3.speed
-		motor3.speed = motor3.speed < 0 ? 0 : motor3.speed
-
-		var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
-
-
-		try {
-			board.io.i2cWrite(0x8, bytes);
-		} catch (ex) {
-    		console.log("ERROR IN I2C WRITING", ex);
-			board.io.i2cConfig();
-		}
-	}
-
-	var calcMotorSpeeds = function calcMotorSpeeds(rawAngle, speed, rotation) {
-
-
-		rawAngle = parseInt(rawAngle);
-		rawAngle -= rollAngle;
-		speed = parseInt(speed)*4;
-		rotation = parseInt(rotation);
-
-
-		// Angle as degrees
-		var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle);
-		
-		motorArr[0] *= speed; //3
-		motorArr[1] *= speed; //2
-		motorArr[2] *= speed; //1
-
-		motorArr[0] += rotation/2;
-		motorArr[1] += rotation/2;
-		motorArr[2] += rotation/2;
-
-		motor1 = {
-			speed: Math.round(Math.abs(motorArr[0])),
-			dir: motorArr[0] > 1 ? 1 : 0
-		};
-		motor2 = {
-			speed: Math.round(Math.abs(motorArr[1])),
-			dir: motorArr[1] > 1 ? 1 : 0
-		};
-		motor3 = {
-			speed: Math.round(Math.abs(motorArr[2])),
-			dir: motorArr[2] > 1 ? 1 : 0
-		};
-
-		sendMotorSpeeds();
-	}
-
-	console.log("connecting");
-	
-	var socket = require('socket.io-client')('http://46.101.79.118:3000');
-
-	socket.on("disconnect", function(){
-	    console.log("Disconnected from server");
-	});
-
-	socket.on("speedAndAngleFromServer", function(dat){
-		data = dat;
-	});
-
-	data.angle1 = data.speed1 = data.x2 = 0;
-
-	//var calcInterval = setInterval(function(){
-	//	calcMotorSpeeds(data.angle1, data.speed1, data.x2);
-	//}, 100);
-
-	socket.once('connect', function() {
-	    console.log('Connected to server');
-	});
-
-	stopMotors();
-
 	runProgram();
-
-
-	function pointAngle(angle, callback) {
-		console.log("Execute radar");
-
-		var interval = setInterval(function(){
-			console.log(rollAngle);
-
-			var direction = 1;
-
-			calcMotorSpeeds(0,0,100 * direction);
-			if (rollAngle < (angle + 4) && rollAngle > (angle - 4)) {
-				clearInterval(interval);
-				console.log("ENd", rollAngle);
-				callback();
-			}
-		},50);
-	}
-
-	function findLongestDirection() {
-		var max = 0;
-		var maxAngle = 0;
-		console.log("Distances length:", distances.length);
-		for (var i = 0; i < distances.length; ++i) {
-			if (distances[i] > max) {
-				max = distances[i];
-				maxAngle = i;
-			}
-		}
-		console.log("Widest angle: ", max, " at ", maxAngle);
-		maxAngle -= 120;
-		maxAngle = maxAngle < 0 ? maxAngle+360 : maxAngle;
-		return maxAngle;
-	}
-
-	function radar(callback){
-		pointAngle(0, function(){
-			radaring = true;
-			pointAngle(180, function(){
-				pointAngle(0, function(){
-					radaring = false;
-					console.log(distances);
-					calcMotorSpeeds(0,0,0);
-					callback();
-				});
-			});
-		});
-	}
-
-
 
 	setTimeout(function(){
 		radar(function(){
@@ -225,19 +83,107 @@ board.on("ready", function() {
 			});
 		})
 	}, 200);
+}
 
-	function runProgram() {
+function pointAngle(angle, callback) {
+	var interval = setInterval(function(){
+		console.log(rollAngle);
+		var direction = 1;
+		calcMotorSpeeds(0,0,100 * direction);
+		if (rollAngle < (angle + 4) && rollAngle > (angle - 4)) {
+			clearInterval(interval);
+			console.log("ENd", rollAngle);
+			callback();
+		}
+	},50);
+}
 
+function findLongestDirection() {
+	var max = 0;
+	var maxAngle = 0;
+	console.log("Distances length:", distances.length);
+	for (var i = 0; i < distances.length; ++i) {
+		if (distances[i] > max) {
+			max = distances[i];
+			maxAngle = i;
+		}
 	}
+	console.log("Widest angle: ", max, " at ", maxAngle);
+	maxAngle -= 120;
+	maxAngle = maxAngle < 0 ? maxAngle+360 : maxAngle;
+	return maxAngle;
+}
 
-});
+function radar(callback){
+	pointAngle(0, function(){
+		radaring = true;
+		pointAngle(180, function(){
+			pointAngle(0, function(){
+				radaring = false;
+				console.log(distances);
+				calcMotorSpeeds(0,0,0);
+				callback();
+			});
+		});
+	});
+}
 
+function sendMotorSpeeds() {
 
+	motor1.speed = Math.round(motor1.speed);
+	motor2.speed = Math.round(motor2.speed);
+	motor3.speed = Math.round(motor3.speed);
 
-process.on('uncaughtException', function(err) {
-    console.log("ERROR: ", err);
-    return true;
-})
+	motor1.speed = motor1.speed > 255 ? 255 : motor1.speed
+	motor1.speed = motor1.speed < 0 ? 0 : motor1.speed
+
+	motor2.speed = motor2.speed > 255 ? 255 : motor2.speed
+	motor2.speed = motor2.speed < 0 ? 0 : motor2.speed
+
+	motor3.speed = motor3.speed > 255 ? 255 : motor3.speed
+	motor3.speed = motor3.speed < 0 ? 0 : motor3.speed
+
+	var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
+
+	try {
+		board.io.i2cWrite(0x8, bytes);
+	} catch (ex) {
+		console.log("ERROR IN I2C WRITING", ex);
+	}
+}
+
+function calcMotorSpeeds(rawAngle, speed, rotation) {
+
+	rawAngle = parseInt(rawAngle);
+	rawAngle -= rollAngle;
+	speed = parseInt(speed)*4;
+	rotation = parseInt(rotation);
+
+	// Angle as degrees
+	var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle);
+	
+	motorArr[0] *= speed; //3
+	motorArr[1] *= speed; //2
+	motorArr[2] *= speed; //1
+
+	motorArr[0] += rotation/2;
+	motorArr[1] += rotation/2;
+	motorArr[2] += rotation/2;
+
+	motor1 = {
+		speed: Math.round(Math.abs(motorArr[0])),
+		dir: motorArr[0] > 1 ? 1 : 0
+	};
+	motor2 = {
+		speed: Math.round(Math.abs(motorArr[1])),
+		dir: motorArr[1] > 1 ? 1 : 0
+	};
+	motor3 = {
+		speed: Math.round(Math.abs(motorArr[2])),
+		dir: motorArr[2] > 1 ? 1 : 0
+	};
+}
+
 
 
 
