@@ -7,6 +7,11 @@
 var SerialPort = require("serialport");
 
 exports.activateModule = activate;
+exports.sensorData = {
+	lidar: 0,
+	compass: 0,
+	gyro: 0,
+}
 
 var board = {};
 var five = {};
@@ -25,15 +30,18 @@ function activate(five_, board_){
 
 	// Event handlers
 	lidar.on('data', function (num) {
-		console.log("LidarData, ", num.toString());
+		//console.log("LidarData, ", num.toString());
+		exports.sensorData.lidar = num.toString();
 	});
 
 	compass.on("change", function() {
-		console.log("CompassData: ", this.bearing.heading);
+		//console.log("CompassData: ", this.bearing.heading);
+		exports.sensorData.compass = this.bearing.heading;
 	});
 
 	imu.on("change", function() {
-		console.log("GyroData: ", this.gyro.roll.angle);
+		//console.log("GyroData: ", this.gyro.roll.angle);
+		exports.sensorData.gyro = this.gyro.roll.angle;
 	});		
 }
 
