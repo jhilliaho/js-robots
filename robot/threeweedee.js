@@ -21,7 +21,7 @@ process.on('uncaughtException', function(err) {
 })
 
 setInterval(function(){
-	console.log(connection.data, sensors.data)
+	console.log(connection.moduleState, sensors.moduleState)
 },1000);
 
 
