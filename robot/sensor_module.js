@@ -25,7 +25,7 @@ function activate(five_, board_){
 
 	// Event handlers
 	lidar.on('data', function (num) {
-		console.log("LidarData, ", num);
+		console.log("LidarData, ", num.toString());
 	});
 
 	compass.on("change", function() {
