@@ -37,12 +37,12 @@
 
 	function calcMotorSpeeds(angle, speed, rotation) {
 
-		angle = parseInt(rawAngle);
+		angle = parseInt(angle);
 		speed = parseInt(speed)*4;
 		rotation = parseInt(rotation);
 
 		// Angle as degrees
-		var motorArr = calculateRelativeMotorSpeeds(rawAngle);
+		var motorArr = calculateRelativeMotorSpeeds(angle);
 		
 		motorArr[0] *= speed; //3
 		motorArr[1] *= speed; //2
