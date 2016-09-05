@@ -4,6 +4,11 @@
 
 "use strict"
 
+exports.connectionData = {
+	connected: true,
+	lastDataPacket: {}
+};
+
 var io = require('socket.io-client');
 
 var socket = require('socket.io-client')('http://46.101.79.118:3000');
@@ -18,4 +23,5 @@ socket.on("disconnect", function(){
 
 socket.on("speedAndAngleFromServer", function(data){
 	console.log("Data from server", data);
+	exports.connectionData.lastDataPacket = data;
 });
