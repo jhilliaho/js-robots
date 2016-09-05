@@ -6,10 +6,10 @@ var board = new five.Board({
 });
 var SerialPort = require("serialport");
 
-var io = require('socket.io-client');
-
 // Own modules
 var moving = require("./moving_module.js");
+var connection = require("./connection_module.js");
+var sensors = require("./sensor_module.js");
 
 // Global variables
 var distances = [];
@@ -29,7 +29,6 @@ var motor3 = {};
 var lidar = new SerialPort("/dev/ttyUSB0", {baudRate: 115200});
 var imu = new five.IMU({controller: "MPU6050"});
 var compass = new five.Compass({controller: "HMC5883L"});		
-var socket = require('socket.io-client')('http://46.101.79.118:3000');
 
 // Event handlers
 lidar.on('data', function (num) {
@@ -52,17 +51,7 @@ imu.on("change", function() {
 	var temp = this.gyro.roll.angle;
 });
 
-socket.once('connect', function() {
-    console.log('Connected to server');
-});
 
-socket.on("disconnect", function(){
-    console.log("Disconnected from server");
-});
-
-socket.on("speedAndAngleFromServer", function(dat){
-	data = dat;
-});
 
 process.on('uncaughtException', function(err) {
     console.log("ERROR: ", err);
@@ -126,62 +115,6 @@ function radar(callback){
 			});
 		});
 	});
-}
-
-function sendMotorSpeeds() {
-
-	motor1.speed = Math.round(motor1.speed);
-	motor2.speed = Math.round(motor2.speed);
-	motor3.speed = Math.round(motor3.speed);
-
-	motor1.speed = motor1.speed > 255 ? 255 : motor1.speed
-	motor1.speed = motor1.speed < 0 ? 0 : motor1.speed
-
-	motor2.speed = motor2.speed > 255 ? 255 : motor2.speed
-	motor2.speed = motor2.speed < 0 ? 0 : motor2.speed
-
-	motor3.speed = motor3.speed > 255 ? 255 : motor3.speed
-	motor3.speed = motor3.speed < 0 ? 0 : motor3.speed
-
-	var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
-
-	try {
-		board.io.i2cWrite(0x8, bytes);
-	} catch (ex) {
-		console.log("ERROR IN I2C WRITING", ex);
-	}
-}
-
-function calcMotorSpeeds(rawAngle, speed, rotation) {
-
-	rawAngle = parseInt(rawAngle);
-	rawAngle -= rollAngle;
-	speed = parseInt(speed)*4;
-	rotation = parseInt(rotation);
-
-	// Angle as degrees
-	var motorArr = moving.calculateRelativeMotorSpeeds(rawAngle);
-	
-	motorArr[0] *= speed; //3
-	motorArr[1] *= speed; //2
-	motorArr[2] *= speed; //1
-
-	motorArr[0] += rotation/2;
-	motorArr[1] += rotation/2;
-	motorArr[2] += rotation/2;
-
-	motor1 = {
-		speed: Math.round(Math.abs(motorArr[0])),
-		dir: motorArr[0] > 1 ? 1 : 0
-	};
-	motor2 = {
-		speed: Math.round(Math.abs(motorArr[1])),
-		dir: motorArr[1] > 1 ? 1 : 0
-	};
-	motor3 = {
-		speed: Math.round(Math.abs(motorArr[2])),
-		dir: motorArr[2] > 1 ? 1 : 0
-	};
 }
 
 
