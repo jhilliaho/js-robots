@@ -20,6 +20,8 @@ process.on('uncaughtException', function(err) {
     return true;
 })
 
-
+setInterval(function(){
+	console.log(connection.data, sensors.data)
+},1000);
 
 

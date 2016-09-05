@@ -4,7 +4,7 @@
 
 "use strict"
 
-exports.connectionData = {
+exports.data = {
 	connected: true,
 	lastDataPacket: {}
 };
