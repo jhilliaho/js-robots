@@ -7,9 +7,14 @@
 	exports.calculateRelativeMotorSpeeds = calcMovement;
 	exports.calcMotorSpeeds = calcMotorSpeeds;
 	exports.sendMotorSpeeds = sendMotorSpeeds;
+	exports.activateModule = activateModule;
 
-	var motor1, motor2, motor3;
+	var motor1, motor2, motor3, board;
 	motor1 = motor2 = motor3 = {};
+
+	function activateModule(board_) {
+		board = board_;
+	};
 
 	function sendMotorSpeeds() {
 

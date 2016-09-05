@@ -13,6 +13,7 @@ var sensors = require("./sensor_module.js");
 board.on("ready", function() {
 	board.io.i2cConfig();
 	sensors.activateModule(five, board);
+	moving.activateModule(board);
 	moving.calcMotorSpeeds(1,2,3);
 	moving.sendMotorSpeeds();
 });
