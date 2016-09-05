@@ -5,7 +5,7 @@
 "use strict"
 
 exports.moduleState = {
-	connected: true,
+	connected: false,
 	lastDataPacket: {}
 };
 
@@ -14,10 +14,12 @@ var io = require('socket.io-client');
 var socket = require('socket.io-client')('http://46.101.79.118:3000');
 
 socket.once('connect', function() {
+	exports.moduleState.connected = true;
 	console.log('Connected to server');
 });
 
 socket.on("disconnect", function(){
+	exports.moduleState.connected = false;
 	console.log("Disconnected from server");
 });
 
