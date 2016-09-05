@@ -1,3 +1,7 @@
+// Example of using HC-SR04 sonar module with Node.js
+//
+// Jani Hilliaho 2016
+
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({

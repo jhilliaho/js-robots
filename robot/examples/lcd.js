@@ -1,3 +1,7 @@
+// Example of using I2C display
+//
+// Jani Hilliaho 2016
+
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 
@@ -6,7 +10,6 @@ var board = new five.Board({
 });
 
 board.on("ready", function() {
-	// Set LCD screen
 	var lcd = new five.LCD({
 		controller: "PCF8574AT",
 		address: 0x27,
@@ -14,6 +17,6 @@ board.on("ready", function() {
 		cols: 16
 	});
 
-	lcd.noAutoscroll().print("YEAH");
+	lcd.noAutoscroll().print("Hello World!");
 	lcd.noBlink();
 });

@@ -4,7 +4,7 @@ and to send it to the remote server when the PIR-sensor has noticed motion.
 
 Copyright:
 Jani Hilliaho 2016
- */
+*/
 
 console.log("Starting the system...");
 
@@ -22,10 +22,10 @@ var cameraOptions = {
 	awb: false,								// No automatic white balance
 	shutter: 50000,							// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
-	w: 320,								// Image width
+	w: 320,									// Image width
 	h: 240									// Image height
 
-	// Image Resolutions: 640x480, 1280x960, 2592x1944 
+	// Used image resolutions: 320x240, 640x480, 1280x960, 2592x1944 
 }
 
 // Initialize camera with Raspicam
@@ -57,15 +57,11 @@ var singleTiming = {};
 // Event handler runs when the johnny-five board is ready
 board.on("ready", function() {
 
-	// Initialize pin for PIR-sensor
+	// Initialize a pin for PIR sensor
 	var pir = new five.Pin({
 		pin: "GPIO18",
 		mode: 0 			// INPUT = 0, OUTPUT = 1
 	});
-
-	var irled = new five.Led("GPIO23");
-
-	var pirVal = 0;
 
 	console.log("Board ready");
 
@@ -83,12 +79,13 @@ board.on("ready", function() {
 
 	    socket.emit('camConnected');
 
-	    // "mutex" to prevent taking new pictures before previous one has been sent
+	    // Set a lock variable to prevent taking new pictures before the previous one has been sent
 		var shootlock = false;
 
 		setInterval(function(){
 
 			if (!shootlock) {
+
 				// Set the shootlock
 				shootlock = true;
 
@@ -97,16 +94,12 @@ board.on("ready", function() {
 
 				// Start the camera
 				camera.start();
-				console.log("Start Camera!");
+				console.log("Start camera");
 			} else {
 				console.log("Not taking a picture because of shootlock");
 			}
 
 		}, 1000);
-
-
-
-
 
 		// Runs when the camera starts to take a picture
 		camera.on("start", function( err, timestamp ){
@@ -143,7 +136,6 @@ board.on("ready", function() {
 		        // Send the image as Buffer to the remote server
 		    	socket.emit('newImage', base64Image);
 		    });
-
 		});
 
 		// Runs when remote server has received the image
@@ -155,13 +147,13 @@ board.on("ready", function() {
 			delete singleTiming.startTime;
 			singleTiming.width = cameraOptions.w;
 			singleTiming.height = cameraOptions.h;
+
 			// Send timing data to the server
 			socket.emit('imageStats', singleTiming);
 			console.log(singleTiming);
 			singleTiming = {};
 
 			// Remove shootlock
-			
 			if (imgCount < 250) {
 				setTimeout(function(){
 					shootlock = false;

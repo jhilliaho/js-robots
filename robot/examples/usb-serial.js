@@ -1,3 +1,7 @@
+// Example of reading serial port using Node.js
+//
+// Jani Hilliaho 2016
+
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
@@ -9,15 +13,14 @@ var SerialPort = require("serialport");
 board.on("ready", function() {
 
 	var range = 0;
-	var lidar = new SerialPort("/dev/ttyUSB0", {
+	var port = new SerialPort("/dev/ttyUSB0", {
 	  baudRate: 115200,
-	  // What's this?
 	  parser: com.parsers.readline('\r\n')
 	});
 
-	lidar.on('open', function() {
+	port.on('open', function() {
 		console.log("Open");
-		lidar.on('data', function (num) {
+		port.on('data', function (num) {
 			console.log("RANGE", num.toString());
 		});
 	});	
