@@ -55,8 +55,9 @@ function pointAngle(destinationAngle) {
 
 			direction = (currentAngle < destinationAngle) ? 1 : -1;
 
-			var speed = 60;
-
+			var speed = Math.abs(destinationAngle - currentAngle);
+			speed = (speed > 60) ? 60 : speed;
+			
 			console.log(currentAngle, " -> ", destinationAngle, " with direction ", direction, " and speed ", speed);
 
 			moving.setMotorSpeeds(0,0,speed * direction);
