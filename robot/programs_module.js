@@ -65,7 +65,7 @@
 	function kaarra(){
 		var angle = 0;
 		var interval = setInterval(function(){
-			moving.setMotorSpeeds(angle++, 20, 0);
+			moving.setMotorSpeeds(angle++, 5, 0);
 			if (angle >= 360) {
 				clearInterval(interval);
 				moving.setMotorSpeeds(0, 0, 0);
