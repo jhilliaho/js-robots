@@ -38,7 +38,7 @@ function pointAngle(destinationAngle) {
 		pointAngleLock = true;
 		var currentAngle = sensors.moduleState.compass;
 
-		if (Math.abs(currentAngle - destinationAngle) < 3) {
+		if (Math.abs(currentAngle - destinationAngle) < 4) {
 			console.log("Now pointing to angle", destinationAngle);
 			//clearInterval(interval);
 			moving.setMotorSpeeds(0,0,0);
