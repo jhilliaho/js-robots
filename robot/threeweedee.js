@@ -39,11 +39,15 @@ function pointAngle(destinationAngle) {
 		console.log(currentAngle, " -> ", destinationAngle);
 
 		if (Math.abs(currentAngle - destinationAngle) < 10) {
-			//clearInterval(interval);
-			//moving.setMotorSpeeds(0,0,0);
+			console.log("Now pointing to angle", destinationAngle);
+			clearInterval(interval);
+			moving.setMotorSpeeds(0,0,0);
 			return;
 		} else {
-			//moving.setMotorSpeeds(0,0,10);
+			var direction = (currentAngle < destinationAngle) ? 1 : -1;
+
+
+			moving.setMotorSpeeds(0,0,10 * direction);
 		}
 	},100);
 }
