@@ -26,5 +26,5 @@ process.on('uncaughtException', function(err) {
 })
 
 function run() {
-	programs.runAngle(0, 10, 1000);
+	programs.radar();
 }	
