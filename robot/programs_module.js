@@ -14,6 +14,7 @@
 	var programLocks = {};
 
 	function pointAngle(destinationAngle) {
+		console.log("Pointangle", destinationAngle);		
 		programLocks.pointAngleLock = false;
 		var interval = setInterval(function(){
 			if (programLocks.pointAngleLock) {return;}
