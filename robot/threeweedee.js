@@ -57,8 +57,8 @@ function pointAngle(destinationAngle) {
 
 
 			var speed = Math.abs(destinationAngle - currentAngle);
-			speed = (speed > 50) ? 50 : speed;
-			speed = (speed < 10) ? 10 : speed;
+			speed = (speed > 60) ? 60 : speed;
+			speed = (speed < 20) ? 20 : speed;
 
 			console.log(currentAngle, " -> ", destinationAngle, " with direction ", direction, " and speed ", speed);
 
