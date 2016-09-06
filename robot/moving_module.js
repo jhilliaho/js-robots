@@ -33,7 +33,6 @@
 
 		try {
 			board.io.i2cWrite(0x8, bytes);
-			console.log(bytes, " written to teensy");
 		} catch (ex) {
 			console.log("ERROR IN I2C WRITING", ex);
 		}
@@ -41,7 +40,6 @@
 
 	function calcMotorSpeeds(angle, speed, rotation) {
 
-		console.log("CalcMotorSpeeds", angle, speed, rotation);
 
 		angle = parseInt(angle);
 		speed = parseInt(speed)*4;
@@ -50,8 +48,6 @@
 		// Angle as degrees
 		var motorArr = calcMovement(angle);
 		
-		console.log(motorArr);
-
 		motorArr[0] *= speed; //3
 		motorArr[1] *= speed; //2
 		motorArr[2] *= speed; //1
