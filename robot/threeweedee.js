@@ -14,7 +14,9 @@ board.on("ready", function() {
 	board.io.i2cConfig();
 	sensors.activateModule(five, board);
 	moving.activateModule(board);
+	console.log(sensors.moduleState);
 	run();
+
 });
 
 process.on('uncaughtException', function(err) {
