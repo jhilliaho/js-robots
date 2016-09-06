@@ -10,12 +10,12 @@
 
 	exports.pointAngle = pointAngle;
 	exports.runAngle = runAngle;
-	exports.kaarra = kaarra;
+	exports.radar = radar;
 	exports.programLocks = programLocks;
 
 	var programLocks = {};
 
-	function pointAngle(destinationAngle) {
+	function pointAngle(destinationAngle, callback) {
 		console.log("Pointangle", destinationAngle);		
 		programLocks.pointAngleLock = false;
 		var interval = setInterval(function(){
@@ -27,6 +27,7 @@
 				console.log("Now pointing to angle", destinationAngle);
 				clearInterval(interval);
 				moving.setMotorSpeeds(0,0,0);
+				callback();
 			} else {
 				var direction = 0;
 				if (Math.abs(destinationAngle - currentAngle) > 180) {
@@ -62,17 +63,10 @@
 		},20);
 	}
 
-	function kaarra(){
-		var angle = 0;
-		var interval = setInterval(function(){
-			moving.setMotorSpeeds(angle++, 5, 0);
-			if (angle >= 360) {
-				clearInterval(interval);
-				moving.setMotorSpeeds(0, 0, 0);
-			}
-		},20);
-	}
+	function radar(){
+		pointAngle(0, pointAngle(120, pointAngle(240, pointAngle(360)));
 
+	}
 
 
 
