@@ -72,7 +72,7 @@
 			speed: Math.round(Math.abs(motorArr[2])),
 			dir: motorArr[2] > 0 ? 1 : 0
 		};
-		//sendMotorSpeeds();
+		sendMotorSpeeds();
 	}
 
 	// Function to multiply arrays
