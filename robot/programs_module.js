@@ -26,7 +26,9 @@
 			if (Math.abs(currentAngle - destinationAngle) < 4) {
 				console.log("Now pointing to angle", destinationAngle);
 				clearInterval(interval);
-				callback();
+				if (typeof callback == "function") {
+					callback();
+				}
 			} else {
 				var direction = 0;
 				if (Math.abs(destinationAngle - currentAngle) > 180) {
@@ -70,6 +72,7 @@
 					pointAngle(0,function(){
 						pointAngle(sensors.moduleState.longestDirection);
 						console.log("Pointing to longestDirection: ", sensors.moduleState.longestDirection, " : ", sensors.moduleState.longestDistance, "mm");
+						console.log(sensors.moduleState.distances)
 					})
 				})
 			})
