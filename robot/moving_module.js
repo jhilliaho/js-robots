@@ -41,6 +41,7 @@
 
 	function calcMotorSpeeds(angle, speed, rotation) {
 
+		angle += 240;
 		console.log("CalcMotorSpeeds", angle, speed, rotation);
 
 		angle = parseInt(angle);
