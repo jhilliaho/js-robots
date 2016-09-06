@@ -45,7 +45,5 @@ function pointAngle(destinationAngle) {
 		} else {
 			//moving.setMotorSpeeds(0,0,10);
 		}
-
-		console.log(connection.moduleState, sensors.moduleState)
 	},100);
 }
