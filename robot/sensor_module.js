@@ -11,7 +11,9 @@ exports.moduleState = {
 	lidar: 0,
 	compass: 0,
 	gyro: 0,
-	distances: {};
+	distances: {},
+	longestDistance: 0,
+	longestDirection: 0,
 }
 exports.clearDistances = clearDistances;
 
