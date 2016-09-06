@@ -44,7 +44,7 @@ function pointAngle(destinationAngle) {
 			moving.setMotorSpeeds(0,0,0);
 			return;
 		} else {
-			var direction = (currentAngle < destinationAngle) ? 1 : -1;
+			var direction = (currentAngle < destinationAngle) ? -1 : 1;
 
 
 			moving.setMotorSpeeds(0,0,10 * direction);
