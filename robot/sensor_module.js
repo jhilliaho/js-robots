@@ -48,7 +48,8 @@ function activate(five_, board_){
 		exports.moduleState.distances[exports.moduleState.compass] = num;
 		if (num > exports.moduleState.longestDistance) {
 			exports.moduleState.longestDistance = num;
-			exports.moduleState.longestDirection = exports.moduleState.compass
+			exports.moduleState.longestDirection = exports.moduleState.compass;
+			console.log("New longest: ", exports.moduleState.longestDistance, " at ", exports.moduleState.longestDirection);
 		}
 	});
 
