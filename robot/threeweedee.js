@@ -42,7 +42,6 @@ function pointAngle(destinationAngle) {
 			console.log("Now pointing to angle", destinationAngle);
 			//clearInterval(interval);
 			moving.setMotorSpeeds(0,0,0);
-			return;
 		} else {
 			var direction = 0;
 
