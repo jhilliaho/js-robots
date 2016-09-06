@@ -11,10 +11,16 @@ exports.moduleState = {
 	lidar: 0,
 	compass: 0,
 	gyro: 0,
+	distances: {};
 }
+exports.clearDistances = clearDistances;
 
 var board = {};
 var five = {};
+
+function clearDistances() {
+	exports.moduleState.distances = {};
+}
 
 function activate(five_, board_){
 	five = five_;
@@ -34,6 +40,8 @@ function activate(five_, board_){
 	// Event handlers
 	lidar.on('data', function (num) {
 		exports.moduleState.lidar = num;
+		console.log("lidar, compass: ", num, " at ", exports.moduleState.compass);
+		exports.moduleState.distances[exports.moduleState.compass] = num;
 	});
 
 	compass.on("change", function() {

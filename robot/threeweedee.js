@@ -16,7 +16,6 @@ board.on("ready", function() {
 	moving.activateModule(board);
 	console.log(sensors.moduleState);
 	run();
-
 });
 
 process.on('uncaughtException', function(err) {
@@ -25,29 +24,26 @@ process.on('uncaughtException', function(err) {
 })
 
 
+var programLocks = {
+
+};
+
 function run() {
 	pointAngle(50);
 }
 
-
-
 function pointAngle(destinationAngle) {
 
-	var pointAngleLock = false;
+	programLocks.pointAngleLock = false;
 	var interval = setInterval(function(){
 
-					moving.setMotorSpeeds(0,0,20);
-					return;
-
-
-
-		if (pointAngleLock) {return;}
-		pointAngleLock = true;
+		if (programLocks.pointAngleLock) {return;}
+		programLocks.pointAngleLock = true;
 		var currentAngle = sensors.moduleState.compass;
 
 		if (Math.abs(currentAngle - destinationAngle) < 4) {
 			console.log("Now pointing to angle", destinationAngle);
-			//clearInterval(interval);
+			clearInterval(interval);
 			moving.setMotorSpeeds(0,0,0);
 		} else {
 			var direction = 0;
@@ -69,7 +65,7 @@ function pointAngle(destinationAngle) {
 
 			moving.setMotorSpeeds(0,0,speed * direction);
 		}
-		pointAngleLock = false;
+		programLocks.pointAngleLock = false;
 
 	},20);
 }
