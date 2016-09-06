@@ -1,2 +1,2 @@
 // Node.js modules
-console.log("Hello");
+var five = require("johnny-five");
