@@ -26,5 +26,15 @@ process.on('uncaughtException', function(err) {
 })
 
 function run() {
-	programs.kaarra();
+	programs.runAngle(0, 10, 1000);
+	setTimeout(function(){
+		programs.runAngle(90, 10, 1000);
+	},1000);
+	setTimeout(function(){
+		programs.runAngle(180, 10, 1000);
+	},2000);
+	setTimeout(function(){
+		programs.runAngle(270, 10, 1000);
+	},3000);
+
 }
