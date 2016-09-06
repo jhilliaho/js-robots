@@ -1,8 +1,6 @@
 // Node.js modules
 var five = require("johnny-five");
-var Raspi = require("raspi-io");
 var board = new five.Board({
-  io: new Raspi()
 });
 
 // Own modules
@@ -22,9 +20,7 @@ process.on('uncaughtException', function(err) {
     return true;
 })
 
-var programLocks = {
-
-};
+var programLocks = {};
 
 function run() {
 	pointAngle(50);
