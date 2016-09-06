@@ -4,7 +4,7 @@
 
 	"use strict"
 
-	exports.calcMotorSpeeds = calcMotorSpeeds;
+	exports.setMotorSpeeds = calcMotorSpeeds;
 	exports.activateModule = activateModule;
 
 	var motor1, motor2, motor3, board;
