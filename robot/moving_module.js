@@ -33,7 +33,7 @@
 
 		try {
 			board.io.i2cWrite(0x8, bytes);
-			console.log(bytes, " sent to teensy");
+			console.log(bytes, " written to teensy");
 		} catch (ex) {
 			console.log("ERROR IN I2C WRITING", ex);
 		}
@@ -50,6 +50,8 @@
 		// Angle as degrees
 		var motorArr = calcMovement(angle);
 		
+		console.log(motorArr);
+
 		motorArr[0] *= speed; //3
 		motorArr[1] *= speed; //2
 		motorArr[2] *= speed; //1
@@ -70,7 +72,7 @@
 			speed: Math.round(Math.abs(motorArr[2])),
 			dir: motorArr[2] > 1 ? 1 : 0
 		};
-		sendMotorSpeeds();
+		//sendMotorSpeeds();
 	}
 
 	// Function to multiply arrays

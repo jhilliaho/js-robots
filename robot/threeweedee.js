@@ -26,7 +26,7 @@ process.on('uncaughtException', function(err) {
 
 
 function run() {
-	moving.setMotorSpeeds(0,0,20);
+	pointAngle(0);
 }
 
 
