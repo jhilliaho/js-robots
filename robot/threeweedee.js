@@ -23,7 +23,9 @@ process.on('uncaughtException', function(err) {
 })
 
 
-
+function run() {
+	pointAngle(0);
+}
 
 
 function pointAngle(destinationAngle) {
@@ -31,13 +33,16 @@ function pointAngle(destinationAngle) {
 
 	var interval = setInterval(function(){
 
-
 		var currentAngle = sensors.moduleState.compass;
+		console.log(currentAngle, " -> ", destinationAngle);
 
-		if (Math.abs(currentAngle - destinationAngle))
-
-
-		moving.setMotorSpeeds(0,0,currentAngle);
+		if (Math.abs(currentAngle - destinationAngle) > 10) {
+			clearInterval(interval);
+			moving.setMotorSpeeds(0,0,0);
+			return;
+		} else {
+			moving.setMotorSpeeds(0,0,currentAngle);
+		}
 
 		console.log(connection.moduleState, sensors.moduleState)
 	},200);
