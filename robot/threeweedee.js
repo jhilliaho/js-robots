@@ -1,4 +1,5 @@
 // Node.js modules
+// 11.7 = 64%
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
@@ -25,5 +26,5 @@ process.on('uncaughtException', function(err) {
 })
 
 function run() {
-	programs.runAngle(0, 3, 3000);
+	programs.runAngle(90, 3, 3000);
 }
