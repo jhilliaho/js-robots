@@ -45,23 +45,25 @@ function pointAngle(destinationAngle) {
 		} else {
 			var direction = 0;
 
-			if (Math.abs(destinationAngle - currentAngle) < 180) {
-				direction = (currentAngle < destinationAngle) ? 1 : -1;
-			} else {
+			if (Math.abs(destinationAngle - currentAngle) > 180) {
 				if (destinationAngle > currentAngle) {
 					destinationAngle -= 360;
 				} else {
 					currentAngle -= 360;
 				}
-				direction = (currentAngle < destinationAngle) ? 1 : -1;
 			}
-			console.log(currentAngle, " -> ", destinationAngle, " with direction ", direction);
+
+			direction = (currentAngle < destinationAngle) ? 1 : -1;
 
 
+			var speed = Math.abs(destinationAngle - currentAngle);
+			speed = (speed > 50) ? 50 : speed;
+			speed = (speed < 10) ? 10 : speed;
+
+			console.log(currentAngle, " -> ", destinationAngle, " with direction ", direction, " and speed ", speed);
 
 
-
-			moving.setMotorSpeeds(0,0,10 * direction);
+			moving.setMotorSpeeds(0,0,speed * direction);
 		}
 	},100);
 }
