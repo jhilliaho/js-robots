@@ -26,7 +26,6 @@
 			if (Math.abs(currentAngle - destinationAngle) < 4) {
 				console.log("Now pointing to angle", destinationAngle);
 				clearInterval(interval);
-				moving.setMotorSpeeds(0,0,0);
 				callback();
 			} else {
 				var direction = 0;
