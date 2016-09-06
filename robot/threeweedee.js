@@ -14,8 +14,7 @@ board.on("ready", function() {
 	board.io.i2cConfig();
 	sensors.activateModule(five, board);
 	moving.activateModule(board);
-	moving.calcMotorSpeeds(1,2,3);
-	moving.sendMotorSpeeds();
+	run();
 });
 
 process.on('uncaughtException', function(err) {
@@ -23,6 +22,23 @@ process.on('uncaughtException', function(err) {
     return true;
 })
 
-setInterval(function(){
-	console.log(connection.moduleState, sensors.moduleState)
-},200);
+
+
+
+
+function pointAngle(destinationAngle) {
+
+
+	var interval = setInterval(function(){
+
+
+		var currentAngle = sensors.moduleState.compass;
+
+		if (Math.abs(currentAngle - destinationAngle))
+
+
+		moving.setMotorSpeeds(0,0,currentAngle);
+
+		console.log(connection.moduleState, sensors.moduleState)
+	},200);
+}

@@ -1,6 +1,7 @@
 #include <Wire.h>
 #include <AccelStepper.h>
 
+// Initialize stepper drivers
 AccelStepper stepper1(1,1,0);
 AccelStepper stepper2(1,9,8);
 AccelStepper stepper3(1,17,16);
@@ -16,6 +17,7 @@ void setup() {
   Wire.begin(8);                // join i2c bus with address #8
   Wire.onReceive(receiveEvent); // register event
 
+  // Set pins
   for (int i = 0; i < 24; ++i) {
     if (i != 19 && i != 18) {
       pinMode(i, OUTPUT);
@@ -30,7 +32,7 @@ void setup() {
   // Disable reset
   digitalWriteFast(3, HIGH);
 
-  // Enable
+  // Enable motor
   digitalWriteFast(7, LOW);
 
   // Set speed
@@ -48,7 +50,7 @@ void setup() {
   // Disable reset
   digitalWriteFast(11, HIGH);
 
-  // Enable
+  // Enable motor
   digitalWriteFast(15, LOW);
 
   // Set speed
@@ -59,8 +61,8 @@ void setup() {
 
 
   // MOTOR 3 //
-
-  // Enable
+  
+  // Enable motor
   digitalWriteFast(23, LOW);
 
   // Set speed
@@ -69,7 +71,7 @@ void setup() {
   digitalWriteFast(22, LOW);
   stepper3.setMaxSpeed(motorMaxSpeed);
 
-  delay(1000);
+  delay(200);
   digitalWriteFast(7, HIGH);
   digitalWriteFast(15, HIGH);
   digitalWriteFast(23, HIGH);  

@@ -4,9 +4,7 @@
 
 	"use strict"
 
-	exports.calculateRelativeMotorSpeeds = calcMovement;
 	exports.calcMotorSpeeds = calcMotorSpeeds;
-	exports.sendMotorSpeeds = sendMotorSpeeds;
 	exports.activateModule = activateModule;
 
 	var motor1, motor2, motor3, board;
@@ -69,6 +67,7 @@
 			speed: Math.round(Math.abs(motorArr[2])),
 			dir: motorArr[2] > 1 ? 1 : 0
 		};
+		sendMotorSpeeds();
 	}
 
 	// Function to multiply arrays
