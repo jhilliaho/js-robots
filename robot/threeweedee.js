@@ -26,5 +26,5 @@ process.on('uncaughtException', function(err) {
 })
 
 function run() {
-	programs.runAngle(180, 3, 3000);
+	programs.kaarra();
 }

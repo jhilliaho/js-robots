@@ -10,6 +10,7 @@
 
 	exports.pointAngle = pointAngle;
 	exports.runAngle = runAngle;
+	exports.kaarra = kaarra;
 	exports.programLocks = programLocks;
 
 	var programLocks = {};
@@ -61,6 +62,16 @@
 		},20);
 	}
 
+	function kaarra(){
+		var angle = 0;
+		var interval = setInterval(function(){
+			moving.setMotorSpeeds(angle++, 20, 0);
+			if (angle >= 360) {
+				clearInterval(interval);
+				moving.setMotorSpeeds(0, 0, 0);
+			}
+		},20);
+	}
 
 
 
