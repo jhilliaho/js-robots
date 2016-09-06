@@ -45,7 +45,7 @@
 				moving.setMotorSpeeds(0,0,speed * direction);
 			}
 			programLocks.pointAngleLock = false;
-		},50);
+		},100);
 	}	
 
 	function runAngle(destinationAngle, speed, time) {
