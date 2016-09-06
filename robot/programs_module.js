@@ -64,8 +64,7 @@
 	}
 
 	function radar(){
-		pointAngle(0, pointAngle(120, pointAngle(240, pointAngle(360))));
-
+		pointAngle(0,function(){pointAngle(120,function(){pointAngle(240,function(){pointAngle(0,function(){})})})});
 	}
 
 
