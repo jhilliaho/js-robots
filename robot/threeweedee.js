@@ -54,8 +54,8 @@ function pointAngle(destinationAngle) {
 					currentAngle -= 360;
 				}
 				direction = (currentAngle < destinationAngle) ? 1 : -1;
-				console.log(currentAngle, " -> ", destinationAngle);
 			}
+			console.log(currentAngle, " -> ", destinationAngle, " with direction ", direction);
 
 
 
