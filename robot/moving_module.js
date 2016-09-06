@@ -41,7 +41,6 @@
 
 	function calcMotorSpeeds(angle, speed, rotation) {
 
-		angle += 50;
 		console.log("CalcMotorSpeeds", angle, speed, rotation);
 
 		angle = parseInt(angle);
@@ -130,7 +129,7 @@
 	function calcMovement(angle){
 
 		// Base angles: 0, 90, 180, 270, 360
-		var baseMovements = [[0, -1, 1], [1, -0.5, -0.5], [0, 1, -1], [-1, 0.5, 0.5], [0, -1, 1]];
+		var baseMovements = [[1, 0, -1], [0.5, -1, 0.5], [-1, 0, 1], [-0.5, 1, -0.5], [1, 0, -1]];
 		
 		var quarter = 0;
 
