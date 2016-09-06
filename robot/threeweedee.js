@@ -30,10 +30,17 @@ function run() {
 }
 
 
+
 function pointAngle(destinationAngle) {
 
 	var pointAngleLock = false;
 	var interval = setInterval(function(){
+
+					moving.setMotorSpeeds(0,0,20);
+					return;
+
+
+
 		if (pointAngleLock) {return;}
 		pointAngleLock = true;
 		var currentAngle = sensors.moduleState.compass;
