@@ -22,6 +22,8 @@ var five = {};
 
 function clearDistances() {
 	exports.moduleState.distances = {};
+	exports.moduleState.longestDistance = 0;
+	exports.moduleState.longestDirection = 0;
 }
 
 function activate(five_, board_){
@@ -44,6 +46,10 @@ function activate(five_, board_){
 		exports.moduleState.lidar = num;
 		//console.log("lidar, compass: ", num, " at ", exports.moduleState.compass);
 		exports.moduleState.distances[exports.moduleState.compass] = num;
+		if (num > exports.moduleState.longestDistance) {
+			exports.moduleState.longestDistance = num;
+			exports.moduleState.longestDirection = exports.moduleState.compass
+		}
 	});
 
 	compass.on("change", function() {
