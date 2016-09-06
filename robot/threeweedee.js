@@ -36,15 +36,29 @@ function pointAngle(destinationAngle) {
 	var interval = setInterval(function(){
 
 		var currentAngle = sensors.moduleState.compass;
-		console.log(currentAngle, " -> ", destinationAngle);
 
-		if (Math.abs(currentAngle - destinationAngle) < 10) {
+		if (Math.abs(currentAngle - destinationAngle) < 5) {
 			console.log("Now pointing to angle", destinationAngle);
 			clearInterval(interval);
 			moving.setMotorSpeeds(0,0,0);
 			return;
 		} else {
-			var direction = (currentAngle < destinationAngle) ? 1 : -1;
+			var direction = 0;
+
+			if (Math.abs(destinationAngle - currentAngle) < 180) {
+				direction = (currentAngle < destinationAngle) ? 1 : -1;
+			} else {
+				if (destinationAngle > currentAngle) {
+					destinationAngle -= 360;
+				} else {
+					currentAngle -= 360;
+				}
+				direction = (currentAngle < destinationAngle) ? 1 : -1;
+				console.log(currentAngle, " -> ", destinationAngle);
+			}
+
+
+
 
 
 			moving.setMotorSpeeds(0,0,10 * direction);
