@@ -45,7 +45,7 @@
 				moving.setMotorSpeeds(0,0,speed * direction);
 			}
 			programLocks.pointAngleLock = false;
-		},20);
+		},50);
 	}	
 
 	function runAngle(destinationAngle, speed, time) {
@@ -61,7 +61,7 @@
 				moving.setMotorSpeeds(destinationAngle, 20, 0);
 			}
 			programLocks.runAngleLock = false;
-		},20);
+		},50);
 	}
 
 	function radar(){
