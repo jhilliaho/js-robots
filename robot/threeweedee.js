@@ -41,9 +41,9 @@ function pointAngle(destinationAngle) {
 			moving.setMotorSpeeds(0,0,0);
 			return;
 		} else {
-			moving.setMotorSpeeds(0,0,currentAngle);
+			moving.setMotorSpeeds(0,0,10);
 		}
 
 		console.log(connection.moduleState, sensors.moduleState)
-	},200);
+	},50);
 }
