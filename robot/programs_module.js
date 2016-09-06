@@ -9,6 +9,7 @@
 	var sensors = require("./sensor_module.js");
 
 	exports.pointAngle = pointAngle;
+	exports.runAngle = runAngle;
 	exports.programLocks = programLocks;
 
 	var programLocks = {};
@@ -43,3 +44,27 @@
 			programLocks.pointAngleLock = false;
 		},20);
 	}	
+
+	function runAngle(destinationAngle, speed, time) {
+		var startTime = Date.now();
+		var endTime = startTime + time;
+		console.log("runAngle", destinationAngle);		
+		programLocks.runAngleLock = false;
+		var interval = setInterval(function(){
+			if (Date.now() >= endTime) {
+				clearInterval(interval);
+				moving.setMotorSpeeds(destinationAngle, 0, 0);
+			} else {
+				moving.setMotorSpeeds(destinationAngle, 20, 0);
+			}
+			programLocks.runAngleLock = false;
+		},20);
+	}
+
+
+
+
+
+
+
+
