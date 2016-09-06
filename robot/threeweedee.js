@@ -39,13 +39,13 @@ function pointAngle(destinationAngle) {
 		console.log(currentAngle, " -> ", destinationAngle);
 
 		if (Math.abs(currentAngle - destinationAngle) < 10) {
-			clearInterval(interval);
-			moving.setMotorSpeeds(0,0,0);
+			//clearInterval(interval);
+			//moving.setMotorSpeeds(0,0,0);
 			return;
 		} else {
-			moving.setMotorSpeeds(0,0,10);
+			//moving.setMotorSpeeds(0,0,10);
 		}
 
 		console.log(connection.moduleState, sensors.moduleState)
-	},50);
+	},100);
 }
