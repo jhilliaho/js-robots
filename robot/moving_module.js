@@ -62,15 +62,15 @@
 
 		motor1 = {
 			speed: Math.round(Math.abs(motorArr[0])),
-			dir: motorArr[0] > 1 ? 1 : 0
+			dir: motorArr[0] > 0 ? 1 : 0
 		};
 		motor2 = {
 			speed: Math.round(Math.abs(motorArr[1])),
-			dir: motorArr[1] > 1 ? 1 : 0
+			dir: motorArr[1] > 0 ? 1 : 0
 		};
 		motor3 = {
 			speed: Math.round(Math.abs(motorArr[2])),
-			dir: motorArr[2] > 1 ? 1 : 0
+			dir: motorArr[2] > 0 ? 1 : 0
 		};
 		//sendMotorSpeeds();
 	}
