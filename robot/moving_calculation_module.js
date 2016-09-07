@@ -31,8 +31,13 @@ function calcMovement(angle){
 	}
 
 	if (angle == 0) {
-		return baseMovements[quarter];
+		process.send(baseMovements[quarter]);
+		return;
 	}
+
+
+
+
 
 	var yVector = multiplyArray(baseMovements[quarter], Math.cos(degreesToRadians(angle)));
 	var xVector = multiplyArray(baseMovements[quarter+1], Math.sin(degreesToRadians(angle)));
