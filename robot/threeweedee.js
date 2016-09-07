@@ -28,5 +28,5 @@ process.on('uncaughtException', function(err) {
 
 function run() {
 
-	programs.pointAngle([100]);
+	programs.pointAngle([0,10,20,30]);
 }	
