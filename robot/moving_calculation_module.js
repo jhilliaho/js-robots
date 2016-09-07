@@ -5,15 +5,16 @@
 "use strict"
 
 var functionList = {};
-functionList.calcMovement = calcMovement;
 
 process.on('message', (m) => {
 	console.log("Got ", m, " to calculator");
-  calcMovement(m);
+    calcMovement(m);
 });
 
 // Function to calculate relative motor speeds
 function calcMovement(angle){
+
+	console.log("CalcMovements start");
 
 	// Base angles: 0, 90, 180, 270, 360
 	var baseMovements = [[1, 0, -1], [0.5, -1, 0.5], [-1, 0, 1], [-0.5, 1, -0.5], [1, 0, -1]];
