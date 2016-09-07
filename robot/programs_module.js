@@ -7,13 +7,20 @@
 	var moving = require("./moving_module.js");
 	var connection = require("./connection_module.js");
 	var sensors = require("./sensor_module.js");
+	var board = {};
 
 	exports.pointAngle = pointAngle;
 	exports.runAngle = runAngle;
 	exports.radar = radar;
 	exports.programLocks = programLocks;
+	exports.activateModule = activateModule;
 
 	var programLocks = {};
+
+	function activateModule(board_) {
+		board = board_;
+		moving.activateModule(board_);
+	}
 
 	function pointAngle(destinations, callback) {
 

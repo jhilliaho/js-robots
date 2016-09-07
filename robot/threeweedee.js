@@ -16,7 +16,7 @@ var sensors = require("./sensor_module.js");
 board.on("ready", function() {
 	board.io.i2cConfig();
 	sensors.activateModule(five, board);
-	moving.activateModule(board);
+	programs.activateModule(board);
 	console.log(sensors.moduleState);
 	run();
 });
