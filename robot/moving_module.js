@@ -20,8 +20,8 @@
 	var cb = null;
 
 	function calcMovement(angle, callback) {
-		movementCalculator.send(angle);
 		cb = callback;
+		movementCalculator.send(angle);
 	}
 
 	movementCalculator.on('message', (m) => {

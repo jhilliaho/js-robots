@@ -8,6 +8,7 @@ var functionList = {};
 functionList.calcMovement = calcMovement;
 
 process.on('message', (m) => {
+	console.log("Got ", m, " to calculator");
   calcMovement(m);
 });
 
@@ -37,6 +38,8 @@ function calcMovement(angle){
 
 	var sum = sumOfArrays(xVector, yVector);
 	var rounded = roundArray(sum,3);
+
+	console.log("Return ", rounded, " from calculator");
 
 	process.send(rounded);
 }
