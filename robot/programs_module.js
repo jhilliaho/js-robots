@@ -15,7 +15,11 @@
 
 	var programLocks = {};
 
-	function pointAngle(destinationAngle, callback) {
+	function pointAngle(destinations, callback) {
+
+		var destinationAngle = destinations[0];
+		var counter = 1;
+
 		console.log("Pointangle", destinationAngle);		
 		programLocks.pointAngleLock = false;
 		var interval = setInterval(function(){
@@ -25,9 +29,11 @@
 
 			if (Math.abs(currentAngle - destinationAngle) < 8) {
 				console.log("Now pointing to angle", destinationAngle);
-				clearInterval(interval);
-				if (typeof callback == "function") {
-					callback();
+				if (destinations.length > counter) {
+					destinationAngle = destinations[counter];
+					counter++;
+				} else {
+					clearInterval(interval);
 				}
 			} else {
 				var direction = 0;
@@ -65,18 +71,7 @@
 	}
 
 	function radar(){
-		sensors.clearDistances();
-		pointAngle(0,function(){
-			pointAngle(120,function(){
-				pointAngle(240,function(){
-					pointAngle(0,function(){
-						pointAngle(sensors.moduleState.longestDirection);
-						console.log("Pointing to longestDirection: ", sensors.moduleState.longestDirection, " : ", sensors.moduleState.longestDistance, "mm");
-						console.log(sensors.moduleState.distances)
-					})
-				})
-			})
-		});
+
 	}
 
 

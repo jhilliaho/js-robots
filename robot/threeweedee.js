@@ -1,5 +1,6 @@
 // Node.js modules
 // 11.7 = 64%
+// 11.46 = 41%
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
@@ -26,6 +27,6 @@ process.on('uncaughtException', function(err) {
 })
 
 function run() {
-	
+
 	programs.radar();
 }	
