@@ -24,7 +24,7 @@
 		cb = callback;
 	}
 
-	calculator.on('message', (m) => {
+	movementCalculator.on('message', (m) => {
 		cb(m);
 	});
 
