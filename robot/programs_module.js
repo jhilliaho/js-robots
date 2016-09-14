@@ -7,6 +7,7 @@
 	var moving = require("./moving_module.js");
 	var sensors = require("./sensor_module.js");
 	var board = {};
+	var pointAngleInterval = 0;
 
 	exports.pointAngle = pointAngle;
 	exports.runAngle = runAngle;
@@ -29,7 +30,7 @@
 
 		console.log("Pointangle", destinationAngle);		
 		programLocks.pointAngleLock = false;
-		var interval = setInterval(function(){
+		var pointAngleInterval = setInterval(function(){
 			console.log("Moving interval");
 			if (programLocks.pointAngleLock) {return;}
 			programLocks.pointAngleLock = true;
@@ -43,7 +44,7 @@
 					counter++;
 				} else {
 					console.log("Clearing interval");
-					clearInterval(interval);
+					clearInterval(pointAngleInterval);
 					if (typeof callback === "function") {
 						callback();
 					}
