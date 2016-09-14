@@ -35,7 +35,7 @@
 			var currentAngle = sensors.moduleState.compass;
 
 			if (Math.abs(currentAngle - destinationAngle) < 8) {
-				console.log("Now pointing to angle", destinationAngle);
+				console.log("Now pointing to angle", destinationAngle, " with angle ", currentAngle);
 				if (destinations.length > counter) {
 					destinationAngle = destinations[counter];
 					counter++;
@@ -54,7 +54,6 @@
 				direction = (currentAngle < destinationAngle) ? 1 : -1;
 				var speed = Math.abs(destinationAngle - currentAngle) * 6;
 				speed = (speed > 60) ? 60 : speed;
-				console.log(currentAngle, " -> ", destinationAngle, " with direction ", direction, " and speed ", speed);
 				moving.setMotorSpeeds(0,0,speed * direction);
 			}
 			programLocks.pointAngleLock = false;
