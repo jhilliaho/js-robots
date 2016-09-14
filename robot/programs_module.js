@@ -22,7 +22,7 @@
 		moving.activateModule(board_);
 	}
 
-	function pointAngle(destinations) {
+	function pointAngle(destinations, callback) {
 
 		var destinationAngle = destinations[0];
 		var counter = 1;
@@ -41,6 +41,9 @@
 					counter++;
 				} else {
 					clearInterval(interval);
+					if (typeof callback === "function") {
+						callback();
+					}
 				}
 			} else {
 				var direction = 0;
@@ -77,17 +80,18 @@
 	}
 
 	function radar(){
+		console.log("Radaring");
 		// Tyhjennä pituudet
 		sensors.clearDistances();
 		// Pyörähdä
-		pointAngle([0,120,240,0, 20]);
-		// Etsi pisin suunta
-		
-		console.log("Longest distance ", sensors.longestDistance, " at direction ", sensors.longestDirection);
+		pointAngle([0,120,240,0,20], function(){
 
-		pointAngle([sensors.longestDirection]);
+			console.log("Longest distance ", sensors.longestDistance, " at direction ", sensors.longestDirection);
 
-		// Käänny pisimpään suuntaan
+			pointAngle([sensors.longestDirection]);
+		});
+
+
 	}
 
 
