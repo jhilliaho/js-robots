@@ -1,6 +1,7 @@
 // Node.js modules
 // 11.7 = 64%
 // 11.46 = 41%
+var death = require("death");
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
@@ -29,10 +30,10 @@ process.on('exit', function (){
   moving.stopMotors();
 });
 
-process.on('SIGINT', function (){
-  console.log("Quitting.");
+death(function(signal, err) {
+  console.log("quitting");
   moving.stopMotors();
-});
+})
 
 function run() {
 
