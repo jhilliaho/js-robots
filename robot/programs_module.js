@@ -30,6 +30,7 @@
 		console.log("Pointangle", destinationAngle);		
 		programLocks.pointAngleLock = false;
 		var interval = setInterval(function(){
+			console.log("Moving interval");
 			if (programLocks.pointAngleLock) {return;}
 			programLocks.pointAngleLock = true;
 			var currentAngle = sensors.moduleState.compass;
@@ -40,6 +41,7 @@
 					destinationAngle = destinations[counter];
 					counter++;
 				} else {
+					console.log("Clearing interval");
 					clearInterval(interval);
 					if (typeof callback === "function") {
 						callback();
