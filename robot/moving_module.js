@@ -14,9 +14,9 @@
 
 	var cb = null;
 
-	function calcMovement(angle, callback) {
+	function calcMovement(params, callback) {
 		cb = callback;
-		movementCalculator.send(angle);
+		movementCalculator.send(params);
 	}
 
 	movementCalculator.on('message', (m) => {
@@ -36,7 +36,7 @@
 		rotation = parseInt(rotation);
 
 		// Angle as degrees
-		calcMovement(angle, function(motorArr){
+		calcMovement([angle, speed, rotation], function(motorArr){
 			
 			try {
 				console.log("Send to teensy", bytes);

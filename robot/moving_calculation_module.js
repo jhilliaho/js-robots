@@ -11,7 +11,9 @@ process.on('message', (m) => {
 });
 
 // Function to calculate relative motor speeds
-function calcMovement(angle){
+function calcMovement(params){
+
+	var angle = params.angle;
 
 	var returnValue = [];
 
@@ -36,11 +38,11 @@ function calcMovement(angle){
 		var xVector = multiplyArray(baseMovements[quarter+1], Math.sin(degreesToRadians(angle)));
 		var sum = sumOfArrays(xVector, yVector);
 		var rounded = roundArray(sum,3);
-		calculateBytes(rounded);
+		calculateBytes(rounded, params.speed, params.rotation);
 	}
 }
 
-function calculateBytes(motorArr) {
+function calculateBytes(motorArr, speed, rotation) {
 	motorArr[0] *= speed; // Motor 1
 	motorArr[1] *= speed; // Motor 2
 	motorArr[2] *= speed; // Motor 3
