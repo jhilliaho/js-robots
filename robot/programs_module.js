@@ -45,6 +45,7 @@
 				} else {
 					console.log("Clearing interval");
 					clearInterval(pointAngleInterval);
+					moving.setMotorSpeeds(0,0,0);
 					if (typeof callback === "function") {
 						callback();
 					}
