@@ -36,7 +36,7 @@
 		rotation = parseInt(rotation);
 
 		// Angle as degrees
-		calcMovement([angle, speed, rotation], function(bytes){
+		calcMovement({angle: angle, speed: speed, rotation: rotation}, function(bytes){
 			
 			try {
 				console.log("Send to teensy", bytes);
