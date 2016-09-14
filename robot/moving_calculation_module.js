@@ -12,7 +12,6 @@ process.on('message', (m) => {
 
 // Function to calculate relative motor speeds
 function calcMovement(params){
-	console.log("Calcmovement", params.angle, params.speed, params.rotation);
 	var angle = params.angle;
 
 	var returnValue = [];
@@ -32,7 +31,7 @@ function calcMovement(params){
 	}
 
 	if (angle == 0) {
-		calculateBytes(baseMovements[quarter]);
+		calculateBytes(baseMovements[quarter], params.speed, params.rotation);
 	} else {
 		var yVector = multiplyArray(baseMovements[quarter], Math.cos(degreesToRadians(angle)));
 		var xVector = multiplyArray(baseMovements[quarter+1], Math.sin(degreesToRadians(angle)));
