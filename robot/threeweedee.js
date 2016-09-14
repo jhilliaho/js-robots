@@ -24,6 +24,16 @@ process.on('uncaughtException', function(err) {
     return true;
 });
 
+process.on('exit', function (){
+  console.log("Quitting.");
+  moving.stopMotors();
+});
+
+process.on('SIGINT', function (){
+  console.log("Quitting.");
+  moving.stopMotors();
+});
+
 function run() {
 
 	programs.pointAngle([0,10,20,30]);
