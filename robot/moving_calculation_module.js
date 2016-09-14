@@ -12,7 +12,7 @@ process.on('message', (m) => {
 
 // Function to calculate relative motor speeds
 function calcMovement(params){
-
+	console.log("Calcmovement", params);
 	var angle = params.angle;
 
 	var returnValue = [];
