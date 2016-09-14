@@ -1,7 +1,7 @@
 // Node.js modules
 // 11.7 = 64%
 // 11.46 = 41%
-var death = require("death");
+var death = require("death")({debug: true, SIGHUP: true});
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
@@ -25,15 +25,10 @@ process.on('uncaughtException', function(err) {
     return true;
 });
 
-process.on('exit', function (){
-  console.log("Quitting.");
-  moving.stopMotors();
-});
-
 death(function(signal, err) {
-  console.log("quitting");
-  moving.stopMotors();
-})
+  console.log("Death");
+  programs.stopMotors();
+});
 
 function run() {
 
