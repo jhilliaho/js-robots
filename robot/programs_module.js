@@ -88,7 +88,7 @@
 
 			console.log("Longest distance ", sensors.moduleState.longestDistance, " at direction ", sensors.moduleState.longestDirection);
 
-			pointAngle([sensors.longestDirection]);
+			pointAngle([sensors.moduleState.longestDirection]);
 		});
 
 
