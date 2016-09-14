@@ -38,6 +38,7 @@
 			if (Math.abs(currentAngle - destinationAngle) < 8) {
 				console.log("Now pointing to angle", destinationAngle, " with angle ", currentAngle);
 				if (destinations.length > counter) {
+					console.log("Get next destination");
 					destinationAngle = destinations[counter];
 					counter++;
 				} else {
@@ -86,7 +87,8 @@
 		// Tyhjennä pituudet
 		sensors.clearDistances();
 		// Pyörähdä
-		pointAngle([0,120,240,0,20], function(){
+		
+		pointAngle([0,20], function(){
 
 			console.log("Longest distance ", sensors.moduleState.longestDistance, " at direction ", sensors.moduleState.longestDirection);
 
