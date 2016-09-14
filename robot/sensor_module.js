@@ -46,11 +46,10 @@ function activate(five_, board_){
 		num = parseInt(num);
 		exports.moduleState.lidar = num;
 		exports.moduleState.distances[exports.moduleState.compass] = num;
-		console.log("Lidar", num);
 		if (num > exports.moduleState.longestDistance) {
 			exports.moduleState.longestDistance = num;
 			exports.moduleState.longestDirection = exports.moduleState.compass;
-			//console.log("New longest: ", exports.moduleState.longestDistance, " at ", exports.moduleState.longestDirection);
+			console.log("New longest: ", exports.moduleState.longestDistance, " at ", exports.moduleState.longestDirection);
 		}
 	});
 

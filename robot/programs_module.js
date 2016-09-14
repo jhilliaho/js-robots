@@ -77,7 +77,17 @@
 	}
 
 	function radar(){
+		// Tyhjennä pituudet
+		sensors.clearDistances();
+		// Pyörähdä
+		pointAngle([0,120,240,0, 20]);
+		// Etsi pisin suunta
+		
+		console.log("Longest distance ", sensors.longestDistance, " at direction ", sensors.longestDirection);
 
+		pointAngle([sensors.longestDirection]);
+
+		// Käänny pisimpään suuntaan
 	}
 
 
