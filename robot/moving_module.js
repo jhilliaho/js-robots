@@ -6,6 +6,7 @@
 
 	exports.setMotorSpeeds = calcMotorSpeeds;
 	exports.activateModule = activateModule;
+	exports.stopMotors = stopMotors;
 
 	var board;
 
@@ -44,4 +45,11 @@
 		});
 	}
 
+	function stopMotors() {
+		try {
+			board.io.i2cWrite(0x8, [0,0,0,0,0,0]);
+		} catch (ex) {
+			console.log("ERROR IN I2C WRITING", ex);
+		}
+	}
 
