@@ -46,6 +46,7 @@
 	}
 
 	function stopMotors() {
+		console.log("Moving module stopping motors");
 		try {
 			board.io.i2cWrite(0x8, [0,0,0,0,0,0]);
 		} catch (ex) {

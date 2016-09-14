@@ -13,7 +13,7 @@
 	exports.radar = radar;
 	exports.programLocks = programLocks;
 	exports.activateModule = activateModule;
-	exports.stopMotors = moving.stopMotors();
+	exports.stopMotors = moving.stopMotors;
 
 	var programLocks = {};
 
