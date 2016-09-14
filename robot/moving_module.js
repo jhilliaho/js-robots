@@ -36,7 +36,7 @@
 		rotation = parseInt(rotation);
 
 		// Angle as degrees
-		calcMovement([angle, speed, rotation], function(motorArr){
+		calcMovement([angle, speed, rotation], function(bytes){
 			
 			try {
 				console.log("Send to teensy", bytes);
