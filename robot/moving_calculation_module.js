@@ -41,8 +41,9 @@ function calcMovement(params){
 		calculateBytes(rounded, params.speed, params.rotation);
 	}
 }
-
 function calculateBytes(motorArr, speed, rotation) {
+	console.log("CalculateBytes", motorArr, speed, rotation);
+
 	motorArr[0] *= speed; // Motor 1
 	motorArr[1] *= speed; // Motor 2
 	motorArr[2] *= speed; // Motor 3
