@@ -2,7 +2,7 @@
 //
 // Jani Hilliaho 2016
 
-"use strict"
+"use strict";
 
 var SerialPort = require("serialport");
 
@@ -15,7 +15,7 @@ exports.moduleState = {
 	distances: {},
 	longestDistance: 0,
 	longestDirection: 0,
-}
+};
 
 var board = {};
 var five = {};

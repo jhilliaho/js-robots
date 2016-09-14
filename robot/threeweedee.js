@@ -8,9 +8,7 @@ var board = new five.Board({
 });
 
 // Own modules
-var moving = require("./moving_module.js");
 var programs = require("./programs_module.js");
-var connection = require("./connection_module.js");
 var sensors = require("./sensor_module.js");
 
 board.on("ready", function() {
@@ -24,7 +22,7 @@ board.on("ready", function() {
 process.on('uncaughtException', function(err) {
     console.log("ERROR: ", err);
     return true;
-})
+});
 
 function run() {
 

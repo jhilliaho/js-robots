@@ -3,7 +3,7 @@
 // Jani Hilliaho 2016
 
 const cp = require('child_process');
-const calculator = cp.fork('function.js');
+const calculator = cp.fork('calculating_unit.js');
 
 var state = {
 

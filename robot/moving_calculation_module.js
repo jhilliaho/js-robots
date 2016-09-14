@@ -2,9 +2,7 @@
 //
 // Jani Hilliaho 2016
 
-"use strict"
-
-var functionList = {};
+"use strict";
 
 process.on('message', (m) => {
     calcMovement(m);
@@ -13,8 +11,6 @@ process.on('message', (m) => {
 // Function to calculate relative motor speeds
 function calcMovement(params){
 	var angle = params.angle;
-
-	var returnValue = [];
 
 	// Base angles: 0, 90, 180, 270, 360
 	var baseMovements = [[1, 0, -1], [0.5, -1, 0.5], [-1, 0, 1], [-0.5, 1, -0.5], [1, 0, -1]];
@@ -30,7 +26,7 @@ function calcMovement(params){
 		angle -= 90;
 	}
 
-	if (angle == 0) {
+	if (angle === 0) {
 		calculateBytes(baseMovements[quarter], params.speed, params.rotation);
 	} else {
 		var yVector = multiplyArray(baseMovements[quarter], Math.cos(degreesToRadians(angle)));
@@ -63,9 +59,9 @@ function calculateBytes(motorArr, speed, rotation) {
 		dir: motorArr[2] > 0 ? 0 : 1
 	};
 
-	motor1.speed = motor1.speed > 255 ? 255 : motor1.speed
-	motor2.speed = motor2.speed > 255 ? 255 : motor2.speed
-	motor3.speed = motor3.speed > 255 ? 255 : motor3.speed
+	motor1.speed = motor1.speed > 255 ? 255 : motor1.speed;
+	motor2.speed = motor2.speed > 255 ? 255 : motor2.speed;
+	motor3.speed = motor3.speed > 255 ? 255 : motor3.speed;
 
 	var bytes = [motor1.speed, motor1.dir, motor2.speed, motor2.dir, motor3.speed, motor3.dir];
 	process.send(bytes);
@@ -104,19 +100,6 @@ function roundArray(arr, digits){
 		temp[i] = Math.round(arr[i] * multiplier) / multiplier;
 	}
 	return temp;
-}
-
-// Function to normalize arrays
-function normalizeArray(arr) {
-	var max = 0;
-	for (var i = 0; i < arr.length; ++i) {
-		max = Math.abs(arr[i]) > max ? Math.abs(arr[i]) : max;
-	}
-
-	for (var i = 0; i < arr.length; ++i) {
-		arr[i] = arr[i] / max;
-	}
-	return arr;
 }
 
 // Function to convert degrees to radians

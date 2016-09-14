@@ -2,7 +2,7 @@
 //
 // Jani Hilliaho 2016
 
-	"use strict"
+	"use strict";
 
 	exports.setMotorSpeeds = calcMotorSpeeds;
 	exports.activateModule = activateModule;
@@ -25,7 +25,7 @@
 
 	function activateModule(board_) {
 		board = board_;
-	};
+	}
 
 	function calcMotorSpeeds(angle, speed, rotation) {
 

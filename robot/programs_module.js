@@ -2,10 +2,9 @@
 //
 // Jani Hilliaho 2016
 
-	"use strict"
+	"use strict";
 
 	var moving = require("./moving_module.js");
-	var connection = require("./connection_module.js");
 	var sensors = require("./sensor_module.js");
 	var board = {};
 
@@ -22,7 +21,7 @@
 		moving.activateModule(board_);
 	}
 
-	function pointAngle(destinations, callback) {
+	function pointAngle(destinations) {
 
 		var destinationAngle = destinations[0];
 		var counter = 1;
