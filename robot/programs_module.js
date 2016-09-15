@@ -31,6 +31,9 @@
 		console.log("Pointangle", destinationAngle);		
 		programLocks.pointAngleLock = false;
 		var pointAngleInterval = setInterval(function(){
+			while (destinationAngle >= 360) {
+				destinationAngle -= 360;
+			}
 			console.log("Moving interval");
 			if (programLocks.pointAngleLock) {return;}
 			programLocks.pointAngleLock = true;
@@ -84,12 +87,14 @@
 	}
 
 	function radar(){
+		var currentAngle = sensors.moduleState.currentAngle;
 		console.log("Radaring");
+
 		// Tyhjennä pituudet
 		sensors.clearDistances();
+
 		// Pyörähdä
-		
-		pointAngle([0,20], function(){
+		pointAngle([currentAngle,currentAngle+120,currentAngle+240,currentAngle, currentAngle+20], function(){
 
 			console.log("Longest distance ", sensors.moduleState.longestDistance, " at direction ", sensors.moduleState.longestDirection);
 
