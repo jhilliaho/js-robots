@@ -43,12 +43,10 @@ function activate(five_, board_){
 
 	compass.on("change", function() {
 		exports.moduleState.compass = this.bearing.heading;
-		console.log("Compass ", this.bearing.heading );
 	});
 
 	imu.on("change", function() {
 		exports.moduleState.gyro = this.gyro.yaw.angle;
-		console.log("Gyro: ",this.gyro.yaw.angle);
 	});		
 
 	// Event handlers
