@@ -86,7 +86,7 @@
 
 	function radar(){
 		var ca = sensors.moduleState.compass;
-		console.log("Radaring starting from angle ", currentAngle);
+		console.log("Radaring starting from angle ", ca);
 
 		// Tyhjennä pituudet
 		sensors.clearDistances();
