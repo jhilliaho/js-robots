@@ -64,6 +64,7 @@
 				direction = (currentAngle < destinationAngle) ? 1 : -1;
 				var speed = Math.abs(destinationAngle - currentAngle) * 4;
 				speed = (speed > 100) ? 100 : speed;
+				speed = 80;
 				moving.setMotorSpeeds(0,0,speed * direction);
 			}
 		},100);
@@ -84,14 +85,14 @@
 	}
 
 	function radar(){
-		var currentAngle = sensors.moduleState.compass;
+		var ca = sensors.moduleState.compass;
 		console.log("Radaring starting from angle ", currentAngle);
 
 		// Tyhjennä pituudet
 		sensors.clearDistances();
 
 		// Pyörähdä
-		pointAngle([currentAngle,currentAngle+12], function(){
+		pointAngle([ca,ca+120,ca+240,ca,ca+20], function(){
 
 			console.log("Longest distance ", sensors.moduleState.longestDistance, " at direction ", sensors.moduleState.longestDirection);
 
