@@ -30,8 +30,13 @@
 			while (destinationAngle >= 360) {
 				destinationAngle -= 360;
 			}
+			while (destinationAngle < 0) {
+				destinationAngle += 360;
+			}
 			console.log("Moving interval");
 			var currentAngle = sensors.moduleState.compass;
+
+
 
 			if (Math.abs(currentAngle - destinationAngle) < 8) {
 				console.log("Now pointing to angle", destinationAngle, " with angle ", currentAngle);
@@ -80,7 +85,7 @@
 
 	function radar(){
 		var currentAngle = sensors.moduleState.compass;
-		console.log("Radaring");
+		console.log("Radaring starting from angle ", currentAngle);
 
 		// Tyhjennä pituudet
 		sensors.clearDistances();
