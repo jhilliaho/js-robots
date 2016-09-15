@@ -16,8 +16,6 @@
 	exports.activateModule = activateModule;
 	exports.stopMotors = moving.stopMotors;
 
-	var programLocks = {};
-
 	function activateModule(board_) {
 		board = board_;
 		moving.activateModule(board_);
@@ -29,14 +27,11 @@
 		var counter = 1;
 
 		console.log("Pointangle", destinationAngle);		
-		programLocks.pointAngleLock = false;
 		var pointAngleInterval = setInterval(function(){
 			while (destinationAngle >= 360) {
 				destinationAngle -= 360;
 			}
 			console.log("Moving interval");
-			if (programLocks.pointAngleLock) {return;}
-			programLocks.pointAngleLock = true;
 			var currentAngle = sensors.moduleState.compass;
 
 			if (Math.abs(currentAngle - destinationAngle) < 8) {
@@ -66,7 +61,6 @@
 				speed = (speed > 60) ? 60 : speed;
 				moving.setMotorSpeeds(0,0,speed * direction);
 			}
-			programLocks.pointAngleLock = false;
 		},250);
 	}	
 
@@ -74,7 +68,6 @@
 		var startTime = Date.now();
 		var endTime = startTime + time;
 		console.log("runAngle", destinationAngle);		
-		programLocks.runAngleLock = false;
 		var interval = setInterval(function(){
 			if (Date.now() >= endTime) {
 				clearInterval(interval);
@@ -82,7 +75,6 @@
 			} else {
 				moving.setMotorSpeeds(destinationAngle, 20, 0);
 			}
-			programLocks.runAngleLock = false;
 		},50);
 	}
 
