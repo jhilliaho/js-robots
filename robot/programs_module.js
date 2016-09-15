@@ -47,6 +47,7 @@
 					}
 				}
 			} else {
+				console.log("Going to angle", destinationAngle, " from angle ", currentAngle);
 				var direction = 0;
 				if (Math.abs(destinationAngle - currentAngle) > 180) {
 					if (destinationAngle > currentAngle) {
