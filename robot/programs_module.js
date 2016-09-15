@@ -86,7 +86,7 @@
 		sensors.clearDistances();
 
 		// Pyörähdä
-		pointAngle([currentAngle,currentAngle+120,currentAngle+240,currentAngle, currentAngle+20], function(){
+		pointAngle([currentAngle,currentAngle+12], function(){
 
 			console.log("Longest distance ", sensors.moduleState.longestDistance, " at direction ", sensors.moduleState.longestDirection);
 
