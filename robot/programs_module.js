@@ -33,26 +33,20 @@
 			while (destinationAngle < 0) {
 				destinationAngle += 360;
 			}
-			console.log("Moving interval");
 			var currentAngle = sensors.moduleState.compass;
 
-
-
 			if (Math.abs(currentAngle - destinationAngle) < 8) {
-				console.log("Now pointing to angle", destinationAngle, " with angle ", currentAngle);
 				if (destinations.length > counter) {
-					console.log("Get next destination");
 					destinationAngle = destinations[counter];
+					console.log("Pointangle", destinationAngle);		
 					counter++;
 				} else {
-					console.log("Clearing interval");
 					clearInterval(pointAngleInterval);
 					if (typeof callback === "function") {
 						callback();
 					}
 				}
 			} else {
-				console.log("Going to angle", destinationAngle, " from angle ", currentAngle);
 				var direction = 0;
 				if (Math.abs(destinationAngle - currentAngle) > 180) {
 					if (destinationAngle > currentAngle) {
@@ -93,9 +87,7 @@
 
 		// Pyörähdä
 		pointAngle([ca,ca+120,ca+240,ca,ca+20], function(){
-
 			console.log("Longest distance ", sensors.moduleState.longestDistance, " at direction ", sensors.moduleState.longestDirection);
-
 			pointAngle([sensors.moduleState.longestDirection]);
 		});
 
