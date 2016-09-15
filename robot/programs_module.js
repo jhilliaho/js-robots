@@ -73,7 +73,7 @@
 		var interval = setInterval(function(){
 			var angleNow = sensors.moduleState.gyro;
 
-			var addRotation = Math.round((angleNow - startingAngle) * 5);
+			var addRotation = Math.round((angleNow - startingAngle) * 2.5);
 
 			if (Date.now() >= endTime) {
 				clearInterval(interval);
