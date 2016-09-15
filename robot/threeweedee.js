@@ -16,7 +16,7 @@ board.on("ready", function() {
 	sensors.activateModule(five, board);
 	programs.activateModule(board);
 	console.log(sensors.moduleState);
-	run();
+	setTimeout(run, 500);
 });
 
 process.on('uncaughtException', function(err) {
