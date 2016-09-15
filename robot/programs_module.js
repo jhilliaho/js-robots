@@ -95,7 +95,7 @@
 		pointAngle([ca,ca+120,ca+240,ca,ca+20], function(){
 			console.log("Longest distance ", sensors.moduleState.longestDistance, " at direction ", sensors.moduleState.longestDirection);
 			pointAngle([sensors.moduleState.longestDirection], function(){
-				runAngle(0, 10, 5000);
+				runAngle(0, 10, 10000);
 			});
 		});
 
