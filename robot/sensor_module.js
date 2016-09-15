@@ -49,7 +49,7 @@ function activate(five_, board_){
 
 	imu.on("change", function() {
 		exports.moduleState.gyro = this.gyro.roll.angle;
-		console.log("Gyro: ",this.gyro);
+		console.log("Gyro: ",this.gyro.roll.angle);
 	});		
 
 	// Event handlers
