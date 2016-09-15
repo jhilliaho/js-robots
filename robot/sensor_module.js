@@ -36,7 +36,6 @@ function activate(five_, board_){
 	var imu = new five.IMU({controller: "MPU6050"});
 	var compass = new five.Compass({controller: "HMC5883L"});	
 
-
 	var lidar = new SerialPort("/dev/ttyUSB0", {
 		baudRate: 115200,
 		parser: SerialPort.parsers.readline('\r\n')
