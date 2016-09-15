@@ -13,9 +13,6 @@ board.on("ready", function() {
     controller: "MPU6050"
   });
 
-	imu.calibrate();
-
-
   imu.on("change", function() {
 
     console.log("  yaw          : ", this.gyro.yaw);
