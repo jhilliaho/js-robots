@@ -65,15 +65,21 @@
 	}	
 
 	function runAngle(destinationAngle, speed, time) {
+		var startingAngle = sensors.moduleState.gyro;
+
 		var startTime = Date.now();
 		var endTime = startTime + time;
 		console.log("runAngle", destinationAngle);		
 		var interval = setInterval(function(){
+			var angleNow = sensors.moduleState.gyro;
+
+			var addRotation = angleNow - startingAngle;
+
 			if (Date.now() >= endTime) {
 				clearInterval(interval);
 				moving.setMotorSpeeds(destinationAngle, 0, 0);
 			} else {
-				moving.setMotorSpeeds(destinationAngle, 20, 0);
+				moving.setMotorSpeeds(destinationAngle, 20, addRotation);
 			}
 		},50);
 	}

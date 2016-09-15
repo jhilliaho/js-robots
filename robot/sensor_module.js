@@ -47,8 +47,8 @@ function activate(five_, board_){
 	});
 
 	imu.on("change", function() {
-		exports.moduleState.gyro = this.gyro.roll.angle;
-		console.log("Gyro: ",this.gyro.roll.angle);
+		exports.moduleState.gyro = this.gyro.yaw.angle;
+		console.log("Gyro: ",this.gyro.yaw.angle);
 	});		
 
 	// Event handlers
