@@ -87,7 +87,7 @@
 	}
 
 	function radar(){
-		var currentAngle = sensors.moduleState.currentAngle;
+		var currentAngle = sensors.moduleState.compass;
 		console.log("Radaring");
 
 		// Tyhjennä pituudet
