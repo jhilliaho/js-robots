@@ -7,12 +7,10 @@
 	var moving = require("./moving_module.js");
 	var sensors = require("./sensor_module.js");
 	var board = {};
-	var pointAngleInterval = 0;
 
 	exports.pointAngle = pointAngle;
 	exports.runAngle = runAngle;
 	exports.radar = radar;
-	exports.programLocks = programLocks;
 	exports.activateModule = activateModule;
 	exports.stopMotors = moving.stopMotors;
 
@@ -25,6 +23,7 @@
 
 		var destinationAngle = destinations[0];
 		var counter = 1;
+		var pointAngleInterval = 0;
 
 		console.log("Pointangle", destinationAngle);		
 		var pointAngleInterval = setInterval(function(){
