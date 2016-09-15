@@ -9,9 +9,11 @@ AccelStepper stepper3(1,17,16);
 int motorMaxSpeed = 4000;
 volatile long int counter = 0;
 
-int motor1TargetSpeed = 0;
-int motor2TargetSpeed = 0;
-int motor3TargetSpeed = 0;
+float speedChangingMultiplier = 2;
+float motor1NextSpeed, motor2NextSpeed, motor3NextSpeed;
+float motor1TargetSpeed = 0;
+float motor2TargetSpeed = 0;
+float motor3TargetSpeed = 0;
 
 void setup() {
   Wire.begin(8);                // join i2c bus with address #8
@@ -32,8 +34,8 @@ void setup() {
   // Disable reset
   digitalWriteFast(3, HIGH);
 
-  // Enable motor
-  digitalWriteFast(7, LOW);
+  // Disable motor
+  digitalWriteFast(7, HIGH);
 
   // Set speed
   digitalWriteFast(4, HIGH);
@@ -50,8 +52,8 @@ void setup() {
   // Disable reset
   digitalWriteFast(11, HIGH);
 
-  // Enable motor
-  digitalWriteFast(15, LOW);
+  // Disable motor
+  digitalWriteFast(15, HIGH);
 
   // Set speed
   digitalWriteFast(12, HIGH);
@@ -62,53 +64,63 @@ void setup() {
 
   // MOTOR 3 //
   
-  // Enable motor
-  digitalWriteFast(23, LOW);
+  // Disable motor
+  digitalWriteFast(23, HIGH);
 
   // Set speed
   digitalWriteFast(20, HIGH);
   digitalWriteFast(21, LOW);
   digitalWriteFast(22, LOW);
   stepper3.setMaxSpeed(motorMaxSpeed);
-
-  delay(200);
-  digitalWriteFast(7, HIGH);
-  digitalWriteFast(15, HIGH);
-  digitalWriteFast(23, HIGH);  
-
 }
 
 void loop() {
-  stepper1.setSpeed(motor1TargetSpeed);
-  stepper2.setSpeed(motor2TargetSpeed);
-  stepper3.setSpeed(motor3TargetSpeed);
 
+  if (counter % 10 == 0) {
+    if (motor1TargetSpeed < stepper1.speed()-speedChangingMultiplier) {
+      motor1NextSpeed = stepper1.speed()-speedChangingMultiplier;
+    } else if (motor1TargetSpeed > stepper1.speed()+speedChangingMultiplier) {
+      motor1NextSpeed = stepper1.speed()+speedChangingMultiplier;
+    }
+  
+    if (motor2TargetSpeed < stepper2.speed()-speedChangingMultiplier) {
+      motor2NextSpeed = stepper2.speed()-speedChangingMultiplier;
+    } else if (motor2TargetSpeed > stepper2.speed()+speedChangingMultiplier) {
+      motor2NextSpeed = stepper2.speed()+speedChangingMultiplier;
+    }
+  
+    if (motor3TargetSpeed < stepper3.speed()-speedChangingMultiplier) {
+      motor3NextSpeed = stepper3.speed()-speedChangingMultiplier;
+    } else if (motor3TargetSpeed > stepper3.speed()+speedChangingMultiplier) {
+      motor3NextSpeed = stepper3.speed()+speedChangingMultiplier;
+    }  
+    
+    stepper1.setSpeed(motor1NextSpeed);
+    stepper2.setSpeed(motor2NextSpeed);
+    stepper3.setSpeed(motor3NextSpeed);
+  }
+    
   stepper1.runSpeed();
   stepper2.runSpeed();
   stepper3.runSpeed();
 
   counter++;
 
-  if (counter > 100000){
-    
-    digitalWrite(13, LOW);
-    delay(20);
-      digitalWrite(13, HIGH);
-    delay(20);
-      digitalWrite(13, LOW);
-    delay(20);
-      digitalWrite(13, HIGH);
-    delay(20);
-    
+  if (counter > 99999){
     motor1TargetSpeed = 0;
     motor2TargetSpeed = 0;
     motor3TargetSpeed = 0;
+    
     digitalWriteFast(7, HIGH);
     digitalWriteFast(15, HIGH);
     digitalWriteFast(23, HIGH);
+    
     counter = 0;
+    
+    digitalWrite(13, LOW);
+    delay(20);
+    digitalWrite(13, HIGH);
   }
-
 }
 
 
