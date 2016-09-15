@@ -62,11 +62,11 @@
 					}
 				}
 				direction = (currentAngle < destinationAngle) ? 1 : -1;
-				var speed = Math.abs(destinationAngle - currentAngle) * 6;
-				speed = (speed > 60) ? 60 : speed;
+				var speed = Math.abs(destinationAngle - currentAngle) * 4;
+				speed = (speed > 100) ? 100 : speed;
 				moving.setMotorSpeeds(0,0,speed * direction);
 			}
-		},250);
+		},100);
 	}	
 
 	function runAngle(destinationAngle, speed, time) {
