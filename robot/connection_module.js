@@ -31,5 +31,6 @@ socket.on("speedAndAngleFromServer", function(data){
 });
 
 function sendRadarData(angle, distance) {
+	console.log("Send Radar data", angle, distance);
 	socket.emit("radarData", {angle: angle, distance: distance});
 }
