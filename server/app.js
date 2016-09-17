@@ -34,6 +34,7 @@ io.on('connection', function (socket) {
   	});
     
 	socket.on("radarData", function(data){
+		console.log("Radar data", data);
 		socket.broadcast.emit("radarData", data);		
 	});
 
