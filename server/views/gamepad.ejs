@@ -45,7 +45,18 @@
 	// Get socket.io connection
 	var socket = io();
 
+	var lastDotAngle = 0;
+
 	function addDot(data){
+		// For example: last was 10, now is 20. Difference is 10
+		var differenceFromLastAngle = data.angle - lastDotAngle;
+		var direction = differenceFromLastAngle / Math.abs(differenceFromLastAngle);
+
+		for (var i = data.angle; i != lastDotAngle && i != lastDotAngle-360 && i != lastDotAngle+360; i += direction) {
+			if (i < 0) {i += 360;}
+			if (i >= 360) {i -= 360;}
+			stage.removeChild(radarDots[i]);
+		}
 
 		console.log("Got radar data", data.angle, data.distance);
 
@@ -53,7 +64,6 @@
 		data.distance = Math.cbrt(data.distance/100)/3;
 
 		console.log("Draw radar data", data.angle, data.distance);
-
 
 		stage.removeChild(radarDots[data.angle]);
 		radarDots[data.angle] = new createjs.Shape();
