@@ -30,7 +30,14 @@ socket.on("speedAndAngleFromServer", function(data){
 	exports.moduleState.lastDataPacket = data;
 });
 
+
+var lastSentRadarData = {angle: 0, distance: 0, date: 0};
 function sendRadarData(angle, distance) {
+	var dateNow = Date.now();
+	if (dateNow - lastSentRadarData.date < 500 && angle === lastSentRadarData.angle && Math.abs(lastSentRadarData.distance - distance) < 20) {
+		return;
+	}
+
 	console.log("Send Radar data", angle, distance);
 	socket.emit("radarData", {angle: angle, distance: distance});
 }
