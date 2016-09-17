@@ -32,15 +32,7 @@ process.on('uncaughtException', function(err) {
 });
 
 function run() {
-	programs.radar();
 
-	setTimeout(function(){
-		programs.radar();
-	},20000);
-
-	setTimeout(function(){
-		programs.radar();
-	},40000);
 
 
 	//programs.runAngle(0,20,20000);
