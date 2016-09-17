@@ -32,6 +32,7 @@
 	var ctx, circle1, circle2, label1, label2, dragger1, dragger2, rect;
 	var lineWidth;
 	var radarDots = {};
+	var radarDotTimeStamps = {};
 
 	x1ToSend = y1ToSend = x2ToSend = y2ToSend = 0;
 	stage = returnInterval1 = returnInterval2 = null;
@@ -47,17 +48,18 @@
 
 	var lastDotAngle = 0;
 
-	function addDot(data){
-		// For example: last was 350, now is 10. Difference is -340
-		var differenceFromLastAngle = data.angle - lastDotAngle;
-		if (differenceFromLastAngle < 0) {differenceFromLastAngle += 360;}
-		var direction = differenceFromLastAngle / Math.abs(differenceFromLastAngle);
-
-		for (var i = data.angle; i != lastDotAngle && i != lastDotAngle-360 && i != lastDotAngle+360; i += direction) {
-			if (i < 0) {i += 360;}
-			if (i >= 360) {i -= 360;}
-			stage.removeChild(radarDots[i]);
+	var fadeOldRadarDots = setInterval(function(){
+		for (var i = 0; i < 360; ++i) {
+			var now = Date.now();
+			var dotTimeStamp = radarDotTimeStamps[i];
+			if (now - dotTimeStamp > 2000) {
+				stage.removeChild(radarDots[i]);
+			}
 		}
+		stage.update();
+	},500);
+
+	function addDot(data){
 
 		console.log("Got radar data", data.angle, data.distance);
 
@@ -68,6 +70,7 @@
 
 		stage.removeChild(radarDots[data.angle]);
 		radarDots[data.angle] = new createjs.Shape();
+		radarDotTimeStamps[data.angle] = Date.now();
 		var pos = angleToPos(data.angle, data.distance);
 		radarDots[data.angle].graphics.beginFill("black").drawCircle(pos.x*longerDimension/5 + (windowWidth/4), (windowHeight/2)-pos.y*longerDimension/5, 3);
 		stage.addChild(radarDots[data.angle]);
