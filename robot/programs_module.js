@@ -128,6 +128,13 @@
 	function newControllerData(data) {
 
 		console.log("New controller data", data);
+		
+		currentDestinationPointingAngle += data.x2 / 50;
+		if (currentDestinationPointingAngle < 0) {
+			currentDestinationPointingAngle += 360;
+		}
 		runAngle(data.angle1, data.speed1, 330);
+		// 10 kertaa sekunnissa -100 - 100
+		
 	}
 

@@ -73,7 +73,7 @@
 	function sendValues(override){
 		var pos = {};
 
-		if (Date.now() - movementUpdateTime > 50 || override) {
+		if (Date.now() - movementUpdateTime > 100 || override) {
 			movementUpdateTime = Date.now();
 			
 			// Calculate relational positions
