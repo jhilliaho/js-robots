@@ -28,7 +28,6 @@ socket.on("disconnect", function(){
 });
 
 socket.on("speedAndAngleFromServer", function(data){
-	console.log("Data from server", data);
 	exports.moduleState.lastDataPacket = data;
 	programs.newControllerData(data);
 });
