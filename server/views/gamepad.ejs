@@ -58,7 +58,7 @@
 		stage.removeChild(radarDots[data.angle]);
 		radarDots[data.angle] = new createjs.Shape();
 		var pos = angleToPos(data.angle, data.distance);
-		radarDots[data.angle].graphics.beginFill("black").drawCircle(pos.x*longerDimension/5 + (windowWidth/4), pos.y*longerDimension/5+(windowHeight/2), 1);
+		radarDots[data.angle].graphics.beginFill("black").drawCircle(pos.x*longerDimension/5 + (windowWidth/4), pos.y*longerDimension/5+(windowHeight/2), 3);
 		stage.addChild(radarDots[data.angle]);
 		stage.update();
 	}
