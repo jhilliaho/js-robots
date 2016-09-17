@@ -50,12 +50,7 @@
 
 	function addDot(data){
 
-		console.log("Got radar data", data.angle, data.distance);
-
-		// Length = cbrt(metric value)/3
-		data.distance = Math.cbrt(data.distance/100)/3;
-
-		console.log("Draw radar data", data.angle, data.distance);
+		data.distance = data.distance / 1000;
 
 		stage.removeChild(radarDots[data.angle]);
 		radarDots[data.angle] = new createjs.Shape();
