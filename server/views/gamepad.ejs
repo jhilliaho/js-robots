@@ -52,9 +52,24 @@
 		for (var i = 0; i < 360; ++i) {
 			var now = Date.now();
 			var dotTimeStamp = radarDotTimeStamps[i];
-			if (now - dotTimeStamp > 2000) {
-				stage.removeChild(radarDots[i]);
+			var age = now - dotTimeStamp;
+
+			stage.removeChild(radarDots[i]);
+
+			if (age < 9900) {
+
+				radarDots[i] = new createjs.Shape();
+				radarDots[i].graphics.beginFill("#" + (age/100).toString() + (age/100).toString() + (age/100).toString() ).drawCircle(pos.x*longerDimension/5 + (windowWidth/4), (windowHeight/2)-pos.y*longerDimension/5, 3);
+
+				stage.addChild(radarDots[i]);
 			}
+
+
+			stage.update();
+
+
+
+
 		}
 		stage.update();
 	},500);
