@@ -70,7 +70,13 @@
 	}	
 
 	function runAngle(destinationAngle, speed, time) {
-		var startingAngle = sensors.moduleState.gyro;
+		var startingAngle = sensors.moduleState.compass;
+
+		destinationAngle -= startingAngle;
+
+		while (destinationAngle < 0) {
+			destinationAngle += 360;
+		}
 
 		var startTime = Date.now();
 		var endTime = startTime + time;
@@ -78,7 +84,7 @@
 
 		clearInterval(runAngleInterval);
 		runAngleInterval = setInterval(function(){
-			var angleNow = sensors.moduleState.gyro;
+			var angleNow = sensors.moduleState.compass;
 
 			var addRotation = Math.round((angleNow - startingAngle) * 2.5);
 
@@ -110,5 +116,6 @@
 	function newControllerData(data) {
 
 		console.log("New controller data", data);
+		runAngle(data.angle1, data.speed1, 200);
 	}
 
