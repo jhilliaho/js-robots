@@ -9,6 +9,8 @@ exports.moduleState = {
 	lastDataPacket: {}
 };
 
+exports.sendRadarData = sendRadarData;
+
 var io = require('socket.io-client');
 
 var socket = require('socket.io-client')('http://46.101.79.118:3000');
@@ -28,8 +30,6 @@ socket.on("speedAndAngleFromServer", function(data){
 	exports.moduleState.lastDataPacket = data;
 });
 
-function sendRadarData() {
-	var angle = 12;
-	var distance = 1.23;
+function sendRadarData(angle, distance) {
 	socket.emit("radarData", {angle: angle, distance: distance});
 }

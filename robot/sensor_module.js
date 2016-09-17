@@ -5,6 +5,7 @@
 "use strict";
 
 var SerialPort = require("serialport");
+var connection = require("./connection_module.js");
 
 exports.activateModule = activate;
 exports.clearDistances = clearDistances;
@@ -54,6 +55,7 @@ function activate(five_, board_){
 		num = parseInt(num);
 		exports.moduleState.lidar = num;
 		exports.moduleState.distances[exports.moduleState.compass] = num;
+		connection.sendRadarData(exports.moduleState.compass, num);
 		if (num > exports.moduleState.longestDistance) {
 			exports.moduleState.longestDistance = num;
 			exports.moduleState.longestDirection = exports.moduleState.compass;
