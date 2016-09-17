@@ -28,6 +28,7 @@ function clearDistances() {
 }
 
 function activate(five_, board_){
+	console.log("Sensors activated");
 	five = five_;
 	board = board_;
 
