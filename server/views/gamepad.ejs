@@ -52,6 +52,9 @@
 		// Length = cbrt(metric value)/3
 		data.distance = Math.cbrt(data.distance/3)/3;
 
+		console.log("Draw radar data", data.angle, data.distance);
+
+
 		stage.removeChild(radarDots[data.angle]);
 		radarDots[data.angle] = new createjs.Shape();
 		var pos = angleToPos(data.angle, data.distance);
