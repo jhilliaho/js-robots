@@ -24,8 +24,10 @@
 	function activateModule(board_) {
 		board = board_;
 		moving.activateModule(board_);
-		currentDestinationPointingAngle = sensors.moduleState.compass;
-		console.log("SET CURRENT DEST PO AN: ", sensors.moduleState.compass);
+		setTimeout(function(){
+			currentDestinationPointingAngle = sensors.moduleState.compass;
+			console.log("SET CURRENT DEST PO AN: ", sensors.moduleState.compass);
+		},0);
 	}
 
 	function pointAngle(destinations, callback) {
