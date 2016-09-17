@@ -48,7 +48,7 @@
 	function addDot(data){
 
 		// Length = cbrt(metric value)/3
-		data.distance = Math.cbrt(data.distance)/3;
+		data.distance = Math.cbrt(data.distance*3)/3;
 
 		console.log("Got radar data", data.angle, data.distance);
 		stage.removeChild(radarDots[data.angle]);
