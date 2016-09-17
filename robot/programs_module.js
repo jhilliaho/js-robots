@@ -24,6 +24,7 @@
 	function activateModule(board_) {
 		board = board_;
 		moving.activateModule(board_);
+		currentDestinationPointingAngle = sensors.moduleState.compass;
 	}
 
 	function pointAngle(destinations, callback) {
