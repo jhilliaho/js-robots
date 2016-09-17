@@ -14,12 +14,6 @@
 
 	var currentDestinationPointingAngle = 0;
 
-	exports.pointAngle = pointAngle;
-	exports.runAngle = runAngle;
-	exports.radar = radar;
-	exports.activateModule = activateModule;
-	exports.stopMotors = moving.stopMotors;
-	exports.newControllerData = newControllerData;
 
 	function activateModule(board_) {
 		board = board_;
@@ -27,7 +21,13 @@
 		setTimeout(function(){
 			currentDestinationPointingAngle = sensors.moduleState.compass;
 			console.log("SET CURRENT DEST PO AN: ", sensors.moduleState.compass);
-		},200);
+			exports.pointAngle = pointAngle;
+			exports.runAngle = runAngle;
+			exports.radar = radar;
+			exports.activateModule = activateModule;
+			exports.stopMotors = moving.stopMotors;
+			exports.newControllerData = newControllerData;
+		},1000);
 	}
 
 	function pointAngle(destinations, callback) {
