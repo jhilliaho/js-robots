@@ -71,7 +71,7 @@
 		},100);
 	}	
 
-	function runAngle(destinationAngle, speed) {
+	function runAngle(destinationAngle, speed, time) {
 		
 		// Destination angle means angle clockwise from north
 		destinationAngle -= sensors.moduleState.compass;
@@ -121,6 +121,6 @@
 	function newControllerData(data) {
 
 		console.log("New controller data", data);
-		runAngle(data.angle1, data.speed1, 200);
+		runAngle(data.angle1, data.speed1, 330);
 	}
 
