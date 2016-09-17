@@ -16,7 +16,7 @@ var board = new five.Board({
 // Own modules
 var programs = require("./programs_module.js");
 var sensors = require("./sensor_module.js");
-var connection = require("./connection_module.js");
+var connection;
 
 board.on("ready", function() {
 	board.io.i2cConfig();
@@ -33,5 +33,6 @@ process.on('uncaughtException', function(err) {
 
 function run() {
 
-	//programs.runAngle(0,20,20000);
+	connection = require("./connection_module.js");
+
 }	
