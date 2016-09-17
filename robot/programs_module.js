@@ -91,6 +91,11 @@
 			var anglefix = currentDestinationPointingAngle - angleNow;
 			if (anglefix < -180) {anglefix += 360;} 
 			if (anglefix > 180) {anglefix -= 360;} 
+			
+			if (anglefix > -2 && anglefix < 2) {
+				anglefix = 0;
+			}
+
 			var addRotation = anglefix * 2.5;
 
 			if (Date.now() >= endTime) {
