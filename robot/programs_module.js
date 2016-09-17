@@ -98,7 +98,7 @@
 			if (anglefix < -180) {anglefix += 360;} 
 			if (anglefix > 180) {anglefix -= 360;} 
 			
-			if (anglefix > -3 && anglefix < 3 {
+			if (anglefix > -3 && anglefix < 3) {
 				anglefix = 0;
 			}
 
