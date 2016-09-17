@@ -61,7 +61,7 @@
 	}
 
 	socket.on("radarData", function(data){
-		//addDot(data);
+		addDot(data);
 	});
 
 	var sendDataInterval = setInterval(sendValues, 100);
