@@ -130,7 +130,7 @@
 		stage.mouseMoveOutside = true; 
 
 		// Draw gamepads
-		lineWidth = Math.ceil(longerDimension/1600);
+		lineWidth = Math.ceil(longerDimension/800);
 
 		rect = new createjs.Shape();
 		rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (longerDimension/16), (windowHeight/2)-lineWidth, longerDimension/8, lineWidth*2);
@@ -150,9 +150,9 @@
 
 		circle1 = new createjs.Shape();
 		circle1.graphics.beginFill("red").drawCircle(0, 0, longerDimension/40);
-		label1 = new createjs.Text("Drag", "bold " + longerDimension/60 + "px Arial", "#FFFFFF");
+		label1 = new createjs.Text("Drag", "bold " + longerDimension/30 + "px Arial", "#FFFFFF");
 		label1.textAlign = "center";
-		label1.y = -1 * longerDimension/10;
+		label1.y = -1 * longerDimension/120;
 		dragger1 = new createjs.Container();
 		dragger1.x = windowWidth/4
 		dragger1.y = windowHeight/2;
@@ -161,9 +161,9 @@
 		
 		circle2 = new createjs.Shape();
 		circle2.graphics.beginFill("blue").drawCircle(0, 0, longerDimension/40);
-		label2 = new createjs.Text("Drag", "bold " + longerDimension/60 + "px Arial", "#FFFFFF");
+		label2 = new createjs.Text("Drag", "bold " + longerDimension/30 + "px Arial", "#FFFFFF");
 		label2.textAlign = "center";
-		label2.y = -1 * longerDimension/10;
+		label2.y = -1 * longerDimension/120;
 		dragger2 = new createjs.Container();
 		dragger2.x = 3*windowWidth/4
 		dragger2.y = windowHeight/2;
