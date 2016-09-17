@@ -73,6 +73,8 @@
 
 	function runAngle(destinationAngle, speed, time) {
 		
+		speed /= 4;
+
 		// Destination angle means angle clockwise from north
 		destinationAngle -= sensors.moduleState.compass;
 
