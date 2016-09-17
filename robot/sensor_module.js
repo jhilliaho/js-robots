@@ -44,7 +44,7 @@ function activate(five_, board_){
 	});
 
 	compass.on("change", function() {
-		exports.moduleState.compass = this.bearing.heading;
+		exports.moduleState.compass = this.bearing.heading - 120;
 	});
 
 	imu.on("change", function() {
