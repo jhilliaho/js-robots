@@ -129,7 +129,7 @@
 
 		console.log("New controller data", data);
 		
-		currentDestinationPointingAngle += data.x2 / 10;
+		currentDestinationPointingAngle += data.x2 / 5;
 		if (currentDestinationPointingAngle < 0) {
 			currentDestinationPointingAngle += 360;
 		}
