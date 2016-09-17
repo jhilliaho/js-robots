@@ -53,6 +53,7 @@ function activate(five_, board_){
 
 	// Event handlers
 	lidar.on('data', function (num) {
+		console.log("Lidardata", num);
 		num = parseInt(num);
 		exports.moduleState.lidar = num;
 		exports.moduleState.distances[exports.moduleState.compass] = num;
