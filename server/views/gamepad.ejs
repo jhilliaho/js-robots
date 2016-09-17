@@ -31,7 +31,9 @@
 	var windowWidth, windowHeight, longerDimension;
 	var ctx, circle1, circle2, label1, label2, dragger1, dragger2, rect;
 	var lineWidth;
+
 	var radarDots = {};
+	var radarDotDistances = {};
 	var radarDotTimeStamps = {};
 
 	x1ToSend = y1ToSend = x2ToSend = y2ToSend = 0;
@@ -59,6 +61,7 @@
 			if (age < 9900) {
 
 				radarDots[i] = new createjs.Shape();
+				var pos = angleToPos(i, radarDotDistances[i]);
 				radarDots[i].graphics.beginFill("#" + (age/100).toString() + (age/100).toString() + (age/100).toString() ).drawCircle(pos.x*longerDimension/5 + (windowWidth/4), (windowHeight/2)-pos.y*longerDimension/5, 3);
 
 				stage.addChild(radarDots[i]);
@@ -86,6 +89,7 @@
 		stage.removeChild(radarDots[data.angle]);
 		radarDots[data.angle] = new createjs.Shape();
 		radarDotTimeStamps[data.angle] = Date.now();
+		radarDotDistances[data.angle] = data.distance;
 		var pos = angleToPos(data.angle, data.distance);
 		radarDots[data.angle].graphics.beginFill("black").drawCircle(pos.x*longerDimension/5 + (windowWidth/4), (windowHeight/2)-pos.y*longerDimension/5, 3);
 		stage.addChild(radarDots[data.angle]);
