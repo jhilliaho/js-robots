@@ -92,11 +92,11 @@
 			if (anglefix < -180) {anglefix += 360;} 
 			if (anglefix > 180) {anglefix -= 360;} 
 			
-			if (anglefix > -2 && anglefix < 2) {
+			if (anglefix > -3 && anglefix < 3) {
 				anglefix = 0;
 			}
 
-			var addRotation = anglefix * 2.5;
+			var addRotation = anglefix * 5;
 
 			if (Date.now() >= endTime) {
 				clearInterval(runAngleInterval);
