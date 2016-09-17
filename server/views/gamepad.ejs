@@ -130,14 +130,14 @@
 		stage.mouseMoveOutside = true; 
 
 		// Draw gamepads
-		lineWidth = Math.ceil(longerDimension/800);
+		lineWidth = Math.ceil(longerDimension/1600);
 
 		rect = new createjs.Shape();
-		rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (longerDimension/16), (windowHeight/2)-lineWidth, longerDimension/8, lineWidth*2);
+		rect.graphics.beginFill("#000").drawRect(  (windowWidth/4) - (longerDimension/32), (windowHeight/2)-lineWidth, longerDimension/16, lineWidth*2);
 		stage.addChild(rect);
 
 		rect = new createjs.Shape();
-		rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - (longerDimension/16), (windowHeight/2)-lineWidth, longerDimension/8, lineWidth*2);
+		rect.graphics.beginFill("#000").drawRect(  (3*windowWidth/4) - (longerDimension/32), (windowHeight/2)-lineWidth, longerDimension/16, lineWidth*2);
 		stage.addChild(rect);
 
 		rect = new createjs.Shape();
