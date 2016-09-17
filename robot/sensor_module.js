@@ -60,7 +60,6 @@ function activate(five_, board_){
 		if (num > exports.moduleState.longestDistance) {
 			exports.moduleState.longestDistance = num;
 			exports.moduleState.longestDirection = exports.moduleState.compass;
-			console.log("New longest: ", exports.moduleState.longestDistance, " at ", exports.moduleState.longestDirection);
 		}
 	});
 }
