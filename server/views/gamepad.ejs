@@ -33,8 +33,6 @@
 	var lineWidth;
 
 	var radarDots = {};
-	var radarDotDistances = {};
-	var radarDotTimeStamps = {};
 
 	x1ToSend = y1ToSend = x2ToSend = y2ToSend = 0;
 	stage = returnInterval1 = returnInterval2 = null;
@@ -45,49 +43,10 @@
 		return {x: x, y: y};
 	}
 
-	function componentToHex(c) {
-	    var hex = c.toString(16);
-	    return hex.length == 1 ? "0" + hex : hex;
-	}
-
-	function rgbToHex(r, g, b) {
-	    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-	}
-
 	// Get socket.io connection
 	var socket = io();
 
 	var lastDotAngle = 0;
-
-	var fadeOldRadarDots = setInterval(function(){
-		for (var i = 0; i < 360; ++i) {
-			var now = Date.now();
-			var dotTimeStamp = radarDotTimeStamps[i];
-			var age = now - dotTimeStamp;
-
-			stage.removeChild(radarDots[i]);
-
-			if (age < 9900) {
-
-				radarDots[i] = new createjs.Shape();
-				var pos = angleToPos(i, radarDotDistances[i]);
-
-				var color = rgbToHex(age/40, age/40, age/40)
-
-				radarDots[i].graphics.beginFill(color).drawCircle(pos.x*longerDimension/5 + (windowWidth/4), (windowHeight/2)-pos.y*longerDimension/5, 3);
-
-				stage.addChild(radarDots[i]);
-			}
-
-
-			stage.update();
-
-
-
-
-		}
-		stage.update();
-	},500);
 
 	function addDot(data){
 
@@ -100,8 +59,6 @@
 
 		stage.removeChild(radarDots[data.angle]);
 		radarDots[data.angle] = new createjs.Shape();
-		radarDotTimeStamps[data.angle] = Date.now();
-		radarDotDistances[data.angle] = data.distance;
 		var pos = angleToPos(data.angle, data.distance);
 		radarDots[data.angle].graphics.beginFill("black").drawCircle(pos.x*longerDimension/5 + (windowWidth/4), (windowHeight/2)-pos.y*longerDimension/5, 3);
 		stage.addChild(radarDots[data.angle]);
