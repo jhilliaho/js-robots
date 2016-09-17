@@ -135,8 +135,6 @@
 	}
 
 	function newControllerData(data) {
-
-		console.log("New controller data", data);
 		
 		runAngle(data.angle1, data.speed1, 330, data.x2 * 4);
 		// 10 kertaa sekunnissa -100 - 100
