@@ -50,20 +50,12 @@ app.get('/', function(req, res, next) {
 console.log("Server has been starter");
 	
 // Function calculates the angle and distance of joystick
-function posToAngle(y,x) {
-	var angle = Math.atan(y/x) * 57.2957795;
-
-	if (x < 0 || (x < 0 && y < 0)) {
-		angle = 180 + angle;
-	}
-
-	else if (y < 0) {
-		angle = 360 + angle;
-	}
-
-	if (x == 0 && y == 0) {
-		angle = 0;
-	}
+function posToAngle(x,y) {
+	var angle = Math.atan(x/y) * 57.2957795;
+	if (y < 0) {angle += 180;}
+	while (angle < 0) {angle += 360;}
+	while (angle > 360) {angle -= 360;}
+	if (angle == -0) {angle = 0;}
 	return Math.round(angle);
 }
 
