@@ -4,7 +4,7 @@
 
 	"use strict";
 
-	exports.setMotorSpeeds = calcMotorSpeeds;
+	exports.setMotorSpeeds = setMotorSpeeds;
 	exports.activateModule = activateModule;
 	exports.stopMotors = stopMotors;
 
@@ -28,7 +28,7 @@
 		board = board_;
 	}
 
-	function calcMotorSpeeds(angle, speed, rotation) {
+	function setMotorSpeeds(angle, speed, rotation) {
 
 		angle = parseInt(angle);
 		speed = parseInt(speed)*4;

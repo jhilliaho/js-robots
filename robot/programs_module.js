@@ -12,6 +12,8 @@
 	var runAngleInterval = 0;
 	var pointAngleInterval = 0;
 
+	var currentDestinationPointingAngle = 0;
+
 	exports.pointAngle = pointAngle;
 	exports.runAngle = runAngle;
 	exports.radar = radar;
@@ -69,24 +71,27 @@
 		},100);
 	}	
 
-	function runAngle(destinationAngle, speed, time) {
-		var startingAngle = sensors.moduleState.compass;
-
-		destinationAngle -= startingAngle;
+	function runAngle(destinationAngle, speed) {
+		
+		// Destination angle means angle clockwise from north
+		destinationAngle -= sensors.moduleState.compass;
 
 		while (destinationAngle < 0) {
 			destinationAngle += 360;
 		}
 
+		console.log("runAngle", destinationAngle);		
+		
 		var startTime = Date.now();
 		var endTime = startTime + time;
-		console.log("runAngle", destinationAngle);		
 
 		clearInterval(runAngleInterval);
 		runAngleInterval = setInterval(function(){
 			var angleNow = sensors.moduleState.compass;
-
-			var addRotation = Math.round((angleNow - startingAngle) * 2.5);
+			var anglefix = currentDestinationPointingAngle - angleNow;
+			if (anglefix < -180) {anglefix += 360;} 
+			if (anglefix > 180) {anglefix -= 360;} 
+			var addRotation = anglefix * 2.5;
 
 			if (Date.now() >= endTime) {
 				clearInterval(runAngleInterval);
