@@ -27,3 +27,9 @@ socket.on("speedAndAngleFromServer", function(data){
 	console.log("Data from server", data);
 	exports.moduleState.lastDataPacket = data;
 });
+
+function sendRadarData() {
+	var angle = 12;
+	var distance = 1.23;
+	socket.emit("radarData", {angle: angle, distance: distance});
+}
