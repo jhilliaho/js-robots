@@ -67,6 +67,8 @@
 		addDot(data);
 	});
 
+	var sendDataInterval = setInterval(sendValues, 100);
+
 	// Function to send gamepad positions to the server with socket.io
 	function sendValues(override){
 		var pos = {};
