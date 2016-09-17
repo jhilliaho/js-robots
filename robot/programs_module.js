@@ -17,7 +17,6 @@
 	exports.radar = radar;
 	exports.activateModule = activateModule;
 	exports.stopMotors = moving.stopMotors;
-	exports.moveAsControlled = moveAsControlled;
 	exports.newControllerData = newControllerData;
 
 	function activateModule(board_) {
