@@ -27,7 +27,7 @@
 		setTimeout(function(){
 			currentDestinationPointingAngle = sensors.moduleState.compass;
 			console.log("SET CURRENT DEST PO AN: ", sensors.moduleState.compass);
-		},0);
+		},200);
 	}
 
 	function pointAngle(destinations, callback) {
