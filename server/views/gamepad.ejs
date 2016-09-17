@@ -50,7 +50,7 @@
 		console.log("Got radar data", data.angle, data.distance);
 
 		// Length = cbrt(metric value)/3
-		data.distance = Math.sqrt(Math.sqrt(data.distance));
+		data.distance = Math.cbrt(data.distance/100)/3;
 
 		console.log("Draw radar data", data.angle, data.distance);
 
