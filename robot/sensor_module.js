@@ -45,6 +45,7 @@ function activate(five_, board_){
 
 	compass.on("change", function() {
 		exports.moduleState.compass = this.bearing.heading - 120;
+		if (exports.moduleState.compass < 0) {exports.moduleState.compass += 360;}
 	});
 
 	imu.on("change", function() {
