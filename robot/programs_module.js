@@ -75,7 +75,7 @@
 		},100);
 	}	
 
-	function runAngle(destinationAngle, speed, time) {
+	function runAngle(destinationAngle, speed, time, rotation) {
 		
 		speed /= 4;
 
@@ -98,11 +98,16 @@
 			if (anglefix < -180) {anglefix += 360;} 
 			if (anglefix > 180) {anglefix -= 360;} 
 			
-			if (anglefix > -3 && anglefix < 3) {
+			if (anglefix > -3 && anglefix < 3 {
 				anglefix = 0;
 			}
 
-			var addRotation = anglefix * 5;
+			if (rotation !== 0) {
+				anglefix = 0;
+				currentDestinationPointingAngle = sensors.moduleState.compass;
+			}
+
+			var addRotation = anglefix * 5 + rotation;
 
 			if (Date.now() >= endTime) {
 				clearInterval(runAngleInterval);
@@ -133,11 +138,7 @@
 
 		console.log("New controller data", data);
 		
-		currentDestinationPointingAngle += data.x2 / 5;
-		if (currentDestinationPointingAngle < 0) {
-			currentDestinationPointingAngle += 360;
-		}
-		runAngle(data.angle1, data.speed1, 330);
+		runAngle(data.angle1, data.speed1, 330, data.x2);
 		// 10 kertaa sekunnissa -100 - 100
 		
 	}
