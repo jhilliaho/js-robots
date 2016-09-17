@@ -38,6 +38,10 @@ function sendRadarData(angle, distance) {
 		return;
 	}
 
+	lastSentRadarData.angle = angle;
+	lastSentRadarData.distance = distance;
+	lastSentRadarData.date = dateNow;
+
 	console.log("Send Radar data", angle, distance);
 	socket.emit("radarData", {angle: angle, distance: distance});
 }
