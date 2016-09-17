@@ -47,10 +47,11 @@
 
 	function addDot(data){
 
-		// Length = cbrt(metric value)/3
-		data.distance = Math.cbrt(data.distance*3)/3;
-
 		console.log("Got radar data", data.angle, data.distance);
+
+		// Length = cbrt(metric value)/3
+		data.distance = Math.cbrt(data.distance/3)/3;
+
 		stage.removeChild(radarDots[data.angle]);
 		radarDots[data.angle] = new createjs.Shape();
 		var pos = angleToPos(data.angle, data.distance);
@@ -165,10 +166,6 @@
 		dragger2.y = windowHeight/2;
 		dragger2.addChild(circle2, label2);
 		stage.addChild(dragger2);
-
-		for (var i = 0; i < 360; ++i) {
-			addDot({angle: i, distance: 1});
-		}
 
 		// Gamepad touch events
 		dragger1.on("pressmove",function(evt) {
