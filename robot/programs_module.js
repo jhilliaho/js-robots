@@ -5,14 +5,20 @@
 	"use strict";
 
 	var moving = require("./moving_module.js");
+	var connection = require("./connection_module.js");
 	var sensors = require("./sensor_module.js");
 	var board = {};
+
+	var runAngleInterval = 0;
+	var pointAngleInterval = 0;
 
 	exports.pointAngle = pointAngle;
 	exports.runAngle = runAngle;
 	exports.radar = radar;
 	exports.activateModule = activateModule;
 	exports.stopMotors = moving.stopMotors;
+	exports.moveAsControlled = moveAsControlled;
+	exports.newControllerData = newControllerData;
 
 	function activateModule(board_) {
 		board = board_;
@@ -23,9 +29,9 @@
 
 		var destinationAngle = destinations[0];
 		var counter = 1;
-		var pointAngleInterval = 0;
 
 		console.log("Pointangle", destinationAngle);		
+		clearInterval(pointAngleInterval);
 		var pointAngleInterval = setInterval(function(){
 			while (destinationAngle >= 360) {
 				destinationAngle -= 360;
@@ -70,13 +76,15 @@
 		var startTime = Date.now();
 		var endTime = startTime + time;
 		console.log("runAngle", destinationAngle);		
-		var interval = setInterval(function(){
+
+		clearInterval(runAngleInterval);
+		runAngleInterval = setInterval(function(){
 			var angleNow = sensors.moduleState.gyro;
 
 			var addRotation = Math.round((angleNow - startingAngle) * 2.5);
 
 			if (Date.now() >= endTime) {
-				clearInterval(interval);
+				clearInterval(runAngleInterval);
 				moving.setMotorSpeeds(destinationAngle, 0, 0);
 			} else {
 				moving.setMotorSpeeds(destinationAngle, speed, addRotation);
@@ -98,11 +106,10 @@
 				runAngle(0, 10, 10000);
 			});
 		});
-
-
 	}
 
+	function newControllerData(data) {
 
-
-
+		console.log("New controller data", data);
+	}
 

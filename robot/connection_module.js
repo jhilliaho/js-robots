@@ -4,6 +4,8 @@
 
 "use strict"
 
+var programs = require("./programs_module.js");
+
 exports.moduleState = {
 	connected: false,
 	lastDataPacket: {}
@@ -28,12 +30,14 @@ socket.on("disconnect", function(){
 socket.on("speedAndAngleFromServer", function(data){
 	console.log("Data from server", data);
 	exports.moduleState.lastDataPacket = data;
+	programs.newControllerData(data);
 });
 
 
 var lastSentRadarData = {angle: 0, distance: 0, date: 0};
 function sendRadarData(angle, distance) {
 	var dateNow = Date.now();
+	
 	if (dateNow - lastSentRadarData.date < 1000 && angle === lastSentRadarData.angle && Math.abs(lastSentRadarData.distance - distance) < 30) {
 		return;
 	}

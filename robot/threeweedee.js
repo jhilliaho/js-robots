@@ -33,7 +33,5 @@ process.on('uncaughtException', function(err) {
 
 function run() {
 
-
-
 	//programs.runAngle(0,20,20000);
 }	
