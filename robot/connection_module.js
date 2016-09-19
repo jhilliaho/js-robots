@@ -19,6 +19,24 @@ app.get('/', function(req, res, next) {
 	res.render('gamepad');
 });
 
+// Function calculates the angle and distance of joystick
+function posToAngle(x,y) {
+	var angle = Math.atan(x/y) * 57.2957795;
+	if (y < 0) {angle += 180;}
+	while (angle < 0) {angle += 360;}
+	while (angle > 360) {angle -= 360;}
+	if (angle == -0) {angle = 0;}
+	return Math.round(angle);
+}
+
+function posToSpeed(x, y) {
+	var speed = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+	if (speed > 100) {
+		speed = 100;
+	}
+	return Math.round(speed);
+}
+
 var sendRadarData = function(){};
 
 io.on('connection', function (socket) {
