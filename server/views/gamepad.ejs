@@ -81,6 +81,12 @@
 			pos.y2 = Math.round(y2ToSend / (windowHeight/200));
 
 			// For safety reasons
+
+			if (isNaN(pos.x1)) {pos.x1 = 0;}
+			if (isNaN(pos.x2)) {pos.x2 = 0;}
+			if (isNaN(pos.y1)) {pos.y1 = 0;}
+			if (isNaN(pos.y2)) {pos.y2 = 0;}
+
 			if (pos.x1 > 100) {pos.x1 = 100;}
 			if (pos.x1 < -100) {pos.x1 = -100;}
 
