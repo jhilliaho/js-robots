@@ -52,7 +52,6 @@ function sendRadarData(angle, distance) {
 	lastSentRadarData.angle = angle;
 	lastSentRadarData.distance = distance;
 	lastSentRadarData.date = dateNow;
-	console.log("radar data");
 	if (socket_ != undefined) {
 		socket_.emit("radarData", {angle: angle, distance: distance});
 	}
