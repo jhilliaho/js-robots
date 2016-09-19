@@ -4,8 +4,16 @@
 
 "use strict"
 
+var express = require('express');
+var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+
+app.set('view engine', 'ejs');
+
+server.listen(3000);
+
+app.use('/static', express.static(__dirname + '/public'));
 
 io.on('connection', function (socket) {
 	console.log("New connection");
@@ -53,7 +61,7 @@ socket.on("speedAndAngleFromServer", function(data){
 
 
 
-    
+
 });
 
 
