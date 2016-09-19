@@ -63,7 +63,6 @@ io.on('connection', function (socket) {
 	console.log("New connection");
 
 	socket.on('controllerDataFromBrowser', function (data) {
-		console.log("Sending controllerDataFromBrowser as speedAndAngleFromServer", data);
 		var dataToRobot = {
 			angle1: posToAngle(data.x1,data.y1),
 			speed1: posToSpeed(data.x1,data.y1),
@@ -75,7 +74,6 @@ io.on('connection', function (socket) {
 			y2: data.y2
 		}
 		exports.moduleState.lastDataPacket = dataToRobot;
-		console.log("Using data", dataToRobot);
 		programs.newControllerData(dataToRobot);
   	});
 
