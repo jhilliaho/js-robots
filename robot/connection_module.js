@@ -57,11 +57,7 @@ io.on('connection', function (socket) {
 		socket.broadcast.emit("speedAndAngleFromServer", dataToRobot);
 		console.log("Sending angle and speed: ", posToAngle(data.x1, data.y1), posToSpeed(data.x1, data.y1));
   	});
-    
-	socket.on("radarData", function(data){
-		console.log("Radar data", data);
-		socket.broadcast.emit("radarData", data);		
-	});
+
 
     socket.on('disconnect', function () {
       console.log("Disconnected");
@@ -94,7 +90,7 @@ sendRadarData = function sendRadarData(angle, distance) {
 	lastSentRadarData.angle = angle;
 	lastSentRadarData.distance = distance;
 	lastSentRadarData.date = dateNow;
-
+	console.log("radar data");
 	socket.emit("radarData", {angle: angle, distance: distance});
 }
 
