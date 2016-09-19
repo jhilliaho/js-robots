@@ -6,7 +6,14 @@
 // Piirretään tutkagraafi etäisyysmittarista ja osoitetaan robotin asento
 // 
 // 
-// 
+
+var connect = require('connect');
+var serveStatic = require('serve-static');
+
+connect().use(serveStatic(__dirname)).listen(8080, function(){
+    console.log('Server running on 8080...');
+});
+
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
