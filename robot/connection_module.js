@@ -23,6 +23,7 @@ app.get('/', function(req, res, next) {
 function posToAngle(x,y) {
 	if (isNaN(x)) {x = 0;}
 	if (isNaN(y)) {y = 0;}
+	if (x == 0 && y == 0) {return 0;}
 	var angle = Math.atan(x/y) * 57.2957795;
 	if (y < 0) {angle += 180;}
 	while (angle < 0) {angle += 360;}
