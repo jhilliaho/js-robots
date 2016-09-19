@@ -72,6 +72,7 @@ io.on('connection', function (socket) {
 			y2: data.y2
 		}
 		exports.moduleState.lastDataPacket = dataToRobot;
+		console.log("Using data", dataToRobot);
 		programs.newControllerData(dataToRobot);
   	});
 
