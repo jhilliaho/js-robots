@@ -15,7 +15,7 @@ server.listen(3000);
 
 app.use('/static', express.static(__dirname + '/public'));
 
-var sendRadarData;
+var sendRadarData = function(){};
 
 io.on('connection', function (socket) {
 	console.log("New connection");
