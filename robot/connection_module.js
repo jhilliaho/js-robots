@@ -15,6 +15,10 @@ server.listen(3000);
 
 app.use('/static', express.static(__dirname + '/public'));
 
+app.get('/', function(req, res, next) {
+	res.render('gamepad');
+});
+
 var sendRadarData = function(){};
 
 io.on('connection', function (socket) {
