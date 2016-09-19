@@ -37,9 +37,26 @@ function posToSpeed(x, y) {
 	return Math.round(speed);
 }
 
-var sendRadarData = function(){};
+var socket;
+var lastSentRadarData = {angle: 0, distance: 0, date: 0};
+sendRadarData = function sendRadarData(angle, distance) {
+	var dateNow = Date.now();
+	
+	if (dateNow - lastSentRadarData.date < 1000 && angle === lastSentRadarData.angle && Math.abs(lastSentRadarData.distance - distance) < 30) {
+		return;
+	}
+
+	lastSentRadarData.angle = angle;
+	lastSentRadarData.distance = distance;
+	lastSentRadarData.date = dateNow;
+	console.log("radar data");
+	if (socket_ != undefined) {
+		socket_.emit("radarData", {angle: angle, distance: distance});
+	}
+}
 
 io.on('connection', function (socket) {
+	socket = socket_;
 	console.log("New connection");
 
 	socket.on('controllerDataFromBrowser', function (data) {
@@ -79,20 +96,7 @@ socket.on("speedAndAngleFromServer", function(data){
 });
 
 
-var lastSentRadarData = {angle: 0, distance: 0, date: 0};
-sendRadarData = function sendRadarData(angle, distance) {
-	var dateNow = Date.now();
-	
-	if (dateNow - lastSentRadarData.date < 1000 && angle === lastSentRadarData.angle && Math.abs(lastSentRadarData.distance - distance) < 30) {
-		return;
-	}
 
-	lastSentRadarData.angle = angle;
-	lastSentRadarData.distance = distance;
-	lastSentRadarData.date = dateNow;
-	console.log("radar data");
-	socket.emit("radarData", {angle: angle, distance: distance});
-}
 
 
 });
