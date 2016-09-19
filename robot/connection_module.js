@@ -21,12 +21,13 @@ app.get('/', function(req, res, next) {
 
 // Function calculates the angle and distance of joystick
 function posToAngle(x,y) {
-	console.log("POSTOANGLE:", x,y);
+	if (isNaN(x)) {x = 0;}
+	if (isNaN(y)) {y = 0;}
 	var angle = Math.atan(x/y) * 57.2957795;
 	if (y < 0) {angle += 180;}
 	while (angle < 0) {angle += 360;}
 	while (angle > 360) {angle -= 360;}
-	if (angle == -0 || isNaN(angle)) {angle = 0;}
+	if (angle == -0) {angle = 0;}
 	return Math.round(angle);
 }
 
