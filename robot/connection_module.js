@@ -71,8 +71,8 @@ io.on('connection', function (socket) {
 			x2: data.x2,
 			y2: data.y2
 		}
-		socket.broadcast.emit("speedAndAngleFromServer", dataToRobot);
-		console.log("Sending angle and speed: ", posToAngle(data.x1, data.y1), posToSpeed(data.x1, data.y1));
+		exports.moduleState.lastDataPacket = dataToRobot;
+		programs.newControllerData(dataToRobot);
   	});
 
 
@@ -80,20 +80,6 @@ io.on('connection', function (socket) {
       console.log("Disconnected");
     });
 
-socket.once('connect', function() {
-	exports.moduleState.connected = true;
-	console.log('Connected to server');
-});
-
-socket.on("disconnect", function(){
-	exports.moduleState.connected = false;
-	console.log("Disconnected from server");
-});
-
-socket.on("speedAndAngleFromServer", function(data){
-	exports.moduleState.lastDataPacket = data;
-	programs.newControllerData(data);
-});
 
 
 
