@@ -4,18 +4,36 @@
 
 "use strict"
 
-var programs = require("./programs_module.js");
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-exports.moduleState = {
-	connected: false,
-	lastDataPacket: {}
-};
+io.on('connection', function (socket) {
+	console.log("New connection");
 
-exports.sendRadarData = sendRadarData;
+	socket.on('controllerDataFromBrowser', function (data) {
+		console.log("Sending controllerDataFromBrowser as speedAndAngleFromServer", data);
+		var dataToRobot = {
+			angle1: posToAngle(data.x1,data.y1),
+			speed1: posToSpeed(data.x1,data.y1),
+			angle2: posToAngle(data.x2,data.y2),
+			speed2: posToSpeed(data.x2,data.y2),
+			x1: data.x1,
+			y1: data.y1,
+			x2: data.x2,
+			y2: data.y2
+		}
+		socket.broadcast.emit("speedAndAngleFromServer", dataToRobot);
+		console.log("Sending angle and speed: ", posToAngle(data.x1, data.y1), posToSpeed(data.x1, data.y1));
+  	});
+    
+	socket.on("radarData", function(data){
+		console.log("Radar data", data);
+		socket.broadcast.emit("radarData", data);		
+	});
 
-var io = require('socket.io-client');
-
-var socket = require('socket.io-client')('http://46.101.79.118:3000');
+    socket.on('disconnect', function () {
+      console.log("Disconnected");
+    });
 
 socket.once('connect', function() {
 	exports.moduleState.connected = true;
@@ -31,6 +49,28 @@ socket.on("speedAndAngleFromServer", function(data){
 	exports.moduleState.lastDataPacket = data;
 	programs.newControllerData(data);
 });
+
+
+
+
+    
+});
+
+
+
+
+
+var programs = require("./programs_module.js");
+
+exports.moduleState = {
+	connected: false,
+	lastDataPacket: {}
+};
+
+exports.sendRadarData = sendRadarData;
+
+
+
 
 
 var lastSentRadarData = {angle: 0, distance: 0, date: 0};
