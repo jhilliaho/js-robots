@@ -39,7 +39,7 @@ function posToSpeed(x, y) {
 
 var socket;
 var lastSentRadarData = {angle: 0, distance: 0, date: 0};
-sendRadarData = function sendRadarData(angle, distance) {
+function sendRadarData(angle, distance) {
 	var dateNow = Date.now();
 	
 	if (dateNow - lastSentRadarData.date < 1000 && angle === lastSentRadarData.angle && Math.abs(lastSentRadarData.distance - distance) < 30) {
