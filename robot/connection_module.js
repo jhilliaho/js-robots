@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 
 server.listen(3000);
 
-app.use('/static', express.static(__dirname + '/public'));
+app.use('/', express.static(__dirname + '/public'));
 
 app.get('/', function(req, res, next) {
 	res.render('gamepad');
