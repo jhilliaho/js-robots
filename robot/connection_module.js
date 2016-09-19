@@ -56,7 +56,7 @@ function sendRadarData(angle, distance) {
 }
 
 io.on('connection', function (socket) {
-	socket = socket_;
+	socket_ = socket;
 	console.log("New connection");
 
 	socket.on('controllerDataFromBrowser', function (data) {
