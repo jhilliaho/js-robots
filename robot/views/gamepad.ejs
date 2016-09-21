@@ -21,7 +21,7 @@
 
 <body onresize="init()">
 	<canvas id='canvas'></canvas>
-	<img id="img" src="" />
+	<img id="img" src="" width="320" height="240"/>
 </body>
 
 <script>
@@ -67,7 +67,7 @@
 
 	socket.on("newImage", function(data){
 		console.log("NewImage ", data);
-		document.getElementById('img').setAttribute( 'src', data );
+		document.getElementById('img').setAttribute( 'src', "data:image/png;base64, " + data );
 	});
 
 	var sendDataInterval = setInterval(sendValues, 100);
