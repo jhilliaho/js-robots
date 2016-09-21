@@ -46,7 +46,7 @@ setInterval(function(){
 		console.log("Not taking a picture because of shootlock");
 	}
 
-}, 1000);
+}, 100);
 
 // Runs when the camera starts to take a picture
 camera.on("start", function( err, timestamp ){
@@ -55,6 +55,7 @@ camera.on("start", function( err, timestamp ){
 
 // Runs when the camera has saved the picture
 camera.on("read", function( err, timestamp, filename ){
+   	shootlock = false;
 
 	// Do nothing if file is a temporary file
     if (filename.search("~") != -1) {
@@ -66,6 +67,7 @@ camera.on("read", function( err, timestamp, filename ){
 		
 	// Read a new picture file
     fs.readFile("./images/" + filename, function(err, original_data){
+   	shootlock = false;
 
     	// Use the file as Buffer
         var base64Image = new Buffer(original_data, 'binary').toString('base64');
@@ -76,11 +78,13 @@ camera.on("read", function( err, timestamp, filename ){
 
 //listen for the "stop" event triggered when the stop method was called
 camera.on("exit", function( timestamp ){
+   	shootlock = false;
 
 });
 
 //listen for the process to exit when the timeout has been reached
 camera.on("stop", function( err, timestamp ){
+   	shootlock = false;
 
 });
 
