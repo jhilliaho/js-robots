@@ -78,8 +78,8 @@
 
 	socket.on("radarData", function(data){
 		//addDot(data);
-		$("#compass").html(data.angle);
-		$("#distance").html(data.distance);
+		$("#compass").html("Angle: " + data.angle);
+		$("#distance").html("Distance: " + data.distance);
 	});
 
 	socket.on("newImage", function(data){
