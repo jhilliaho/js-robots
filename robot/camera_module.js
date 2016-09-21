@@ -19,8 +19,9 @@ var cameraOptions = {
 	vf: true,
 	hf: true,
 	br: 65,
-	co: 50								
-
+	co: 50,							
+	shutter: 100000,							// Shutter time in microseconds
+	ISO: 800
 	// Used image resolutions: 320x240, 640x480, 1280x960, 2592x1944 
 }
 
