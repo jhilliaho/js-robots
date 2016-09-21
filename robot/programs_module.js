@@ -80,7 +80,7 @@
 		speed /= 4;
 
 		// Destination angle means angle clockwise from north
-		destinationAngle -= sensors.moduleState.compass;
+		//destinationAngle -= sensors.moduleState.compass;
 
 		while (destinationAngle < 0) {
 			destinationAngle += 360;
