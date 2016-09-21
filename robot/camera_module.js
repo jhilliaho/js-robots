@@ -17,7 +17,9 @@ var cameraOptions = {
 	w: 640,									// Image width
 	h: 480,
 	vf: true,
-	hf: true								
+	hf: true,
+	br: 65,
+	co: 50								
 
 	// Used image resolutions: 320x240, 640x480, 1280x960, 2592x1944 
 }
