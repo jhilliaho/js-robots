@@ -86,7 +86,7 @@
 			destinationAngle += 360;
 		}
 
-		console.log("runAngle", destinationAngle, " keep position ", currentDestinationPointingAngle);		
+		//console.log("runAngle", destinationAngle, " keep position ", currentDestinationPointingAngle);		
 		
 		var startTime = Date.now();
 		var endTime = startTime + time;
