@@ -20,7 +20,7 @@
 			z-index: 10;
 			position: fixed;
 			top: 0%;
-			color: orange;
+			color: red;
 			font-size: 2em;
 			text-align: center;
 		}
@@ -80,7 +80,7 @@
 	socket.on("radarData", function(data){
 		//addDot(data);
 		$("#compass").html("Angle: " + data.angle);
-		$("#distance").html("Distance: " + data.distance / 10 + "cm");
+		$("#distance").html("Distance: " + Math.round(data.distance / 10) + "cm");
 	});
 
 	socket.on("newImage", function(data){
