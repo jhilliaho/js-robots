@@ -62,7 +62,8 @@ camera.on("read", function( err, timestamp, filename ){
     }
     
 	console.log("Image captured with filename: " + filename);
-				
+   	shootlock = false;
+		
 	// Read a new picture file
     fs.readFile("./images/" + filename, function(err, original_data){
 
@@ -70,7 +71,6 @@ camera.on("read", function( err, timestamp, filename ){
         var base64Image = new Buffer(original_data, 'binary').toString('base64');
 
     	connection.sendImage(base64Image);
-    	shootlock = false;
     });
 });
 
