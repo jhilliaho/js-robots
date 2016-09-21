@@ -11,7 +11,7 @@ var RaspiCam = require("raspicam");
 var cameraOptions = {
 	mode: "photo",							// Single photo
 	output: "./images/image_%06d.jpg", 		// File name
-	t: 1,									// Timeout 1ms, 0 makes a stream of pictures
+	t: 0,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
 	w: 1280,									// Image width
