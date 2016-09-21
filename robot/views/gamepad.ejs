@@ -79,7 +79,9 @@
 
 	socket.on("newImage", function(data){
 		console.log("NewImage ", data);
-		document.getElementById('img').setAttribute( 'src', "data:image/png;base64, " + data );
+		//document.getElementById('img').setAttribute( 'src', "data:image/png;base64, " + data );
+		$("body").css("background-image", "url('data:image/png;base64," + data + "')");
+
 	});
 
 	var sendDataInterval = setInterval(sendValues, 100);
