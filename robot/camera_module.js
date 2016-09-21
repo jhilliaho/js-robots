@@ -14,12 +14,12 @@ var cameraOptions = {
 	t: 1,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
-	shutter: 100000,							// Shutter time in microseconds
+	shutter: 100000,						// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
 	w: 640,									// Image width
 	h: 480,
 	vf: true,
-	hf: true								// Image height
+	hf: true								
 
 	// Used image resolutions: 320x240, 640x480, 1280x960, 2592x1944 
 }
