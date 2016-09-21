@@ -78,7 +78,7 @@
 	}
 
 	socket.on("radarData", function(data){
-		//addDot(data);
+		addDot(data);
 		$("#compass").html("Angle: " + data.angle);
 		$("#distance").html("Distance: " + Math.round(data.distance / 10) + "cm");
 	});
