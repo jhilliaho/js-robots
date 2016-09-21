@@ -11,6 +11,9 @@
 		#demoCanvas {
 			width: 100%;
 			z-index: 10;
+			position: fixed;
+			top: 0;
+			left: 0;
 		}
 		#img {
 			width: 100%;
@@ -29,8 +32,8 @@
 </head>
 
 <body onresize="init()">
-	<img id="img" src=""/>
 	<canvas id='canvas'></canvas>
+	<img id="img" src=""/>
 </body>
 
 <script>
