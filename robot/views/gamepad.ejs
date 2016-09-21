@@ -36,6 +36,7 @@
 <body onresize="init()">
 	<canvas id='canvas'></canvas>
 	<div id="sensordata">
+		<button id="clearDistances">Clear distance points</button>
 		<p id="compass"></p>
 		<p id="distance"></p>
 	</div>
@@ -88,6 +89,13 @@
 		//document.getElementById('img').setAttribute( 'src', "data:image/png;base64, " + data );
 		$("body").css("background-image", "url('data:image/png;base64," + data + "')");
 
+	});
+
+	$("#clearDistances").on("click", function(){
+		for (var i = 0; i < 360; ++i) {
+			stage.removeChild(radarDots[i]);
+		}
+		stage.update();
 	});
 
 	var sendDataInterval = setInterval(sendValues, 100);
