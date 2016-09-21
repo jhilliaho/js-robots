@@ -70,6 +70,7 @@ camera.on("read", function( err, timestamp, filename ){
         var base64Image = new Buffer(original_data, 'binary').toString('base64');
 
     	connection.sendImage(base64Image);
+    	shootlock = false;
     });
 });
 
