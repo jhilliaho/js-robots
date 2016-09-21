@@ -30,6 +30,14 @@ var camera = new RaspiCam(cameraOptions);
 // Image counter
 var imgCount = 0;
 
+fs.watch('./images/image_000001.jpg', function (event, filename) {
+    console.log('event is: ' + event);
+    if (filename) {
+        console.log('filename provided: ' + filename);
+    } else {
+        console.log('filename not provided');
+    }
+});
 
 // Set a lock variable to prevent taking new pictures before the previous one has been sent
 var shootlock = false;
