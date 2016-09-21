@@ -14,8 +14,8 @@ var cameraOptions = {
 	t: 1,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
-	w: 640,									// Image width
-	h: 480,
+	w: 1280,									// Image width
+	h: 960,
 	vf: true,
 	hf: true,
 	br: 65,
