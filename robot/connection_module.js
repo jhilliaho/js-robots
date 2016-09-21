@@ -19,6 +19,22 @@ app.get('/', function(req, res, next) {
 	res.render('gamepad');
 });
 
+var programs = require("./programs_module.js");
+
+exports.moduleState = {
+	connected: false,
+	lastDataPacket: {}
+};
+
+exports.sendRadarData = sendRadarData;
+exports.sendImage = sendImage;
+
+function sendImage(data){
+	if (socket_ != undefined) {
+		socket_.emit("newImage", data);
+	}
+}
+
 // Function calculates the angle and distance of joystick
 function posToAngle(x,y) {
 	if (isNaN(x)) {x = 0;}
@@ -80,26 +96,10 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function () {
       console.log("Disconnected");
     });
-
-
-
-
-
-
 });
 
 
 
-
-
-var programs = require("./programs_module.js");
-
-exports.moduleState = {
-	connected: false,
-	lastDataPacket: {}
-};
-
-exports.sendRadarData = sendRadarData;
 
 
 

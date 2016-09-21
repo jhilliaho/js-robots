@@ -17,6 +17,7 @@ var board = new five.Board({
 var programs = require("./programs_module.js");
 var sensors = require("./sensor_module.js");
 var connection;
+var camera = require("./camera_module");
 
 board.on("ready", function() {
 	board.io.i2cConfig();
