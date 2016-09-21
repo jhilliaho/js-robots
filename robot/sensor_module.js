@@ -44,7 +44,7 @@ function activate(five_, board_){
 	});
 
 	compass.on("change", function() {
-		exports.moduleState.compass = this.bearing.heading - 120;
+		exports.moduleState.compass = this.bearing.heading - 300;
 		if (exports.moduleState.compass < 0) {exports.moduleState.compass += 360;}
 	});
 
