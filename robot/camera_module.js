@@ -14,8 +14,8 @@ var cameraOptions = {
 	t: 0,									// Timeout 1ms, 0 makes a stream of pictures
 	n: true,								// No preview
 	awb: false,								// No automatic white balance
-	w: 1280,									// Image width
-	h: 960,
+	w: 320,									// Image width
+	h: 240,
 	vf: true,
 	hf: true,
 	br: 65,
@@ -31,33 +31,11 @@ var camera = new RaspiCam(cameraOptions);
 // Image counter
 var imgCount = 0;
 
-fs.watch('./images/image_000001.jpg', function (event, filename) {
-    console.log('event is: ' + event);
-    if (filename) {
-        console.log('filename provided: ' + filename);
-    } else {
-        console.log('filename not provided');
-    }
-});
-
 // Set a lock variable to prevent taking new pictures before the previous one has been sent
 var shootlock = false;
 
-setInterval(function(){
+camera.start();
 
-	if (!shootlock) {
-
-		// Set the shootlock
-		shootlock = true;
-
-		// Start the camera
-		camera.start();
-		console.log("Start camera");
-	} else {
-		console.log("Not taking a picture because of shootlock");
-	}
-
-}, 2000);
 
 // Runs when the camera starts to take a picture
 camera.on("start", function( err, timestamp ){
