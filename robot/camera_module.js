@@ -17,7 +17,9 @@ var cameraOptions = {
 	shutter: 50000,							// Shutter time in microseconds
 	ISO: 800,								// ISO sensitivity
 	w: 320,									// Image width
-	h: 240									// Image height
+	h: 240,
+	vf: true,
+	hf: true								// Image height
 
 	// Used image resolutions: 320x240, 640x480, 1280x960, 2592x1944 
 }
