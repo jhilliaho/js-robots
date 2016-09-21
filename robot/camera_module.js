@@ -57,7 +57,7 @@ setInterval(function(){
 		console.log("Not taking a picture because of shootlock");
 	}
 
-}, 100);
+}, 2000);
 
 // Runs when the camera starts to take a picture
 camera.on("start", function( err, timestamp ){
