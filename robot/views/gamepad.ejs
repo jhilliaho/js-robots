@@ -64,6 +64,10 @@
 		addDot(data);
 	});
 
+	socket.on("newImage", function(data){
+		console.log("NewImage ", data);
+	});
+
 	var sendDataInterval = setInterval(sendValues, 100);
 
 	// Function to send gamepad positions to the server with socket.io
