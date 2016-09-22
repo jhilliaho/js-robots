@@ -35,5 +35,6 @@ process.on('uncaughtException', function(err) {
 function run() {
 
 	connection = require("./connection_module.js");
+	programs.runForward();
 
 }	

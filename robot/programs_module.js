@@ -20,6 +20,7 @@
 	exports.activateModule = activateModule;
 	exports.stopMotors = moving.stopMotors;
 	exports.newControllerData = newControllerData;
+	exports.runForward = runForward;
 
 	function activateModule(board_) {
 		board = board_;
@@ -139,5 +140,10 @@
 		runAngle(data.angle1, data.speed1, 330, data.x2 * 4);
 		// 10 kertaa sekunnissa -100 - 100
 		
+	}
+
+	function runForward() {
+		var bytes = [20,1,20,1,20,1];
+		board.io.i2cWrite(0x8, bytes);
 	}
 
