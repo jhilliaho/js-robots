@@ -143,7 +143,7 @@
 	}
 
 	function runForward() {
-		var bytes = [20,1,20,0,0,0];
+		var bytes = [200,1,200,0,0,0];
 		board.io.i2cWrite(0x8, bytes);
 	}
 
