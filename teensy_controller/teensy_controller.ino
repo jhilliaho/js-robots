@@ -4,16 +4,14 @@
 // Initialize stepper drivers
 AccelStepper stepper1(1,1,0);
 AccelStepper stepper2(1,9,8);
-AccelStepper stepper3(1,17,16);
 
-int motorMaxSpeed = 4000;
+int motorMaxSpeed = 16500;
 volatile long int counter = 0;
 
 float speedChangingMultiplier = 2;
 float motor1NextSpeed, motor2NextSpeed, motor3NextSpeed;
 float motor1TargetSpeed = 0;
 float motor2TargetSpeed = 0;
-float motor3TargetSpeed = 0;
 
 void setup() {
   Wire.begin(8);                // join i2c bus with address #8
@@ -26,7 +24,7 @@ void setup() {
     }  
   }
 
-  // MOTOR 1 //
+  // MOTOR 1 (Right)//
   
   // Disable sleep
   digitalWriteFast(2, HIGH);
@@ -44,7 +42,7 @@ void setup() {
   stepper1.setMaxSpeed(motorMaxSpeed);
 
 
-  // MOTOR 2 //
+  // MOTOR 2 (Left)//
   
   // Disable sleep
   digitalWriteFast(10, HIGH);
@@ -61,96 +59,53 @@ void setup() {
   digitalWriteFast(14, HIGH);
   stepper2.setMaxSpeed(motorMaxSpeed);
 
+  motor1TargetSpeed = 16000;
+  motor2TargetSpeed = 16000;
 
-  // MOTOR 3 //
-  
-  // Disable motor
-  digitalWriteFast(23, HIGH);
-
-  // Set speed
-  digitalWriteFast(20, HIGH);
-  digitalWriteFast(21, LOW);
-  digitalWriteFast(22, LOW);
-  stepper3.setMaxSpeed(motorMaxSpeed);
+  stepper1.setAcceleration(50000);
+  stepper2.setAcceleration(50000);
+  stepper1.moveTo(6400);
+  stepper2.moveTo(6400);
 }
+
+
 
 void loop() {
-
-  if (counter % 10 == 0) {
-    if (motor1TargetSpeed < stepper1.speed()-speedChangingMultiplier) {
-      motor1NextSpeed = stepper1.speed()-speedChangingMultiplier;
-    } else if (motor1TargetSpeed > stepper1.speed()+speedChangingMultiplier) {
-      motor1NextSpeed = stepper1.speed()+speedChangingMultiplier;
-    }
   
-    if (motor2TargetSpeed < stepper2.speed()-speedChangingMultiplier) {
-      motor2NextSpeed = stepper2.speed()-speedChangingMultiplier;
-    } else if (motor2TargetSpeed > stepper2.speed()+speedChangingMultiplier) {
-      motor2NextSpeed = stepper2.speed()+speedChangingMultiplier;
-    }
-  
-    if (motor3TargetSpeed < stepper3.speed()-speedChangingMultiplier) {
-      motor3NextSpeed = stepper3.speed()-speedChangingMultiplier;
-    } else if (motor3TargetSpeed > stepper3.speed()+speedChangingMultiplier) {
-      motor3NextSpeed = stepper3.speed()+speedChangingMultiplier;
-    }  
-    
-    stepper1.setSpeed(motor1NextSpeed);
-    stepper2.setSpeed(motor2NextSpeed);
-    stepper3.setSpeed(motor3NextSpeed);
-  }
-    
-  stepper1.runSpeed();
-  stepper2.runSpeed();
-  stepper3.runSpeed();
+  stepper1.run();
+  stepper2.run();
 
   counter++;
-
-  if (counter > 99999){
-    motor1TargetSpeed = 0;
-    motor2TargetSpeed = 0;
-    motor3TargetSpeed = 0;
-    
-    digitalWriteFast(7, HIGH);
-    digitalWriteFast(15, HIGH);
-    digitalWriteFast(23, HIGH);
-    
-    counter = 0;
-    
-    digitalWrite(13, LOW);
-    delay(20);
-    digitalWrite(13, HIGH);
-  }
 }
 
+void checkBalance(){
+
+  // Calculate
+
+}
+
+void enableMotors(){
+  digitalWriteFast(7, LOW);
+  digitalWriteFast(15, LOW);
+}
+
+void disableMotors(){
+  digitalWriteFast(7, LOW);
+  digitalWriteFast(15, LOW);
+}
+
+// Required data:
+// 1. sensor balance value
+// 1. Compass angle 0-180 (0-360)
+// 2. Target speed 0-255, 0-127 = backward, 128-255 = forward
+// 3. Target rotation speed 0-255, 0-127 = counterclockwise, 128-255 = clockwise
 
 void receiveEvent(int howMany) {
-    motor1TargetSpeed = 32 * Wire.read();
-    int motor1TargetDir = Wire.read();    
-    motor2TargetSpeed = 32 * Wire.read();
-    int motor2TargetDir = Wire.read();
-    motor3TargetSpeed = 32 * Wire.read();
-    int motor3TargetDir = Wire.read();
-
-    if (motor1TargetDir == 0) {
-      motor1TargetSpeed = -motor1TargetSpeed;
-    }
-    if (motor2TargetDir == 0) {
-      motor2TargetSpeed = -motor2TargetSpeed;
-    }
-    if (motor3TargetDir == 0) {
-      motor3TargetSpeed = -motor3TargetSpeed;
-    }
-
-    if (motor1TargetSpeed == 0 && motor2TargetSpeed == 0 && motor3TargetSpeed == 0) {
-        digitalWriteFast(7, HIGH);
-        digitalWriteFast(15, HIGH);
-        digitalWriteFast(23, HIGH);
-    } else {
-        digitalWriteFast(7, LOW);
-        digitalWriteFast(15, LOW);
-        digitalWriteFast(23, LOW);
-    }
+    // Max speed = 64 * 255 = 16320
+    fallingAngle = Wire.read();
+    compassAngle = Wire.read() * 2;
+    targetSpeed = Wire.read();
+    targetRotation = Wire.read();
     counter = 0;
 }
 
