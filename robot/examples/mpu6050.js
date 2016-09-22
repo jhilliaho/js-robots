@@ -10,7 +10,8 @@ var board = new five.Board({
 
 board.on("ready", function() {
   var imu = new five.IMU({
-    controller: "MPU6050"
+    controller: "MPU6050",
+    freq: 10
   });
 
   imu.on("change", function() {
