@@ -14,13 +14,6 @@ board.on("ready", function() {
   });
 
   imu.on("change", function() {
-    console.log("  x            : ", this.accelerometer.x);
-    console.log("  y            : ", this.accelerometer.y);
-    console.log("  z            : ", this.accelerometer.z);
     console.log("  pitch        : ", this.accelerometer.pitch);
-    console.log("  roll         : ", this.accelerometer.roll);
-    console.log("  acceleration : ", this.accelerometer.acceleration);
-    console.log("  inclination  : ", this.accelerometer.inclination);
-    console.log("  orientation  : ", this.accelerometer.orientation);
   });
 });
