@@ -28,5 +28,7 @@ process.on('uncaughtException', function(err) {
 });
 
 function run() {
-	programs.runForward();
+	setInterval(function(){
+		programs.runForward();
+	},200);
 }	
