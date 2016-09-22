@@ -15,15 +15,10 @@ var board = new five.Board({
 
 // Own modules
 var programs = require("./programs_module.js");
-var sensors = require("./sensor_module.js");
-var connection;
-var camera = require("./camera_module");
 
 board.on("ready", function() {
 	board.io.i2cConfig();
-	sensors.activateModule(five, board);
 	programs.activateModule(board);
-	console.log(sensors.moduleState);
 	setTimeout(run, 500);
 });
 
@@ -33,8 +28,5 @@ process.on('uncaughtException', function(err) {
 });
 
 function run() {
-
-	connection = require("./connection_module.js");
 	programs.runForward();
-
 }	
