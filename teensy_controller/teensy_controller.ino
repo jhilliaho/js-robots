@@ -15,9 +15,9 @@ float motor2TargetSpeed = 0;
 
 void setup() {
   Wire.begin(8);                // join i2c bus with address #8
-  Wire.onReceive(receiveEvent); // register event
+  Wire.onReceive(receiveEvent); // register receive event
 
-  // Set pins
+  // Set pins to output
   for (int i = 0; i < 24; ++i) {
     if (i != 19 && i != 18) {
       pinMode(i, OUTPUT);
@@ -25,7 +25,6 @@ void setup() {
   }
 
   // MOTOR 1 (Right)//
-  
   // Disable sleep
   digitalWriteFast(2, HIGH);
 
@@ -33,7 +32,7 @@ void setup() {
   digitalWriteFast(3, HIGH);
 
   // Disable motor
-  digitalWriteFast(7, HIGH);
+  disableMotor1();
 
   // Set speed
   digitalWriteFast(4, HIGH);
@@ -51,31 +50,18 @@ void setup() {
   digitalWriteFast(11, HIGH);
 
   // Disable motor
-  digitalWriteFast(15, HIGH);
+  disableMotor2();
 
   // Set speed
   digitalWriteFast(12, HIGH);
   digitalWriteFast(13, HIGH);
   digitalWriteFast(14, HIGH);
   stepper2.setMaxSpeed(motorMaxSpeed);
-
-  motor1TargetSpeed = 16000;
-  motor2TargetSpeed = 16000;
-
-  stepper1.setAcceleration(50000);
-  stepper2.setAcceleration(50000);
-  stepper1.moveTo(6400);
-  stepper2.moveTo(6400);
 }
 
-
-
-void loop() {
-  
+void loop() {  
   stepper1.run();
   stepper2.run();
-
-  counter++;
 }
 
 void checkBalance(){
@@ -84,14 +70,20 @@ void checkBalance(){
 
 }
 
-void enableMotors(){
+void enableMotor1(){
   digitalWriteFast(7, LOW);
+}
+
+void enableMotor2(){
   digitalWriteFast(15, LOW);
 }
 
-void disableMotors(){
-  digitalWriteFast(7, LOW);
-  digitalWriteFast(15, LOW);
+void disableMotor1(){
+  digitalWriteFast(7, HIGH);
+}
+
+void disableMotor2(){
+  digitalWriteFast(15, HIGH);
 }
 
 // Required data:
@@ -101,12 +93,11 @@ void disableMotors(){
 // 3. Target rotation speed 0-255, 0-127 = counterclockwise, 128-255 = clockwise
 
 void receiveEvent(int howMany) {
-    // Max speed = 64 * 255 = 16320
-    fallingAngle = Wire.read();
-    compassAngle = Wire.read() * 2;
-    targetSpeed = Wire.read();
-    targetRotation = Wire.read();
-    counter = 0;
+    String data = Wire.read();
+
+    digitalWriteFast(13, HIGH);
+    delay(100);
+    digitalWriteFast(13, LOW);
 }
 
 

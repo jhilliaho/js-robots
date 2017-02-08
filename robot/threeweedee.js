@@ -9,12 +9,11 @@ var board = new five.Board({
 });
 
 // Own modules
-var programs = require("./programs_module.js");
+var sensors = require("./sensor_module.js");
 
 board.on("ready", function() {
 	board.io.i2cConfig();
-	programs.activateModule(board);
-	setTimeout(run, 500);
+	sensors.activateModule(five, board);
 });
 
 process.on('uncaughtException', function(err) {
