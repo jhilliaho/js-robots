@@ -11,6 +11,7 @@ var board = new five.Board({
 // Own modules
 var sensors = require("./sensor_module.js");
 
+
 board.on("ready", function() {
 	board.io.i2cConfig();
 	sensors.activateModule(five, board);
